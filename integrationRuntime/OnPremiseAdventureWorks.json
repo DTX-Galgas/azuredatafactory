@@ -1,0 +1,6 @@
+{
+	"name": "OnPremiseAdventureWorks",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
