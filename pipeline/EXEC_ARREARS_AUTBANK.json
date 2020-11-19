@@ -1,0 +1,869 @@
+{
+	"name": "EXEC_ARREARS_AUTBANK",
+	"properties": {
+		"activities": [
+			{
+				"name": "LeCredenciaisDBorigem",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "delta_path",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciais]",
+						"storedProcedureParameters": {
+							"COD_TABELA": {
+								"type": "Int32",
+								"value": "17"
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "LeCredenciaisDBorigem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart')",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_1_1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_envio_1_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_1_1",
+						"dependencyConditions": [
+							"Succeeded",
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "wait_envio_1_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_1_2",
+						"dependencyConditions": [
+							"Succeeded",
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_1_2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_1_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_1_3",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_1_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_data_mart_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "wait_data_mart_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_tentativa_2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_data_mart_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart')",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_tentativa_3",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_data_mart_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart')",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "delta_path",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "path_notebook_datamart",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "path_delta",
+					"value": "/mnt/sadevbrcreditcore/creditcore-datamart-dev/arrears/arrears_delta/msg_beb_arrears_autbank/"
+				}
+			},
+			{
+				"name": "path_notebook_datamart",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "path_notebook_datamart_envio",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "path_notebook_datamart",
+					"value": "/datamart/delta/ArrearsAutbankDelta"
+				}
+			},
+			{
+				"name": "path_notebook_datamart_envio",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "wait_time_seg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "path_notebook_datamart_envio",
+					"value": "/datamart/envio/ArrearsEnvio"
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_2_1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_envio_2_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_2_1",
+						"dependencyConditions": [
+							"Succeeded",
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_2_2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_2_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_envio_2_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_2_2",
+						"dependencyConditions": [
+							"Succeeded",
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_2_3",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_2_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_3_1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_envio_3_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_3_1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_3_2",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_3_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_envio_3_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "nb_data_mart_envio_3_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@variables('wait_time_seg')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "nb_data_mart_envio_3_3",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "wait_envio_3_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@variables('path_notebook_datamart_envio')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"path_delta": {
+							"value": "@variables('path_delta')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ADB_ETL",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"condatabricksurl": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
+							"type": "Expression"
+						},
+						"pwddatabricks": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
+							"type": "Expression"
+						},
+						"nomcluster": {
+							"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "wait_time_seg",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "wait_time_seg",
+					"value": "300"
+				}
+			}
+		],
+		"variables": {
+			"dat_atual_processamento": {
+				"type": "String"
+			},
+			"path_delta": {
+				"type": "String"
+			},
+			"path_notebook_datamart": {
+				"type": "String"
+			},
+			"path_notebook_datamart_envio": {
+				"type": "String"
+			},
+			"wait_time_seg": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Malhas/ARREARS"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-11-19T20:22:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

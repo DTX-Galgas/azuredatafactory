@@ -1,0 +1,34 @@
+{
+	"name": "ADB_ETL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"condatabricksurl": {
+				"type": "string"
+			},
+			"pwddatabricks": {
+				"type": "string"
+			},
+			"nomcluster": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "@linkedService().condatabricksurl",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KV_CREDITOCORE",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().pwddatabricks",
+					"type": "Expression"
+				}
+			},
+			"existingClusterId": "@linkedService().nomcluster"
+		}
+	}
+}
