@@ -1,0 +1,27 @@
+{
+	"name": "database_nao_existe",
+	"properties": {
+		"activities": [
+			{
+				"name": "database_nao_existe",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "37"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Teste Plan"
+		},
+		"annotations": []
+	}
+}

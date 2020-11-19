@@ -861,8 +861,6 @@
 		"folder": {
 			"name": "Malhas/ARREARS"
 		},
-		"annotations": [],
-		"lastPublishTime": "2020-11-19T20:22:46Z"
-	},
-	"type": "Microsoft.DataFactory/factories/pipelines"
+		"annotations": []
+	}
 }
