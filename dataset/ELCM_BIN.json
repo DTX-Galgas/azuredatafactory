@@ -12,6 +12,5 @@
 				"type": "HttpServerLocation"
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

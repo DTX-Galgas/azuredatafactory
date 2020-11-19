@@ -1,8 +1,8 @@
 {
-	"name": "DS_ADSL_GEN2_JSON_DESTINO",
+	"name": "CSV_OP_DS_ORIGEM",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ADLS_DESTINO_GEN2",
+			"referenceName": "FS_CSV_CHILE_ORIGEM",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -11,19 +11,16 @@
 			},
 			"FileName": {
 				"type": "string"
-			},
-			"FileSystem": {
-				"type": "string"
 			}
 		},
 		"folder": {
-			"name": "DESTINO"
+			"name": "ORIGEM"
 		},
 		"annotations": [],
-		"type": "Json",
+		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
+				"type": "FileServerLocation",
 				"fileName": {
 					"value": "@dataset().FileName",
 					"type": "Expression"
@@ -31,12 +28,13 @@
 				"folderPath": {
 					"value": "@dataset().FilePath",
 					"type": "Expression"
-				},
-				"fileSystem": {
-					"value": "@dataset().FileSystem",
-					"type": "Expression"
 				}
-			}
-		}
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
 	}
 }

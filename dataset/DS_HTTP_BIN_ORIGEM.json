@@ -1,0 +1,28 @@
+{
+	"name": "DS_HTTP_BIN_ORIGEM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HTTP_API_ELCM",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"RalativeURL": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ORIGEM"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().RalativeURL",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
