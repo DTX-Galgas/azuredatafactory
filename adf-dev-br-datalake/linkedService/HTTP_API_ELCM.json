@@ -1,0 +1,18 @@
+{
+	"name": "HTTP_API_ELCM",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://apigatesit.am.rabodev.com/api/credit-position/v1/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "ClientCertificate",
+			"certThumbprint": "1b16a59d1272216acdc647501135f06df82a66d9"
+		},
+		"connectVia": {
+			"referenceName": "ir-dev-br-dataintegration",
+			"type": "IntegrationRuntimeReference"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}

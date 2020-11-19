@@ -1,0 +1,12 @@
+{
+	"name": "ELCM_MOCK",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://run.mocky.io/v3/2f80ec7f-12bc-4263-92df-5f58784495a9",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

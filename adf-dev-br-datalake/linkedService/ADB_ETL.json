@@ -1,0 +1,34 @@
+{
+	"name": "ADB_ETL",
+	"properties": {
+		"parameters": {
+			"condatabricksurl": {
+				"type": "string"
+			},
+			"pwddatabricks": {
+				"type": "string"
+			},
+			"nomcluster": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-8492317127203735.15.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvdevbrcredicore",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().pwddatabricks",
+					"type": "Expression"
+				}
+			},
+			"existingClusterId": "@linkedService().nomcluster"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}

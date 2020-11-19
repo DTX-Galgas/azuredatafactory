@@ -1,0 +1,199 @@
+{
+	"name": "EXEC_PIPE_FUNCAO",
+	"properties": {
+		"activities": [
+			{
+				"name": "operacao",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "14"
+					}
+				}
+			},
+			{
+				"name": "wait_operacao_tentativa_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "operacao",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "wait_operacao_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "operacao_tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "operacao_tentativa_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_operacao_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "14"
+					}
+				}
+			},
+			{
+				"name": "operacao_tentativa_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_operacao_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "14"
+					}
+				}
+			},
+			{
+				"name": "saldo_parcela",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "15"
+					}
+				}
+			},
+			{
+				"name": "wait_saldo_parcela_tentativa_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "saldo_parcela",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "wait_saldo_parcela_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "saldo_parcela_tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "saldo_parcela_tentativa_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_saldo_parcela_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "15"
+					}
+				}
+			},
+			{
+				"name": "saldo_parcela_tentativa_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_saldo_parcela_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "15"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/FUNCAO"
+		},
+		"annotations": []
+	}
+}

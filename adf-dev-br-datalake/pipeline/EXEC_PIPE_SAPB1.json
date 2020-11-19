@@ -1,0 +1,105 @@
+{
+	"name": "EXEC_PIPE_SAPB1",
+	"properties": {
+		"activities": [
+			{
+				"name": "rsal_creditriskarrearsdetails",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "35"
+					}
+				}
+			},
+			{
+				"name": "wait_rsal_creditriskarrearsdetails_tentativa_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "rsal_creditriskarrearsdetails",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "rsal_creditriskarrearsdetails_tentativa_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_rsal_creditriskarrearsdetails_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "35"
+					}
+				}
+			},
+			{
+				"name": "wait_rsal_creditriskarrearsdetails_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "rsal_creditriskarrearsdetails_tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "rsal_creditriskarrearsdetails_tentativa_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_rsal_creditriskarrearsdetails_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "35"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/CHILE"
+		},
+		"annotations": []
+	}
+}

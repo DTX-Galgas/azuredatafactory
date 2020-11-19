@@ -1,0 +1,25 @@
+{
+	"name": "trg_exex_arrears_funcao",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-10-09T13:38:00.000Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						50
+					],
+					"hours": [
+						11
+					]
+				}
+			}
+		}
+	}
+}

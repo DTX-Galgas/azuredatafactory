@@ -1,0 +1,17 @@
+{
+	"name": "trg_apprbb_dbo_vwifd_datalake_premissas",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2020-07-29T17:57:00.000Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

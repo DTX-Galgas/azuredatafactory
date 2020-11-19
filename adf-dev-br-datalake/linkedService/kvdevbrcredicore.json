@@ -1,0 +1,10 @@
+{
+	"name": "kvdevbrcredicore",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-dev-br-creditcore.vault.azure.net/"
+		}
+	}
+}
