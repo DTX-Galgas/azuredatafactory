@@ -416,7 +416,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path_delta",
-					"value": "/mnt/sadevbrcreditcore/creditcore-datamart-dev/arrears/arrears_delta/msg_beb_arrears_autbank/"
+					"value": "/mnt/sasitbrcreditcore/creditcore-datamart-sit/arrears/arrears_delta/msg_beb_arrears_autbank/"
 				}
 			},
 			{
@@ -862,6 +862,8 @@
 		"folder": {
 			"name": "Malhas/ARREARS"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2020-11-24T17:55:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

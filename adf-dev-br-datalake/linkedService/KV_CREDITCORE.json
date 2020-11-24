@@ -1,11 +1,11 @@
 {
-	"name": "ADLS_GEN2_TESTE_REST",
+	"name": "KV_CREDITCORE",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
-		"type": "AzureBlobFS",
+		"type": "AzureKeyVault",
 		"typeProperties": {
-			"url": "https://sasitbrdatalake.dfs.core.windows.net"
+			"baseUrl": "https://kv-sit-br-creditcore.vault.azure.net/"
 		}
 	}
 }

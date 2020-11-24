@@ -1,11 +1,11 @@
 {
-	"name": "ADLS_GEN2_TESTE_REST",
+	"name": "KV_DATALAKE",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
-		"type": "AzureBlobFS",
+		"type": "AzureKeyVault",
 		"typeProperties": {
-			"url": "https://sasitbrdatalake.dfs.core.windows.net"
+			"baseUrl": "https://kv-sit-br-datalake.vault.azure.net/"
 		}
 	}
 }

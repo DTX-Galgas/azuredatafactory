@@ -1,5 +1,6 @@
 {
 	"name": "ELCM_MOCK",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "HttpServer",

@@ -413,7 +413,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path_delta",
-					"value": "/mnt/sadevbrcreditcore/creditcore-datamart-dev/arrears/arrears_delta/msg_beb_arrears_acbs/"
+					"value": "/mnt/sasitbrcreditcore/creditcore-datamart-sit/arrears/arrears_delta/msg_beb_arrears_acbs/"
 				}
 			},
 			{
@@ -837,7 +837,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "wait_time_seg",
-					"value": "300"
+					"value": "60"
 				}
 			}
 		],
@@ -861,6 +861,8 @@
 		"folder": {
 			"name": "Malhas/ARREARS"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2020-11-24T17:55:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

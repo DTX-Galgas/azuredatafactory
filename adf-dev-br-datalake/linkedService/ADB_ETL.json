@@ -1,5 +1,6 @@
 {
 	"name": "ADB_ETL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
 			"condatabricksurl": {
@@ -15,11 +16,11 @@
 		"annotations": [],
 		"type": "AzureDatabricks",
 		"typeProperties": {
-			"domain": "https://adb-8492317127203735.15.azuredatabricks.net",
+			"domain": "@linkedService().condatabricksurl",
 			"accessToken": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
-					"referenceName": "kvdevbrcredicore",
+					"referenceName": "KV_CREDITCORE",
 					"type": "LinkedServiceReference"
 				},
 				"secretName": {
@@ -29,6 +30,5 @@
 			},
 			"existingClusterId": "@linkedService().nomcluster"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
