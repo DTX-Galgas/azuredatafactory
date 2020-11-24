@@ -3,13 +3,20 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_ARREARS_ACBS",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2020-10-09T13:34:00Z",
+				"startTime": "2020-10-09T13:34:00.000Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [

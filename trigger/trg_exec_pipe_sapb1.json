@@ -1,12 +1,12 @@
 {
-	"name": "trg_exec_arrears_sapb1",
+	"name": "trg_exec_pipe_sapb1",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "EXEC_ARREARS_SAPB1",
+					"referenceName": "EXEC_PIPE_SAPB1",
 					"type": "PipelineReference"
 				}
 			}
@@ -16,11 +16,11 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2020-10-09T13:36:00.000Z",
+				"startTime": "2020-10-09T13:33:00.000Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [
-						50
+						0
 					],
 					"hours": [
 						13

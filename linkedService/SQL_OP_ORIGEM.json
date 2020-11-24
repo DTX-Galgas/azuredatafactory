@@ -1,0 +1,48 @@
+{
+	"name": "SQL_OP_ORIGEM",
+	"properties": {
+		"parameters": {
+			"UserName": {
+				"type": "string"
+			},
+			"SecretNamePWD": {
+				"type": "string"
+			},
+			"SecretNameCON": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvdevbrdatalake",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().SecretNameCON",
+					"type": "Expression"
+				}
+			},
+			"userName": "@{linkedService().UserName}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvdevbrdatalake",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().SecretNamePWD",
+					"type": "Expression"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "ir-dev-br-dataintegration",
+			"type": "IntegrationRuntimeReference"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}

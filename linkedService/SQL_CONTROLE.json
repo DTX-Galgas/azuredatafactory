@@ -1,6 +1,5 @@
 {
 	"name": "SQL_CONTROLE",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
@@ -8,11 +7,12 @@
 			"connectionString": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
-					"referenceName": "KV_DATALAKE",
+					"referenceName": "kvdevbrdatalake",
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "con-srvdevbrdatalake"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }

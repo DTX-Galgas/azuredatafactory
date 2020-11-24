@@ -1,0 +1,18 @@
+{
+	"name": "CRC_RESULT_TESTE",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://apigatesit.am.rabodev.com/api/credit-risk/crc/update/gar",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "ClientCertificate",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0NTcwYmZiZS1kOGY5LTQ1NDktOGUwYy01YmNkODk2YzU4MDAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-dev-br-dataintegration",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
