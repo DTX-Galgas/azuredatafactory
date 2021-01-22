@@ -1,18 +1,12 @@
 {
 	"name": "SQL_CONTROLE",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "kvdevbrdatalake",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "con-srvdevbrdatalake"
-			}
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=srv-dev-synapse.database.windows.net;initial catalog=db-dev-us-synpase2;user id=dbadataex",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFTLURFVi1VUy1TWU5BUFNFXzc4OTc2OTU5LTNlMTYtNDc1OS1hMDYwLTUwOGUxNDE1MTFjNyINCn0="
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/linkedservices"
+	}
 }
