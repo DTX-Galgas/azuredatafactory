@@ -133,9 +133,8 @@
 								"source": {
 									"type": "JsonSource",
 									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
+										"type": "HttpReadSettings",
+										"requestMethod": "GET"
 									},
 									"formatSettings": {
 										"type": "JsonReadSettings"
@@ -155,7 +154,13 @@
 							"inputs": [
 								{
 									"referenceName": "Json1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"ParRelativeURL": {
+											"value": "@variables('RalativeURL')",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
