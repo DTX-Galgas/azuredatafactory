@@ -134,7 +134,8 @@
 									"type": "JsonSource",
 									"storeSettings": {
 										"type": "HttpReadSettings",
-										"requestMethod": "GET"
+										"requestMethod": "GET",
+										"additionalHeaders": "X-VTEX-API-AppToken: BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO\\ x-vtex-api-appkey:vtexappkey-malwee-AHFBTB"
 									},
 									"formatSettings": {
 										"type": "JsonReadSettings"
