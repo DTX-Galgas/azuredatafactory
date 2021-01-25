@@ -2,15 +2,23 @@
 	"name": "Json1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ADLS_DESTINO_GEN2",
+			"referenceName": "HTTP_API_VTEX",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ParRelativeURL": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileSystem": "raw"
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().ParRelativeURL",
+					"type": "Expression"
+				}
 			}
 		},
 		"schema": {}
