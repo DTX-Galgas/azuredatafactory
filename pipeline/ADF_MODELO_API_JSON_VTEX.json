@@ -135,7 +135,7 @@
 									"storeSettings": {
 										"type": "HttpReadSettings",
 										"requestMethod": "GET",
-										"additionalHeaders": "X-VTEX-API-AppToken: BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO\\ x-vtex-api-appkey:vtexappkey-malwee-AHFBTB"
+										"additionalHeaders": "@{concat('X-VTEX-API-AppToken: BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO\nx-vtex-api-appkey: vtexappkey-malwee-AHFBTB)}"
 									},
 									"formatSettings": {
 										"type": "JsonReadSettings"
