@@ -1,0 +1,12 @@
+{
+	"name": "HTTP_API_VTEX",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
