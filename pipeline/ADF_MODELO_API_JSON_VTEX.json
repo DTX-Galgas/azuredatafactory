@@ -131,14 +131,13 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "HttpReadSettings",
-										"requestMethod": "GET",
-										"additionalHeaders": "@{concat('X-VTEX-API-AppToken: BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO\nx-vtex-api-appkey: vtexappkey-malwee-AHFBTB)}"
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"X-VTEX-API-AppToken": "BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO",
+										"x-vtex-api-appkey": "vtexappkey-malwee-AHFBTB"
 									}
 								},
 								"sink": {
@@ -154,7 +153,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "Json1",
+									"referenceName": "RestVTEX",
 									"type": "DatasetReference",
 									"parameters": {
 										"ParRelativeURL": {
