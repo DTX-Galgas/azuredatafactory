@@ -5,10 +5,18 @@
 			"referenceName": "RestServiceVtex",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"ParRelativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "orders/1077153073491-01"
+			"relativeUrl": {
+				"value": "@dataset().ParRelativeURL",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
