@@ -1,0 +1,27 @@
+{
+	"name": "EXEC_PIPE_VTEX",
+	"properties": {
+		"activities": [
+			{
+				"name": "vtex_ordens",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodEndPoint": "4"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/VTEX"
+		},
+		"annotations": []
+	}
+}
