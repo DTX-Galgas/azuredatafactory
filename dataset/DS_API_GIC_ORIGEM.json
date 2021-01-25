@@ -2,7 +2,7 @@
 	"name": "DS_API_GIC_ORIGEM",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "HTTP_API_GIC",
+			"referenceName": "HTTP_API_VTEX",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -23,6 +23,7 @@
 					"type": "Expression"
 				}
 			}
-		}
+		},
+		"schema": {}
 	}
 }
