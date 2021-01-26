@@ -22,12 +22,12 @@
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
-						"type": "OrcSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "OrcWriteSettings"
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -48,13 +48,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS_DS_DESTINO_GEN2",
-						"type": "DatasetReference",
-						"parameters": {
-							"FilePath": "testeorc/oracle",
-							"FileName": "etstete.parquet",
-							"FileSystem": "raw"
-						}
+						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+						"type": "DatasetReference"
 					}
 				]
 			}
