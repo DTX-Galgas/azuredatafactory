@@ -7,6 +7,10 @@
 		},
 		"annotations": [],
 		"type": "OracleTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "GESTOR",
+			"table": "CRMPRODUTO"
+		}
 	}
 }
