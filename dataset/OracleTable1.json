@@ -5,6 +5,20 @@
 			"referenceName": "ORC_GIGAM_ORIGEM",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"NomeTabela": {
+				"type": "string"
+			},
+			"UserName": {
+				"type": "string"
+			},
+			"SecretNamePWD": {
+				"type": "string"
+			},
+			"SecretNameCON": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "OracleTable",
 		"schema": [],
