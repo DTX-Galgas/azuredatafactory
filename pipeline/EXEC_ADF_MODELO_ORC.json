@@ -68,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ADF_MODELO",
+									"referenceName": "ADF_MODELO_ORC",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
