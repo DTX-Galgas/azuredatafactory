@@ -386,6 +386,7 @@
 									"referenceName": "OracleTable1",
 									"type": "DatasetReference",
 									"parameters": {
+										"NomeTabela": "TABELA",
 										"UserName": {
 											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
 											"type": "Expression"
