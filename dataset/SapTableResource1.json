@@ -7,6 +7,9 @@
 		},
 		"annotations": [],
 		"type": "SapTableResource",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"tableName": "T134T"
+		}
 	}
 }
