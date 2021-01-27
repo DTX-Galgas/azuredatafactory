@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "Oracle",
 		"typeProperties": {
-			"connectionString": "host=oraclescan.malwee.com.br;port=1521;servicename=DBRH;user id=gestor_dl",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyNTliZjI0NC03YWU3LTQ1YWItYmJhZC04NGY5ZTA3ZGMwNDQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "host=oraclescan.malwee.com.br;port=1521;servicename=DBRH;user id=qlik",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkODEyN2M1NS00MjEyLTRmMDQtOWRlNS04OGJkODhkZjdjN2UiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "ir-dev-malwee",
