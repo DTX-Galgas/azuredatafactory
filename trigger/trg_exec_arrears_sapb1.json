@@ -3,20 +3,13 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "EXEC_ARREARS_SAPB1",
-					"type": "PipelineReference"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2020-10-09T13:36:00.000Z",
+				"startTime": "2020-10-09T13:36:00Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [
