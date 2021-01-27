@@ -353,7 +353,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "SqlServerSource",
+									"type": "OracleSource",
 									"additionalColumns": [
 										{
 											"name": "DAT_HORA_EXPORTACAO",
@@ -363,45 +363,33 @@
 											}
 										}
 									],
-									"sqlReaderQuery": {
+									"oracleReaderQuery": {
 										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
 										"type": "Expression"
 									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
 								},
 								"sink": {
-									"type": "OrcSink",
+									"type": "ParquetSink",
 									"storeSettings": {
 										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
 									}
 								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
-									"referenceName": "SQL_DS_OP_ORIGEM",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "TABELA",
-										"UserName": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
-											"type": "Expression"
-										},
-										"SecretNamePWD": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
-											"type": "Expression"
-										},
-										"SecretNameCON": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "OracleTable1",
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "ADLS_DS_DESTINO_GEN2",
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
@@ -658,6 +646,90 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Copy_SQLOP_TO_ADLS_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"additionalColumns": [
+										{
+											"name": "DAT_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"sqlReaderQuery": {
+										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "OrcSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "OrcWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SQL_DS_OP_ORIGEM",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "TABELA",
+										"UserName": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+											"type": "Expression"
+										},
+										"SecretNamePWD": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+											"type": "Expression"
+										},
+										"SecretNameCON": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.orc'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
