@@ -9,8 +9,8 @@
 		"type": "OracleTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "GESTOR",
-			"table": "CRMPRODUTO"
+			"schema": "APEX_030200",
+			"table": "APEX_APPLICATION_AUTHORIZATION"
 		}
 	}
 }

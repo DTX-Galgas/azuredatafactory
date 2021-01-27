@@ -17,7 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "OracleSource",
-						"oracleReaderQuery": "SELECT SYSDATE\nFROM   dual;",
 						"partitionOption": "None",
 						"queryTimeout": "02:00:00"
 					},
