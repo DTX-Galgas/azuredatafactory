@@ -1,5 +1,5 @@
 {
-	"name": "EXEC_ADF_MODELO",
+	"name": "EXEC_ADF_MODELO_SAP",
 	"properties": {
 		"activities": [
 			{
@@ -383,7 +383,7 @@
 			}
 		},
 		"folder": {
-			"name": "Modelos/SQL SERVER"
+			"name": "Modelos/SAP TABLE"
 		},
 		"annotations": []
 	},

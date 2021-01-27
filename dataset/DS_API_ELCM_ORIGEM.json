@@ -1,10 +1,6 @@
 {
 	"name": "DS_API_ELCM_ORIGEM",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "HTTP_API_ELCM",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"ParRelativeURL": {
 				"type": "string"

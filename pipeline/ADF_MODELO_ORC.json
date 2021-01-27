@@ -1013,24 +1013,6 @@
 										"type": "Expression"
 									}
 								}
-							},
-							"linkedServiceName": {
-								"referenceName": "ADB_ETL",
-								"type": "LinkedServiceReference",
-								"parameters": {
-									"condatabricksurl": {
-										"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CON_DATABRICKS",
-										"type": "Expression"
-									},
-									"pwddatabricks": {
-										"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_PWD_DATABRICKS",
-										"type": "Expression"
-									},
-									"nomcluster": {
-										"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_SECRET_CLUSTER_ID",
-										"type": "Expression"
-									}
-								}
 							}
 						},
 						{

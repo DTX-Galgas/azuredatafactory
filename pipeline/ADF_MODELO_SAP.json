@@ -1,5 +1,5 @@
 {
-	"name": "ADF_MODELO",
+	"name": "ADF_MODELO_SAP",
 	"properties": {
 		"description": "Modelo de importação de tabelas do ADF a partir de uma tabela de controle com as tabelas a importar, suas origens e colunas.",
 		"activities": [
@@ -1231,7 +1231,7 @@
 			}
 		},
 		"folder": {
-			"name": "Modelos/SQL SERVER"
+			"name": "Modelos/SAP TABLE"
 		},
 		"annotations": []
 	},

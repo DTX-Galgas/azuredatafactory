@@ -2,10 +2,6 @@
 	"name": "BinaryDataSource_Folder",
 	"properties": {
 		"description": "It describes the folder in the data source store.",
-		"linkedServiceName": {
-			"referenceName": "FS_CSV_CHILE_ORIGEM",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"FolderPath": {
 				"type": "String"

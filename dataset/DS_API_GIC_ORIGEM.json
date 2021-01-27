@@ -1,10 +1,6 @@
 {
 	"name": "DS_API_GIC_ORIGEM",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "HTTP_API_VTEX",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"ParRelativeURL": {
 				"type": "string"
