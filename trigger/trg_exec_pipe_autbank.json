@@ -3,20 +3,13 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "EXEC_PIPE_AUTBANK",
-					"type": "PipelineReference"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2020-10-09T13:18:00.000Z",
+				"startTime": "2020-10-09T13:18:00Z",
 				"timeZone": "UTC",
 				"schedule": {
 					"minutes": [
