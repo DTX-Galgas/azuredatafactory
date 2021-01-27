@@ -3,18 +3,18 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "vw_alocacao_credito",
+				"name": "Gestor_CRMProduto",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO",
+						"referenceName": "EXEC_ADF_MODELO_ORC",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "31"
+						"ParCodTabela": "48"
 					}
 				}
 			},
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "vw_alocacao_credito",
+						"activity": "Gestor_CRMProduto",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -35,7 +35,23 @@
 				}
 			},
 			{
-				"name": "vw_alocacao_credito_tentativa_2",
+				"name": "wait_vw_alocacao_credito_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Gestor_CRMProduto_Tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 600
+				}
+			},
+			{
+				"name": "Gestor_CRMProduto_Tentativa_2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -48,17 +64,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO",
+						"referenceName": "EXEC_ADF_MODELO_ORC",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "31"
+						"ParCodTabela": "48"
 					}
 				}
 			},
 			{
-				"name": "vw_alocacao_credito_tentativa_3",
+				"name": "Gestor_CRMProduto_Tentativa_3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -71,29 +87,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO",
+						"referenceName": "EXEC_ADF_MODELO_ORC",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "31"
+						"ParCodTabela": "48"
 					}
-				}
-			},
-			{
-				"name": "wait_vw_alocacao_credito_tentativa_3",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "vw_alocacao_credito_tentativa_2",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 600
 				}
 			}
 		],
