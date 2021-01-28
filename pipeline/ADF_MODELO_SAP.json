@@ -375,7 +375,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "pipeline().parameters.ParNomeTabelaOrigem",
+											"value": "T134T",
 											"type": "Expression"
 										}
 									}
