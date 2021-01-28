@@ -7,6 +7,12 @@
 		},
 		"annotations": [],
 		"type": "SapTableResource",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "pipeline().parameters.ParNomeTabelaOrigem",
+				"type": "Expression"
+			}
+		}
 	}
 }
