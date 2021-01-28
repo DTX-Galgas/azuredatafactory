@@ -15,7 +15,7 @@
 		"schema": [],
 		"typeProperties": {
 			"tableName": {
-				"value": "pipeline().parameters.NomeTabela",
+				"value": "@dataset().NomeTabela",
 				"type": "Expression"
 			}
 		}
