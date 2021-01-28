@@ -19,12 +19,35 @@
 						"type": "SapTableSource",
 						"partitionOption": "None"
 					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "SAP_TABLE_RESOURCE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "T134T"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+						"type": "DatasetReference",
+						"parameters": {
+							"FilePath": "sap",
+							"FileName": "T134T.parquet",
+							"FileSystem": "raw"
+						}
 					}
 				]
 			}
