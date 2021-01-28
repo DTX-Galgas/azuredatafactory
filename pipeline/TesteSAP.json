@@ -23,7 +23,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SapTableResource1",
+						"referenceName": "SAP_TABLE_RESOURCE",
 						"type": "DatasetReference"
 					}
 				]

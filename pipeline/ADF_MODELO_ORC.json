@@ -8,7 +8,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "SeCSV_TO_DL",
+						"activity": "SeSQL_SQLOP_TO_DL",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -63,7 +63,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "SeOrigemSQLOPSelecionaColunas",
+						"activity": "LimpaTabelaColunas",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -658,166 +658,6 @@
 								"variableName": "dscParameters",
 								"value": {
 									"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
-									"type": "Expression"
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "SeOrigemSQLOPSelecionaColunas",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "LimpaTabelaColunas",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@equals(variables('TipoArmazenamento'),'SQLOPX')",
-						"type": "Expression"
-					},
-					"ifTrueActivities": [
-						{
-							"name": "LeColunasOrigemSQLOP",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@concat('Select ''',pipeline().parameters.ParNomeSchemaOrigem,''' NOM_SCHEMA_ORIGEM, ''',pipeline().parameters.ParNomeTabelaOrigem,''' NOM_TABELA_ORIGEM, colid IND_SEQUENCIAL, name NOM_COLUNA, ''',string(pipeline().parameters.ParCodServidor),''' COD_SERVIDOR,''',string(pipeline().parameters.ParCodTabela),''' COD_TABELA ''' ,'''from sys.syscolumns where  id = OBJECT_ID(''',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem,''') order by colid')",
-										"type": "Expression"
-									},
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBatchSize": 10000,
-									"disableMetricsCollection": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "SQL_DS_OP_ORIGEM",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "TABELA",
-										"UserName": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
-											"type": "Expression"
-										},
-										"SecretNamePWD": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
-											"type": "Expression"
-										},
-										"SecretNameCON": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "SQL_DS_CONTROLE",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "CTR_ADF_TABELA_COLUNAS_ORIGEM"
-									}
-								}
-							]
-						}
-					]
-				}
-			},
-			{
-				"name": "SeCSV_TO_DL",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "SeSQL_SQLOP_TO_DL",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@and(equals(variables('TipoArmazenamento'),'CSV'),equals(pipeline().parameters.ParIndDestinoDL,'1'))",
-						"type": "Expression"
-					},
-					"ifTrueActivities": [
-						{
-							"name": "EXEC_ADF_MODELO_CSV",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "ADF_MODELO_CSV",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"ParCodTabela": {
-										"value": "@pipeline().parameters.ParCodTabela",
-										"type": "Expression"
-									},
-									"ParIdPipeline": {
-										"value": "@pipeline().parameters.ParIdPipeline",
-										"type": "Expression"
-									},
-									"ParDatHoraProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.FirstRow.DAT_HORA_PROCESSAMENTO",
-										"type": "Expression"
-									},
-									"ParDataIngestao": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
-										"type": "Expression"
-									}
-								}
-							}
-						},
-						{
-							"name": "Set dscParametros CSV",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "EXEC_ADF_MODELO_CSV",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "dscParameters",
-								"value": {
-									"value": "@concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_FILE_PATH,'\\',activity('LeCredenciaisDBorigem').output.firstRow.NOM_FILE_NAME,'_*')",
 									"type": "Expression"
 								}
 							}
