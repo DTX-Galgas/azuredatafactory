@@ -68,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ADF_MODELO",
+									"referenceName": "ADF_MODELO_SAP",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
