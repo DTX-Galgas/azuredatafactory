@@ -372,7 +372,13 @@
 							"inputs": [
 								{
 									"referenceName": "SAP_TABLE_RESOURCE",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "pipeline().parameters.ParNomeTabelaOrigem",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
