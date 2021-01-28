@@ -5,6 +5,11 @@
 			"referenceName": "SAP_TABLE_ORIGEM",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"NomeTabela": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SapTableResource",
 		"schema": [],
