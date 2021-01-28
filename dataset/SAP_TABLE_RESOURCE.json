@@ -1,15 +1,12 @@
 {
-	"name": "SapTableResource1",
+	"name": "SAP_TABLE_RESOURCE",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SapTableTeste",
+			"referenceName": "SAP_TABLE_ORIGEM",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "SapTableResource",
-		"schema": [],
-		"typeProperties": {
-			"tableName": "T134T"
-		}
+		"schema": []
 	}
 }
