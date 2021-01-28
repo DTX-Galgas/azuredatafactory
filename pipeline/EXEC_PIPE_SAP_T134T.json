@@ -1,20 +1,20 @@
 {
-	"name": "EXEC_PIPE_SAP",
+	"name": "EXEC_PIPE_SAP_T134T",
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor_CRMProduto",
+				"name": "SAP_T134T",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_SAP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "53"
 					}
 				}
 			},
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRMProduto",
+						"activity": "SAP_T134T",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -39,7 +39,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRMProduto_Tentativa_2",
+						"activity": "SAP_T134T_tentativa_2",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -51,7 +51,7 @@
 				}
 			},
 			{
-				"name": "Gestor_CRMProduto_Tentativa_2",
+				"name": "SAP_T134T_tentativa_2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -64,17 +64,17 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_SAP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "53"
 					}
 				}
 			},
 			{
-				"name": "Gestor_CRMProduto_Tentativa_3",
+				"name": "SAP_T134T_tentativa_3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -87,18 +87,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_SAP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "53"
 					}
 				}
 			}
 		],
 		"folder": {
-			"name": "Malhas/CIGAM"
+			"name": "Malhas/SAP"
 		},
 		"annotations": []
 	}
