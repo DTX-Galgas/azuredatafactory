@@ -21,6 +21,10 @@
 		},
 		"annotations": [],
 		"type": "OracleTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "APEX_030200",
+			"table": "APEX_APPLICATION_GROUPS"
+		}
 	}
 }
