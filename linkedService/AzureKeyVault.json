@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-dev-br-datalake-mwe.vault.azure.net/"
+		}
+	}
+}
