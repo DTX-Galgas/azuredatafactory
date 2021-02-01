@@ -42,7 +42,13 @@
 				"inputs": [
 					{
 						"referenceName": "OracleTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "tabela",
+							"UserName": "xxxx",
+							"SecretNamePWD": "xxxxx",
+							"SecretNameCON": "xxxx"
+						}
 					}
 				],
 				"outputs": [
