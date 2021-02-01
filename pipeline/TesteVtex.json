@@ -36,7 +36,10 @@
 				"inputs": [
 					{
 						"referenceName": "RestVTEX",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"ParRelativeURL": "xxxxxx"
+						}
 					}
 				],
 				"outputs": [
