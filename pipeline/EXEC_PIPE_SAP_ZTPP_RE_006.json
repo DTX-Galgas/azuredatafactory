@@ -1,0 +1,105 @@
+{
+	"name": "EXEC_PIPE_SAP_ZTPP_RE_006",
+	"properties": {
+		"activities": [
+			{
+				"name": "SAP",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_SAP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "68"
+					}
+				}
+			},
+			{
+				"name": "wait_vw_alocacao_credito_tentativa_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "SAP",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "wait_vw_alocacao_credito_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "SAP_TENTATIVA_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "SAP_TENTATIVA_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_vw_alocacao_credito_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_SAP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "69"
+					}
+				}
+			},
+			{
+				"name": "SAP_TENTATIVA_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_vw_alocacao_credito_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_SAP",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "69"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/SAP"
+		},
+		"annotations": []
+	}
+}
