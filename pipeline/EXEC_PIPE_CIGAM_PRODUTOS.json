@@ -1,5 +1,5 @@
 {
-	"name": "EXEC_PIPE_CIGAM",
+	"name": "EXEC_PIPE_CIGAM_PRODUTOS",
 	"properties": {
 		"activities": [
 			{
@@ -14,7 +14,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "111"
 					}
 				}
 			},
@@ -69,7 +69,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "111"
 					}
 				}
 			},
@@ -92,7 +92,7 @@
 					},
 					"waitOnCompletion": true,
 					"parameters": {
-						"ParCodTabela": "48"
+						"ParCodTabela": "111"
 					}
 				}
 			}
