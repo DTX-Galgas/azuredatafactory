@@ -12,7 +12,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "key-storage-acount-dev",
-				"secretVersion": "f77ca01ba7c445429c929be6d12adabf"
+				"secretVersion": "adm"
 			}
 		}
 	},
