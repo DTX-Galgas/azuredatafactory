@@ -15,7 +15,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "con-malwee-sap-ecc",
-				"secretVersion": "3d92dbc2c9334bca9d1515dcb1872254"
+				"secretVersion": ""
 			},
 			"server": "srvsqecc01.malwee.com.br",
 			"systemNumber": "00"
