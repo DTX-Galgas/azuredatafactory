@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "SAP_T134T",
+				"name": "SAP",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "SAP_T134T",
+						"activity": "SAP",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -39,7 +39,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "SAP_T134T_tentativa_2",
+						"activity": "SAP_TENTATIVA_2",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -51,7 +51,7 @@
 				}
 			},
 			{
-				"name": "SAP_T134T_tentativa_2",
+				"name": "SAP_TENTATIVA_2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -74,7 +74,7 @@
 				}
 			},
 			{
-				"name": "SAP_T134T_tentativa_3",
+				"name": "SAP_TENTATIVA_3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
