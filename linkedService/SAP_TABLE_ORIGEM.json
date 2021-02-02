@@ -1,6 +1,5 @@
 {
 	"name": "SAP_TABLE_ORIGEM",
-	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SapTable",
@@ -9,13 +8,22 @@
 			"language": "",
 			"sncMode": false,
 			"userName": "RFC_USER_QTQ",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "con-malwee-sap-ecc",
+				"secretVersion": "3d92dbc2c9334bca9d1515dcb1872254"
+			},
 			"server": "srvsqecc01.malwee.com.br",
-			"systemNumber": "00",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzNTE5YThhMS03OTllLTQ4ZTQtOGU3My1iYjJmYTgyMWNiMTAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"systemNumber": "00"
 		},
 		"connectVia": {
 			"referenceName": "ir-dev-malwee",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.Synapse/workspaces/linkedservices"
 }
