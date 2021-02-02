@@ -10,7 +10,7 @@
 					"referenceName": "AzureKeyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "con-malwee-oracle"
+				"secretName": "con-malwee-orcl-cigam"
 			}
 		},
 		"connectVia": {
