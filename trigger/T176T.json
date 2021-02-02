@@ -1,0 +1,35 @@
+{
+	"name": "T176T",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_ADF_MODELO_SAP",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParCodTabela": 94
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-02-02T16:35:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						45
+					],
+					"hours": [
+						19
+					]
+				}
+			}
+		}
+	}
+}
