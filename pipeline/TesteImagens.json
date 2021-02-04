@@ -19,19 +19,17 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
+							"fileListPath": "imagens-materiais",
+							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "BinarySink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false
@@ -44,12 +42,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-						"type": "DatasetReference",
-						"parameters": {
-							"FilePath": "imagens",
-							"FileSystem": "raw"
-						}
+						"referenceName": "testeimagemdesino",
+						"type": "DatasetReference"
 					}
 				]
 			}

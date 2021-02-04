@@ -1,0 +1,18 @@
+{
+	"name": "testeimagemdesino",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "imagens",
+				"fileSystem": "raw"
+			}
+		}
+	}
+}
