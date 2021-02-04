@@ -19,7 +19,7 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"fileListPath": "imagens-materiais",
+							"recursive": true,
 							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
