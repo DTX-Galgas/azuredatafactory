@@ -1,0 +1,16 @@
+{
+	"name": "Table SAP Mvke",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE raw_data.sap_mvke (\n\t[MANDT] varchar(8000),\n\t[MATNR] varchar(8000),\n\t[VKORG] varchar(8000),\n\t[VTWEG] varchar(8000),\n\t[LVORM] varchar(8000),\n\t[VERSG] varchar(8000),\n\t[BONUS] varchar(8000),\n\t[PROVG] varchar(8000),\n\t[SKTOF] varchar(8000),\n\t[VMSTA] varchar(8000),\n\t[VMSTD] varchar(8000),\n\t[AUMNG] numeric(38,18),\n\t[LFMNG] numeric(38,18),\n\t[EFMNG] numeric(38,18),\n\t[SCMNG] numeric(38,18),\n\t[SCHME] varchar(8000),\n\t[VRKME] varchar(8000),\n\t[MTPOS] varchar(8000),\n\t[DWERK] varchar(8000),\n\t[PRODH] varchar(8000),\n\t[PMATN] varchar(8000),\n\t[KONDM] varchar(8000),\n\t[KTGRM] varchar(8000),\n\t[MVGR1] varchar(8000),\n\t[MVGR2] varchar(8000),\n\t[MVGR3] varchar(8000),\n\t[MVGR4] varchar(8000),\n\t[MVGR5] varchar(8000),\n\t[SSTUF] varchar(8000),\n\t[PFLKS] varchar(8000),\n\t[LSTFL] varchar(8000),\n\t[LSTVZ] varchar(8000),\n\t[LSTAK] varchar(8000),\n\t[LDVFL] varchar(8000),\n\t[LDBFL] varchar(8000),\n\t[LDVZL] varchar(8000),\n\t[LDBZL] varchar(8000),\n\t[VDVFL] varchar(8000),\n\t[VDBFL] varchar(8000),\n\t[VDVZL] varchar(8000),\n\t[VDBZL] varchar(8000),\n\t[PRAT1] varchar(8000),\n\t[PRAT2] varchar(8000),\n\t[PRAT3] varchar(8000),\n\t[PRAT4] varchar(8000),\n\t[PRAT5] varchar(8000),\n\t[PRAT6] varchar(8000),\n\t[PRAT7] varchar(8000),\n\t[PRAT8] varchar(8000),\n\t[PRAT9] varchar(8000),\n\t[PRATA] varchar(8000),\n\t[RDPRF] varchar(8000),\n\t[MEGRU] varchar(8000),\n\t[LFMAX] numeric(38,18),\n\t[RJART] varchar(8000),\n\t[PBIND] varchar(8000),\n\t[VAVME] varchar(8000),\n\t[MATKC] varchar(8000),\n\t[PVMSO] varchar(8000),\n\t[/BEV1/EMLGRP] varchar(8000),\n\t[/BEV1/EMDRCKSPL] varchar(8000),\n\t[/BEV1/RPBEZME] varchar(8000),\n\t[/BEV1/RPSNS] varchar(8000),\n\t[/BEV1/RPSFA] varchar(8000),\n\t[/BEV1/RPSKI] varchar(8000),\n\t[/BEV1/RPSCO] varchar(8000),\n\t[/BEV1/RPSSO] varchar(8000),\n\t[PLGTP] varchar(8000),\n\t[J_3AVASG] varchar(8000),\n\t[J_3APIND] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/saptable/mvke/*/*/*/*.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM raw_data.sap_mvke\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
