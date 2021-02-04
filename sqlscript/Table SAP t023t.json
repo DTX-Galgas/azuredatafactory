@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 1",
+	"name": "Table SAP t023t",
 	"properties": {
 		"content": {
 			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE raw_data.sap_t023t (\n\t[MANDT] varchar(8000),\n\t[SPRAS] varchar(8000),\n\t[MATKL] varchar(8000),\n\t[WGBEZ] varchar(8000),\n\t[WGBEZ60] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/saptable/t023t/*/*/*/*.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM raw_data.sap_t023t\nGO\n\n",
