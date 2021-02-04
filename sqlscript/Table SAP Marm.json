@@ -1,0 +1,16 @@
+{
+	"name": "Table SAP Marm",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE raw_data.sap_marm (\n\t[MANDT] varchar(8000),\n\t[MATNR] varchar(8000),\n\t[MEINH] varchar(8000),\n\t[UMREZ] numeric(38,18),\n\t[UMREN] numeric(38,18),\n\t[EANNR] varchar(8000),\n\t[EAN11] varchar(8000),\n\t[NUMTP] varchar(8000),\n\t[LAENG] numeric(38,18),\n\t[BREIT] numeric(38,18),\n\t[HOEHE] numeric(38,18),\n\t[MEABM] varchar(8000),\n\t[VOLUM] numeric(38,18),\n\t[VOLEH] varchar(8000),\n\t[BRGEW] numeric(38,18),\n\t[GEWEI] varchar(8000),\n\t[MESUB] varchar(8000),\n\t[ATINN] varchar(8000),\n\t[MESRT] varchar(8000),\n\t[XFHDW] varchar(8000),\n\t[XBEWW] varchar(8000),\n\t[KZWSO] varchar(8000),\n\t[MSEHI] varchar(8000),\n\t[BFLME_MARM] varchar(8000),\n\t[GTIN_VARIANT] varchar(8000),\n\t[NEST_FTR] numeric(38,18),\n\t[MAX_STACK] varchar(8000),\n\t[CAPAUSE] numeric(38,18),\n\t[TY2TQ] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/saptable/marm/*/*/*/*.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM raw_data.sap_marm\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
