@@ -1,0 +1,16 @@
+{
+	"name": "Table SAP ztsd_modl_001",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE raw_data.sap_ztsd_modl_001 (\n\t[MANDT] varchar(8000),\n\t[CODMOD] varchar(8000),\n\t[DESCRICAO] varchar(8000),\n\t[SITUACAO] varchar(8000),\n\t[DATINI] varchar(8000),\n\t[DATFIM] varchar(8000),\n\t[TIPDES] varchar(8000),\n\t[KSCHL] varchar(8000),\n\t[PERDES] numeric(38,18),\n\t[SALMIN] int,\n\t[DESVEN] varchar(8000),\n\t[REMDIAS] int,\n\t[REMPERALT] varchar(8000),\n\t[SEGQUA] varchar(8000),\n\t[PERSEL] varchar(8000),\n\t[ERDAT] varchar(8000),\n\t[ERZET] varchar(8000),\n\t[ERNAM] varchar(8000),\n\t[AEDAT] varchar(8000),\n\t[AEZET] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/saptable/ztsd_modl_001/*/*/*/*.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM raw_data.sap_ztsd_modl_001\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
