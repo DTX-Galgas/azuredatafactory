@@ -1,0 +1,16 @@
+{
+	"name": "TABLE DW_CLEINTE",
+	"properties": {
+		"content": {
+			"query": "--CREATE SCHEMA dw\n\nIF NOT EXISTS (SELECT * FROM sys.objects WHERE NAME = 'cliente' AND TYPE = 'U')\nCREATE TABLE dw.cliente\n\t(\n\t [pk_cliente] bigint,\n\t [Cliente - Cidade] nvarchar(30),\n\t [Cliente - Cidade IBGE] bigint,\n\t [Cliente - Cidade/UF] nvarchar(30),\n\t [Cliente - Código] bigint,\n\t [Cliente - Nome-Código] nvarchar(30),\n\t [Cliente - CEP] nvarchar(30),\n\t [Cliente - UF] nvarchar(30),\n\t [Cliente - Data de Criação] nvarchar(30),\n\t [Cliente - Dias Criação] bigint,\n\t [Cliente - Ano Criação] bigint,\n\t [Cliente - Cidade SAP] nvarchar(30),\n\t [Cliente - Região] nvarchar(30),\n\t [Cliente - Grupo Loja] nvarchar(30),\n\t [Cliente - Rede] nvarchar(30)\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n--Uncomment the 4 lines below to create a stored procedure for data pipeline orchestration​                 \n--CREATE PROC bulk_load_cliente\n--AS\n--BEGIN\nCOPY INTO dw.cliente\n(pk_cliente 1, Cliente - Cidade 2, Cliente - Cidade IBGE 3, Cliente - Cidade/UF 4, Cliente - Código 5, Cliente - Nome-Código 6, Cliente - CEP 7, Cliente - UF 8, Cliente - Data de Criação 9, Cliente - Dias Criação 10, Cliente - Ano Criação 11, Cliente - Cidade SAP 12, Cliente - Região 13, Cliente - Grupo Loja 14, Cliente - Rede 15)\nFROM 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw/brazil/demo/cliente/2021/02/08/cliente_202102081030.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV'\n\t,MAXERRORS = 0\n\t,FIRSTROW = 2\n\t,ERRORFILE = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw/'\n\t,IDENTITY_INSERT = 'OFF'\n)\n--END\nGO\n\nSELECT TOP 100 * FROM dw.cliente\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
