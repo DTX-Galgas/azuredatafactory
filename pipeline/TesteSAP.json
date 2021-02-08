@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": " SELECT * FROM VBEP",
+						"rfcTableOptions": "select * from vbep",
 						"customRfcReadTableFunctionModule": "",
 						"rfcTableFields": "",
 						"partitionOption": "None"
@@ -45,7 +45,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"FilePath": "sap",
-							"FileName": "T134T.parquet",
+							"FileName": "vbep.parquet",
 							"FileSystem": "raw"
 						}
 					}
