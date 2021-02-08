@@ -17,6 +17,9 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
+						"rfcTableOptions": " SELECT * FROM VBEP",
+						"customRfcReadTableFunctionModule": "",
+						"rfcTableFields": "",
 						"partitionOption": "None"
 					},
 					"sink": {
@@ -32,11 +35,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SAP_TABLE_RESOURCE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "T134T"
-						}
+						"referenceName": "SapTableResource1",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
