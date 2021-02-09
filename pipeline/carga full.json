@@ -22,7 +22,7 @@
 					{
 						"activity": "EXEC_PIPE_SAP_AFS_DPRG_KOND",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -42,7 +42,7 @@
 					{
 						"activity": "EXEC_PIPE_SAP_AFS_MVKE",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -58,7 +58,7 @@
 					{
 						"activity": "EXEC_PIPE_SAP_AUSP",
 						"dependencyConditions": [
-							"Succeeded"
+							"Completed"
 						]
 					}
 				],
@@ -66,6 +66,246 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "EXEC_PIPE_SAP_CAWN",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_CAWNT",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_CAWN",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_CAWNT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_CDHDR",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_CAWNT",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_CDHDR",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_ESLL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_CDHDR",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_ESLL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_J_3AGENDRT",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_ESLL",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_J_3AGENDRT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_J_3AMSEA",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_J_3AGENDRT",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_J_3AMSEA",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_J_3APGEN",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_J_3AMSEA",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_J_3APGEN",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_J_3APGHD",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_J_3APGEN",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_J_3APGHD",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_J_3ASEANT",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_J_3APGHD",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_J_3ASEANT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_KONV",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_J_3ASEANT",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_KONV",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_MAKT",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_KONV",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_MAKT",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_MARA",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_MAKT",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_MARA",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "EXEC_PIPE_SAP_MARC",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_SAP_MARA",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_MARC",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true
