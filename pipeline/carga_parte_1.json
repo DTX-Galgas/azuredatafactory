@@ -48,6 +48,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_AUSP",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
@@ -544,6 +548,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_T188T",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
