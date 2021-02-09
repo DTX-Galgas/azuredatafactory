@@ -228,6 +228,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_012",
+						"type": "PipelineReference"
+					},
 					"waitOnCompletion": true
 				}
 			},
