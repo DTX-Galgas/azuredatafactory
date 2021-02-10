@@ -5,24 +5,6 @@
 			"referenceName": "VtexTeste",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"Accept": {
-				"type": "string",
-				"defaultValue": "application%2Fjson"
-			},
-			"Content-Type": {
-				"type": "string",
-				"defaultValue": "application%2Fjson"
-			},
-			"X-VTEX-API-AppToken": {
-				"type": "string",
-				"defaultValue": "BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO"
-			},
-			"x-vtex-api-appkey": {
-				"type": "string",
-				"defaultValue": "vtexappkey-malwee-AHFBTB"
-			}
-		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {

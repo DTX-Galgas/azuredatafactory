@@ -35,13 +35,7 @@
 				"inputs": [
 					{
 						"referenceName": "VtexDsTeste",
-						"type": "DatasetReference",
-						"parameters": {
-							"Accept": "application%2Fjson",
-							"Content-Type": "application%2Fjson",
-							"X-VTEX-API-AppToken": "BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO",
-							"x-vtex-api-appkey": "vtexappkey-malwee-AHFBTB"
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
