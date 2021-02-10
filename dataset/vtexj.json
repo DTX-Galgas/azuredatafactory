@@ -9,7 +9,10 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": "vtex.json",
+				"folderPath": "vtex",
+				"fileSystem": "cleansing"
 			}
 		},
 		"schema": {}
