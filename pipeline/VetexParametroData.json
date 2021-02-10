@@ -1,0 +1,65 @@
+{
+	"name": "VetexParametroData",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "OrcSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "OrcWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "VtexDsTeste",
+						"type": "DatasetReference",
+						"parameters": {
+							"Accept": "application%2Fjson",
+							"Content-Type": "application%2Fjson",
+							"X-VTEX-API-AppToken": "BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO",
+							"x-vtex-api-appkey": "vtexappkey-malwee-AHFBTB"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ADLS_DS_DESTINO_GEN2",
+						"type": "DatasetReference",
+						"parameters": {
+							"FilePath": "vetex_parametro_data",
+							"FileName": "vetex.json",
+							"FileSystem": "raw"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "_Testes de Conectividade"
+		},
+		"annotations": []
+	}
+}
