@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SapTableSource",
-						"rfcTableOptions": "<select * from vbep>",
+						"rfcTableOptions": "",
 						"customRfcReadTableFunctionModule": "ZFGL_INTER_BI_CONDICOES",
 						"rfcTableFields": "",
 						"partitionOption": "None"
