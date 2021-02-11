@@ -30,6 +30,42 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "COD_TABELA_FE",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "COD_TABELA_LK",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "EXEC_ADF_MODELO_SAP",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParCodTabela": {
+										"value": "@activity('COD_TABELA_LK').output.value",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"folder": {
