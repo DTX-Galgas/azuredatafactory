@@ -59,7 +59,13 @@
 									"referenceName": "EXEC_ADF_MODELO_SAP",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParCodTabela": {
+										"value": "@{item()}",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
