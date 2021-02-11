@@ -44,6 +44,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('COD_TABELA_LK').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Execute Pipeline1",
@@ -55,13 +59,7 @@
 									"referenceName": "EXEC_ADF_MODELO_SAP",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"ParCodTabela": {
-										"value": "@activity('COD_TABELA_LK').output.value",
-										"type": "Expression"
-									}
-								}
+								"waitOnCompletion": true
 							}
 						}
 					]
