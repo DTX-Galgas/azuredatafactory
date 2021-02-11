@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor_CRMProduto",
+				"name": "Gestor___CRMProduto",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRMProduto",
+						"activity": "Gestor___CRMProduto",
 						"dependencyConditions": [
 							"Failed"
 						]
