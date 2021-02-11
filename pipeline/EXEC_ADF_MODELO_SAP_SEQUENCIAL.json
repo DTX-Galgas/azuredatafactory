@@ -51,7 +51,7 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Execute Pipeline1",
+							"name": "EXEC_ADF_MODELO_SAP",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
