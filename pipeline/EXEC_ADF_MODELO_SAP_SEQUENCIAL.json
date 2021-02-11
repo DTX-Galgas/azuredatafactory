@@ -1,0 +1,40 @@
+{
+	"name": "EXEC_ADF_MODELO_SAP_SEQUENCIAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "COD_TABELA_LK",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select COD_TABELA from CTR_ADF_TABELA where  NOM_TABELA_ORIGEM in('ZTPP_RE_011','ZTPP_RE_012')",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"folder": {
+			"name": "Modelos/SAP"
+		},
+		"annotations": []
+	}
+}
