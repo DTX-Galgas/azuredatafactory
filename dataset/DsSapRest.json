@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "ZFGL_INTER_BI_CONDICOES"
+			"relativeUrl": "ZGFDL_INTER_RET_VBAP"
 		},
 		"schema": []
 	}
