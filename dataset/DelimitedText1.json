@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "GrupoProduto.csv",
-				"folderPath": "brazil/transacional/saptable/mm/GrupoProduto",
+				"fileName": "GrupoCampanha.csv",
+				"folderPath": "brazil/transacional/saptable/mm/GrupoCampanha",
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",
