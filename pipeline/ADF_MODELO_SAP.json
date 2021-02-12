@@ -354,6 +354,17 @@
 							"typeProperties": {
 								"source": {
 									"type": "SapTableSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"rfcTableOptions": "",
+									"customRfcReadTableFunctionModule": "",
 									"partitionOption": "None"
 								},
 								"sink": {
