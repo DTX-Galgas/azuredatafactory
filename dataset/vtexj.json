@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "vtex.json",
+				"fileName": "ZGFDL_INTER_RET_VBAK.json",
 				"folderPath": "vtex",
 				"fileSystem": "cleansing"
 			}
