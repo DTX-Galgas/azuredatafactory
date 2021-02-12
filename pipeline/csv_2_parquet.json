@@ -57,8 +57,8 @@
 						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 						"type": "DatasetReference",
 						"parameters": {
-							"FilePath": "brazil/transacional/saptable/mm/ausp",
-							"FileName": "ausp.parquet",
+							"FilePath": "brazil/transacional/saptable/mm/grupocampanha",
+							"FileName": "grupocampanha.parquet",
 							"FileSystem": "raw"
 						}
 					}
