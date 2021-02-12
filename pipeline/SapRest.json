@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ZGFDL_INTER_RET_VBAP",
+				"name": "saprest",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
