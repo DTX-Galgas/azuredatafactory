@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "ZGFDL_INTER_RET_VBAK.json",
-				"folderPath": "vtex",
+				"folderPath": "saprest",
 				"fileSystem": "cleansing"
 			}
 		},
