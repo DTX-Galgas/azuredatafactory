@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "json2prq.parquet",
 				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			},
