@@ -45,7 +45,8 @@
 									"path": "['orderId']"
 								},
 								"sink": {
-									"name": "orderId"
+									"name": "orderId",
+									"type": "String"
 								}
 							},
 							{
@@ -53,7 +54,8 @@
 									"path": "['creationDate']"
 								},
 								"sink": {
-									"name": "creationDate"
+									"name": "creationDate",
+									"type": "String"
 								}
 							},
 							{
@@ -61,7 +63,8 @@
 									"path": "['clientName']"
 								},
 								"sink": {
-									"name": "clientName"
+									"name": "clientName",
+									"type": "String"
 								}
 							},
 							{
@@ -69,7 +72,8 @@
 									"path": "['items']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "items",
+									"type": "String"
 								}
 							},
 							{
@@ -77,7 +81,8 @@
 									"path": "['totalValue']"
 								},
 								"sink": {
-									"name": "totalValue"
+									"name": "totalValue",
+									"type": "String"
 								}
 							},
 							{
@@ -85,7 +90,8 @@
 									"path": "['paymentNames']"
 								},
 								"sink": {
-									"name": "paymentNames"
+									"name": "paymentNames",
+									"type": "String"
 								}
 							},
 							{
@@ -93,7 +99,8 @@
 									"path": "['status']"
 								},
 								"sink": {
-									"name": "status"
+									"name": "status",
+									"type": "String"
 								}
 							},
 							{
@@ -101,7 +108,8 @@
 									"path": "['statusDescription']"
 								},
 								"sink": {
-									"name": "statusDescription"
+									"name": "statusDescription",
+									"type": "String"
 								}
 							},
 							{
@@ -109,7 +117,8 @@
 									"path": "['marketPlaceOrderId']"
 								},
 								"sink": {
-									"name": "marketPlaceOrderId"
+									"name": "marketPlaceOrderId",
+									"type": "String"
 								}
 							},
 							{
@@ -117,7 +126,8 @@
 									"path": "['sequence']"
 								},
 								"sink": {
-									"name": "sequence"
+									"name": "sequence",
+									"type": "String"
 								}
 							},
 							{
@@ -125,7 +135,8 @@
 									"path": "['salesChannel']"
 								},
 								"sink": {
-									"name": "salesChannel"
+									"name": "salesChannel",
+									"type": "String"
 								}
 							},
 							{
@@ -133,7 +144,8 @@
 									"path": "['affiliateId']"
 								},
 								"sink": {
-									"name": "affiliateId"
+									"name": "affiliateId",
+									"type": "String"
 								}
 							},
 							{
@@ -141,7 +153,8 @@
 									"path": "['origin']"
 								},
 								"sink": {
-									"name": "origin"
+									"name": "origin",
+									"type": "String"
 								}
 							},
 							{
@@ -149,7 +162,8 @@
 									"path": "['workflowInErrorState']"
 								},
 								"sink": {
-									"name": "workflowInErrorState"
+									"name": "workflowInErrorState",
+									"type": "String"
 								}
 							},
 							{
@@ -157,7 +171,8 @@
 									"path": "['workflowInRetry']"
 								},
 								"sink": {
-									"name": "workflowInRetry"
+									"name": "workflowInRetry",
+									"type": "String"
 								}
 							},
 							{
@@ -165,7 +180,8 @@
 									"path": "['lastMessageUnread']"
 								},
 								"sink": {
-									"name": "lastMessageUnread"
+									"name": "lastMessageUnread",
+									"type": "String"
 								}
 							},
 							{
@@ -173,7 +189,8 @@
 									"path": "['ShippingEstimatedDate']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDate"
+									"name": "ShippingEstimatedDate",
+									"type": "String"
 								}
 							},
 							{
@@ -181,7 +198,8 @@
 									"path": "['ShippingEstimatedDateMax']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMax"
+									"name": "ShippingEstimatedDateMax",
+									"type": "String"
 								}
 							},
 							{
@@ -189,7 +207,8 @@
 									"path": "['ShippingEstimatedDateMin']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMin"
+									"name": "ShippingEstimatedDateMin",
+									"type": "String"
 								}
 							},
 							{
@@ -197,7 +216,8 @@
 									"path": "['orderIsComplete']"
 								},
 								"sink": {
-									"name": "orderIsComplete"
+									"name": "orderIsComplete",
+									"type": "String"
 								}
 							},
 							{
@@ -205,7 +225,8 @@
 									"path": "['listId']"
 								},
 								"sink": {
-									"name": "listId"
+									"name": "listId",
+									"type": "String"
 								}
 							},
 							{
@@ -213,7 +234,8 @@
 									"path": "['listType']"
 								},
 								"sink": {
-									"name": "listType"
+									"name": "listType",
+									"type": "String"
 								}
 							},
 							{
@@ -221,7 +243,8 @@
 									"path": "['authorizedDate']"
 								},
 								"sink": {
-									"name": "authorizedDate"
+									"name": "authorizedDate",
+									"type": "String"
 								}
 							},
 							{
@@ -229,7 +252,8 @@
 									"path": "['callCenterOperatorName']"
 								},
 								"sink": {
-									"name": "callCenterOperatorName"
+									"name": "callCenterOperatorName",
+									"type": "String"
 								}
 							},
 							{
@@ -237,7 +261,8 @@
 									"path": "['totalItems']"
 								},
 								"sink": {
-									"name": "totalItems"
+									"name": "totalItems",
+									"type": "String"
 								}
 							},
 							{
@@ -245,7 +270,8 @@
 									"path": "['currencyCode']"
 								},
 								"sink": {
-									"name": "currencyCode"
+									"name": "currencyCode",
+									"type": "String"
 								}
 							},
 							{
@@ -253,15 +279,17 @@
 									"path": "['hostname']"
 								},
 								"sink": {
-									"name": "hostname"
+									"name": "hostname",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['invoiceOutput'][0]"
+									"path": "['invoiceOutput']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "items",
+									"type": "String"
 								}
 							},
 							{
@@ -269,199 +297,8 @@
 									"path": "['invoiceInput']"
 								},
 								"sink": {
-									"name": "invoiceInput"
-								}
-							},
-							{
-								"source": {
-									"path": "$['facets'][0]"
-								},
-								"sink": {
-									"name": "items"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['total']"
-								},
-								"sink": {
-									"name": "total"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['pages']"
-								},
-								"sink": {
-									"name": "pages"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['currentPage']"
-								},
-								"sink": {
-									"name": "currentPage"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['perPage']"
-								},
-								"sink": {
-									"name": "perPage"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Count']"
-								},
-								"sink": {
-									"name": "Count"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Max']"
-								},
-								"sink": {
-									"name": "Max"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Mean']"
-								},
-								"sink": {
-									"name": "Mean"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Min']"
-								},
-								"sink": {
-									"name": "Min"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Missing']"
-								},
-								"sink": {
-									"name": "Missing"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['StdDev']"
-								},
-								"sink": {
-									"name": "StdDev"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Sum']"
-								},
-								"sink": {
-									"name": "Sum"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['SumOfSquares']"
-								},
-								"sink": {
-									"name": "SumOfSquares"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Facets']"
-								},
-								"sink": {
-									"name": "Facets"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Count']"
-								},
-								"sink": {
-									"name": "Count"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Max']"
-								},
-								"sink": {
-									"name": "Max"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Mean']"
-								},
-								"sink": {
-									"name": "Mean"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Min']"
-								},
-								"sink": {
-									"name": "Min"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Missing']"
-								},
-								"sink": {
-									"name": "Missing"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['StdDev']"
-								},
-								"sink": {
-									"name": "StdDev"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Sum']"
-								},
-								"sink": {
-									"name": "Sum"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['SumOfSquares']"
-								},
-								"sink": {
-									"name": "SumOfSquares"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Facets']"
-								},
-								"sink": {
-									"name": "Facets"
-								}
-							},
-							{
-								"source": {
-									"path": "$['reportRecordsLimit']"
-								},
-								"sink": {
-									"name": "reportRecordsLimit"
+									"name": "invoiceInput",
+									"type": "String"
 								}
 							}
 						],
