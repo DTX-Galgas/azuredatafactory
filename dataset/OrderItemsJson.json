@@ -1,5 +1,5 @@
 {
-	"name": "OrderTotalJson",
+	"name": "OrderItemsJson",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ADLS_DESTINO_GEN2",
