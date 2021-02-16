@@ -1,0 +1,137 @@
+{
+	"name": "OrderTotalParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "brazil/vtex",
+				"fileSystem": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "orderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "creationDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "clientName",
+				"type": "UTF8"
+			},
+			{
+				"name": "items",
+				"type": "UTF8"
+			},
+			{
+				"name": "totalValue",
+				"type": "UTF8"
+			},
+			{
+				"name": "paymentNames",
+				"type": "UTF8"
+			},
+			{
+				"name": "status",
+				"type": "UTF8"
+			},
+			{
+				"name": "statusDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "marketPlaceOrderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "sequence",
+				"type": "UTF8"
+			},
+			{
+				"name": "salesChannel",
+				"type": "UTF8"
+			},
+			{
+				"name": "affiliateId",
+				"type": "UTF8"
+			},
+			{
+				"name": "origin",
+				"type": "UTF8"
+			},
+			{
+				"name": "workflowInErrorState",
+				"type": "UTF8"
+			},
+			{
+				"name": "workflowInRetry",
+				"type": "UTF8"
+			},
+			{
+				"name": "lastMessageUnread",
+				"type": "UTF8"
+			},
+			{
+				"name": "ShippingEstimatedDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "ShippingEstimatedDateMax",
+				"type": "UTF8"
+			},
+			{
+				"name": "ShippingEstimatedDateMin",
+				"type": "UTF8"
+			},
+			{
+				"name": "orderIsComplete",
+				"type": "UTF8"
+			},
+			{
+				"name": "listId",
+				"type": "UTF8"
+			},
+			{
+				"name": "listType",
+				"type": "UTF8"
+			},
+			{
+				"name": "authorizedDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "callCenterOperatorName",
+				"type": "UTF8"
+			},
+			{
+				"name": "totalItems",
+				"type": "UTF8"
+			},
+			{
+				"name": "currencyCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "hostname",
+				"type": "UTF8"
+			},
+			{
+				"name": "invoiceOutput",
+				"type": "UTF8"
+			},
+			{
+				"name": "invoiceInput",
+				"type": "UTF8"
+			}
+		]
+	}
+}
