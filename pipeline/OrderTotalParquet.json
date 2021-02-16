@@ -1,6 +1,488 @@
 {
 	"name": "OrderTotalParquet",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['uniqueId']"
+								},
+								"sink": {
+									"name": "uniqueId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['id']"
+								},
+								"sink": {
+									"name": "IdItem"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['productId']"
+								},
+								"sink": {
+									"name": "productId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['ean']"
+								},
+								"sink": {
+									"name": "ean"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['lockId']"
+								},
+								"sink": {
+									"name": "lockId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['quantity']"
+								},
+								"sink": {
+									"name": "quantity"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['seller']"
+								},
+								"sink": {
+									"name": "seller"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['name']"
+								},
+								"sink": {
+									"name": "nameItem"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['refId']"
+								},
+								"sink": {
+									"name": "refId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['price']"
+								},
+								"sink": {
+									"name": "price"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['listPrice']"
+								},
+								"sink": {
+									"name": "listPrice"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['imageUrl']"
+								},
+								"sink": {
+									"name": "imageUrl"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['brandName']"
+								},
+								"sink": {
+									"name": "brandName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['brandId']"
+								},
+								"sink": {
+									"name": "brandId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+								},
+								"sink": {
+									"name": "categoriesIds"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
+								},
+								"sink": {
+									"name": "IdCategory"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
+								},
+								"sink": {
+									"name": "nameCategory"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['email']"
+								},
+								"sink": {
+									"name": "email"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['firstName']"
+								},
+								"sink": {
+									"name": "firstName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['lastName']"
+								},
+								"sink": {
+									"name": "lastName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['documentType']"
+								},
+								"sink": {
+									"name": "documentType"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['document']"
+								},
+								"sink": {
+									"name": "document"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['phone']"
+								},
+								"sink": {
+									"name": "phone"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['addressType']"
+								},
+								"sink": {
+									"name": "addressType"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['receiverName']"
+								},
+								"sink": {
+									"name": "receiverName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['addressId']"
+								},
+								"sink": {
+									"name": "addressId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['postalCode']"
+								},
+								"sink": {
+									"name": "postalCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['city']"
+								},
+								"sink": {
+									"name": "city"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['state']"
+								},
+								"sink": {
+									"name": "state"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['country']"
+								},
+								"sink": {
+									"name": "country"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['street']"
+								},
+								"sink": {
+									"name": "street"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['number']"
+								},
+								"sink": {
+									"name": "number"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['neighborhood']"
+								},
+								"sink": {
+									"name": "neighborhood"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['complement']"
+								},
+								"sink": {
+									"name": "complement"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['reference']"
+								},
+								"sink": {
+									"name": "reference"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['geoCoordinates']"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
+								},
+								"sink": {
+									"name": "itemIndex"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
+								},
+								"sink": {
+									"name": "selectedSla"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
+								},
+								"sink": {
+									"name": "lockTTL"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['price']"
+								},
+								"sink": {
+									"name": "priceLogistics"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
+								},
+								"sink": {
+									"name": "listPrice"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
+								},
+								"sink": {
+									"name": "sellingPrice"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
+								},
+								"sink": {
+									"name": "deliveryWindow"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
+								},
+								"sink": {
+									"name": "deliveryCompany"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
+								},
+								"sink": {
+									"name": "shippingEstimate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
+								},
+								"sink": {
+									"name": "shippingEstimateDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['logisticsInfo'][0]['deliveryChannel']"
+								},
+								"sink": {
+									"name": "deliveryChannel"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
+								},
+								"sink": {
+									"name": "paymentSystem"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
+								},
+								"sink": {
+									"name": "paymentSystemName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+								},
+								"sink": {
+									"name": "value"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
+								},
+								"sink": {
+									"name": "installments"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
+								},
+								"sink": {
+									"name": "referenceValue"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderTotalJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OrderTotalParquet",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"folder": {
 			"name": "_Testes de Conectividade"
 		},
