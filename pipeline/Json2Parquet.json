@@ -261,7 +261,8 @@
 									"path": "['totalItems']"
 								},
 								"sink": {
-									"name": "totalItems"
+									"name": "totalItems",
+									"type": "String"
 								}
 							},
 							{
