@@ -317,7 +317,8 @@
 									"path": "$['shippingData']['address']['complement']"
 								},
 								"sink": {
-									"name": "complement"
+									"name": "complement",
+									"type": "String"
 								}
 							},
 							{
