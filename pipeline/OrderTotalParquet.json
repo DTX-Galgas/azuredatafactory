@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "OrderItems TO Parquet",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
