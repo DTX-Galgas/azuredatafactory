@@ -287,7 +287,8 @@
 									"path": "['invoiceOutput']"
 								},
 								"sink": {
-									"name": "itemsInvoiceOutput"
+									"name": "invoiceOutput",
+									"type": "String"
 								}
 							},
 							{
