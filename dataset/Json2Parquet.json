@@ -214,6 +214,7 @@
 					"type": "integer"
 				}
 			}
-		}
+		},
+		"enableSkipIncompatibleRow": true
 	}
 }
