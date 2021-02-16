@@ -1,0 +1,1088 @@
+{
+	"name": "OrderTotalJson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "order_total.json",
+				"folderPath": "brazil/vtex",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"orderId": {
+					"type": "string"
+				},
+				"sequence": {
+					"type": "string"
+				},
+				"marketplaceOrderId": {
+					"type": "string"
+				},
+				"marketplaceServicesEndpoint": {
+					"type": "string"
+				},
+				"sellerOrderId": {
+					"type": "string"
+				},
+				"origin": {
+					"type": "string"
+				},
+				"affiliateId": {
+					"type": "string"
+				},
+				"salesChannel": {
+					"type": "string"
+				},
+				"merchantName": {
+					"type": "null"
+				},
+				"status": {
+					"type": "string"
+				},
+				"statusDescription": {
+					"type": "string"
+				},
+				"value": {
+					"type": "integer"
+				},
+				"creationDate": {
+					"type": "string"
+				},
+				"lastChange": {
+					"type": "string"
+				},
+				"orderGroup": {
+					"type": "string"
+				},
+				"totals": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"value": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"uniqueId": {
+								"type": "string"
+							},
+							"id": {
+								"type": "string"
+							},
+							"productId": {
+								"type": "string"
+							},
+							"ean": {
+								"type": "string"
+							},
+							"lockId": {
+								"type": "string"
+							},
+							"itemAttachment": {
+								"type": "object",
+								"properties": {
+									"content": {
+										"type": "object"
+									},
+									"name": {
+										"type": "null"
+									}
+								}
+							},
+							"attachments": {
+								"type": "array"
+							},
+							"quantity": {
+								"type": "integer"
+							},
+							"seller": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"refId": {
+								"type": "string"
+							},
+							"price": {
+								"type": "integer"
+							},
+							"listPrice": {
+								"type": "integer"
+							},
+							"manualPrice": {
+								"type": "null"
+							},
+							"priceTags": {
+								"type": "array"
+							},
+							"imageUrl": {
+								"type": "string"
+							},
+							"detailUrl": {
+								"type": "string"
+							},
+							"components": {
+								"type": "array"
+							},
+							"bundleItems": {
+								"type": "array"
+							},
+							"params": {
+								"type": "array"
+							},
+							"offerings": {
+								"type": "array"
+							},
+							"sellerSku": {
+								"type": "string"
+							},
+							"priceValidUntil": {
+								"type": "null"
+							},
+							"commission": {
+								"type": "integer"
+							},
+							"tax": {
+								"type": "integer"
+							},
+							"preSaleDate": {
+								"type": "string"
+							},
+							"additionalInfo": {
+								"type": "object",
+								"properties": {
+									"brandName": {
+										"type": "string"
+									},
+									"brandId": {
+										"type": "string"
+									},
+									"categoriesIds": {
+										"type": "string"
+									},
+									"categories": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"id": {
+													"type": "integer"
+												},
+												"name": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"productClusterId": {
+										"type": "string"
+									},
+									"commercialConditionId": {
+										"type": "string"
+									},
+									"dimension": {
+										"type": "object",
+										"properties": {
+											"cubicweight": {
+												"type": "number"
+											},
+											"height": {
+												"type": "number"
+											},
+											"length": {
+												"type": "number"
+											},
+											"weight": {
+												"type": "number"
+											},
+											"width": {
+												"type": "number"
+											}
+										}
+									},
+									"offeringInfo": {
+										"type": "null"
+									},
+									"offeringType": {
+										"type": "null"
+									},
+									"offeringTypeId": {
+										"type": "null"
+									}
+								}
+							},
+							"measurementUnit": {
+								"type": "string"
+							},
+							"unitMultiplier": {
+								"type": "number"
+							},
+							"sellingPrice": {
+								"type": "integer"
+							},
+							"isGift": {
+								"type": "boolean"
+							},
+							"shippingPrice": {
+								"type": "null"
+							},
+							"rewardValue": {
+								"type": "integer"
+							},
+							"freightCommission": {
+								"type": "integer"
+							},
+							"priceDefinitions": {
+								"type": "null"
+							},
+							"taxCode": {
+								"type": "null"
+							},
+							"parentItemIndex": {
+								"type": "null"
+							},
+							"parentAssemblyBinding": {
+								"type": "null"
+							},
+							"callCenterOperator": {
+								"type": "null"
+							},
+							"serialNumbers": {
+								"type": "null"
+							},
+							"assemblies": {
+								"type": "array"
+							},
+							"costPrice": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"marketplaceItems": {
+					"type": "array"
+				},
+				"clientProfileData": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"email": {
+							"type": "string"
+						},
+						"firstName": {
+							"type": "string"
+						},
+						"lastName": {
+							"type": "string"
+						},
+						"documentType": {
+							"type": "string"
+						},
+						"document": {
+							"type": "string"
+						},
+						"phone": {
+							"type": "string"
+						},
+						"corporateName": {
+							"type": "null"
+						},
+						"tradeName": {
+							"type": "null"
+						},
+						"corporateDocument": {
+							"type": "null"
+						},
+						"stateInscription": {
+							"type": "null"
+						},
+						"corporatePhone": {
+							"type": "null"
+						},
+						"isCorporate": {
+							"type": "boolean"
+						},
+						"userProfileId": {
+							"type": "string"
+						},
+						"customerClass": {
+							"type": "null"
+						}
+					}
+				},
+				"giftRegistryData": {
+					"type": "null"
+				},
+				"marketingData": {
+					"type": "null"
+				},
+				"ratesAndBenefitsData": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"rateAndBenefitsIdentifiers": {
+							"type": "array"
+						}
+					}
+				},
+				"shippingData": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"address": {
+							"type": "object",
+							"properties": {
+								"addressType": {
+									"type": "string"
+								},
+								"receiverName": {
+									"type": "string"
+								},
+								"addressId": {
+									"type": "string"
+								},
+								"postalCode": {
+									"type": "string"
+								},
+								"city": {
+									"type": "string"
+								},
+								"state": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								},
+								"street": {
+									"type": "string"
+								},
+								"number": {
+									"type": "string"
+								},
+								"neighborhood": {
+									"type": "string"
+								},
+								"complement": {
+									"type": "null"
+								},
+								"reference": {
+									"type": "null"
+								},
+								"geoCoordinates": {
+									"type": "array",
+									"items": {
+										"type": "number"
+									}
+								}
+							}
+						},
+						"logisticsInfo": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"itemIndex": {
+										"type": "integer"
+									},
+									"selectedSla": {
+										"type": "string"
+									},
+									"lockTTL": {
+										"type": "string"
+									},
+									"price": {
+										"type": "integer"
+									},
+									"listPrice": {
+										"type": "integer"
+									},
+									"sellingPrice": {
+										"type": "integer"
+									},
+									"deliveryWindow": {
+										"type": "null"
+									},
+									"deliveryCompany": {
+										"type": "string"
+									},
+									"shippingEstimate": {
+										"type": "string"
+									},
+									"shippingEstimateDate": {
+										"type": "string"
+									},
+									"slas": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"id": {
+													"type": "string"
+												},
+												"name": {
+													"type": "string"
+												},
+												"shippingEstimate": {
+													"type": "string"
+												},
+												"deliveryWindow": {
+													"type": "null"
+												},
+												"price": {
+													"type": "integer"
+												},
+												"deliveryChannel": {
+													"type": "string"
+												},
+												"pickupStoreInfo": {
+													"type": "object",
+													"properties": {
+														"additionalInfo": {
+															"type": "null"
+														},
+														"address": {
+															"type": "null"
+														},
+														"dockId": {
+															"type": "null"
+														},
+														"friendlyName": {
+															"type": "null"
+														},
+														"isPickupStore": {
+															"type": "boolean"
+														}
+													}
+												},
+												"polygonName": {
+													"type": "null"
+												},
+												"lockTTL": {
+													"type": "string"
+												},
+												"pickupPointId": {
+													"type": "null"
+												},
+												"transitTime": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"shipsTo": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"deliveryIds": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"courierId": {
+													"type": "string"
+												},
+												"courierName": {
+													"type": "string"
+												},
+												"dockId": {
+													"type": "string"
+												},
+												"quantity": {
+													"type": "integer"
+												},
+												"warehouseId": {
+													"type": "string"
+												},
+												"accountCarrierName": {
+													"type": "null"
+												}
+											}
+										}
+									},
+									"deliveryChannel": {
+										"type": "string"
+									},
+									"pickupStoreInfo": {
+										"type": "object",
+										"properties": {
+											"additionalInfo": {
+												"type": "null"
+											},
+											"address": {
+												"type": "null"
+											},
+											"dockId": {
+												"type": "null"
+											},
+											"friendlyName": {
+												"type": "null"
+											},
+											"isPickupStore": {
+												"type": "boolean"
+											}
+										}
+									},
+									"addressId": {
+										"type": "string"
+									},
+									"polygonName": {
+										"type": "null"
+									},
+									"pickupPointId": {
+										"type": "null"
+									},
+									"transitTime": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"trackingHints": {
+							"type": "null"
+						},
+						"selectedAddresses": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"addressId": {
+										"type": "string"
+									},
+									"addressType": {
+										"type": "string"
+									},
+									"receiverName": {
+										"type": "string"
+									},
+									"street": {
+										"type": "string"
+									},
+									"number": {
+										"type": "string"
+									},
+									"complement": {
+										"type": "null"
+									},
+									"neighborhood": {
+										"type": "string"
+									},
+									"postalCode": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"state": {
+										"type": "string"
+									},
+									"country": {
+										"type": "string"
+									},
+									"reference": {
+										"type": "null"
+									},
+									"geoCoordinates": {
+										"type": "array",
+										"items": {
+											"type": "number"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"paymentData": {
+					"type": "object",
+					"properties": {
+						"giftCards": {
+							"type": "array"
+						},
+						"transactions": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"isActive": {
+										"type": "boolean"
+									},
+									"transactionId": {
+										"type": "string"
+									},
+									"merchantName": {
+										"type": "string"
+									},
+									"payments": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"id": {
+													"type": "string"
+												},
+												"paymentSystem": {
+													"type": "string"
+												},
+												"paymentSystemName": {
+													"type": "string"
+												},
+												"value": {
+													"type": "integer"
+												},
+												"installments": {
+													"type": "integer"
+												},
+												"referenceValue": {
+													"type": "integer"
+												},
+												"cardHolder": {
+													"type": "null"
+												},
+												"cardNumber": {
+													"type": "null"
+												},
+												"firstDigits": {
+													"type": "string"
+												},
+												"lastDigits": {
+													"type": "string"
+												},
+												"cvv2": {
+													"type": "null"
+												},
+												"expireMonth": {
+													"type": "null"
+												},
+												"expireYear": {
+													"type": "null"
+												},
+												"url": {
+													"type": "null"
+												},
+												"giftCardId": {
+													"type": "null"
+												},
+												"giftCardName": {
+													"type": "null"
+												},
+												"giftCardCaption": {
+													"type": "null"
+												},
+												"redemptionCode": {
+													"type": "null"
+												},
+												"group": {
+													"type": "string"
+												},
+												"tid": {
+													"type": "string"
+												},
+												"dueDate": {
+													"type": "null"
+												},
+												"connectorResponses": {
+													"type": "object",
+													"properties": {
+														"Tid": {
+															"type": "string"
+														},
+														"ReturnCode": {
+															"type": "null"
+														},
+														"Message": {
+															"type": "null"
+														},
+														"authId": {
+															"type": "string"
+														},
+														"nsu": {
+															"type": "string"
+														},
+														"acquirer": {
+															"type": "string"
+														}
+													}
+												},
+												"giftCardProvider": {
+													"type": "null"
+												},
+												"giftCardAsDiscount": {
+													"type": "null"
+												},
+												"koinUrl": {
+													"type": "null"
+												},
+												"accountId": {
+													"type": "string"
+												},
+												"parentAccountId": {
+													"type": "string"
+												},
+												"bankIssuedInvoiceIdentificationNumber": {
+													"type": "null"
+												},
+												"bankIssuedInvoiceIdentificationNumberFormatted": {
+													"type": "null"
+												},
+												"bankIssuedInvoiceBarCodeNumber": {
+													"type": "null"
+												},
+												"bankIssuedInvoiceBarCodeType": {
+													"type": "null"
+												},
+												"billingAddress": {
+													"type": "object",
+													"properties": {
+														"postalCode": {
+															"type": "string"
+														},
+														"city": {
+															"type": "string"
+														},
+														"state": {
+															"type": "string"
+														},
+														"country": {
+															"type": "string"
+														},
+														"street": {
+															"type": "string"
+														},
+														"number": {
+															"type": "string"
+														},
+														"neighborhood": {
+															"type": "string"
+														},
+														"complement": {
+															"type": "null"
+														},
+														"reference": {
+															"type": "null"
+														},
+														"geoCoordinates": {
+															"type": "array",
+															"items": {
+																"type": "number"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"packageAttachment": {
+					"type": "object",
+					"properties": {
+						"packages": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"items": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"itemIndex": {
+													"type": "integer"
+												},
+												"quantity": {
+													"type": "integer"
+												},
+												"price": {
+													"type": "integer"
+												},
+												"description": {
+													"type": "null"
+												},
+												"unitMultiplier": {
+													"type": "number"
+												}
+											}
+										}
+									},
+									"courier": {
+										"type": "string"
+									},
+									"invoiceNumber": {
+										"type": "string"
+									},
+									"invoiceValue": {
+										"type": "integer"
+									},
+									"invoiceUrl": {
+										"type": "null"
+									},
+									"issuanceDate": {
+										"type": "string"
+									},
+									"trackingNumber": {
+										"type": "string"
+									},
+									"invoiceKey": {
+										"type": "string"
+									},
+									"trackingUrl": {
+										"type": "string"
+									},
+									"embeddedInvoice": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									},
+									"courierStatus": {
+										"type": "object",
+										"properties": {
+											"status": {
+												"type": "string"
+											},
+											"finished": {
+												"type": "boolean"
+											},
+											"deliveredDate": {
+												"type": "null"
+											},
+											"data": {
+												"type": "array"
+											}
+										}
+									},
+									"cfop": {
+										"type": "null"
+									},
+									"restitutions": {
+										"type": "object"
+									},
+									"volumes": {
+										"type": "integer"
+									}
+								}
+							}
+						}
+					}
+				},
+				"sellers": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"logo": {
+								"type": "string"
+							},
+							"fulfillmentEndpoint": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"callCenterOperatorData": {
+					"type": "null"
+				},
+				"followUpEmail": {
+					"type": "string"
+				},
+				"lastMessage": {
+					"type": "null"
+				},
+				"hostname": {
+					"type": "string"
+				},
+				"invoiceData": {
+					"type": "null"
+				},
+				"changesAttachment": {
+					"type": "null"
+				},
+				"openTextField": {
+					"type": "null"
+				},
+				"roundingError": {
+					"type": "integer"
+				},
+				"orderFormId": {
+					"type": "string"
+				},
+				"commercialConditionData": {
+					"type": "null"
+				},
+				"isCompleted": {
+					"type": "boolean"
+				},
+				"customData": {
+					"type": "null"
+				},
+				"storePreferencesData": {
+					"type": "object",
+					"properties": {
+						"countryCode": {
+							"type": "string"
+						},
+						"currencyCode": {
+							"type": "string"
+						},
+						"currencyFormatInfo": {
+							"type": "object",
+							"properties": {
+								"CurrencyDecimalDigits": {
+									"type": "integer"
+								},
+								"CurrencyDecimalSeparator": {
+									"type": "string"
+								},
+								"CurrencyGroupSeparator": {
+									"type": "string"
+								},
+								"CurrencyGroupSize": {
+									"type": "integer"
+								},
+								"StartsWithCurrencySymbol": {
+									"type": "boolean"
+								}
+							}
+						},
+						"currencyLocale": {
+							"type": "integer"
+						},
+						"currencySymbol": {
+							"type": "string"
+						},
+						"timeZone": {
+							"type": "string"
+						}
+					}
+				},
+				"allowCancellation": {
+					"type": "boolean"
+				},
+				"allowEdition": {
+					"type": "boolean"
+				},
+				"isCheckedIn": {
+					"type": "boolean"
+				},
+				"marketplace": {
+					"type": "object",
+					"properties": {
+						"baseURL": {
+							"type": "string"
+						},
+						"isCertified": {
+							"type": "null"
+						},
+						"name": {
+							"type": "string"
+						}
+					}
+				},
+				"authorizedDate": {
+					"type": "string"
+				},
+				"invoicedDate": {
+					"type": "string"
+				},
+				"cancelReason": {
+					"type": "null"
+				},
+				"itemMetadata": {
+					"type": "object",
+					"properties": {
+						"Items": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"Id": {
+										"type": "string"
+									},
+									"Seller": {
+										"type": "string"
+									},
+									"Name": {
+										"type": "string"
+									},
+									"SkuName": {
+										"type": "string"
+									},
+									"ProductId": {
+										"type": "string"
+									},
+									"RefId": {
+										"type": "string"
+									},
+									"Ean": {
+										"type": "string"
+									},
+									"ImageUrl": {
+										"type": "string"
+									},
+									"DetailUrl": {
+										"type": "string"
+									},
+									"AssemblyOptions": {
+										"type": "array"
+									}
+								}
+							}
+						}
+					}
+				},
+				"subscriptionData": {
+					"type": "null"
+				},
+				"taxData": {
+					"type": "null"
+				},
+				"checkedInPickupPointId": {
+					"type": "null"
+				},
+				"cancellationData": {
+					"type": "null"
+				}
+			}
+		}
+	}
+}
