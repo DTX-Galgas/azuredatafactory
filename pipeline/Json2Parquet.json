@@ -1,0 +1,489 @@
+{
+	"name": "Json2Parquet",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['list'][0]['orderId']"
+								},
+								"sink": {
+									"name": "orderId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['creationDate']"
+								},
+								"sink": {
+									"name": "creationDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['clientName']"
+								},
+								"sink": {
+									"name": "clientName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['items']"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['totalValue']"
+								},
+								"sink": {
+									"name": "totalValue"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['paymentNames']"
+								},
+								"sink": {
+									"name": "paymentNames"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['status']"
+								},
+								"sink": {
+									"name": "status"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['statusDescription']"
+								},
+								"sink": {
+									"name": "statusDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['marketPlaceOrderId']"
+								},
+								"sink": {
+									"name": "marketPlaceOrderId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['sequence']"
+								},
+								"sink": {
+									"name": "sequence"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['salesChannel']"
+								},
+								"sink": {
+									"name": "salesChannel"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['affiliateId']"
+								},
+								"sink": {
+									"name": "affiliateId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['origin']"
+								},
+								"sink": {
+									"name": "origin"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['workflowInErrorState']"
+								},
+								"sink": {
+									"name": "workflowInErrorState"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['workflowInRetry']"
+								},
+								"sink": {
+									"name": "workflowInRetry"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['lastMessageUnread']"
+								},
+								"sink": {
+									"name": "lastMessageUnread"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDate']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDateMax']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDateMax"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDateMin']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDateMin"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['orderIsComplete']"
+								},
+								"sink": {
+									"name": "orderIsComplete"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['listId']"
+								},
+								"sink": {
+									"name": "listId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['listType']"
+								},
+								"sink": {
+									"name": "listType"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['authorizedDate']"
+								},
+								"sink": {
+									"name": "authorizedDate"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['callCenterOperatorName']"
+								},
+								"sink": {
+									"name": "callCenterOperatorName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['totalItems']"
+								},
+								"sink": {
+									"name": "totalItems"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['currencyCode']"
+								},
+								"sink": {
+									"name": "currencyCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['hostname']"
+								},
+								"sink": {
+									"name": "hostname"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['invoiceOutput'][0]"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['invoiceInput']"
+								},
+								"sink": {
+									"name": "invoiceInput"
+								}
+							},
+							{
+								"source": {
+									"path": "$['facets'][0]"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['total']"
+								},
+								"sink": {
+									"name": "total"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['pages']"
+								},
+								"sink": {
+									"name": "pages"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['currentPage']"
+								},
+								"sink": {
+									"name": "currentPage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['perPage']"
+								},
+								"sink": {
+									"name": "perPage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Count']"
+								},
+								"sink": {
+									"name": "Count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Max']"
+								},
+								"sink": {
+									"name": "Max"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Mean']"
+								},
+								"sink": {
+									"name": "Mean"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Min']"
+								},
+								"sink": {
+									"name": "Min"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Missing']"
+								},
+								"sink": {
+									"name": "Missing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['StdDev']"
+								},
+								"sink": {
+									"name": "StdDev"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Sum']"
+								},
+								"sink": {
+									"name": "Sum"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['SumOfSquares']"
+								},
+								"sink": {
+									"name": "SumOfSquares"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Facets']"
+								},
+								"sink": {
+									"name": "Facets"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Count']"
+								},
+								"sink": {
+									"name": "Count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Max']"
+								},
+								"sink": {
+									"name": "Max"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Mean']"
+								},
+								"sink": {
+									"name": "Mean"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Min']"
+								},
+								"sink": {
+									"name": "Min"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Missing']"
+								},
+								"sink": {
+									"name": "Missing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['StdDev']"
+								},
+								"sink": {
+									"name": "StdDev"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Sum']"
+								},
+								"sink": {
+									"name": "Sum"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['SumOfSquares']"
+								},
+								"sink": {
+									"name": "SumOfSquares"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Facets']"
+								},
+								"sink": {
+									"name": "Facets"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reportRecordsLimit']"
+								},
+								"sink": {
+									"name": "reportRecordsLimit"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Json2Parquet",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json2ParquetDestino",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "_Testes de Conectividade"
+		},
+		"annotations": []
+	}
+}
