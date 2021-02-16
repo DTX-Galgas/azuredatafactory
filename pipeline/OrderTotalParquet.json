@@ -477,7 +477,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "OrderTotalParquet",
+						"referenceName": "OrderDetailsParquet",
 						"type": "DatasetReference"
 					}
 				]
