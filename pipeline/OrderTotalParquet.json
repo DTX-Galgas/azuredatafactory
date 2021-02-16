@@ -326,7 +326,8 @@
 									"path": "$['shippingData']['address']['reference']"
 								},
 								"sink": {
-									"name": "reference"
+									"name": "reference",
+									"type": "String"
 								}
 							},
 							{
@@ -390,7 +391,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
 								},
 								"sink": {
-									"name": "deliveryWindow"
+									"name": "deliveryWindow",
+									"type": "String"
 								}
 							},
 							{
