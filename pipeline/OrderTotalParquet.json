@@ -373,7 +373,7 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
 								},
 								"sink": {
-									"name": "listPrice"
+									"name": "listPriceLogistics"
 								}
 							},
 							{
