@@ -42,429 +42,259 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['list'][0]['orderId']"
+									"path": "['orderId']"
 								},
 								"sink": {
-									"name": "orderId"
+									"name": "orderId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['creationDate']"
+									"path": "['creationDate']"
 								},
 								"sink": {
-									"name": "creationDate"
+									"name": "creationDate",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['clientName']"
+									"path": "['clientName']"
 								},
 								"sink": {
-									"name": "clientName"
+									"name": "clientName",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['items']"
+									"path": "['items']"
 								},
 								"sink": {
-									"name": "items"
+									"name": "items",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['totalValue']"
+									"path": "['totalValue']"
 								},
 								"sink": {
-									"name": "totalValue"
+									"name": "totalValue",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['paymentNames']"
+									"path": "['paymentNames']"
 								},
 								"sink": {
-									"name": "paymentNames"
+									"name": "paymentNames",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['status']"
+									"path": "['status']"
 								},
 								"sink": {
-									"name": "status"
+									"name": "status",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['statusDescription']"
+									"path": "['statusDescription']"
 								},
 								"sink": {
-									"name": "statusDescription"
+									"name": "statusDescription",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['marketPlaceOrderId']"
+									"path": "['marketPlaceOrderId']"
 								},
 								"sink": {
-									"name": "marketPlaceOrderId"
+									"name": "marketPlaceOrderId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['sequence']"
+									"path": "['sequence']"
 								},
 								"sink": {
-									"name": "sequence"
+									"name": "sequence",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['salesChannel']"
+									"path": "['salesChannel']"
 								},
 								"sink": {
-									"name": "salesChannel"
+									"name": "salesChannel",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['affiliateId']"
+									"path": "['affiliateId']"
 								},
 								"sink": {
-									"name": "affiliateId"
+									"name": "affiliateId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['origin']"
+									"path": "['origin']"
 								},
 								"sink": {
-									"name": "origin"
+									"name": "origin",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['workflowInErrorState']"
+									"path": "['workflowInErrorState']"
 								},
 								"sink": {
-									"name": "workflowInErrorState"
+									"name": "workflowInErrorState",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['workflowInRetry']"
+									"path": "['workflowInRetry']"
 								},
 								"sink": {
-									"name": "workflowInRetry"
+									"name": "workflowInRetry",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['lastMessageUnread']"
+									"path": "['lastMessageUnread']"
 								},
 								"sink": {
-									"name": "lastMessageUnread"
+									"name": "lastMessageUnread",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDate']"
+									"path": "['ShippingEstimatedDate']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDate"
+									"name": "ShippingEstimatedDate",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDateMax']"
+									"path": "['ShippingEstimatedDateMax']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMax"
+									"name": "ShippingEstimatedDateMax",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDateMin']"
+									"path": "['ShippingEstimatedDateMin']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMin"
+									"name": "ShippingEstimatedDateMin",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['orderIsComplete']"
+									"path": "['orderIsComplete']"
 								},
 								"sink": {
-									"name": "orderIsComplete"
+									"name": "orderIsComplete",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['listId']"
+									"path": "['listId']"
 								},
 								"sink": {
-									"name": "listId"
+									"name": "listId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['listType']"
+									"path": "['listType']"
 								},
 								"sink": {
-									"name": "listType"
+									"name": "listType",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['authorizedDate']"
+									"path": "['authorizedDate']"
 								},
 								"sink": {
-									"name": "authorizedDate"
+									"name": "authorizedDate",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['callCenterOperatorName']"
+									"path": "['callCenterOperatorName']"
 								},
 								"sink": {
-									"name": "callCenterOperatorName"
+									"name": "callCenterOperatorName",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['totalItems']"
+									"path": "['totalItems']"
 								},
 								"sink": {
-									"name": "totalItems"
+									"name": "totalItems",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['currencyCode']"
+									"path": "['currencyCode']"
 								},
 								"sink": {
-									"name": "currencyCode"
+									"name": "currencyCode",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['hostname']"
+									"path": "['hostname']"
 								},
 								"sink": {
-									"name": "hostname"
+									"name": "hostname",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['invoiceOutput'][0]"
+									"path": "['invoiceInput']"
 								},
 								"sink": {
-									"name": "items"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['invoiceInput']"
-								},
-								"sink": {
-									"name": "invoiceInput"
-								}
-							},
-							{
-								"source": {
-									"path": "$['facets'][0]"
-								},
-								"sink": {
-									"name": "items"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['total']"
-								},
-								"sink": {
-									"name": "total"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['pages']"
-								},
-								"sink": {
-									"name": "pages"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['currentPage']"
-								},
-								"sink": {
-									"name": "currentPage"
-								}
-							},
-							{
-								"source": {
-									"path": "$['paging']['perPage']"
-								},
-								"sink": {
-									"name": "perPage"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Count']"
-								},
-								"sink": {
-									"name": "Count"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Max']"
-								},
-								"sink": {
-									"name": "Max"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Mean']"
-								},
-								"sink": {
-									"name": "Mean"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Min']"
-								},
-								"sink": {
-									"name": "Min"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Missing']"
-								},
-								"sink": {
-									"name": "Missing"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['StdDev']"
-								},
-								"sink": {
-									"name": "StdDev"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Sum']"
-								},
-								"sink": {
-									"name": "Sum"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['SumOfSquares']"
-								},
-								"sink": {
-									"name": "SumOfSquares"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalValue']['Facets']"
-								},
-								"sink": {
-									"name": "Facets"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Count']"
-								},
-								"sink": {
-									"name": "Count"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Max']"
-								},
-								"sink": {
-									"name": "Max"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Mean']"
-								},
-								"sink": {
-									"name": "Mean"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Min']"
-								},
-								"sink": {
-									"name": "Min"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Missing']"
-								},
-								"sink": {
-									"name": "Missing"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['StdDev']"
-								},
-								"sink": {
-									"name": "StdDev"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Sum']"
-								},
-								"sink": {
-									"name": "Sum"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['SumOfSquares']"
-								},
-								"sink": {
-									"name": "SumOfSquares"
-								}
-							},
-							{
-								"source": {
-									"path": "$['stats']['stats']['totalItems']['Facets']"
-								},
-								"sink": {
-									"name": "Facets"
-								}
-							},
-							{
-								"source": {
-									"path": "$['reportRecordsLimit']"
-								},
-								"sink": {
-									"name": "reportRecordsLimit"
+									"name": "invoiceInput",
+									"type": "String"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['list']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
