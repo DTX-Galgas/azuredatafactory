@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "OrderItems TO Parquet",
+				"name": "OrderDetails TO Parquet",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -471,7 +471,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "OrderTotalJson",
+						"referenceName": "OrderDetailsJson",
 						"type": "DatasetReference"
 					}
 				],
