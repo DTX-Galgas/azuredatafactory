@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "OrderDetailsPrq",
 				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			},
