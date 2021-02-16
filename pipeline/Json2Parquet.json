@@ -45,8 +45,7 @@
 									"path": "['orderId']"
 								},
 								"sink": {
-									"name": "orderId",
-									"type": "String"
+									"name": "orderId"
 								}
 							},
 							{
@@ -54,8 +53,7 @@
 									"path": "['creationDate']"
 								},
 								"sink": {
-									"name": "creationDate",
-									"type": "String"
+									"name": "creationDate"
 								}
 							},
 							{
@@ -63,8 +61,7 @@
 									"path": "['clientName']"
 								},
 								"sink": {
-									"name": "clientName",
-									"type": "String"
+									"name": "clientName"
 								}
 							},
 							{
@@ -72,8 +69,7 @@
 									"path": "['items']"
 								},
 								"sink": {
-									"name": "items",
-									"type": "String"
+									"name": "items"
 								}
 							},
 							{
@@ -81,8 +77,7 @@
 									"path": "['totalValue']"
 								},
 								"sink": {
-									"name": "totalValue",
-									"type": "String"
+									"name": "totalValue"
 								}
 							},
 							{
@@ -90,8 +85,7 @@
 									"path": "['paymentNames']"
 								},
 								"sink": {
-									"name": "paymentNames",
-									"type": "String"
+									"name": "paymentNames"
 								}
 							},
 							{
@@ -99,8 +93,7 @@
 									"path": "['status']"
 								},
 								"sink": {
-									"name": "status",
-									"type": "String"
+									"name": "status"
 								}
 							},
 							{
@@ -108,8 +101,7 @@
 									"path": "['statusDescription']"
 								},
 								"sink": {
-									"name": "statusDescription",
-									"type": "String"
+									"name": "statusDescription"
 								}
 							},
 							{
@@ -117,8 +109,7 @@
 									"path": "['marketPlaceOrderId']"
 								},
 								"sink": {
-									"name": "marketPlaceOrderId",
-									"type": "String"
+									"name": "marketPlaceOrderId"
 								}
 							},
 							{
@@ -126,8 +117,7 @@
 									"path": "['sequence']"
 								},
 								"sink": {
-									"name": "sequence",
-									"type": "String"
+									"name": "sequence"
 								}
 							},
 							{
@@ -135,8 +125,7 @@
 									"path": "['salesChannel']"
 								},
 								"sink": {
-									"name": "salesChannel",
-									"type": "String"
+									"name": "salesChannel"
 								}
 							},
 							{
@@ -144,8 +133,7 @@
 									"path": "['affiliateId']"
 								},
 								"sink": {
-									"name": "affiliateId",
-									"type": "String"
+									"name": "affiliateId"
 								}
 							},
 							{
@@ -153,8 +141,7 @@
 									"path": "['origin']"
 								},
 								"sink": {
-									"name": "origin",
-									"type": "String"
+									"name": "origin"
 								}
 							},
 							{
@@ -162,8 +149,7 @@
 									"path": "['workflowInErrorState']"
 								},
 								"sink": {
-									"name": "workflowInErrorState",
-									"type": "String"
+									"name": "workflowInErrorState"
 								}
 							},
 							{
@@ -171,8 +157,7 @@
 									"path": "['workflowInRetry']"
 								},
 								"sink": {
-									"name": "workflowInRetry",
-									"type": "String"
+									"name": "workflowInRetry"
 								}
 							},
 							{
@@ -180,8 +165,7 @@
 									"path": "['lastMessageUnread']"
 								},
 								"sink": {
-									"name": "lastMessageUnread",
-									"type": "String"
+									"name": "lastMessageUnread"
 								}
 							},
 							{
@@ -189,8 +173,7 @@
 									"path": "['ShippingEstimatedDate']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDate",
-									"type": "String"
+									"name": "ShippingEstimatedDate"
 								}
 							},
 							{
@@ -198,8 +181,7 @@
 									"path": "['ShippingEstimatedDateMax']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMax",
-									"type": "String"
+									"name": "ShippingEstimatedDateMax"
 								}
 							},
 							{
@@ -207,8 +189,7 @@
 									"path": "['ShippingEstimatedDateMin']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMin",
-									"type": "String"
+									"name": "ShippingEstimatedDateMin"
 								}
 							},
 							{
@@ -216,8 +197,7 @@
 									"path": "['orderIsComplete']"
 								},
 								"sink": {
-									"name": "orderIsComplete",
-									"type": "String"
+									"name": "orderIsComplete"
 								}
 							},
 							{
@@ -225,8 +205,7 @@
 									"path": "['listId']"
 								},
 								"sink": {
-									"name": "listId",
-									"type": "String"
+									"name": "listId"
 								}
 							},
 							{
@@ -234,8 +213,7 @@
 									"path": "['listType']"
 								},
 								"sink": {
-									"name": "listType",
-									"type": "String"
+									"name": "listType"
 								}
 							},
 							{
@@ -243,8 +221,7 @@
 									"path": "['authorizedDate']"
 								},
 								"sink": {
-									"name": "authorizedDate",
-									"type": "String"
+									"name": "authorizedDate"
 								}
 							},
 							{
@@ -252,8 +229,7 @@
 									"path": "['callCenterOperatorName']"
 								},
 								"sink": {
-									"name": "callCenterOperatorName",
-									"type": "String"
+									"name": "callCenterOperatorName"
 								}
 							},
 							{
@@ -261,8 +237,7 @@
 									"path": "['totalItems']"
 								},
 								"sink": {
-									"name": "totalItems",
-									"type": "String"
+									"name": "totalItems"
 								}
 							},
 							{
@@ -270,8 +245,7 @@
 									"path": "['currencyCode']"
 								},
 								"sink": {
-									"name": "currencyCode",
-									"type": "String"
+									"name": "currencyCode"
 								}
 							},
 							{
@@ -279,8 +253,15 @@
 									"path": "['hostname']"
 								},
 								"sink": {
-									"name": "hostname",
-									"type": "String"
+									"name": "hostname"
+								}
+							},
+							{
+								"source": {
+									"path": "['invoiceOutput'][0]"
+								},
+								"sink": {
+									"name": "items"
 								}
 							},
 							{
@@ -288,8 +269,199 @@
 									"path": "['invoiceInput']"
 								},
 								"sink": {
-									"name": "invoiceInput",
-									"type": "String"
+									"name": "invoiceInput"
+								}
+							},
+							{
+								"source": {
+									"path": "$['facets'][0]"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['total']"
+								},
+								"sink": {
+									"name": "total"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['pages']"
+								},
+								"sink": {
+									"name": "pages"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['currentPage']"
+								},
+								"sink": {
+									"name": "currentPage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['perPage']"
+								},
+								"sink": {
+									"name": "perPage"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Count']"
+								},
+								"sink": {
+									"name": "Count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Max']"
+								},
+								"sink": {
+									"name": "Max"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Mean']"
+								},
+								"sink": {
+									"name": "Mean"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Min']"
+								},
+								"sink": {
+									"name": "Min"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Missing']"
+								},
+								"sink": {
+									"name": "Missing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['StdDev']"
+								},
+								"sink": {
+									"name": "StdDev"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Sum']"
+								},
+								"sink": {
+									"name": "Sum"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['SumOfSquares']"
+								},
+								"sink": {
+									"name": "SumOfSquares"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Facets']"
+								},
+								"sink": {
+									"name": "Facets"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Count']"
+								},
+								"sink": {
+									"name": "Count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Max']"
+								},
+								"sink": {
+									"name": "Max"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Mean']"
+								},
+								"sink": {
+									"name": "Mean"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Min']"
+								},
+								"sink": {
+									"name": "Min"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Missing']"
+								},
+								"sink": {
+									"name": "Missing"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['StdDev']"
+								},
+								"sink": {
+									"name": "StdDev"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Sum']"
+								},
+								"sink": {
+									"name": "Sum"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['SumOfSquares']"
+								},
+								"sink": {
+									"name": "SumOfSquares"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Facets']"
+								},
+								"sink": {
+									"name": "Facets"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reportRecordsLimit']"
+								},
+								"sink": {
+									"name": "reportRecordsLimit"
 								}
 							}
 						],
