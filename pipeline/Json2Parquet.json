@@ -45,8 +45,15 @@
 									"path": "['orderId']"
 								},
 								"sink": {
-									"name": "orderId",
-									"type": "String"
+									"name": "orderId"
+								}
+							},
+							{
+								"source": {
+									"path": "['creationDate']"
+								},
+								"sink": {
+									"name": "creationDate"
 								}
 							},
 							{
@@ -54,8 +61,199 @@
 									"path": "['clientName']"
 								},
 								"sink": {
-									"name": "clientName",
-									"type": "String"
+									"name": "clientName"
+								}
+							},
+							{
+								"source": {
+									"path": "['items']"
+								},
+								"sink": {
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "['totalValue']"
+								},
+								"sink": {
+									"name": "totalValue"
+								}
+							},
+							{
+								"source": {
+									"path": "['paymentNames']"
+								},
+								"sink": {
+									"name": "paymentNames"
+								}
+							},
+							{
+								"source": {
+									"path": "['status']"
+								},
+								"sink": {
+									"name": "status"
+								}
+							},
+							{
+								"source": {
+									"path": "['statusDescription']"
+								},
+								"sink": {
+									"name": "statusDescription"
+								}
+							},
+							{
+								"source": {
+									"path": "['marketPlaceOrderId']"
+								},
+								"sink": {
+									"name": "marketPlaceOrderId"
+								}
+							},
+							{
+								"source": {
+									"path": "['sequence']"
+								},
+								"sink": {
+									"name": "sequence"
+								}
+							},
+							{
+								"source": {
+									"path": "['salesChannel']"
+								},
+								"sink": {
+									"name": "salesChannel"
+								}
+							},
+							{
+								"source": {
+									"path": "['affiliateId']"
+								},
+								"sink": {
+									"name": "affiliateId"
+								}
+							},
+							{
+								"source": {
+									"path": "['origin']"
+								},
+								"sink": {
+									"name": "origin"
+								}
+							},
+							{
+								"source": {
+									"path": "['workflowInErrorState']"
+								},
+								"sink": {
+									"name": "workflowInErrorState"
+								}
+							},
+							{
+								"source": {
+									"path": "['workflowInRetry']"
+								},
+								"sink": {
+									"name": "workflowInRetry"
+								}
+							},
+							{
+								"source": {
+									"path": "['lastMessageUnread']"
+								},
+								"sink": {
+									"name": "lastMessageUnread"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShippingEstimatedDate']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDate"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShippingEstimatedDateMax']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDateMax"
+								}
+							},
+							{
+								"source": {
+									"path": "['ShippingEstimatedDateMin']"
+								},
+								"sink": {
+									"name": "ShippingEstimatedDateMin"
+								}
+							},
+							{
+								"source": {
+									"path": "['orderIsComplete']"
+								},
+								"sink": {
+									"name": "orderIsComplete"
+								}
+							},
+							{
+								"source": {
+									"path": "['listId']"
+								},
+								"sink": {
+									"name": "listId"
+								}
+							},
+							{
+								"source": {
+									"path": "['listType']"
+								},
+								"sink": {
+									"name": "listType"
+								}
+							},
+							{
+								"source": {
+									"path": "['authorizedDate']"
+								},
+								"sink": {
+									"name": "authorizedDate"
+								}
+							},
+							{
+								"source": {
+									"path": "['callCenterOperatorName']"
+								},
+								"sink": {
+									"name": "callCenterOperatorName"
+								}
+							},
+							{
+								"source": {
+									"path": "['totalItems']"
+								},
+								"sink": {
+									"name": "totalItems"
+								}
+							},
+							{
+								"source": {
+									"path": "['currencyCode']"
+								},
+								"sink": {
+									"name": "currencyCode"
+								}
+							},
+							{
+								"source": {
+									"path": "['hostname']"
+								},
+								"sink": {
+									"name": "hostname"
 								}
 							},
 							{
@@ -63,8 +261,15 @@
 									"path": "['invoiceOutput']"
 								},
 								"sink": {
-									"name": "items",
-									"type": "String"
+									"name": "items"
+								}
+							},
+							{
+								"source": {
+									"path": "['invoiceInput']"
+								},
+								"sink": {
+									"name": "invoiceInput"
 								}
 							}
 						],
