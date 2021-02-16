@@ -1,5 +1,5 @@
 {
-	"name": "OrderTotalParquet",
+	"name": "OrderDetailsParquet",
 	"properties": {
 		"activities": [
 			{
