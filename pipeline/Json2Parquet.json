@@ -51,6 +51,15 @@
 							},
 							{
 								"source": {
+									"path": "['totalItems']"
+								},
+								"sink": {
+									"name": "totalItems",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['hostname']"
 								},
 								"sink": {
@@ -63,16 +72,7 @@
 									"path": "['invoiceOutput']"
 								},
 								"sink": {
-									"name": "Fatura",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['invoiceInput']"
-								},
-								"sink": {
-									"name": "Items",
+									"name": "items",
 									"type": "String"
 								}
 							}
