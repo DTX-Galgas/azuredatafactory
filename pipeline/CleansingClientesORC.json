@@ -35,15 +35,13 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink",
+						"type": "ParquetSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings",
 							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"type": "ParquetWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -57,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_mly",
+						"referenceName": "Parquet1",
 						"type": "DatasetReference"
 					}
 				]
