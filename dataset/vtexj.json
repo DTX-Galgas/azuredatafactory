@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ZGFDL_INTER_RET_KONV.json",
+				"fileName": "ZGFDL_INTER_RET_AUSP.json",
 				"folderPath": "saprest",
 				"fileSystem": "cleansing"
 			}
