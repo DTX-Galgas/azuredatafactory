@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ZGFDL_INTER_RET_VBAK.json",
+				"fileName": "ZGFDL_INTER_RET_MARC.json",
 				"folderPath": "saprest",
 				"fileSystem": "cleansing"
 			}
