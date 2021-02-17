@@ -9,10 +9,10 @@
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Basic",
 			"userName": "RFC_USER_QTQ",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5ZDk1OTIyMC02NjliLTQwMjMtYWQ1Ny01OTZhNzQ5M2JmYzkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIldTREVWQlJTWU5BUFNFXzA4Y2YyYmZkLThjMzYtNGEzMy1hNGI4LWJiMmM2ZGY0YWM2NiINCn0="
 		},
 		"connectVia": {
-			"referenceName": "ir-dev-malwee",
+			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
