@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "CLEANSING"
+			"name": "CLEANSING/Cigam"
 		},
 		"annotations": [],
 		"type": "Parquet",
