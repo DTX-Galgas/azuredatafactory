@@ -1,0 +1,97 @@
+{
+	"name": "Clientes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CLEANSING"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "gst_bi_clientes_202102091445.parquet",
+				"folderPath": "brazil/transacional/cigam/frente de caixa/gst_bi_clientes/2021/02/09",
+				"fileSystem": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "ESTAB_IDCIGAM",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_CODIGO",
+				"type": "DOUBLE"
+			},
+			{
+				"name": "CLIENTE_NOME",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_CPFCNPJ",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_EMAIL",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_CIDADE",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_ESTADO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_SEXO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_ANIVERSARIO",
+				"type": "INT96"
+			},
+			{
+				"name": "CLIENTE_DDD_CELULAR",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_CELULAR",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_ENDERECO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_NUMERO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_COMPLEMENTO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_BAIRRO",
+				"type": "UTF8"
+			},
+			{
+				"name": "CLIENTE_CEP",
+				"type": "UTF8"
+			},
+			{
+				"name": "NUM_MATRICULA",
+				"type": "UTF8"
+			},
+			{
+				"name": "DAT_HORA_EXPORTACAO",
+				"type": "UTF8"
+			}
+		]
+	}
+}
