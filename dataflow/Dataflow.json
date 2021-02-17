@@ -9,12 +9,12 @@
 						"referenceName": "Clientes",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "Origem"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\tESTAB_IDCIGAM as string,\n\t\tCLIENTE_CODIGO as double,\n\t\tCLIENTE_NOME as string,\n\t\tCLIENTE_CPFCNPJ as string,\n\t\tCLIENTE_EMAIL as string,\n\t\tCLIENTE_CIDADE as string,\n\t\tCLIENTE_ESTADO as string,\n\t\tCLIENTE_SEXO as string,\n\t\tCLIENTE_ANIVERSARIO as timestamp,\n\t\tCLIENTE_DDD_CELULAR as string,\n\t\tCLIENTE_CELULAR as string,\n\t\tCLIENTE_ENDERECO as string,\n\t\tCLIENTE_NUMERO as string,\n\t\tCLIENTE_COMPLEMENTO as string,\n\t\tCLIENTE_BAIRRO as string,\n\t\tCLIENTE_CEP as string,\n\t\tNUM_MATRICULA as string,\n\t\tDAT_HORA_EXPORTACAO as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tmodifiedAfter: (toTimestamp(concat(toString(currentDate()), ' 00:00:00'), 'MM/dd/yy HH:mm:ss', 'UTC')),\n\tmodifiedBefore: (currentUTC()),\n\tformat: 'parquet') ~> source1"
+			"script": "source(output(\n\t\tESTAB_IDCIGAM as string,\n\t\tCLIENTE_CODIGO as double,\n\t\tCLIENTE_NOME as string,\n\t\tCLIENTE_CPFCNPJ as string,\n\t\tCLIENTE_EMAIL as string,\n\t\tCLIENTE_CIDADE as string,\n\t\tCLIENTE_ESTADO as string,\n\t\tCLIENTE_SEXO as string,\n\t\tCLIENTE_ANIVERSARIO as timestamp,\n\t\tCLIENTE_DDD_CELULAR as string,\n\t\tCLIENTE_CELULAR as string,\n\t\tCLIENTE_ENDERECO as string,\n\t\tCLIENTE_NUMERO as string,\n\t\tCLIENTE_COMPLEMENTO as string,\n\t\tCLIENTE_BAIRRO as string,\n\t\tCLIENTE_CEP as string,\n\t\tNUM_MATRICULA as string,\n\t\tDAT_HORA_EXPORTACAO as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tmodifiedAfter: (toTimestamp(concat(toString(currentDate()), ' 00:00:00'), 'MM/dd/yy HH:mm:ss', 'UTC')),\n\tmodifiedBefore: (currentUTC()),\n\tformat: 'parquet') ~> Origem"
 		}
 	}
 }
