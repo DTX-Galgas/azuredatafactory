@@ -47,7 +47,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "FullURL",
+						"activity": "GravaLogInicio",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -179,26 +179,6 @@
 					"variableName": "MsgErro",
 					"value": {
 						"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT,']')",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "FullURL",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "GravaLogInicio",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "FullURL",
-					"value": {
-						"value": "@concat(activity('GravaLogInicio').output.FirstRow.NOM_URL_BASE,activity('GravaLogInicio').output.FirstRow.NOM_URL_RELATIVA,activity('GravaLogInicio').output.FirstRow.DESC_PARAMETRO_1,activity('GravaLogInicio').output.FirstRow.VAL_PARAMETRO_1,activity('GravaLogInicio').output.FirstRow.DESC_PARAMETRO_2,activity('GravaLogInicio').output.FirstRow.VAL_PARAMETRO_2,activity('GravaLogInicio').output.FirstRow.DESC_PARAMETRO_3,activity('GravaLogInicio').output.FirstRow.VAL_PARAMETRO_3,activity('GravaLogInicio').output.FirstRow.DESC_PARAMETRO_4,activity('GravaLogInicio').output.FirstRow.VAL_PARAMETRO_4,activity('GravaLogInicio').output.FirstRow.DESC_PARAMETRO_5,activity('GravaLogInicio').output.FirstRow.VAL_PARAMETRO_5)",
 						"type": "Expression"
 					}
 				}
