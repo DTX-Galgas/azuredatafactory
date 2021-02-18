@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "PADFIdPacoteAPIVTEX",
+						"sqlReaderStoredProcedureName": "PADFIdPacoteAPI",
 						"storedProcedureParameters": {
 							"COD_ENDPOINT": {
 								"type": "Int32",
