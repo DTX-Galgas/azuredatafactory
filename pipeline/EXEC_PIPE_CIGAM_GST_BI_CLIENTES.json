@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor___CRMProduto",
+				"name": "Cigam",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor___CRMProduto",
+						"activity": "Cigam",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -39,7 +39,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRMProduto_Tentativa_2",
+						"activity": "Cigam_2",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -51,7 +51,7 @@
 				}
 			},
 			{
-				"name": "Gestor_CRMProduto_Tentativa_2",
+				"name": "Cigam_2",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -74,7 +74,7 @@
 				}
 			},
 			{
-				"name": "Gestor_CRMProduto_Tentativa_3",
+				"name": "Cigam_3",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
