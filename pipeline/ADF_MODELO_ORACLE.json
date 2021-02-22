@@ -363,13 +363,6 @@
 											}
 										},
 										{
-											"name": "FLAG_VIGENCIA",
-											"value": {
-												"value": "1",
-												"type": "Expression"
-											}
-										},
-										{
 											"name": "DAT_INICIO_VIGENCIA",
 											"value": {
 												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
