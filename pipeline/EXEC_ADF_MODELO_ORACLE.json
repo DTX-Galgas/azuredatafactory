@@ -1,5 +1,5 @@
 {
-	"name": "EXEC_ADF_MODELO_ORC",
+	"name": "EXEC_ADF_MODELO_ORACLE",
 	"properties": {
 		"activities": [
 			{
@@ -68,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ADF_MODELO_ORC",
+									"referenceName": "ADF_MODELO_ORACLE",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
