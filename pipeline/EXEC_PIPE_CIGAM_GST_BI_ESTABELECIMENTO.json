@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -64,7 +64,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -87,7 +87,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORC",
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
