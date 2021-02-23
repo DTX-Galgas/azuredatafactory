@@ -1,0 +1,116 @@
+{
+	"name": "cliente_processado",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "PK_CLIENTE",
+				"type": "varchar"
+			},
+			{
+				"name": "ESTAB_IDCIGAM",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_CODIGO",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CLIENTE_NOME",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_CPFCNPJ",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_EMAIL",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_CIDADE",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_ESTADO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_SEXO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_ANIVERSARIO",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "CLIENTE_DDD_CELULAR",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_CELULAR",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_ENDERECO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_NUMERO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_COMPLEMENTO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_BAIRRO",
+				"type": "varchar"
+			},
+			{
+				"name": "CLIENTE_CEP",
+				"type": "varchar"
+			},
+			{
+				"name": "NUM_MATRICULA",
+				"type": "varchar"
+			},
+			{
+				"name": "DAT_HORA_EXPORTACAO",
+				"type": "varchar"
+			},
+			{
+				"name": "TIPO_ACAO",
+				"type": "varchar"
+			},
+			{
+				"name": "FLAG_VIGENCIA",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DAT_INICIO_VIGENCIA",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DAT_FINAL_VIGENCIA",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "temp",
+			"table": "CLIENTES_PROCESSAMENTO"
+		},
+		"sqlPool": {
+			"referenceName": "dwmwe",
+			"type": "SqlPoolReference"
+		}
+	}
+}
