@@ -250,18 +250,6 @@
 							},
 							{
 								"source": {
-									"name": "DAT_HORA_EXPORTACAO",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "DAT_HORA_EXPORTACAO",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							},
-							{
-								"source": {
 									"name": "FLAG_VIGENCIA",
 									"type": "Int32",
 									"physicalType": "int"
