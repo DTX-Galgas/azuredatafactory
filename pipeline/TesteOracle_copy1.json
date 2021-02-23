@@ -30,6 +30,284 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PK_CLIENTE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "PK_CLIENTE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "ESTAB_IDCIGAM",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ESTAB_IDCIGAM",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CODIGO",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "CLIENTE_CODIGO",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_NOME",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_NOME",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CPFCNPJ",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_CPFCNPJ",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_EMAIL",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_EMAIL",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CIDADE",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_CIDADE",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ESTADO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_ESTADO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_SEXO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_SEXO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ANIVERSARIO",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "CLIENTE_ANIVERSARIO",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_DDD_CELULAR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_DDD_CELULAR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CELULAR",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_CELULAR",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ENDERECO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_ENDERECO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_NUMERO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_NUMERO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_COMPLEMENTO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_COMPLEMENTO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_BAIRRO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_BAIRRO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CEP",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "CLIENTE_CEP",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "NUM_MATRICULA",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "NUM_MATRICULA",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "DAT_HORA_EXPORTACAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "DAT_HORA_EXPORTACAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "TIPO_ACAO",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "TIPO_ACAO",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "FLAG_VIGENCIA",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "FLAG_VIGENCIA",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DAT_INICIO_VIGENCIA",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DAT_INICIO_VIGENCIA",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "DAT_FINAL_VIGENCIA",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DAT_FINAL_VIGENCIA",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
