@@ -15,7 +15,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "gst_bi_clientes.parquet",
 				"folderPath": "cigam",
-				"fileSystem": "cleasing"
+				"fileSystem": "cleansing"
 			},
 			"compressionCodec": "snappy"
 		},
