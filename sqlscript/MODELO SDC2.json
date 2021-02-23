@@ -1,0 +1,16 @@
+{
+	"name": "MODELO SDC2",
+	"properties": {
+		"content": {
+			"query": "truncate table temp.cigam_gts_bi_clientes \n\nINSERT INTO temp.cigam_gts_bi_clientes\nselect \nconcat(ESTAB_IDCIGAM,CLIENTE_CODIGO) as PK_CLIENTE\n,ESTAB_IDCIGAM\n,CLIENTE_CODIGO\n,CLIENTE_NOME\n,1 AS FLAG_VIGENCIA\n,GETDATE() AS DAT_INICIO_VIGENCIA\n,NULL AS DAT_FINAL_VIGENCIA\nfrom cleasing_data.gst_bi_clientes",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
