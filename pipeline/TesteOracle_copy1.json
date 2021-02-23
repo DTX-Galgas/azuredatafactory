@@ -45,13 +45,8 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-						"type": "DatasetReference",
-						"parameters": {
-							"FilePath": "cigam",
-							"FileName": "gst_bi_clientes.parquet",
-							"FileSystem": "cleasing"
-						}
+						"referenceName": "Clientes",
+						"type": "DatasetReference"
 					}
 				]
 			}
