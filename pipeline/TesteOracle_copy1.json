@@ -19,15 +19,23 @@
 						"type": "SqlPoolSource"
 					},
 					"sink": {
-						"type": "SqlPoolSink",
-						"allowPolyBase": true,
-						"polyBaseSettings": {
-							"rejectValue": 0,
-							"rejectType": "value",
-							"useTypeDefault": true
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -37,8 +45,13 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "cliente_processado",
-						"type": "DatasetReference"
+						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+						"type": "DatasetReference",
+						"parameters": {
+							"FilePath": "cigam",
+							"FileName": "gst_bi_clientes.parquet",
+							"FileSystem": "cleasing"
+						}
 					}
 				]
 			}
