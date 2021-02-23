@@ -13,9 +13,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "gst_bi_clientes_202102091445.parquet",
-				"folderPath": "brazil/transacional/cigam/frente de caixa/gst_bi_clientes/2021/02/09",
-				"fileSystem": "raw"
+				"fileName": "gst_bi_clientes.parquet",
+				"folderPath": "cigam",
+				"fileSystem": "cleasing"
 			},
 			"compressionCodec": "snappy"
 		},
