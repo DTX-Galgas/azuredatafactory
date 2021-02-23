@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlPoolSource",
-						"sqlReaderQuery": "     Select   \n          PK_CLIENTE\n        ,[ESTAB_IDCIGAM]\n        ,[CLIENTE_CODIGO]\n        , [CLIENTE_NOME]\n        ,[CLIENTE_CPFCNPJ]\n        ,[CLIENTE_EMAIL]\n        ,[CLIENTE_CIDADE]\n        ,[CLIENTE_ESTADO]\n        ,[CLIENTE_SEXO]\n        ,[CLIENTE_ANIVERSARIO]\n        ,[CLIENTE_DDD_CELULAR]\n        ,[CLIENTE_CELULAR]\n        ,[CLIENTE_ENDERECO]\n        ,[CLIENTE_NUMERO]\n        ,[CLIENTE_COMPLEMENTO]\n        ,[CLIENTE_BAIRRO]\n        ,[CLIENTE_CEP]\n        ,[NUM_MATRICULA]\n        ,[DAT_HORA_EXPORTACAO] \n        ,FLAG_VIGENCIA \n        ,  DAT_INICIO_VIGENCIA\n        , DAT_FINAL_VIGENCIA \n        from \n temp.clientes_processamento\n"
+						"sqlReaderQuery": "     Select   \n         PK_CLIENTE\n        ,[ESTAB_IDCIGAM]\n        ,[CLIENTE_CODIGO]\n        , [CLIENTE_NOME]\n        ,[CLIENTE_CPFCNPJ]\n        ,[CLIENTE_EMAIL]\n        ,[CLIENTE_CIDADE]\n        ,[CLIENTE_ESTADO]\n        ,[CLIENTE_SEXO]\n        ,[CLIENTE_ANIVERSARIO]\n        ,[CLIENTE_DDD_CELULAR]\n        ,[CLIENTE_CELULAR]\n        ,[CLIENTE_ENDERECO]\n        ,[CLIENTE_NUMERO]\n        ,[CLIENTE_COMPLEMENTO]\n        ,[CLIENTE_BAIRRO]\n        ,[CLIENTE_CEP]\n        ,[NUM_MATRICULA]\n        ,FLAG_VIGENCIA \n        ,DAT_INICIO_VIGENCIA\n        ,DAT_FINAL_VIGENCIA \n        from \n temp.clientes_processamento\n"
 					},
 					"sink": {
 						"type": "ParquetSink",
