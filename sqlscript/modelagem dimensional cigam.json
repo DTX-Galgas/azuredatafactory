@@ -1,0 +1,16 @@
+{
+	"name": "modelagem dimensional cigam",
+	"properties": {
+		"content": {
+			"query": "",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
