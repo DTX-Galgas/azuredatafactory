@@ -1,0 +1,19 @@
+{
+	"name": "DIM_LOJA",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL"
+		},
+		"content": {
+			"query": "\n/** LOJA **/\nSELECT   \nCONVERT(VARCHAR(5),ESTAB_IDCIGAM)                                                                       AS  ESTAB_IDCIGAM\n,CONVERT(VARCHAR(15),UPPER(ISNULL(ESTAB_TIPOFILIAL,'NÃO INFORMADO')))                                   AS  ESTAB_TIPOFILIAL\n,CONVERT(INT,ISNULL(ESTAB_IDINTEGRACAO,-1))                                                             AS  ESTAB_IDINTEGRACAO\n,CONVERT(VARCHAR(15), UPPER(ISNULL(ESTAB_TIPOFILIAL,'NÃOINFORMADO')))                                   AS  ESTAB_TIPOFILIAL\n,CONVERT(VARCHAR(150), UPPER(ISNULL(ESTAB_NOME,'NÃO INFORMADO')))                                       AS  ESTAB_NOME\n,CONVERT(FLOAT, ISNULL(ESTAB_AREA,-1))                                                                  AS  ESTAB_AREA\n,CONVERT(VARCHAR(20), UPPER(ISNULL(REGIAO_DESCRICAO,'NÃOINFORMADO')))                                   AS  REGIAO_DESCRICAO\n,CONVERT(VARCHAR(15), UPPER(ISNULL(ESTAB_ESTADO,'NÃO INFROAMDO')))                                      AS  ESTAB_ESTADO\n,CONVERT(VARCHAR(15), UPPER(ISNULL(CONSULTOR_NUMMATR,'NÃO INFORMADO')))                                 AS  CONSULTOR_NUMMATR\n,CONVERT(VARCHAR(150),UPPER(ISNULL(CONSULTOR_NOME,'NÃO INFORMADO')))                                    AS  CONSULTOR_NOME\n,CONVERT(VARCHAR(15),UPPER(ISNULL(ESTAB_ATIVO,'NÃO IFORMADO')))                                         AS  ESTAB_ATIVO\n,CONVERT(VARCHAR(150),UPPER(ISNULL(ESTAB_RAZAO_SOCIAL,'NÃO INFORMADO')))                                AS  ESTAB_RAZAO_SOCIAL\n,CONVERT(VARCHAR(150),UPPER(ISNULL(ESTAB_ENDERECO,'NÃO INFORMADO')))                                    AS  ESTAB_ENDERECO\n,CONVERT(VARCHAR(15),ISNULL(ESTAB_ENDNUMERO,'NÃO INFORMADO'))                                           AS  ESTAB_ENDNUMERO\n,CONVERT(VARCHAR(150),UPPER(ISNULL(ESTAB_BAIRRO,'NÃO INFORMADO')))                                      AS  ESTAB_BAIRRO\n,CONVERT(VARCHAR(15),ISNULL(ESTAB_CEP,'NAO INFORMADO'))                                                 AS  ESTAB_CEP\n,CONVERT(VARCHAR(150),UPPER(ISNULL(ESTAB_CIDADE,'NÃO INFORMADO')))                                      AS  ESTAB_CIDADE\n,CONVERT(VARCHAR(150),UPPER(ISNULL(ESTAB_EMAIL,'NÃO INFORMADO')))                                       AS  ESTAB_EMAIL\n,CONVERT(INT,ISNULL(ESTAB_DDD,-1))                                                                      AS  ESTAB_DDD\n,CONVERT(INT,ISNULL(ESTAB_TELEFONE,-1))                                                                 AS  ESTAB_TELEFONE\n,CONVERT(DATE,ISNULL(ESTAB_DATA_INICIOOPER,'1900-01-01'))                                               AS  ESTAB_DATA_INICIOOPER\n,CONVERT(VARCHAR(150),UPPER(ISNULL(SHOPPING_NOME,'NÃO INFORMADO')))                                     AS  SHOPPING_NOME\n,CONVERT(VARCHAR(150),UPPER(ISNULL(FRANQUEADO_NOME,'NÃO INFORMADO')))                                   AS  FRANQUEADO_NOME\n,CONVERT(VARCHAR(150),UPPER(ISNULL(FRANQUEADO_EMAIL,'NÃO INFORMADO')))                                  AS  FRANQUEADO_EMAIL\n,CONVERT(VARCHAR(20),UPPER(ISNULL(ESTAB_CNPJ,'NÃO INFORMADO')))                                         AS  ESTAB_CNPJ\n,CONVERT(VARCHAR(25),UPPER(ISNULL(ESTAB_PERFIL,'NÃO INFORMADO')))                                       AS  ESTAB_PERFIL\n,CONVERT(INT,ISNULL(REDELOJA_CODIGO,-1))                                                                AS  REDELOJA_CODIGO\n,CONVERT(VARCHAR(50),UPPER(ISNULL(REDELOJA_NOME,'NÃO INFORMADO')))                                      AS  REDELOJA_NOME\nFROM CLEANSING_DATA.GST_BI_ESTABELECIMENTO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
