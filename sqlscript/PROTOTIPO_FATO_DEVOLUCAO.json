@@ -1,0 +1,19 @@
+{
+	"name": "PROTOTIPO_FATO_DEVOLUCAO",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL"
+		},
+		"content": {
+			"query": "\n SELECT TOP(100) \n CONVERT(INT,REPLACE(CONVERT(VARCHAR,CONVERT(DATE,DEVOLUCAO.DATA_CONFIRMACAO)),'-',''))             AS DATA_CONFIRMACAO\n ,CONVERT(VARCHAR(5), LOJA.ESTAB_IDCIGAM)                                                           AS ESTAB_IDCIGAM\n ,CONVERT(INT,CLIENTE.CLIENTE_CODIGO)                                                               AS CLIENTE_CODIGO\n ,CONVERT(VARCHAR(10), PRODUTO.PRODUTO_MODELO )                                                     AS PRODUTO_MODELO\n, 'NÃO INFORMADO' AS MODALIDADE_VENDA\n ,CASE\n    WHEN DEVOLUCAO.TIPO_MOVIMENTO = 'D' THEN CONVERT(VARCHAR(15),'DEVOLUCÃO') \n    ELSE CONVERT(VARCHAR(15),'NÃO INFORMADO') \n END                                                                                                AS TIPO_MOVIMENTO \n ,CONVERT(INT,DEVOLUCAO.NUMERO_DOCTO)                                                                  AS  NUMERO_DOCTO\n ,CONVERT(INT,DEVOLUCAO.QTD_ITEM)                                                                      AS QTD_ITEM\n ,CONVERT(NUMERIC(18,2),DEVOLUCAO.VALOR_UNITARIO)                                                      AS VALOR_UNITARIO\n ,CONVERT(NUMERIC(18,2),DEVOLUCAO.VALOR_TOTAL_ITEM)                                                    AS VALOR_TOTAL_ITEM\n FROM CLEANSING_DATA.GST_BI_DEVOLUCAOCLIENTE                                                        AS DEVOLUCAO\n LEFT JOIN CLEANSING_DATA.GST_BI_ESTABELECIMENTO AS LOJA ON DEVOLUCAO.ESTAB_IDCIGAM = LOJA.ESTAB_IDCIGAM\n LEFT JOIN CLEANSING_DATA.GST_BI_PRODUTOS AS PRODUTO ON DEVOLUCAO.PRODUTO =  PRODUTO.PRODUTO_MODELO \n LEFT JOIN CLEANSING_DATA.GST_BI_CLIENTES AS CLIENTE ON \n           DEVOLUCAO.ESTAB_IDCIGAM = CLIENTE.ESTAB_IDCIGAM AND \n           DEVOLUCAO.CLIENTE_CODIGO = CLIENTE.CLIENTE_CODIGO\n\n\nPRODUTO_MODELO\nCOR \nTAMANHO\n\nSELECT * FROM CLEANSING_DATA.GST_BI_DEVOLUCAOCLIENTE    WHERE CONVERT(NUMERIC(18,2),VALOR_TOTAL_ITEM) < 1\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
