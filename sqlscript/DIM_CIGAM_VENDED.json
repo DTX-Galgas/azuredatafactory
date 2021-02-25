@@ -1,0 +1,19 @@
+{
+	"name": "DIM_CIGAM_VENDED",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL"
+		},
+		"content": {
+			"query": "SELECT DISTINCT \nCONCAT(CONVERT(VARCHAR(5),IDLOJA_CIGAM) ,CONVERT(INT,VENDEDOR_CODIGO)  )                                                   AS ID_VENDEDOR\n,CONVERT(VARCHAR(5),IDLOJA_CIGAM)                                                                                          AS IDLOJA_CIGAM\n,CONVERT(INT, ISNULL(VENDEDOR_CODIGO,-1))                                                                                  AS VENDEDOR_CODIGO\n,UPPER(CONVERT(VARCHAR(100),ISNULL(VENDEDOR_NOME,'NÃO INFORMADO')))                                                        AS VENDEDOR_NOME\nFROM cleansing_data.GST_BI_VENDAS  \n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
