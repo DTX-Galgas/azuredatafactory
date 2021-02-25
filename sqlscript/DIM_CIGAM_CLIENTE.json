@@ -1,0 +1,19 @@
+{
+	"name": "DIM_CIGAM_CLIENTE",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL"
+		},
+		"content": {
+			"query": "",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "dwmwe",
+				"databaseName": "dwmwe"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
