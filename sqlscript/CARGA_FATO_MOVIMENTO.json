@@ -1,0 +1,19 @@
+{
+	"name": "CARGA_FATO_MOVIMENTO",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL"
+		},
+		"content": {
+			"query": "--36757899\nSELECT \nODS.DATA_CONFIRMACAO\n,ISNULL(DIM_CLIENTE.SK_CLIENTE,-1)       AS SK_CLIENTE\n,ISNULL(DIM_LOJA.SK_CIGAM_LOJA, -1)      AS SK_CIGAM_LOJA\n,ISNULL(DIM_PRODUTO.SK_PRODUTO, -1)      AS SK_PRODUTO\n,ISNULL(DIM_VENDEDOR.SK_VENDEDOR,-1)     AS SK_VENDEDOR\n,[MODALIDADE_VENDA]\n,[TIPO_MOVIMENTO]\n,[NUMERO_DOCTO]\n,[VENDAS_QTD_ITEM]\n,[VENDAS_VALOR_UNITARIO]\n,[VENDAS_VALOR_TOTAL_ITEM]\n,[DEVOLUCAO_QTD_ITEM]\n,[DEVOLUCAO_VALOR_UNITARIO]\n,[DEVOLUCAO_VALOR_TOTAL_ITEM]\n FROM [ODS].[PRE_CARGA_FATO_VENDA_DEVOLUCAO] AS ODS\n            LEFT JOIN DW.DIM_CIGAM_CLIENTE AS DIM_CLIENTE       ON ODS.ESTAB_IDCIGAM = DIM_CLIENTE.ESTAB_IDCIGAM AND \n                                                                   ODS.CLIENTE_CODIGO = DIM_CLIENTE.CLIENTE_CODIGO\n            LEFT JOIN DW.DIM_CIGAM_LOJA AS DIM_LOJA             ON DIM_LOJA.ESTAB_IDCIGAM  = ODS.ESTAB_IDCIGAM  \n            LEFT JOIN DW.DIM_CIGAM_PRODUTO AS DIM_PRODUTO       ON DIM_PRODUTO.PRODUTO_REFERENCIA = ODS.PRODUTO_REFERENCIA     \n            LEFT JOIN DW.DIM_CIGAM_VENDEDOR AS DIM_VENDEDOR     ON DIM_VENDEDOR.IDLOJA_CIGAM =  ODS.ESTAB_IDCIGAM AND \n                                                                   DIM_VENDEDOR.VENDEDOR_CODIGO = ODS.VENDEDOR_CODIGO                                     \n                                         \n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
