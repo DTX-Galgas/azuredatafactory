@@ -1,0 +1,29 @@
+{
+	"name": "dim_data_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "DIM_CALENDARIO.csv",
+				"folderPath": "cigam",
+				"fileSystem": "cleasing"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "IdData;Ano;AnoMes;AnoMesDia;Data;Dia;Mes;MesAnoDesc;NumeroMes;NumeroDiaDaSemana;DiaSemana;DiaDoAno;NumeroSemanaDoAno;Trimestre;NumeroTrimestre;Semestre;NumeroSemestre",
+				"type": "String"
+			}
+		]
+	}
+}
