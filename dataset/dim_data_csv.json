@@ -15,7 +15,7 @@
 				"fileSystem": "cleasing"
 			},
 			"columnDelimiter": ";",
-			"escapeChar": "\\",
+			"escapeChar": "",
 			"firstRowAsHeader": true,
 			"quoteChar": ""
 		},
