@@ -1,0 +1,96 @@
+{
+	"name": "SqlPoolTable3",
+	"properties": {
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [
+			{
+				"name": "IdData",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Ano",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "AnoMes",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "AnoMesDia",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Data",
+				"type": "date"
+			},
+			{
+				"name": "Dia",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Mes",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MesAnoDesc",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumeroMes",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NumeroDiaDaSemana",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "DiaSemana",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DiaDoAno",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "NumeroSemanaDoAno",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Trimestre",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumeroTrimestre",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "Semestre",
+				"type": "nvarchar"
+			},
+			{
+				"name": "NumeroSemestre",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
+		"typeProperties": {
+			"schema": "dw",
+			"table": "DIM_CALENDARIO"
+		},
+		"sqlPool": {
+			"referenceName": "dwmwe",
+			"type": "SqlPoolReference"
+		}
+	}
+}
