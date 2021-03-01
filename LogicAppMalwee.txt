@@ -1,0 +1,217 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "For_each": {
+                "actions": {
+                    "Condition": {
+                        "actions": {
+                            "For_each_2": {
+                                "actions": {
+                                    "Create_CSV_table": {
+                                        "inputs": {
+                                            "format": "CSV",
+                                            "from": "@json(string(body('Get_rows')?['value']))"
+                                        },
+                                        "runAfter": {},
+                                        "type": "Table"
+                                    },
+                                    "Create_blob_2": {
+                                        "inputs": {
+                                            "body": "@body('Create_CSV_table')",
+                                            "host": {
+                                                "connection": {
+                                                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                                }
+                                            },
+                                            "method": "post",
+                                            "path": "/datasets/default/files",
+                                            "queries": {
+                                                "folderPath": "/raw/brazil/googledrive/@{items('For_each')?['Name']}/@{formatDateTime(utcNow(), 'yyyy')}/@{formatDateTime(utcNow(), 'MM')}/@{formatDateTime(utcNow(), 'dd')}/",
+                                                "name": "@{concat(formatDateTime(utcNow(), 'yyyyMMddHHmm'),'-')}@{items('For_each')?['DisplayName']}@{string('.csv')}",
+                                                "queryParametersSingleEncoded": true
+                                            }
+                                        },
+                                        "runAfter": {
+                                            "Create_CSV_table": [
+                                                "Succeeded"
+                                            ]
+                                        },
+                                        "runtimeConfiguration": {
+                                            "contentTransfer": {
+                                                "transferMode": "Chunked"
+                                            }
+                                        },
+                                        "type": "ApiConnection"
+                                    }
+                                },
+                                "foreach": "@body('Get_rows')?['value']",
+                                "runAfter": {
+                                    "Get_rows": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "type": "Foreach"
+                            },
+                            "Get_file_metadata_using_id": {
+                                "inputs": {
+                                    "host": {
+                                        "connection": {
+                                            "name": "@parameters('$connections')['googledrive']['connectionId']"
+                                        }
+                                    },
+                                    "method": "get",
+                                    "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent(items('For_each')?['Id']))}"
+                                },
+                                "runAfter": {},
+                                "type": "ApiConnection"
+                            },
+                            "Get_rows": {
+                                "inputs": {
+                                    "host": {
+                                        "connection": {
+                                            "name": "@parameters('$connections')['googlesheet']['connectionId']"
+                                        }
+                                    },
+                                    "method": "get",
+                                    "path": "/datasets/@{encodeURIComponent(encodeURIComponent('1dRnIaFz_NI6w26m8OW2RJudUzqjFQ_xTtR9WlURiF6A'))}/tables/@{encodeURIComponent(encodeURIComponent('0'))}/items"
+                                },
+                                "metadata": {
+                                    "1dRnIaFz_NI6w26m8OW2RJudUzqjFQ_xTtR9WlURiF6A": "/teste/teste malwee"
+                                },
+                                "runAfter": {
+                                    "Get_file_metadata_using_id": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                "type": "ApiConnection"
+                            }
+                        },
+                        "else": {
+                            "actions": {
+                                "Create_blob": {
+                                    "inputs": {
+                                        "body": "@body('Get_file_content_using_id')",
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "/datasets/default/files",
+                                        "queries": {
+                                            "folderPath": "/raw/brazil/googledrive/@{substring(items('For_each')?['DisplayName'],0,sub(length(items('For_each')?['DisplayName']),5))}/@{formatDateTime(utcNow(), 'yyyy')}/@{formatDateTime(utcNow(), 'MM')}/@{formatDateTime(utcNow(), 'dd')}/ ",
+                                            "name": "@{concat(formatDateTime(utcNow(), 'yyyyMMddHHmm'),'-')}@{items('For_each')?['DisplayName']}",
+                                            "queryParametersSingleEncoded": true
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Get_file_content_using_id": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "runtimeConfiguration": {
+                                        "contentTransfer": {
+                                            "transferMode": "Chunked"
+                                        }
+                                    },
+                                    "type": "ApiConnection"
+                                },
+                                "Get_file_content_using_id": {
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['googledrive']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent(items('For_each')?['Id']))}/content",
+                                        "queries": {
+                                            "inferContentType": true
+                                        }
+                                    },
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
+                                }
+                            }
+                        },
+                        "expression": {
+                            "and": [
+                                {
+                                    "equals": [
+                                        "@items('For_each')?['MediaType']",
+                                        "application/vnd.google-apps.spreadsheet"
+                                    ]
+                                }
+                            ]
+                        },
+                        "runAfter": {},
+                        "type": "If"
+                    }
+                },
+                "foreach": "@body('List_files_in_folder')",
+                "runAfter": {
+                    "List_files_in_folder": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Foreach"
+            },
+            "List_files_in_folder": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['googledrive']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/datasets/default/folders/@{encodeURIComponent(encodeURIComponent(parameters('folderID')))}"
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            },
+            "folderID": {
+                "defaultValue": "11CBi8J5jqTxniRUEtcMOWN7y-UeI5gWO",
+                "type": "String"
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "type": "Recurrence"
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "value": {
+                "azureblob": {
+                    "connectionId": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/resourceGroups/rg-dev-br-datalake/providers/Microsoft.Web/connections/azureblob",
+                    "connectionName": "azureblob",
+                    "id": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/providers/Microsoft.Web/locations/brazilsouth/managedApis/azureblob"
+                },
+                "googledrive": {
+                    "connectionId": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/resourceGroups/rg-dev-br-datalake/providers/Microsoft.Web/connections/googledrive",
+                    "connectionName": "googledrive",
+                    "id": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/providers/Microsoft.Web/locations/brazilsouth/managedApis/googledrive"
+                },
+                "googlesheet": {
+                    "connectionId": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/resourceGroups/rg-dev-br-datalake/providers/Microsoft.Web/connections/googlesheet",
+                    "connectionName": "googlesheet",
+                    "id": "/subscriptions/31a766b1-e9bf-477b-b7b5-7cb19b5b03cd/providers/Microsoft.Web/locations/brazilsouth/managedApis/googlesheet"
+                }
+            }
+        }
+    }
+}
