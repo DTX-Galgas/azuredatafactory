@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "VBPA.json",
-				"folderPath": "brazil/transacional/saptable/mm/vbpa",
+				"folderPath": "brazil/transacional/saprest/vbpa",
 				"fileSystem": "raw"
 			}
 		},
