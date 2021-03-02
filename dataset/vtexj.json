@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "VBPA.parquet",
-				"folderPath": "brazil/transacional/saptable/mm",
+				"folderPath": "brazil/transacional/saptable/mm/VBPA",
 				"fileSystem": "raw"
 			}
 		},
