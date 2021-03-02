@@ -10,9 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ZGFDL_INTER_RET_KONV.json",
-				"folderPath": "saprest",
-				"fileSystem": "cleansing"
+				"fileName": "VBPA.parquet",
+				"folderPath": "brazil/transacional/saptable/mm",
+				"fileSystem": "raw"
 			}
 		},
 		"schema": {}
