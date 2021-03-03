@@ -41,99 +41,55 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['MANDT']"
+									"path": "$['E_AUSP'][0]['OBJEK']"
 								},
 								"sink": {
-									"name": "MANDT",
+									"name": "OBJEK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_4AKNUMH']"
+									"path": "$['E_AUSP'][0]['ATINN']"
 								},
 								"sink": {
-									"name": "J_4AKNUMH",
+									"name": "ATINN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VKORG']"
+									"path": "$['E_AUSP'][0]['ATZHL']"
 								},
 								"sink": {
-									"name": "VKORG",
+									"name": "ATZHL",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ADLDB']"
+									"path": "$['E_AUSP'][0]['MAFID']"
 								},
 								"sink": {
-									"name": "J_3ADLDB",
+									"name": "MAFID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ADLDV']"
+									"path": "$['E_AUSP'][0]['KLART']"
 								},
 								"sink": {
-									"name": "J_3ADLDV",
+									"name": "KLART",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3AUDTB']"
+									"path": "$['E_AUSP'][0]['ATWRT']"
 								},
 								"sink": {
-									"name": "J_3AUDTB",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3AUDTV']"
-								},
-								"sink": {
-									"name": "J_3AUDTV",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3ASEAN']"
-								},
-								"sink": {
-									"name": "J_3ASEAN"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-COLLECTION']"
-								},
-								"sink": {
-									"name": "_-AFS_-COLLECTION",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-DPRGMSG']"
-								},
-								"sink": {
-									"name": "_-AFS_-DPRGMSG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-DPRGPDATE']"
-								},
-								"sink": {
-									"name": "_-AFS_-DPRGPDATE",
+									"name": "ATWRT",
 									"type": "String"
 								}
 							}
