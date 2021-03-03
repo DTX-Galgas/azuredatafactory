@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "ausp",
-				"folderPath": "brazil/transacional/saptable/saprest/asf_dprg_kond",
+				"folderPath": "brazil/transacional/saptable/saprest/ausp",
 				"fileSystem": "cleansing"
 			},
 			"compressionCodec": "snappy"
