@@ -1,0 +1,19 @@
+{
+	"name": "dim_sap_cliente",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL/cigam/sap"
+		},
+		"content": {
+			"query": " select \nkna1.kunnr\t\t\t\t\t\t\t\t\t\t\t\tas pkcliente \n,kna1.kunnr\t\t\t\t\t\t\t\t\t\t\t\tas clientecodigo \n,kna1.name1\t\t\t\t\t\t\t\t\t\t\t\tas clientenome\n,kna1.name1 +' - ' +convert(varchar,convert(int,kunnr))\tas clientenomecodigo\n,kna1.anred\t\t\t\t\t\t\t\t\t\t\t\tas clientetipo\n,kna1.pstlz\t\t\t\t\t\t\t\t\t\t\t\tas clientecep\n,kna1.stcd1\t\t\t\t\t\t\t\t\t\t\t\tas clientecnpj\n,substring(kna1.stcd1,1,18)                              as clientecnpjraiz\n,kna1.stcd2\t\t\t\t\t\t\t\t\t\t\t\tas clientecpf\n--,iif(len(trim(kna1.stcd1)) >1, kna1.stcd1, kna1.stcd2)  \n,case\n\twhen len(trim(kna1.stcd1)) > 1 then kna1.stcd1\n\telse kna1.stcd2\nend\t\t\t\t\t\t\t\t\t\t\t\t\t\tas clientecnpjcpf\n--,iif(len(kna1.aufsd)>=1,'inativo','ativo')\t\t\t\tas clienteativo\n,case\n\twhen len(kna1.aufsd)>=1 then 'inativo'\n\telse 'ativo'\nend\t\t\t\t\t\t\t\t\t\t\t\t\t\tas clienteativo\n,convert(date,kna1.erdat)\t\t\t\t\t\t\t\tas clientedatacriacao\n--, kna1.erdat\t\t\t\t\t\t\t\t\t\t\tas clientedatacriacao\n,kna1.land1\t\t\t\t\t\t\t\t\t\t\t\tas clientepais\n--,iif(kna1.land1 = 'br','interno','externo' )\t\t\tas clientemercado   \n,case\n\twhen kna1.land1 = 'br' then 'interno'\n\telse 'externo'\n\nend\t\t\t\t\t\t\t\t\t\t\t\t\t\tas clientemercado   \n,kna1.ort02\t\t\t\t\t\t\t\t\t\t\t\tas clientebairro\n,kna1.ort01\t\t\t\t\t\t\t\t\t\t\t\tas clientecidade\n,case\n    when regio =  'ac' then 'norte'\n    when regio =  'al' then 'nordeste'\n    when regio =  'ap' then 'norte'\n    when regio =  'am' then 'norte'\n    when regio =  'ba' then 'nordeste'\n    when regio =  'ce' then 'nordeste'\n    when regio =  'df' then 'centro oeste'\n    when regio =  'es' then 'sudeste'\n    when regio =  'go' then 'centro oeste'\n    when regio =  'ma' then 'nordeste'\n    when regio =  'mt' then 'centro oeste'\n    when regio =  'ms' then 'centro oeste'\n    when regio =  'mg' then 'sudeste'\n    when regio =  'pa' then 'norte'\n    when regio =  'pb' then 'nordeste'\n    when regio =  'pr' then 'sul'\n    when regio =  'pe' then 'nordeste'\n    when regio =  'pi' then 'nordeste'\n    when regio =  'rj' then 'sudeste'\n    when regio =  'rn' then 'nordeste'\n    when regio =  'rs' then 'sul'\n    when regio =  'ro' then 'norte'\n    when regio =  'rr' then 'norte'\n    when regio =  'sc' then 'sul'\n    when regio =  'sp' then 'sudeste'\n    when regio =  'se' then 'nordeste'\n    when regio =  'to' then 'norte'\n\telse 'não informado'\n end\t\t\t\t\t\t\t\t\t\t\t\t\t\tas regiao \n,kna1.regio\t\t\t\t\t\t\t\t\t\t\t\tas clienteuf\n,kna1.ort01 + ' - ' + regio\t\t\t\t\t\t\t\tas clientemunuf\n,kna1.konzs\t\t\t\t\t\t\t\t\t\t\t\tas clientegrupoempresa\n\n from cleansing_data.sap_kna1  as kna1\n left join cleansing_data.sap_ausp as ausp on ausp.objek = kna1.kunnr\n where kna1.erdat != '00000000'\n  ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
