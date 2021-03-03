@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "vbep.json",
+				"fileName": "modelo_VBEP.json",
 				"folderPath": "brazil/transacional/saprest/vbep",
 				"fileSystem": "raw"
 			}
