@@ -21,7 +21,7 @@
 				"E_MENSAGEM": {
 					"type": "string"
 				},
-				"E_VBAK": {
+				"E_VBEP": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -29,59 +29,23 @@
 							"VBELN": {
 								"type": "string"
 							},
-							"ERDAT": {
+							"POSNR": {
 								"type": "string"
 							},
-							"ERNAM": {
+							"ETENR": {
 								"type": "string"
 							},
-							"AUDAT": {
+							"WMENG": {
+								"type": "number"
+							},
+							"J_3ASIZE": {
 								"type": "string"
 							},
-							"VBTYP": {
+							"J_3ASZGR": {
 								"type": "string"
 							},
-							"AUART": {
-								"type": "string"
-							},
-							"FAKSK": {
-								"type": "string"
-							},
-							"VKORG": {
-								"type": "string"
-							},
-							"VTWEG": {
-								"type": "string"
-							},
-							"SPART": {
-								"type": "string"
-							},
-							"VKGRP": {
-								"type": "string"
-							},
-							"VKBUR": {
-								"type": "string"
-							},
-							"KNUMV": {
-								"type": "string"
-							},
-							"VDATU": {
-								"type": "string"
-							},
-							"BSARK": {
-								"type": "string"
-							},
-							"KUNNR": {
-								"type": "string"
-							},
-							"AEDAT": {
-								"type": "string"
-							},
-							"KVGR3": {
-								"type": "string"
-							},
-							"BUKRS_VF": {
-								"type": "string"
+							"J_3ANETW": {
+								"type": "number"
 							}
 						}
 					}
