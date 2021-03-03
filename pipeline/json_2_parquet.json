@@ -41,25 +41,79 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['MANDT']"
+									"path": "$['E_MENSAGEM']"
 								},
 								"sink": {
-									"name": "MANDT",
+									"name": "E_MENSAGEM",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_4AKNUMH']"
+									"path": "$['E_VBAK'][0]['VBELN']"
 								},
 								"sink": {
-									"name": "J_4AKNUMH",
+									"name": "VBELN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['VKORG']"
+									"path": "$['E_VBAK'][0]['ERDAT']"
+								},
+								"sink": {
+									"name": "ERDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['ERNAM']"
+								},
+								"sink": {
+									"name": "ERNAM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['AUDAT']"
+								},
+								"sink": {
+									"name": "AUDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['VBTYP']"
+								},
+								"sink": {
+									"name": "VBTYP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['AUART']"
+								},
+								"sink": {
+									"name": "AUART",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['FAKSK']"
+								},
+								"sink": {
+									"name": "FAKSK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['VKORG']"
 								},
 								"sink": {
 									"name": "VKORG",
@@ -68,82 +122,100 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDB']"
+									"path": "$['E_VBAK'][0]['VTWEG']"
 								},
 								"sink": {
-									"name": "J_3ADLDB",
+									"name": "VTWEG",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDV']"
+									"path": "$['E_VBAK'][0]['SPART']"
 								},
 								"sink": {
-									"name": "J_3ADLDV",
+									"name": "SPART",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTB']"
+									"path": "$['E_VBAK'][0]['VKGRP']"
 								},
 								"sink": {
-									"name": "J_3AUDTB",
+									"name": "VKGRP",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTV']"
+									"path": "$['E_VBAK'][0]['VKBUR']"
 								},
 								"sink": {
-									"name": "J_3AUDTV",
+									"name": "VKBUR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ASEAN']"
+									"path": "$['E_VBAK'][0]['KNUMV']"
 								},
 								"sink": {
-									"name": "J_3ASEAN",
+									"name": "KNUMV",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-COLLECTION']"
+									"path": "$['E_VBAK'][0]['VDATU']"
 								},
 								"sink": {
-									"name": "_-AFS_-COLLECTION",
+									"name": "VDATU",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGMSG']"
+									"path": "$['E_VBAK'][0]['BSARK']"
 								},
 								"sink": {
-									"name": "_-AFS_-DPRGMSG",
+									"name": "BSARK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGPDATE']"
+									"path": "$['E_VBAK'][0]['KUNNR']"
 								},
 								"sink": {
-									"name": "_-AFS_-DPRGPDATE",
+									"name": "KUNNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_MENSAGEM']"
+									"path": "$['E_VBAK'][0]['AEDAT']"
 								},
 								"sink": {
-									"name": "E_MENSAGEM",
+									"name": "AEDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['KVGR3']"
+								},
+								"sink": {
+									"name": "KVGR3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_VBAK'][0]['BUKRS_VF']"
+								},
+								"sink": {
+									"name": "BUKRS_VF",
 									"type": "String"
 								}
 							}
