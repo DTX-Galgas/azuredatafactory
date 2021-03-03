@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "asf_dprg_kond",
 				"folderPath": "brazil/transacional/saptable/saprest/asf_dprg_kond",
 				"fileSystem": "cleansing"
 			},
