@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "AFS_DPRG_KOND.parquet",
-				"folderPath": "brazil/transacional/saptable/saprest/afs_dprg_kond",
+				"fileName": "AUSP.parquet",
+				"folderPath": "brazil/transacional/saptable/saprest/ausp",
 				"fileSystem": "cleansing"
 			},
 			"compressionCodec": "snappy"
