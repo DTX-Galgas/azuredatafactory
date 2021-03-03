@@ -41,102 +41,78 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['MANDT']"
-								},
-								"sink": {
-									"name": "MANDT"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_4AKNUMH']"
-								},
-								"sink": {
-									"name": "J_4AKNUMH"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKORG']"
-								},
-								"sink": {
-									"name": "VKORG"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3ADLDB']"
-								},
-								"sink": {
-									"name": "J_3ADLDB"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3ADLDV']"
-								},
-								"sink": {
-									"name": "J_3ADLDV"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3AUDTB']"
-								},
-								"sink": {
-									"name": "J_3AUDTB"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3AUDTV']"
-								},
-								"sink": {
-									"name": "J_3AUDTV"
-								}
-							},
-							{
-								"source": {
-									"path": "['J_3ASEAN']"
-								},
-								"sink": {
-									"name": "J_3ASEAN"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-COLLECTION']"
-								},
-								"sink": {
-									"name": "_-AFS_-COLLECTION"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-DPRGMSG']"
-								},
-								"sink": {
-									"name": "_-AFS_-DPRGMSG"
-								}
-							},
-							{
-								"source": {
-									"path": "['_-AFS_-DPRGPDATE']"
-								},
-								"sink": {
-									"name": "_-AFS_-DPRGPDATE"
-								}
-							},
-							{
-								"source": {
 									"path": "$['E_MENSAGEM']"
 								},
 								"sink": {
-									"name": "E_MENSAGEM"
+									"name": "E_MENSAGEM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VBELN']"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['POSNR']"
+								},
+								"sink": {
+									"name": "POSNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ETENR']"
+								},
+								"sink": {
+									"name": "ETENR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WMENG']"
+								},
+								"sink": {
+									"name": "WMENG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASIZE']"
+								},
+								"sink": {
+									"name": "J_3ASIZE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASZGR']"
+								},
+								"sink": {
+									"name": "J_3ASZGR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ANETW']"
+								},
+								"sink": {
+									"name": "J_3ANETW",
+									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_AFS_DPRG_KOND']",
+						"collectionReference": "$['E_VBEP']",
 						"mapComplexValuesToString": true
 					}
 				},
