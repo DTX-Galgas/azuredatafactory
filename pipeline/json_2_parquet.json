@@ -41,176 +41,70 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['VBELN']"
+									"path": "$['E_MENSAGEM']"
 								},
 								"sink": {
-									"name": "VBELN",
-									"type": "String"
+									"name": "E_MENSAGEM"
 								}
 							},
 							{
 								"source": {
-									"path": "['ERDAT']"
+									"path": "$['E_VBEP'][0]['VBELN']"
 								},
 								"sink": {
-									"name": "ERDAT",
-									"type": "String"
+									"name": "VBELN"
 								}
 							},
 							{
 								"source": {
-									"path": "['ERNAM']"
+									"path": "$['E_VBEP'][0]['POSNR']"
 								},
 								"sink": {
-									"name": "ERNAM",
-									"type": "String"
+									"name": "POSNR"
 								}
 							},
 							{
 								"source": {
-									"path": "['AUDAT']"
+									"path": "$['E_VBEP'][0]['ETENR']"
 								},
 								"sink": {
-									"name": "AUDAT",
-									"type": "String"
+									"name": "ETENR"
 								}
 							},
 							{
 								"source": {
-									"path": "['VBTYP']"
+									"path": "$['E_VBEP'][0]['WMENG']"
 								},
 								"sink": {
-									"name": "VBTYP",
-									"type": "String"
+									"name": "WMENG"
 								}
 							},
 							{
 								"source": {
-									"path": "['AUART']"
+									"path": "$['E_VBEP'][0]['J_3ASIZE']"
 								},
 								"sink": {
-									"name": "AUART",
-									"type": "String"
+									"name": "J_3ASIZE"
 								}
 							},
 							{
 								"source": {
-									"path": "['FAKSK']"
+									"path": "$['E_VBEP'][0]['J_3ASZGR']"
 								},
 								"sink": {
-									"name": "FAKSK",
-									"type": "String"
+									"name": "J_3ASZGR"
 								}
 							},
 							{
 								"source": {
-									"path": "['VKORG']"
+									"path": "$['E_VBEP'][0]['J_3ANETW']"
 								},
 								"sink": {
-									"name": "VKORG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VTWEG']"
-								},
-								"sink": {
-									"name": "VTWEG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['SPART']"
-								},
-								"sink": {
-									"name": "SPART",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKGRP']"
-								},
-								"sink": {
-									"name": "VKGRP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKBUR']"
-								},
-								"sink": {
-									"name": "VKBUR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KNUMV']"
-								},
-								"sink": {
-									"name": "KNUMV",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VDATU']"
-								},
-								"sink": {
-									"name": "VDATU",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['BSARK']"
-								},
-								"sink": {
-									"name": "BSARK",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KUNNR']"
-								},
-								"sink": {
-									"name": "KUNNR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['AEDAT']"
-								},
-								"sink": {
-									"name": "AEDAT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KVGR3']"
-								},
-								"sink": {
-									"name": "KVGR3",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['BUKRS_VF']"
-								},
-								"sink": {
-									"name": "BUKRS_VF"
+									"name": "J_3ANETW"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBAK']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
