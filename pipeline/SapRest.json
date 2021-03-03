@@ -20,7 +20,7 @@
 						"httpRequestTimeout": "10.00:00:00",
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "POST",
-						"requestBody": "{\n    \"I_DATA_INI\":\"2020-01-01\",\n    \"I_DATA_FIM\":\"2020-12-11\"\n}"
+						"requestBody": "{\n    \"I_PARVW\": [\n        \"ZR\",\n        \"ZV\",\n        \"ZS\",\n        \"ZL\"\n    ],\n    \"I_BUKRS\": [\n        \"2001\",\n        \"5001\"\n    ],\n    \"I_DATA_INI\":\"2020-01-20\",\n    \"I_DATA_FIM\":\"2020-01-22\"\n}"
 					},
 					"sink": {
 						"type": "JsonSink",

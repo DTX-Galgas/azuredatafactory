@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "MARC.json",
-				"folderPath": "brazil/transacional/saprest/marc",
+				"fileName": "VBPA.json",
+				"folderPath": "brazil/transacional/saprest/vbpa",
 				"fileSystem": "raw"
 			}
 		},
