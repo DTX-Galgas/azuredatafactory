@@ -1,0 +1,16 @@
+{
+	"name": "geravextshipping",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE vtex_shipping (\n\t[orderId] varchar(8000),\n\t[uniqueId] varchar(8000),\n\t[IdItem] varchar(8000),\n\t[addressId] varchar(8000),\n\t[postalCode] varchar(8000),\n\t[city] varchar(8000),\n\t[state] varchar(8000),\n\t[country] varchar(8000),\n\t[street] varchar(8000),\n\t[number] varchar(8000),\n\t[neighborhood] varchar(8000),\n\t[complement] varchar(8000),\n\t[reference] varchar(8000),\n\t[geoCoordinates] varchar(8000),\n\t[itemIndex] int,\n\t[selectedSla] varchar(8000),\n\t[lockTTL] varchar(8000),\n\t[priceLogistics] int,\n\t[listPriceLogistics] int,\n\t[sellingPrice] int,\n\t[deliveryWindow] varchar(8000),\n\t[deliveryCompany] varchar(8000),\n\t[shippingEstimate] varchar(8000),\n\t[shippingEstimateDate] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/vtex/Order.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM vtex_shipping\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
