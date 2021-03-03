@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBKD'][0]['VBELN']"
+									"path": "$['E_VBPA'][0]['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN",
@@ -59,46 +59,10 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBKD'][0]['KDGRP']"
+									"path": "$['E_VBPA'][0]['PARVW']"
 								},
 								"sink": {
-									"name": "KDGRP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBKD'][0]['BZIRK']"
-								},
-								"sink": {
-									"name": "BZIRK",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBKD'][0]['ZTERM']"
-								},
-								"sink": {
-									"name": "ZTERM",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBKD'][0]['PRSDT']"
-								},
-								"sink": {
-									"name": "PRSDT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBKD'][0]['FKDAT']"
-								},
-								"sink": {
-									"name": "FKDAT",
+									"name": "PARVW",
 									"type": "String"
 								}
 							}
