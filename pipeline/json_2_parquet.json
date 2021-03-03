@@ -35,7 +35,120 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['MANDT']"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_4AKNUMH']"
+								},
+								"sink": {
+									"name": "J_4AKNUMH",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['VKORG']"
+								},
+								"sink": {
+									"name": "VKORG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDB']"
+								},
+								"sink": {
+									"name": "J_3ADLDB"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDV']"
+								},
+								"sink": {
+									"name": "J_3ADLDV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTB']"
+								},
+								"sink": {
+									"name": "J_3AUDTB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTV']"
+								},
+								"sink": {
+									"name": "J_3AUDTV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGMSG']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGMSG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGPDATE']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGPDATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_MENSAGEM']"
+								},
+								"sink": {
+									"name": "E_MENSAGEM",
+									"type": "String"
+								}
+							}
+						],
+						"mapComplexValuesToString": true
+					}
 				},
 				"inputs": [
 					{
