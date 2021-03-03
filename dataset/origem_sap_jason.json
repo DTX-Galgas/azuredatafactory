@@ -15,6 +15,42 @@
 				"fileSystem": "raw"
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBEP": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"POSNR": {
+								"type": "string"
+							},
+							"ETENR": {
+								"type": "string"
+							},
+							"WMENG": {
+								"type": "number"
+							},
+							"J_3ASIZE": {
+								"type": "string"
+							},
+							"J_3ASZGR": {
+								"type": "string"
+							},
+							"J_3ANETW": {
+								"type": "number"
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
