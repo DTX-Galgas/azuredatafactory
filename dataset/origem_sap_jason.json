@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBAP.json",
-				"folderPath": "brazil/transacional/saprest/vbap",
+				"fileName": "VBAK.json",
+				"folderPath": "brazil/transacional/saprest/vbak",
 				"fileSystem": "raw"
 			}
 		},
