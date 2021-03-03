@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBAP.parquet",
-				"folderPath": "brazil/transacional/saptable/saprest/vbap",
+				"fileName": "VBKD.parquet",
+				"folderPath": "brazil/transacional/saptable/saprest/vbkd",
 				"fileSystem": "cleansing"
 			},
 			"compressionCodec": "snappy"
