@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['VBELN']"
+									"path": "$['E_VBKD'][0]['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN",
@@ -59,100 +59,46 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['POSNR']"
+									"path": "$['E_VBKD'][0]['KDGRP']"
 								},
 								"sink": {
-									"name": "POSNR",
+									"name": "KDGRP",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['MATNR']"
+									"path": "$['E_VBKD'][0]['BZIRK']"
 								},
 								"sink": {
-									"name": "MATNR",
+									"name": "BZIRK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['PSTYV']"
+									"path": "$['E_VBKD'][0]['ZTERM']"
 								},
 								"sink": {
-									"name": "PSTYV",
+									"name": "ZTERM",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['UMZIZ']"
+									"path": "$['E_VBKD'][0]['PRSDT']"
 								},
 								"sink": {
-									"name": "UMZIZ",
+									"name": "PRSDT",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['UMZIN']"
+									"path": "$['E_VBKD'][0]['FKDAT']"
 								},
 								"sink": {
-									"name": "UMZIN",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['NETWR']"
-								},
-								"sink": {
-									"name": "NETWR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['KWMENG']"
-								},
-								"sink": {
-									"name": "KWMENG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['VRKME']"
-								},
-								"sink": {
-									"name": "VRKME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['WERKS']"
-								},
-								"sink": {
-									"name": "WERKS",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['J_3ASEAN']"
-								},
-								"sink": {
-									"name": "J_3ASEAN",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['_-AFS_-COLLECTION']"
-								},
-								"sink": {
-									"name": "_-AFS_-COLLECTION",
+									"name": "FKDAT",
 									"type": "String"
 								}
 							}
