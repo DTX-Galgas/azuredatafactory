@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['MANDT']"
+									"path": "['MANDT']"
 								},
 								"sink": {
 									"name": "MANDT",
@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_4AKNUMH']"
+									"path": "['J_4AKNUMH']"
 								},
 								"sink": {
 									"name": "J_4AKNUMH",
@@ -59,7 +59,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['VKORG']"
+									"path": "['VKORG']"
 								},
 								"sink": {
 									"name": "VKORG",
@@ -68,7 +68,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDB']"
+									"path": "['J_3ADLDB']"
 								},
 								"sink": {
 									"name": "J_3ADLDB",
@@ -77,7 +77,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDV']"
+									"path": "['J_3ADLDV']"
 								},
 								"sink": {
 									"name": "J_3ADLDV",
@@ -86,7 +86,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTB']"
+									"path": "['J_3AUDTB']"
 								},
 								"sink": {
 									"name": "J_3AUDTB",
@@ -95,7 +95,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTV']"
+									"path": "['J_3AUDTV']"
 								},
 								"sink": {
 									"name": "J_3AUDTV",
@@ -104,7 +104,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ASEAN']"
+									"path": "['J_3ASEAN']"
 								},
 								"sink": {
 									"name": "J_3ASEAN"
@@ -112,7 +112,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-COLLECTION']"
+									"path": "['_-AFS_-COLLECTION']"
 								},
 								"sink": {
 									"name": "_-AFS_-COLLECTION",
@@ -121,7 +121,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGMSG']"
+									"path": "['_-AFS_-DPRGMSG']"
 								},
 								"sink": {
 									"name": "_-AFS_-DPRGMSG",
@@ -130,23 +130,15 @@
 							},
 							{
 								"source": {
-									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGPDATE']"
+									"path": "['_-AFS_-DPRGPDATE']"
 								},
 								"sink": {
 									"name": "_-AFS_-DPRGPDATE",
 									"type": "String"
 								}
-							},
-							{
-								"source": {
-									"path": "$['E_MENSAGEM']"
-								},
-								"sink": {
-									"name": "E_MENSAGEM",
-									"type": "String"
-								}
 							}
 						],
+						"collectionReference": "$['E_AFS_DPRG_KOND']",
 						"mapComplexValuesToString": true
 					}
 				},
