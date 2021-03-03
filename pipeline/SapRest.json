@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "RestSource",
-						"httpRequestTimeout": "10:00:00",
+						"httpRequestTimeout": "10.00:00:00",
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "POST",
 						"requestBody": "{\n    \"I_DATA_INI\":\"2020-01-01\",\n    \"I_DATA_FIM\":\"2020-12-11\"\n}"
