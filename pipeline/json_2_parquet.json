@@ -41,18 +41,11 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_MENSAGEM']"
-								},
-								"sink": {
-									"name": "E_MENSAGEM"
-								}
-							},
-							{
-								"source": {
 									"path": "['VBELN']"
 								},
 								"sink": {
-									"name": "VBELN"
+									"name": "VBELN",
+									"type": "String"
 								}
 							},
 							{
@@ -60,7 +53,8 @@
 									"path": "['POSNR']"
 								},
 								"sink": {
-									"name": "POSNR"
+									"name": "POSNR",
+									"type": "String"
 								}
 							},
 							{
@@ -68,7 +62,8 @@
 									"path": "['ETENR']"
 								},
 								"sink": {
-									"name": "ETENR"
+									"name": "ETENR",
+									"type": "String"
 								}
 							},
 							{
@@ -76,7 +71,8 @@
 									"path": "['WMENG']"
 								},
 								"sink": {
-									"name": "WMENG"
+									"name": "WMENG",
+									"type": "String"
 								}
 							},
 							{
@@ -84,7 +80,8 @@
 									"path": "['J_3ASIZE']"
 								},
 								"sink": {
-									"name": "J_3ASIZE"
+									"name": "J_3ASIZE",
+									"type": "String"
 								}
 							},
 							{
@@ -92,7 +89,8 @@
 									"path": "['J_3ASZGR']"
 								},
 								"sink": {
-									"name": "J_3ASZGR"
+									"name": "J_3ASZGR",
+									"type": "String"
 								}
 							},
 							{
@@ -100,7 +98,8 @@
 									"path": "['J_3ANETW']"
 								},
 								"sink": {
-									"name": "J_3ANETW"
+									"name": "J_3ANETW",
+									"type": "String"
 								}
 							}
 						],
