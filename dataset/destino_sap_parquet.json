@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "ausp",
+				"fileName": "vbak.parquet",
 				"folderPath": "brazil/transacional/saptable/saprest/ausp",
 				"fileSystem": "cleansing"
 			},
