@@ -41,15 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_MENSAGEM']"
-								},
-								"sink": {
-									"name": "E_MENSAGEM"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBEP'][0]['VBELN']"
+									"path": "['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN"
@@ -57,7 +49,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['POSNR']"
+									"path": "['POSNR']"
 								},
 								"sink": {
 									"name": "POSNR"
@@ -65,7 +57,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['ETENR']"
+									"path": "['ETENR']"
 								},
 								"sink": {
 									"name": "ETENR"
@@ -73,7 +65,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['WMENG']"
+									"path": "['WMENG']"
 								},
 								"sink": {
 									"name": "WMENG"
@@ -81,7 +73,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['J_3ASIZE']"
+									"path": "['J_3ASIZE']"
 								},
 								"sink": {
 									"name": "J_3ASIZE"
@@ -89,7 +81,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['J_3ASZGR']"
+									"path": "['J_3ASZGR']"
 								},
 								"sink": {
 									"name": "J_3ASZGR"
@@ -97,14 +89,14 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBEP'][0]['J_3ANETW']"
+									"path": "['J_3ANETW']"
 								},
 								"sink": {
 									"name": "J_3ANETW"
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['E_VBEP']",
 						"mapComplexValuesToString": true
 					}
 				},
