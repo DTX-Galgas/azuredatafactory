@@ -1,0 +1,68 @@
+{
+	"name": "origem_sap_jason",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "AFS_DPRG_KOND.json",
+				"folderPath": "brazil/transacional/saprest/asf_dprg_kond",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_AFS_DPRG_KOND": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"MANDT": {
+								"type": "string"
+							},
+							"J_4AKNUMH": {
+								"type": "string"
+							},
+							"VKORG": {
+								"type": "string"
+							},
+							"J_3ADLDB": {
+								"type": "string"
+							},
+							"J_3ADLDV": {
+								"type": "string"
+							},
+							"J_3AUDTB": {
+								"type": "string"
+							},
+							"J_3AUDTV": {
+								"type": "string"
+							},
+							"J_3ASEAN": {
+								"type": "string"
+							},
+							"_-AFS_-COLLECTION": {
+								"type": "string"
+							},
+							"_-AFS_-DPRGMSG": {
+								"type": "string"
+							},
+							"_-AFS_-DPRGPDATE": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"E_MENSAGEM": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
