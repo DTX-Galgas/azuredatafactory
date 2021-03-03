@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBKD.json",
-				"folderPath": "brazil/transacional/saprest/vbkd",
+				"fileName": "VBRP.json",
+				"folderPath": "brazil/transacional/saprest/vbrp",
 				"fileSystem": "raw"
 			}
 		},
