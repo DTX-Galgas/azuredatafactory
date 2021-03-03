@@ -1,0 +1,19 @@
+{
+	"name": "sap fato",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL/sap"
+		},
+		"content": {
+			"query": "select \n vbak.KUNNR\t\t\t\t\t\t\t\t\t\t\t\t\t\tas sk_cliente\n, vbak.VTWEG                                                  as pk_canal_grupo_alvo\n,vbak.BUKRS_VF\t\t\t\t\t\t\t\t\t\t\t\t\tas sk_empresa\n,vbak.VKORG\t\t\t\t\t\t\t\t\t\t\t\t\t\tas sk_org_venda\n,vbak.VKGRP                                                      as sk_equipe_venda\n,vbak.FAKSK                                                      as sk_bloq_doc_fat\n--,vbak.LIFSK                                                      as sk_bloq_remessa\n,vbak.VBELN\t\t\t\t\t\t\t\t\t\t\t\t\t\tas sk_ordemVenda\n,vbak.VKORG + '-' + vbak.KVGR3                                        as sk_periodo      \n,convert(date,vbak.VDATU)\t\t\t\t\t\t\t\t\t\t    as [OrdemVenda - Dt.Entrega]\n,convert(date,vbak.AUDAT)\t\t\t\t\t\t\t\t\t\t    as [OrdemVenda - Data]\n,vbak.VKBUR                                                      as sk_escritorio_venda\n,vbak.VKBUR                                                      as sk_escritorio_venda_cabecalho   \n,vbak.KNUMV                                                      as sk_documento_condicao\n,vbak.BSARK                                                      as sk_tipo_envio_pedido\n,vbak.VBELN\t\t\t\t\t\t\t\t\t\t\t\t\t\tas OrdemVendaNumero\n, vbak.VTWEG\t\t\t\t\t\t\t\t\t\t\t\t\t\tas [OrdemVenda - Canal Venda]\n--, vbak.ZZCODMOD\t\t\t\t\t\t\t\t\t\t\t\t\tas [OrdemVenda - Modalidade]\n, case\n\twhen vbak.BSARK = '0006' then 'VOA'\n\telse 'OUTROS'\n\n end\t\t\t\t\t\t\t                             as [OrdemVenda - Modo Envio]\n,case\t\n\twhen vbak.VTWEG = '90' then 'Sim'\n\telse 'Não'\n end\t\t\t\t\t\t\t\t\t\t\t\t\t\tas [OrdemVenda - Intercompany]\n,concat(ztsd007.VKORG,ztsd007.CODPER) as pk_periodo\n,ztsd007.CODPER as [OrdemVenda - Número Período (OC)]\n,concat(ztsd007.NUMPER,ztsd007.ANOPER) as [OrdemVenda - Período (OC)/Ano]\n,ztsd007.NUMPER as [OrdemVenda - Período (OC)]\n,convert(date,ztsd007.DATFIM) as [OrdemVenda - Período Dt.Fechamento]\n,convert(date,ztsd007.DATFAT)  as [OrdemVenda - Período Dt.Faturamento]\n,tvakt.AUART\n,tvakt.BEZEI + ' (' + tvakt.AUART + ')' as [BEZEI AUART OrdemVenda - Tp.Documento]\n\nfrom  cleansing_data.sap_vbak as vbak\nleft join [cleansing_data].[sap_ztsd007] as ztsd007 on concat(vbak.VKORG,vbak.KVGR3) = concat(ztsd007.VKORG,ztsd007.CODPER)\nleft join [cleansing_data].[sap_tvakt] as tvakt on tvakt.AUART = vbak.AUART\nwhere vbak.BUKRS_VF in('2001','5001')\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
