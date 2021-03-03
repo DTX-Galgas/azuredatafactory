@@ -1,5 +1,5 @@
 {
-	"name": "CopyPipeline_jni",
+	"name": "carga dim data",
 	"properties": {
 		"activities": [
 			{
@@ -25,35 +25,36 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*",
-							"enablePartitionDiscovery": false
-						}
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
+						"type": "SqlPoolSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 0,
+							"rejectType": "value",
+							"useTypeDefault": true
 						}
 					},
-					"enableStaging": false,
-					"validateDataConsistency": false
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "linkedService2",
+							"type": "LinkedServiceReference"
+						}
+					}
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_jni",
+						"referenceName": "AzureSqlTable2",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_jni",
+						"referenceName": "SqlPoolTable4",
 						"type": "DatasetReference"
 					}
 				]
