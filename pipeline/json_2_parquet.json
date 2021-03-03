@@ -41,235 +41,108 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['MANDT']"
+								},
+								"sink": {
+									"name": "MANDT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_4AKNUMH']"
+								},
+								"sink": {
+									"name": "J_4AKNUMH",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['VKORG']"
+								},
+								"sink": {
+									"name": "VKORG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDB']"
+								},
+								"sink": {
+									"name": "J_3ADLDB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ADLDV']"
+								},
+								"sink": {
+									"name": "J_3ADLDV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTB']"
+								},
+								"sink": {
+									"name": "J_3AUDTB",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3AUDTV']"
+								},
+								"sink": {
+									"name": "J_3AUDTV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGMSG']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGMSG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_AFS_DPRG_KOND'][0]['_-AFS_-DPRGPDATE']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGPDATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['E_MENSAGEM']"
 								},
 								"sink": {
 									"name": "E_MENSAGEM",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VBELN']"
-								},
-								"sink": {
-									"name": "VBELN",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['POSNR']"
-								},
-								"sink": {
-									"name": "POSNR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['FKIMG']"
-								},
-								"sink": {
-									"name": "FKIMG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VRKME']"
-								},
-								"sink": {
-									"name": "VRKME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['FKLMG']"
-								},
-								"sink": {
-									"name": "FKLMG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['NETWR']"
-								},
-								"sink": {
-									"name": "NETWR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VGBEL']"
-								},
-								"sink": {
-									"name": "VGBEL",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['AUBEL']"
-								},
-								"sink": {
-									"name": "AUBEL",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['AUPOS']"
-								},
-								"sink": {
-									"name": "AUPOS",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['MATNR']"
-								},
-								"sink": {
-									"name": "MATNR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['PSTYV']"
-								},
-								"sink": {
-									"name": "PSTYV",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['POSPA']"
-								},
-								"sink": {
-									"name": "POSPA",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['WERKS']"
-								},
-								"sink": {
-									"name": "WERKS",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['SKFBP']"
-								},
-								"sink": {
-									"name": "SKFBP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VKGRP']"
-								},
-								"sink": {
-									"name": "VKGRP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VKBUR']"
-								},
-								"sink": {
-									"name": "VKBUR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['BWTAR']"
-								},
-								"sink": {
-									"name": "BWTAR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['VTWEG_AUFT']"
-								},
-								"sink": {
-									"name": "VTWEG_AUFT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['MWSBP']"
-								},
-								"sink": {
-									"name": "MWSBP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_1BCFOP']"
-								},
-								"sink": {
-									"name": "J_1BCFOP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_3AETENR']"
-								},
-								"sink": {
-									"name": "J_3AETENR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_3AVGETE']"
-								},
-								"sink": {
-									"name": "J_3AVGETE",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_3ASZGR']"
-								},
-								"sink": {
-									"name": "J_3ASZGR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_3ASIZE']"
-								},
-								"sink": {
-									"name": "J_3ASIZE",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBRP'][0]['J_3APGNR']"
-								},
-								"sink": {
-									"name": "J_3APGNR",
 									"type": "String"
 								}
 							}
