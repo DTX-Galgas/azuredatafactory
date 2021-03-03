@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "AFS_DPRG_KOND.json",
-				"folderPath": "brazil/transacional/saprest/asf_dprg_kond",
+				"fileName": "VBEP.json",
+				"folderPath": "brazil/transacional/saprest/vbep",
 				"fileSystem": "raw"
 			}
 		},
