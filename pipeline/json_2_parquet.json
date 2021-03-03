@@ -41,15 +41,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_MENSAGEM']"
-								},
-								"sink": {
-									"name": "E_MENSAGEM",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['VBELN']"
 								},
 								"sink": {
@@ -59,60 +50,167 @@
 							},
 							{
 								"source": {
-									"path": "['POSNR']"
+									"path": "['ERDAT']"
 								},
 								"sink": {
-									"name": "POSNR",
+									"name": "ERDAT",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ETENR']"
+									"path": "['ERNAM']"
 								},
 								"sink": {
-									"name": "ETENR",
+									"name": "ERNAM",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['WMENG']"
+									"path": "['AUDAT']"
 								},
 								"sink": {
-									"name": "WMENG",
+									"name": "AUDAT",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASIZE']"
+									"path": "['VBTYP']"
 								},
 								"sink": {
-									"name": "J_3ASIZE",
+									"name": "VBTYP",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASZGR']"
+									"path": "['AUART']"
 								},
 								"sink": {
-									"name": "J_3ASZGR",
+									"name": "AUART",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ANETW']"
+									"path": "['FAKSK']"
 								},
 								"sink": {
-									"name": "J_3ANETW",
+									"name": "FAKSK",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VKORG']"
+								},
+								"sink": {
+									"name": "VKORG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VTWEG']"
+								},
+								"sink": {
+									"name": "VTWEG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['SPART']"
+								},
+								"sink": {
+									"name": "SPART",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VKGRP']"
+								},
+								"sink": {
+									"name": "VKGRP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VKBUR']"
+								},
+								"sink": {
+									"name": "VKBUR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KNUMV']"
+								},
+								"sink": {
+									"name": "KNUMV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VDATU']"
+								},
+								"sink": {
+									"name": "VDATU",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BSARK']"
+								},
+								"sink": {
+									"name": "BSARK",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KUNNR']"
+								},
+								"sink": {
+									"name": "KUNNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['AEDAT']"
+								},
+								"sink": {
+									"name": "AEDAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KVGR3']"
+								},
+								"sink": {
+									"name": "KVGR3",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['BUKRS_VF']"
+								},
+								"sink": {
+									"name": "BUKRS_VF"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBEP']",
+						"collectionReference": "$['E_VBAK']",
 						"mapComplexValuesToString": true
 					}
 				},
@@ -128,19 +226,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "EXEC_PIPE_SAP_MARM",
-				"type": "ExecutePipeline",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EXEC_PIPE_SAP_MARM",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"folder": {
