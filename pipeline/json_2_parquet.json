@@ -41,60 +41,102 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['OBJEK']"
+									"path": "['MANDT']"
 								},
 								"sink": {
-									"name": "OBJEK",
-									"type": "String"
+									"name": "MANDT"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATINN']"
+									"path": "['J_4AKNUMH']"
 								},
 								"sink": {
-									"name": "ATINN",
-									"type": "String"
+									"name": "J_4AKNUMH"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATZHL']"
+									"path": "['VKORG']"
 								},
 								"sink": {
-									"name": "ATZHL",
-									"type": "String"
+									"name": "VKORG"
 								}
 							},
 							{
 								"source": {
-									"path": "['MAFID']"
+									"path": "['J_3ADLDB']"
 								},
 								"sink": {
-									"name": "MAFID",
-									"type": "String"
+									"name": "J_3ADLDB"
 								}
 							},
 							{
 								"source": {
-									"path": "['KLART']"
+									"path": "['J_3ADLDV']"
 								},
 								"sink": {
-									"name": "KLART",
-									"type": "String"
+									"name": "J_3ADLDV"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATWRT']"
+									"path": "['J_3AUDTB']"
 								},
 								"sink": {
-									"name": "ATWRT",
-									"type": "String"
+									"name": "J_3AUDTB"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3AUDTV']"
+								},
+								"sink": {
+									"name": "J_3AUDTV"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-DPRGMSG']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGMSG"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-DPRGPDATE']"
+								},
+								"sink": {
+									"name": "_-AFS_-DPRGPDATE"
+								}
+							},
+							{
+								"source": {
+									"path": "$['E_MENSAGEM']"
+								},
+								"sink": {
+									"name": "E_MENSAGEM"
 								}
 							}
 						],
-						"collectionReference": "$['E_AUSP']",
+						"collectionReference": "$['E_AFS_DPRG_KOND']",
 						"mapComplexValuesToString": true
 					}
 				},
