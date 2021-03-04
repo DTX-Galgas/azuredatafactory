@@ -1,5 +1,5 @@
 {
-	"name": "vtex_parquet",
+	"name": "vtex_order_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ADLS_DESTINO_GEN2",
