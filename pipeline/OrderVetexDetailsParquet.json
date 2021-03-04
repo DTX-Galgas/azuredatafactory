@@ -45,7 +45,8 @@
 									"path": "$['orderId']"
 								},
 								"sink": {
-									"name": "orderId"
+									"name": "orderId",
+									"type": "String"
 								}
 							},
 							{
@@ -53,7 +54,8 @@
 									"path": "$['items'][0]['uniqueId']"
 								},
 								"sink": {
-									"name": "uniqueId"
+									"name": "uniqueId",
+									"type": "String"
 								}
 							},
 							{
@@ -61,7 +63,8 @@
 									"path": "$['items'][0]['id']"
 								},
 								"sink": {
-									"name": "IdItem"
+									"name": "IdItem",
+									"type": "String"
 								}
 							},
 							{
@@ -69,7 +72,8 @@
 									"path": "$['items'][0]['productId']"
 								},
 								"sink": {
-									"name": "productId"
+									"name": "productId",
+									"type": "String"
 								}
 							},
 							{
@@ -77,7 +81,8 @@
 									"path": "$['items'][0]['ean']"
 								},
 								"sink": {
-									"name": "ean"
+									"name": "ean",
+									"type": "String"
 								}
 							},
 							{
@@ -85,7 +90,8 @@
 									"path": "$['items'][0]['lockId']"
 								},
 								"sink": {
-									"name": "lockId"
+									"name": "lockId",
+									"type": "String"
 								}
 							},
 							{
@@ -94,7 +100,7 @@
 								},
 								"sink": {
 									"name": "quantity",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -102,7 +108,8 @@
 									"path": "$['items'][0]['seller']"
 								},
 								"sink": {
-									"name": "seller"
+									"name": "seller",
+									"type": "String"
 								}
 							},
 							{
@@ -110,7 +117,8 @@
 									"path": "$['items'][0]['name']"
 								},
 								"sink": {
-									"name": "nameItem"
+									"name": "nameItem",
+									"type": "String"
 								}
 							},
 							{
@@ -118,7 +126,8 @@
 									"path": "$['items'][0]['refId']"
 								},
 								"sink": {
-									"name": "refId"
+									"name": "refId",
+									"type": "String"
 								}
 							},
 							{
@@ -127,7 +136,7 @@
 								},
 								"sink": {
 									"name": "price",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -136,7 +145,7 @@
 								},
 								"sink": {
 									"name": "listPrice",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -144,7 +153,8 @@
 									"path": "$['items'][0]['imageUrl']"
 								},
 								"sink": {
-									"name": "imageUrl"
+									"name": "imageUrl",
+									"type": "String"
 								}
 							},
 							{
@@ -152,7 +162,8 @@
 									"path": "$['items'][0]['additionalInfo']['brandName']"
 								},
 								"sink": {
-									"name": "brandName"
+									"name": "brandName",
+									"type": "String"
 								}
 							},
 							{
@@ -160,7 +171,8 @@
 									"path": "$['items'][0]['additionalInfo']['brandId']"
 								},
 								"sink": {
-									"name": "brandId"
+									"name": "brandId",
+									"type": "String"
 								}
 							},
 							{
@@ -168,7 +180,8 @@
 									"path": "$['items'][0]['additionalInfo']['categoriesIds']"
 								},
 								"sink": {
-									"name": "categoriesIds"
+									"name": "categoriesIds",
+									"type": "String"
 								}
 							},
 							{
@@ -176,7 +189,8 @@
 									"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
 								},
 								"sink": {
-									"name": "IdCategory"
+									"name": "IdCategory",
+									"type": "String"
 								}
 							},
 							{
@@ -184,7 +198,8 @@
 									"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
 								},
 								"sink": {
-									"name": "nameCategory"
+									"name": "nameCategory",
+									"type": "String"
 								}
 							},
 							{
@@ -192,7 +207,8 @@
 									"path": "$['clientProfileData']['email']"
 								},
 								"sink": {
-									"name": "email"
+									"name": "email",
+									"type": "String"
 								}
 							},
 							{
@@ -200,7 +216,8 @@
 									"path": "$['clientProfileData']['firstName']"
 								},
 								"sink": {
-									"name": "firstName"
+									"name": "firstName",
+									"type": "String"
 								}
 							},
 							{
@@ -208,7 +225,8 @@
 									"path": "$['clientProfileData']['lastName']"
 								},
 								"sink": {
-									"name": "lastName"
+									"name": "lastName",
+									"type": "String"
 								}
 							},
 							{
@@ -216,7 +234,8 @@
 									"path": "$['clientProfileData']['documentType']"
 								},
 								"sink": {
-									"name": "documentType"
+									"name": "documentType",
+									"type": "String"
 								}
 							},
 							{
@@ -224,7 +243,8 @@
 									"path": "$['clientProfileData']['document']"
 								},
 								"sink": {
-									"name": "document"
+									"name": "document",
+									"type": "String"
 								}
 							},
 							{
@@ -232,7 +252,8 @@
 									"path": "$['clientProfileData']['phone']"
 								},
 								"sink": {
-									"name": "phone"
+									"name": "phone",
+									"type": "String"
 								}
 							},
 							{
@@ -240,7 +261,8 @@
 									"path": "$['shippingData']['address']['addressType']"
 								},
 								"sink": {
-									"name": "addressType"
+									"name": "addressType",
+									"type": "String"
 								}
 							},
 							{
@@ -248,7 +270,8 @@
 									"path": "$['shippingData']['address']['receiverName']"
 								},
 								"sink": {
-									"name": "receiverName"
+									"name": "receiverName",
+									"type": "String"
 								}
 							},
 							{
@@ -256,7 +279,8 @@
 									"path": "$['shippingData']['address']['addressId']"
 								},
 								"sink": {
-									"name": "addressId"
+									"name": "addressId",
+									"type": "String"
 								}
 							},
 							{
@@ -264,7 +288,8 @@
 									"path": "$['shippingData']['address']['postalCode']"
 								},
 								"sink": {
-									"name": "postalCode"
+									"name": "postalCode",
+									"type": "String"
 								}
 							},
 							{
@@ -272,7 +297,8 @@
 									"path": "$['shippingData']['address']['city']"
 								},
 								"sink": {
-									"name": "city"
+									"name": "city",
+									"type": "String"
 								}
 							},
 							{
@@ -280,7 +306,8 @@
 									"path": "$['shippingData']['address']['state']"
 								},
 								"sink": {
-									"name": "state"
+									"name": "state",
+									"type": "String"
 								}
 							},
 							{
@@ -288,7 +315,8 @@
 									"path": "$['shippingData']['address']['country']"
 								},
 								"sink": {
-									"name": "country"
+									"name": "country",
+									"type": "String"
 								}
 							},
 							{
@@ -296,7 +324,8 @@
 									"path": "$['shippingData']['address']['street']"
 								},
 								"sink": {
-									"name": "street"
+									"name": "street",
+									"type": "String"
 								}
 							},
 							{
@@ -304,7 +333,8 @@
 									"path": "$['shippingData']['address']['number']"
 								},
 								"sink": {
-									"name": "number"
+									"name": "number",
+									"type": "String"
 								}
 							},
 							{
@@ -312,7 +342,8 @@
 									"path": "$['shippingData']['address']['neighborhood']"
 								},
 								"sink": {
-									"name": "neighborhood"
+									"name": "neighborhood",
+									"type": "String"
 								}
 							},
 							{
@@ -338,7 +369,8 @@
 									"path": "$['shippingData']['address']['geoCoordinates']"
 								},
 								"sink": {
-									"name": "geoCoordinates"
+									"name": "geoCoordinates",
+									"type": "String"
 								}
 							},
 							{
@@ -347,7 +379,7 @@
 								},
 								"sink": {
 									"name": "itemIndex",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -355,7 +387,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
 								},
 								"sink": {
-									"name": "selectedSla"
+									"name": "selectedSla",
+									"type": "String"
 								}
 							},
 							{
@@ -363,7 +396,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
 								},
 								"sink": {
-									"name": "lockTTL"
+									"name": "lockTTL",
+									"type": "String"
 								}
 							},
 							{
@@ -372,7 +406,7 @@
 								},
 								"sink": {
 									"name": "priceLogistics",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -381,7 +415,7 @@
 								},
 								"sink": {
 									"name": "listPriceLogistics",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -390,7 +424,7 @@
 								},
 								"sink": {
 									"name": "sellingPrice",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -407,7 +441,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
 								},
 								"sink": {
-									"name": "deliveryCompany"
+									"name": "deliveryCompany",
+									"type": "String"
 								}
 							},
 							{
@@ -415,7 +450,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
 								},
 								"sink": {
-									"name": "shippingEstimate"
+									"name": "shippingEstimate",
+									"type": "String"
 								}
 							},
 							{
@@ -423,7 +459,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
 								},
 								"sink": {
-									"name": "shippingEstimateDate"
+									"name": "shippingEstimateDate",
+									"type": "String"
 								}
 							},
 							{
@@ -431,7 +468,8 @@
 									"path": "$['shippingData']['logisticsInfo'][0]['deliveryChannel']"
 								},
 								"sink": {
-									"name": "deliveryChannel"
+									"name": "deliveryChannel",
+									"type": "String"
 								}
 							},
 							{
@@ -439,7 +477,8 @@
 									"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
 								},
 								"sink": {
-									"name": "paymentSystem"
+									"name": "paymentSystem",
+									"type": "String"
 								}
 							},
 							{
@@ -447,7 +486,8 @@
 									"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
 								},
 								"sink": {
-									"name": "paymentSystemName"
+									"name": "paymentSystemName",
+									"type": "String"
 								}
 							},
 							{
@@ -456,7 +496,7 @@
 								},
 								"sink": {
 									"name": "value",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -465,7 +505,7 @@
 								},
 								"sink": {
 									"name": "installments",
-									"type": "Int32"
+									"type": "String"
 								}
 							},
 							{
@@ -474,7 +514,7 @@
 								},
 								"sink": {
 									"name": "referenceValue",
-									"type": "Int32"
+									"type": "String"
 								}
 							}
 						],
