@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 5",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [orderId]\n,[creationDate]\n,[clientName]\n,[items]\n,[totalValue]\n,[paymentNames]\n,[status]\n,[statusDescription]\n,[marketPlaceOrderId]\n,[sequence]\n,[salesChannel]\n,[affiliateId]\n,[origin]\n,[workflowInErrorState]\n,[workflowInRetry]\n,[lastMessageUnread]\n,[ShippingEstimatedDate]\n,[ShippingEstimatedDateMax]\n,[ShippingEstimatedDateMin]\n,[orderIsComplete]\n,[listId]\n,[listType]\n,[authorizedDate]\n,[callCenterOperatorName]\n,[totalItems]\n,[currencyCode]\n,[hostname]\n,[invoiceOutput]\n,[invoiceInput]\n,[reportRecordsLimit]\n FROM [raw_data].[vtex_orderfull]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
