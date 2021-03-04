@@ -23,12 +23,12 @@
 						"requestBody": "{\n    \"I_BUKRS\": [\n        \"2001\",\n        \"5001\"\n    ],\n    \"I_DATA_INI\":\"2020-12-07\",\n    \"I_DATA_FIM\":\"2020-12-11\"\n}"
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "JsonSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "ParquetWriteSettings"
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false
@@ -41,7 +41,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "destino_sap_parquet",
+						"referenceName": "sap_destino_json",
 						"type": "DatasetReference"
 					}
 				]
