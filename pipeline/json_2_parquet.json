@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KNUMV']"
+									"path": "['KNUMV']"
 								},
 								"sink": {
 									"name": "KNUMV",
@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KPOSN']"
+									"path": "['KPOSN']"
 								},
 								"sink": {
 									"name": "KPOSN",
@@ -59,7 +59,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['STUNR']"
+									"path": "['STUNR']"
 								},
 								"sink": {
 									"name": "STUNR",
@@ -68,7 +68,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['ZAEHK']"
+									"path": "['ZAEHK']"
 								},
 								"sink": {
 									"name": "ZAEHK",
@@ -77,7 +77,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KSCHL']"
+									"path": "['KSCHL']"
 								},
 								"sink": {
 									"name": "KSCHL",
@@ -86,7 +86,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KWERT']"
+									"path": "['KWERT']"
 								},
 								"sink": {
 									"name": "KWERT",
@@ -95,7 +95,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KAWRT']"
+									"path": "['KAWRT']"
 								},
 								"sink": {
 									"name": "KAWRT",
@@ -104,7 +104,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KBETR']"
+									"path": "['KBETR']"
 								},
 								"sink": {
 									"name": "KBETR",
@@ -113,7 +113,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KSTAT']"
+									"path": "['KSTAT']"
 								},
 								"sink": {
 									"name": "KSTAT",
@@ -122,7 +122,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KDATU']"
+									"path": "['KDATU']"
 								},
 								"sink": {
 									"name": "KDATU",
@@ -131,7 +131,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['KINAK']"
+									"path": "['KINAK']"
 								},
 								"sink": {
 									"name": "KINAK",
@@ -140,7 +140,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_KONV'][0]['VBELN']"
+									"path": "['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN",
@@ -148,7 +148,7 @@
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['E_KONV']",
 						"mapComplexValuesToString": true
 					}
 				},
