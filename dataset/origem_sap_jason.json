@@ -10,60 +10,81 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "KONV.json",
-				"folderPath": "brazil/transacional/saprest/konv",
+				"fileName": "VBAK.json",
+				"folderPath": "brazil/transacional/saprest/vbak",
 				"fileSystem": "raw"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"E_KONV": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBAK": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"ERDAT": {
+								"type": "string"
+							},
+							"ERNAM": {
+								"type": "string"
+							},
+							"AUDAT": {
+								"type": "string"
+							},
+							"VBTYP": {
+								"type": "string"
+							},
+							"AUART": {
+								"type": "string"
+							},
+							"FAKSK": {
+								"type": "string"
+							},
+							"VKORG": {
+								"type": "string"
+							},
+							"VTWEG": {
+								"type": "string"
+							},
+							"SPART": {
+								"type": "string"
+							},
+							"VKGRP": {
+								"type": "string"
+							},
+							"VKBUR": {
+								"type": "string"
+							},
 							"KNUMV": {
 								"type": "string"
 							},
-							"KPOSN": {
+							"VDATU": {
 								"type": "string"
 							},
-							"STUNR": {
+							"BSARK": {
 								"type": "string"
 							},
-							"ZAEHK": {
+							"KUNNR": {
 								"type": "string"
 							},
-							"KSCHL": {
+							"AEDAT": {
 								"type": "string"
 							},
-							"KWERT": {
-								"type": "number"
-							},
-							"KAWRT": {
-								"type": "number"
-							},
-							"KBETR": {
-								"type": "number"
-							},
-							"KSTAT": {
+							"KVGR3": {
 								"type": "string"
 							},
-							"KDATU": {
-								"type": "string"
-							},
-							"KINAK": {
-								"type": "string"
-							},
-							"VBELN": {
+							"BUKRS_VF": {
 								"type": "string"
 							}
 						}
 					}
-				},
-				"E_MENSAGEM": {
-					"type": "string"
 				}
 			}
 		}
