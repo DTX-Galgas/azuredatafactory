@@ -15,57 +15,6 @@
 				"fileSystem": "raw"
 			}
 		},
-		"schema": {
-			"type": "object",
-			"properties": {
-				"E_MENSAGEM": {
-					"type": "string"
-				},
-				"E_VBAP": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"VBELN": {
-								"type": "string"
-							},
-							"POSNR": {
-								"type": "string"
-							},
-							"MATNR": {
-								"type": "string"
-							},
-							"PSTYV": {
-								"type": "string"
-							},
-							"UMZIZ": {
-								"type": "integer"
-							},
-							"UMZIN": {
-								"type": "integer"
-							},
-							"NETWR": {
-								"type": "number"
-							},
-							"KWMENG": {
-								"type": "number"
-							},
-							"VRKME": {
-								"type": "string"
-							},
-							"WERKS": {
-								"type": "string"
-							},
-							"J_3ASEAN": {
-								"type": "string"
-							},
-							"_-AFS_-COLLECTION": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			}
-		}
+		"schema": {}
 	}
 }
