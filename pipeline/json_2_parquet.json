@@ -41,102 +41,114 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['VBELN']"
+									"path": "$['E_KONV'][0]['KNUMV']"
 								},
 								"sink": {
-									"name": "VBELN"
+									"name": "KNUMV",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['POSNR']"
+									"path": "$['E_KONV'][0]['KPOSN']"
 								},
 								"sink": {
-									"name": "POSNR"
+									"name": "KPOSN",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['MATNR']"
+									"path": "$['E_KONV'][0]['STUNR']"
 								},
 								"sink": {
-									"name": "MATNR"
+									"name": "STUNR",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['PSTYV']"
+									"path": "$['E_KONV'][0]['ZAEHK']"
 								},
 								"sink": {
-									"name": "PSTYV"
+									"name": "ZAEHK",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['UMZIZ']"
+									"path": "$['E_KONV'][0]['KSCHL']"
 								},
 								"sink": {
-									"name": "UMZIZ"
+									"name": "KSCHL",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['UMZIN']"
+									"path": "$['E_KONV'][0]['KWERT']"
 								},
 								"sink": {
-									"name": "UMZIN"
+									"name": "KWERT",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['NETWR']"
+									"path": "$['E_KONV'][0]['KAWRT']"
 								},
 								"sink": {
-									"name": "NETWR"
+									"name": "KAWRT",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KWMENG']"
+									"path": "$['E_KONV'][0]['KBETR']"
 								},
 								"sink": {
-									"name": "KWMENG"
+									"name": "KBETR",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VRKME']"
+									"path": "$['E_KONV'][0]['KSTAT']"
 								},
 								"sink": {
-									"name": "VRKME"
+									"name": "KSTAT",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['WERKS']"
+									"path": "$['E_KONV'][0]['KDATU']"
 								},
 								"sink": {
-									"name": "WERKS"
+									"name": "KDATU",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASEAN']"
+									"path": "$['E_KONV'][0]['KINAK']"
 								},
 								"sink": {
-									"name": "J_3ASEAN"
+									"name": "KINAK",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['_-AFS_-COLLECTION']"
+									"path": "$['E_KONV'][0]['VBELN']"
 								},
 								"sink": {
-									"name": "_-AFS_-COLLECTION"
+									"name": "VBELN",
+									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBAP']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
