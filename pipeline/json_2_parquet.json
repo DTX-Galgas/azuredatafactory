@@ -8,7 +8,7 @@
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
-					"retry": 0,
+					"retry": 3,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
@@ -38,6 +38,71 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['VBELN']"
+								},
+								"sink": {
+									"name": "VBELN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['POSNR']"
+								},
+								"sink": {
+									"name": "POSNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ETENR']"
+								},
+								"sink": {
+									"name": "ETENR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WMENG']"
+								},
+								"sink": {
+									"name": "WMENG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASIZE']"
+								},
+								"sink": {
+									"name": "J_3ASIZE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASZGR']"
+								},
+								"sink": {
+									"name": "J_3ASZGR"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ANETW']"
+								},
+								"sink": {
+									"name": "J_3ANETW",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['E_VBEP']",
 						"mapComplexValuesToString": true
 					}
 				},
