@@ -44,8 +44,7 @@
 									"path": "['VBELN']"
 								},
 								"sink": {
-									"name": "VBELN",
-									"type": "String"
+									"name": "VBELN"
 								}
 							},
 							{
@@ -53,56 +52,91 @@
 									"path": "['POSNR']"
 								},
 								"sink": {
-									"name": "POSNR",
-									"type": "String"
+									"name": "POSNR"
 								}
 							},
 							{
 								"source": {
-									"path": "['ETENR']"
+									"path": "['MATNR']"
 								},
 								"sink": {
-									"name": "ETENR",
-									"type": "String"
+									"name": "MATNR"
 								}
 							},
 							{
 								"source": {
-									"path": "['WMENG']"
+									"path": "['PSTYV']"
 								},
 								"sink": {
-									"name": "WMENG",
-									"type": "String"
+									"name": "PSTYV"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASIZE']"
+									"path": "['UMZIZ']"
 								},
 								"sink": {
-									"name": "J_3ASIZE",
-									"type": "String"
+									"name": "UMZIZ"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASZGR']"
+									"path": "['UMZIN']"
 								},
 								"sink": {
-									"name": "J_3ASZGR"
+									"name": "UMZIN"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ANETW']"
+									"path": "['NETWR']"
 								},
 								"sink": {
-									"name": "J_3ANETW",
-									"type": "String"
+									"name": "NETWR"
+								}
+							},
+							{
+								"source": {
+									"path": "['KWMENG']"
+								},
+								"sink": {
+									"name": "KWMENG"
+								}
+							},
+							{
+								"source": {
+									"path": "['VRKME']"
+								},
+								"sink": {
+									"name": "VRKME"
+								}
+							},
+							{
+								"source": {
+									"path": "['WERKS']"
+								},
+								"sink": {
+									"name": "WERKS"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBEP']",
+						"collectionReference": "$['E_VBAP']",
 						"mapComplexValuesToString": true
 					}
 				},
