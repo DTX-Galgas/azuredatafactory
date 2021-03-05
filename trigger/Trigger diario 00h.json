@@ -1,0 +1,25 @@
+{
+	"name": "Trigger diario 00h",
+	"properties": {
+		"description": "Execução diaria",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_GDRIVE",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2021-03-06T00:00:00",
+				"timeZone": "E. South America Standard Time"
+			}
+		}
+	}
+}
