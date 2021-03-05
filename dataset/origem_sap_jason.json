@@ -10,57 +10,54 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "KONV.json",
-				"folderPath": "brazil/transacional/saprest/konv",
+				"fileName": "VBAP.json",
+				"folderPath": "brazil/transacional/saprest/vbap",
 				"fileSystem": "raw"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"E_KONV": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBAP": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"KNUMV": {
-								"type": "string"
-							},
-							"KPOSN": {
-								"type": "string"
-							},
-							"STUNR": {
-								"type": "string"
-							},
-							"ZAEHK": {
-								"type": "string"
-							},
-							"KSCHL": {
-								"type": "string"
-							},
-							"KWERT": {
-								"type": "number"
-							},
-							"KAWRT": {
-								"type": "number"
-							},
-							"KBETR": {
-								"type": "number"
-							},
-							"KSTAT": {
-								"type": "string"
-							},
-							"KDATU": {
-								"type": "string"
-							},
 							"VBELN": {
+								"type": "string"
+							},
+							"POSNR": {
+								"type": "string"
+							},
+							"MATNR": {
+								"type": "string"
+							},
+							"PSTYV": {
+								"type": "string"
+							},
+							"UMZIZ": {
+								"type": "integer"
+							},
+							"UMZIN": {
+								"type": "integer"
+							},
+							"NETWR": {
+								"type": "number"
+							},
+							"KWMENG": {
+								"type": "number"
+							},
+							"VRKME": {
+								"type": "string"
+							},
+							"WERKS": {
 								"type": "string"
 							}
 						}
 					}
-				},
-				"E_MENSAGEM": {
-					"type": "string"
 				}
 			}
 		}
