@@ -41,12 +41,6 @@
 						"referenceName": "DsSapRest",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "vtexj",
-						"type": "DatasetReference"
-					}
 				]
 			}
 		],
