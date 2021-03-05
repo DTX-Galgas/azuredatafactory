@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VtextOrderitems.parquet",
+				"fileName": "VtextOrderitemsattachment.parquet",
 				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			},
