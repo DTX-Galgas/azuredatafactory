@@ -41,15 +41,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_MENSAGEM']"
-								},
-								"sink": {
-									"name": "E_MENSAGEM",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['VBELN']"
 								},
 								"sink": {
