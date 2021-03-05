@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Vtext_Orger_geral_Parquet",
+				"fileName": "Vtext_Orger_geral.parquet",
 				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			},
