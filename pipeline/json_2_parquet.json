@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['VBELN']"
+									"path": "['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN",
@@ -50,7 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['POSNR']"
+									"path": "['POSNR']"
 								},
 								"sink": {
 									"name": "POSNR",
@@ -59,87 +59,51 @@
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['MATNR']"
+									"path": "['ETENR']"
 								},
 								"sink": {
-									"name": "MATNR",
+									"name": "ETENR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['PSTYV']"
+									"path": "['WMENG']"
 								},
 								"sink": {
-									"name": "PSTYV",
+									"name": "WMENG",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['UMZIZ']"
+									"path": "['J_3ASIZE']"
 								},
 								"sink": {
-									"name": "UMZIZ",
+									"name": "J_3ASIZE",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['UMZIN']"
+									"path": "['J_3AABGRU']"
 								},
 								"sink": {
-									"name": "UMZIN",
+									"name": "J_3AABGRU",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['E_VBAP'][0]['KWMENG']"
+									"path": "['J_3ASZGR']"
 								},
 								"sink": {
-									"name": "KWMENG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['VRKME']"
-								},
-								"sink": {
-									"name": "VRKME",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['WERKS']"
-								},
-								"sink": {
-									"name": "WERKS",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['J_3ASEAN']"
-								},
-								"sink": {
-									"name": "J_3ASEAN",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['E_VBAP'][0]['_-AFS_-COLLECTION']"
-								},
-								"sink": {
-									"name": "_-AFS_-COLLECTION",
+									"name": "J_3ASZGR",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['E_VBEP']",
 						"mapComplexValuesToString": true
 					}
 				},
