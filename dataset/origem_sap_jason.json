@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBEP.json",
-				"folderPath": "brazil/transacional/saprest/vbep",
+				"fileName": "VBAP.json",
+				"folderPath": "brazil/transacional/saprest/vbap",
 				"fileSystem": "raw"
 			}
 		},
@@ -21,7 +21,7 @@
 				"E_MENSAGEM": {
 					"type": "string"
 				},
-				"E_VBEP": {
+				"E_VBAP": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -32,19 +32,31 @@
 							"POSNR": {
 								"type": "string"
 							},
-							"ETENR": {
+							"MATNR": {
 								"type": "string"
 							},
-							"WMENG": {
+							"PSTYV": {
+								"type": "string"
+							},
+							"UMZIZ": {
+								"type": "integer"
+							},
+							"UMZIN": {
+								"type": "integer"
+							},
+							"KWMENG": {
 								"type": "number"
 							},
-							"J_3ASIZE": {
+							"VRKME": {
 								"type": "string"
 							},
-							"J_3AABGRU": {
+							"WERKS": {
 								"type": "string"
 							},
-							"J_3ASZGR": {
+							"J_3ASEAN": {
+								"type": "string"
+							},
+							"_-AFS_-COLLECTION": {
 								"type": "string"
 							}
 						}
