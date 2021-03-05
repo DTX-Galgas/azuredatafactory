@@ -59,51 +59,87 @@
 							},
 							{
 								"source": {
-									"path": "['ETENR']"
+									"path": "['MATNR']"
 								},
 								"sink": {
-									"name": "ETENR",
+									"name": "MATNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['WMENG']"
+									"path": "['PSTYV']"
 								},
 								"sink": {
-									"name": "WMENG",
+									"name": "PSTYV",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASIZE']"
+									"path": "['UMZIZ']"
 								},
 								"sink": {
-									"name": "J_3ASIZE",
+									"name": "UMZIZ",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3AABGRU']"
+									"path": "['UMZIN']"
 								},
 								"sink": {
-									"name": "J_3AABGRU",
+									"name": "UMZIN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASZGR']"
+									"path": "['KWMENG']"
 								},
 								"sink": {
-									"name": "J_3ASZGR",
+									"name": "KWMENG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VRKME']"
+								},
+								"sink": {
+									"name": "VRKME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WERKS']"
+								},
+								"sink": {
+									"name": "WERKS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBEP']",
+						"collectionReference": "$['E_VBAP']",
 						"mapComplexValuesToString": true
 					}
 				},
