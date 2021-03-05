@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['VBELN']"
+									"path": "$['E_VBAP'][0]['VBELN']"
 								},
 								"sink": {
 									"name": "VBELN",
@@ -50,168 +50,96 @@
 							},
 							{
 								"source": {
-									"path": "['ERDAT']"
+									"path": "$['E_VBAP'][0]['POSNR']"
 								},
 								"sink": {
-									"name": "ERDAT",
+									"name": "POSNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ERNAM']"
+									"path": "$['E_VBAP'][0]['MATNR']"
 								},
 								"sink": {
-									"name": "ERNAM",
+									"name": "MATNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['AUDAT']"
+									"path": "$['E_VBAP'][0]['PSTYV']"
 								},
 								"sink": {
-									"name": "AUDAT",
+									"name": "PSTYV",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VBTYP']"
+									"path": "$['E_VBAP'][0]['UMZIZ']"
 								},
 								"sink": {
-									"name": "VBTYP",
+									"name": "UMZIZ",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['AUART']"
+									"path": "$['E_VBAP'][0]['UMZIN']"
 								},
 								"sink": {
-									"name": "AUART",
+									"name": "UMZIN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['FAKSK']"
+									"path": "$['E_VBAP'][0]['KWMENG']"
 								},
 								"sink": {
-									"name": "FAKSK",
+									"name": "KWMENG",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VKORG']"
+									"path": "$['E_VBAP'][0]['VRKME']"
 								},
 								"sink": {
-									"name": "VKORG",
+									"name": "VRKME",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VTWEG']"
+									"path": "$['E_VBAP'][0]['WERKS']"
 								},
 								"sink": {
-									"name": "VTWEG",
+									"name": "WERKS",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['SPART']"
+									"path": "$['E_VBAP'][0]['J_3ASEAN']"
 								},
 								"sink": {
-									"name": "SPART",
+									"name": "J_3ASEAN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['VKGRP']"
+									"path": "$['E_VBAP'][0]['_-AFS_-COLLECTION']"
 								},
 								"sink": {
-									"name": "VKGRP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKBUR']"
-								},
-								"sink": {
-									"name": "VKBUR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KNUMV']"
-								},
-								"sink": {
-									"name": "KNUMV",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VDATU']"
-								},
-								"sink": {
-									"name": "VDATU",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['BSARK']"
-								},
-								"sink": {
-									"name": "BSARK",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KUNNR']"
-								},
-								"sink": {
-									"name": "KUNNR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['AEDAT']"
-								},
-								"sink": {
-									"name": "AEDAT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KVGR3']"
-								},
-								"sink": {
-									"name": "KVGR3",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['BUKRS_VF']"
-								},
-								"sink": {
-									"name": "BUKRS_VF",
+									"name": "_-AFS_-COLLECTION",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBAK']",
+						"collectionReference": "",
 						"mapComplexValuesToString": true
 					}
 				},
