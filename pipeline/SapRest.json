@@ -53,7 +53,7 @@
 					{
 						"activity": "download json",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
