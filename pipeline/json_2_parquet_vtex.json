@@ -8,7 +8,7 @@
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
-					"retry": 3,
+					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
@@ -41,7 +41,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['list'][0]['orderId']"
+									"path": "$['orderId']"
 								},
 								"sink": {
 									"name": "orderId",
@@ -50,79 +50,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['creationDate']"
-								},
-								"sink": {
-									"name": "creationDate",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['clientName']"
-								},
-								"sink": {
-									"name": "clientName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['items']"
-								},
-								"sink": {
-									"name": "items",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['totalValue']"
-								},
-								"sink": {
-									"name": "totalValue",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['paymentNames']"
-								},
-								"sink": {
-									"name": "paymentNames",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['status']"
-								},
-								"sink": {
-									"name": "status",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['statusDescription']"
-								},
-								"sink": {
-									"name": "statusDescription",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['marketPlaceOrderId']"
-								},
-								"sink": {
-									"name": "marketPlaceOrderId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['sequence']"
+									"path": "$['sequence']"
 								},
 								"sink": {
 									"name": "sequence",
@@ -131,25 +59,34 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['salesChannel']"
+									"path": "$['marketplaceOrderId']"
 								},
 								"sink": {
-									"name": "salesChannel",
+									"name": "marketplaceOrderId",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['affiliateId']"
+									"path": "$['marketplaceServicesEndpoint']"
 								},
 								"sink": {
-									"name": "affiliateId",
+									"name": "marketplaceServicesEndpoint",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['origin']"
+									"path": "$['sellerOrderId']"
+								},
+								"sink": {
+									"name": "sellerOrderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['origin']"
 								},
 								"sink": {
 									"name": "origin",
@@ -158,159 +95,114 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['workflowInErrorState']"
+									"path": "$['affiliateId']"
 								},
 								"sink": {
-									"name": "workflowInErrorState",
+									"name": "affiliateId",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['workflowInRetry']"
+									"path": "$['salesChannel']"
 								},
 								"sink": {
-									"name": "workflowInRetry",
+									"name": "salesChannel",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['lastMessageUnread']"
+									"path": "$['merchantName']"
 								},
 								"sink": {
-									"name": "lastMessageUnread",
+									"name": "merchantName",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDate']"
+									"path": "$['status']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDate",
+									"name": "status",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDateMax']"
+									"path": "$['statusDescription']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMax",
+									"name": "statusDescription",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['ShippingEstimatedDateMin']"
+									"path": "$['value']"
 								},
 								"sink": {
-									"name": "ShippingEstimatedDateMin",
+									"name": "value",
+									"type": "Int16"
+								}
+							},
+							{
+								"source": {
+									"path": "$['creationDate']"
+								},
+								"sink": {
+									"name": "creationDate",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['orderIsComplete']"
+									"path": "$['lastChange']"
 								},
 								"sink": {
-									"name": "orderIsComplete",
+									"name": "lastChange",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['listId']"
+									"path": "$['orderGroup']"
 								},
 								"sink": {
-									"name": "listId",
+									"name": "orderGroup",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['listType']"
+									"path": "['id']"
 								},
 								"sink": {
-									"name": "listType",
+									"name": "id_totals",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['authorizedDate']"
+									"path": "['name']"
 								},
 								"sink": {
-									"name": "authorizedDate",
+									"name": "name_totals",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['callCenterOperatorName']"
+									"path": "['value']"
 								},
 								"sink": {
-									"name": "callCenterOperatorName",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['totalItems']"
-								},
-								"sink": {
-									"name": "totalItems",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['currencyCode']"
-								},
-								"sink": {
-									"name": "currencyCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['hostname']"
-								},
-								"sink": {
-									"name": "hostname",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['invoiceOutput']"
-								},
-								"sink": {
-									"name": "itemsout",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['invoiceInput']"
-								},
-								"sink": {
-									"name": "invoiceInput",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['reportRecordsLimit']"
-								},
-								"sink": {
-									"name": "reportRecordsLimit",
+									"name": "value_Value_totals",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "",
+						"collectionReference": "$['totals']",
 						"mapComplexValuesToString": true
 					}
 				},
