@@ -10,45 +10,60 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBEP.json",
-				"folderPath": "brazil/transacional/saprest/vbep",
+				"fileName": "KONV.json",
+				"folderPath": "brazil/transacional/saprest/konv",
 				"fileSystem": "raw"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"E_MENSAGEM": {
-					"type": "string"
-				},
-				"E_VBEP": {
+				"E_KONV": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"VBELN": {
+							"KNUMV": {
 								"type": "string"
 							},
-							"POSNR": {
+							"KPOSN": {
 								"type": "string"
 							},
-							"ETENR": {
+							"STUNR": {
 								"type": "string"
 							},
-							"WMENG": {
+							"ZAEHK": {
+								"type": "string"
+							},
+							"KSCHL": {
+								"type": "string"
+							},
+							"KWERT": {
 								"type": "number"
 							},
-							"J_3ASIZE": {
+							"KAWRT": {
+								"type": "number"
+							},
+							"KBETR": {
+								"type": "number"
+							},
+							"KSTAT": {
 								"type": "string"
 							},
-							"J_3AABGRU": {
+							"KDATU": {
 								"type": "string"
 							},
-							"J_3ASZGR": {
+							"KINAK": {
+								"type": "string"
+							},
+							"VBELN": {
 								"type": "string"
 							}
 						}
 					}
+				},
+				"E_MENSAGEM": {
+					"type": "string"
 				}
 			}
 		}
