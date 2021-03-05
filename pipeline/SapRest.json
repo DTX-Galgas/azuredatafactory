@@ -146,15 +146,6 @@
 							},
 							{
 								"source": {
-									"path": "['FAKSK']"
-								},
-								"sink": {
-									"name": "FAKSK",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['VKORG']"
 								},
 								"sink": {
