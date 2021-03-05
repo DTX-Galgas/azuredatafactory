@@ -53,7 +53,7 @@
 					{
 						"activity": "download json",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
@@ -92,6 +92,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "$['E_MENSAGEM']"
+								},
+								"sink": {
+									"name": "E_MENSAGEM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['VBELN']"
 								},
 								"sink": {
@@ -110,51 +119,78 @@
 							},
 							{
 								"source": {
-									"path": "['ETENR']"
+									"path": "['MATNR']"
 								},
 								"sink": {
-									"name": "ETENR",
+									"name": "MATNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['WMENG']"
+									"path": "['PSTYV']"
 								},
 								"sink": {
-									"name": "WMENG",
+									"name": "PSTYV",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASIZE']"
+									"path": "['UMZIZ']"
 								},
 								"sink": {
-									"name": "J_3ASIZE",
+									"name": "UMZIZ",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3AABGRU']"
+									"path": "['UMZIN']"
 								},
 								"sink": {
-									"name": "J_3AABGRU",
+									"name": "UMZIN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['J_3ASZGR']"
+									"path": "['NETWR']"
 								},
 								"sink": {
-									"name": "J_3ASZGR",
+									"name": "NETWR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KWMENG']"
+								},
+								"sink": {
+									"name": "KWMENG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VRKME']"
+								},
+								"sink": {
+									"name": "VRKME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WERKS']"
+								},
+								"sink": {
+									"name": "WERKS",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBEP']",
+						"collectionReference": "$['E_VBAP']",
 						"mapComplexValuesToString": true
 					}
 				},
