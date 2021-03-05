@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "VBAK.json",
-				"folderPath": "brazil/transacional/saprest/vbak",
+				"fileName": "VBEP.json",
+				"folderPath": "brazil/transacional/saprest/vbep",
 				"fileSystem": "raw"
 			}
 		},
@@ -21,7 +21,7 @@
 				"E_MENSAGEM": {
 					"type": "string"
 				},
-				"E_VBAK": {
+				"E_VBEP": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -29,55 +29,22 @@
 							"VBELN": {
 								"type": "string"
 							},
-							"ERDAT": {
+							"POSNR": {
 								"type": "string"
 							},
-							"ERNAM": {
+							"ETENR": {
 								"type": "string"
 							},
-							"AUDAT": {
+							"WMENG": {
+								"type": "number"
+							},
+							"J_3ASIZE": {
 								"type": "string"
 							},
-							"VBTYP": {
+							"J_3AABGRU": {
 								"type": "string"
 							},
-							"AUART": {
-								"type": "string"
-							},
-							"VKORG": {
-								"type": "string"
-							},
-							"VTWEG": {
-								"type": "string"
-							},
-							"SPART": {
-								"type": "string"
-							},
-							"VKGRP": {
-								"type": "string"
-							},
-							"VKBUR": {
-								"type": "string"
-							},
-							"KNUMV": {
-								"type": "string"
-							},
-							"VDATU": {
-								"type": "string"
-							},
-							"BSARK": {
-								"type": "string"
-							},
-							"KUNNR": {
-								"type": "string"
-							},
-							"AEDAT": {
-								"type": "string"
-							},
-							"KVGR3": {
-								"type": "string"
-							},
-							"BUKRS_VF": {
+							"J_3ASZGR": {
 								"type": "string"
 							}
 						}
