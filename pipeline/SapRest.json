@@ -92,105 +92,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['VBELN']"
-								},
-								"sink": {
-									"name": "VBELN",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['ERDAT']"
-								},
-								"sink": {
-									"name": "ERDAT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['ERNAM']"
-								},
-								"sink": {
-									"name": "ERNAM",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['AUDAT']"
-								},
-								"sink": {
-									"name": "AUDAT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VBTYP']"
-								},
-								"sink": {
-									"name": "VBTYP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['AUART']"
-								},
-								"sink": {
-									"name": "AUART",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKORG']"
-								},
-								"sink": {
-									"name": "VKORG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VTWEG']"
-								},
-								"sink": {
-									"name": "VTWEG",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['SPART']"
-								},
-								"sink": {
-									"name": "SPART",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKGRP']"
-								},
-								"sink": {
-									"name": "VKGRP",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VKBUR']"
-								},
-								"sink": {
-									"name": "VKBUR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['KNUMV']"
 								},
 								"sink": {
@@ -200,60 +101,96 @@
 							},
 							{
 								"source": {
-									"path": "['VDATU']"
+									"path": "['KPOSN']"
 								},
 								"sink": {
-									"name": "VDATU",
+									"name": "KPOSN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['BSARK']"
+									"path": "['STUNR']"
 								},
 								"sink": {
-									"name": "BSARK",
+									"name": "STUNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KUNNR']"
+									"path": "['ZAEHK']"
 								},
 								"sink": {
-									"name": "KUNNR",
+									"name": "ZAEHK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['AEDAT']"
+									"path": "['KSCHL']"
 								},
 								"sink": {
-									"name": "AEDAT",
+									"name": "KSCHL",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KVGR3']"
+									"path": "['KWERT']"
 								},
 								"sink": {
-									"name": "KVGR3",
+									"name": "KWERT",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['BUKRS_VF']"
+									"path": "['KAWRT']"
 								},
 								"sink": {
-									"name": "BUKRS_VF",
+									"name": "KAWRT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KBETR']"
+								},
+								"sink": {
+									"name": "KBETR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KSTAT']"
+								},
+								"sink": {
+									"name": "KSTAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KDATU']"
+								},
+								"sink": {
+									"name": "KDATU",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VBELN']"
+								},
+								"sink": {
+									"name": "VBELN",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBAK']",
+						"collectionReference": "$['E_KONV']",
 						"mapComplexValuesToString": true
 					}
 				},
