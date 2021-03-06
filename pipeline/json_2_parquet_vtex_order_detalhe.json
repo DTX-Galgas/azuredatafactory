@@ -852,7 +852,7 @@
 				]
 			},
 			{
-				"name": "OrderItemsVtext_copy1",
+				"name": "OrderAttachmentItemsVtex",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -933,6 +933,113 @@
 							}
 						],
 						"collectionReference": "$['items']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtex_order_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "OrderCategoriesVtex",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "OrderAttachmentItemsVtex",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['brandName']"
+								},
+								"sink": {
+									"name": "brandName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['brandId']"
+								},
+								"sink": {
+									"name": "brandId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "categoriesid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['name']"
+								},
+								"sink": {
+									"name": "categoriesname",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['items'][0]['additionalInfo']['categories']",
 						"mapComplexValuesToString": true
 					}
 				},
