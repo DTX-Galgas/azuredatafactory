@@ -1055,6 +1055,108 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "OrderSellerVtex",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "OrderCategoriesVtex",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "['name']"
+								},
+								"sink": {
+									"name": "name"
+								}
+							},
+							{
+								"source": {
+									"path": "['logo']"
+								},
+								"sink": {
+									"name": "logo"
+								}
+							},
+							{
+								"source": {
+									"path": "['fulfillmentEndpoint']"
+								},
+								"sink": {
+									"name": "fulfillmentEndpoint"
+								}
+							}
+						],
+						"collectionReference": "$['sellers']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtex_order_parquet",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
