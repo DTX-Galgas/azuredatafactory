@@ -1,0 +1,16 @@
+{
+	"name": "OrderVtex",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE raw_data.vtex_order (\n\t[orderId] varchar(8000),\n\t[sequence] varchar(8000),\n\t[marketplaceOrderId] varchar(8000),\n\t[sellerOrderId] varchar(8000),\n\t[origin] varchar(8000),\n\t[affiliateId] varchar(8000),\n\t[salesChannel] varchar(8000),\n\t[merchantName] varchar(8000),\n\t[status] varchar(8000),\n\t[statusDescription] varchar(8000),\n\t[value] varchar(8000),\n\t[creationDate] varchar(8000),\n\t[orderGroup] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/vtex/Order/2021/*.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM raw_data.vtex_order\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
