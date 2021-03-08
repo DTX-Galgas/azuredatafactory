@@ -1,0 +1,16 @@
+{
+	"name": "GerarRawDataOrderLogisticVtex",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'raw_sadevbrdatalakemalwee_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [raw_sadevbrdatalakemalwee_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION   = 'https://sadevbrdatalakemalwee.dfs.core.windows.net/raw', \n\t)\nGo\n\nCREATE EXTERNAL TABLE RawDataOrderLogisticsVtex (\n\t[itemIndex1] bigint,\n\t[selectedSla1] varchar(8000),\n\t[lockTTL1] varchar(8000),\n\t[price1] varchar(8000),\n\t[listPrice1] varchar(8000),\n\t[sellingPrice1] varchar(8000),\n\t[deliveryWindow1] varchar(8000),\n\t[deliveryCompany1] varchar(8000),\n\t[shippingEstimate1] varchar(8000),\n\t[shippingEstimateDate1] varchar(8000),\n\t[idsla] varchar(8000),\n\t[namesla] varchar(8000),\n\t[shippingEstimate4] varchar(8000),\n\t[deliveryWindow2] varchar(8000),\n\t[price2] varchar(8000),\n\t[deliveryChannel] varchar(8000),\n\t[polygonName4] varchar(8000),\n\t[lockTTL2] varchar(8000),\n\t[pickupPointId1] varchar(8000),\n\t[transitTime1] varchar(8000),\n\t[deliveryChannel1] varchar(8000),\n\t[addressId2] varchar(8000),\n\t[polygonName1] varchar(8000),\n\t[pickupPointId] varchar(8000),\n\t[transitTime] varchar(8000),\n\t[idshipping] varchar(8000),\n\t[addressType1] varchar(8000),\n\t[receiverName1] varchar(8000),\n\t[addressId1] varchar(8000),\n\t[postalCode1] varchar(8000),\n\t[city1] varchar(8000),\n\t[state1] varchar(8000),\n\t[country1] varchar(8000),\n\t[street1] varchar(8000),\n\t[number1] varchar(8000),\n\t[neighborhood1] varchar(8000),\n\t[complement1] varchar(8000),\n\t[reference1] varchar(8000),\n\t[geocoordinates1] varchar(8000),\n\t[trackingHints] varchar(8000),\n\t[orderId] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'brazil/vtex/VtextOrderLogistics.parquet',\n\tDATA_SOURCE = [raw_sadevbrdatalakemalwee_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\nSELECT TOP 100 * FROM RawDataOrderLogisticsVtex\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
