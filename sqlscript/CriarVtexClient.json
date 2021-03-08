@@ -1,0 +1,16 @@
+{
+	"name": "CriarVtexClient",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE  temp.dimVtexClient (\n[orderId] Varchar(8000) null, \n[email] Varchar(8000) null, \n[firstName] Varchar(8000) null, \n[lastName] Varchar(8000)null , \n[documentType] Varchar(8000)null , \n[document] Varchar(8000)null, \n[phone] Varchar(8000) null\n\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
