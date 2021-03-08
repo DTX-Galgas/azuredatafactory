@@ -1,5 +1,5 @@
 {
-	"name": "SQL script 6",
+	"name": "Vtext_order_cleasing",
 	"properties": {
 		"content": {
 			"query": "SELECT  \n    [orderId]\n    ,[sequence]\n    ,[marketplaceOrderId]\n    ,[sellerOrderId]\n    ,[origin]\n    ,[affiliateId]\n    ,[salesChannel]\n    ,[merchantName]\n    ,[status]\n    ,[statusDescription]\n    ,[value]\n    ,[creationDate]\n    ,[orderGroup]\n    ,(select [value] from [raw_data].[vtex_order_totals] where [id] = 'Items') as \"Total_Items\"\n    ,(select [value] from [raw_data].[vtex_order_totals] where [id] = 'Discounts') as \"Total_Discount\"\n    ,(select [value] from [raw_data].[vtex_order_totals] where [id] = 'Shipping') as \"Total_Shipping\"\n    ,(select [value] from [raw_data].[vtex_order_totals] where [id] = 'Tax') as \"Total_Tax\"    \n    into [cleasing_data].[vtex_order]\n FROM [raw_data].[vtex_order]",
