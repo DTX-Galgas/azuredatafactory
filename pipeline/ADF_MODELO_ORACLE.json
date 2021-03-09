@@ -862,6 +862,18 @@
 			},
 			"ParIndDataCleansing": {
 				"type": "string"
+			},
+			"ParNomeSchemaRaw": {
+				"type": "string"
+			},
+			"ParNomeTabelaRaw": {
+				"type": "string"
+			},
+			"ParNomeColunaReferenciaRaw": {
+				"type": "string"
+			},
+			"ParNomeContainerCleansing": {
+				"type": "string"
 			}
 		},
 		"variables": {
