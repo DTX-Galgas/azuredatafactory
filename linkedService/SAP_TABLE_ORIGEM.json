@@ -15,13 +15,13 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "con-malwee-sap-ecc",
-				"secretVersion": ""
+				"secretVersion": "https://dlpocmalweeg2.dfs.core.windows.net"
 			},
 			"server": "srvsqecc01.malwee.com.br",
 			"systemNumber": "00"
 		},
 		"connectVia": {
-			"referenceName": "ir-dev-malwee",
+			"referenceName": "ir-dev-malwee-2",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
