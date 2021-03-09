@@ -760,7 +760,7 @@
 							}
 						},
 						{
-							"name": "Copy_SQLOP_TO_ADLS_copy1",
+							"name": "Copy_raw_to_cleansing",
 							"type": "Copy",
 							"dependsOn": [
 								{
@@ -782,7 +782,7 @@
 								"source": {
 									"type": "SqlPoolSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n'select * from ', pipeline().parameters.ParNomeSchemaRaw, '.'\n,pipeline().parameters.ParNomeTabelaRaw, ' where ' \n, pipeline().parameters.ParNomeColunaReferenciaRaw\n, ' =  select max(' , pipeline().parameters.ParNomeColunaReferenciaRaw, ' ) from ',\npipeline().parameters.ParNomeSchemaRaw,'.'\n,pipeline().parameters.ParNomeTabelaRaw,')'\n)",
+										"value": "@concat(\n'select * from ', activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW, '.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' where ' \n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW\n,' =  select max(' , activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' ) from '\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,')'\n)\n",
 										"type": "Expression"
 									}
 								},
