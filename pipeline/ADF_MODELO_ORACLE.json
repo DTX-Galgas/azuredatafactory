@@ -780,13 +780,32 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "SqlPoolSource"
+									"type": "SqlPoolSource",
+									"sqlReaderQuery": {
+										"value": "@concat(\n'select * from ', pipeline().parameters.ParNomeSchemaOrigemRAW, '.'\n,pipeline().parameters.ParNomeTabelaOrigemRAW, ' where ' \n, pipeline().parameters.ParNomeColunaReferenciaRAW\n, ' =  select max(' , pipeline().parameters.ParNomeColunaReferenciaRAW, ' ) from ',\npipeline().parameters.ParNomeSchemaOrigemRAW,'.'\n,pipeline().parameters.ParNomeTabelaOrigemRAW,')'\n)",
+										"type": "Expression"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
 								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "wsdevbrsynapse",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 									"type": "DatasetReference"
 								}
 							]
