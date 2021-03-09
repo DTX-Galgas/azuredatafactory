@@ -351,6 +351,26 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "IndDataCleansing",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "IndDestinoSQL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "IndDestinoSQL",
+								"value": {
+									"value": "@activity('GravaLogInicio').output.firstRow.IND_DATA_CLEANSING",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
