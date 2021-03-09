@@ -11,7 +11,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "con-malwee-orcl-cigam",
-				"secretVersion": "https://dlpocmalweeg2.dfs.core.windows.net"
+				"secretVersion": ""
 			}
 		},
 		"connectVia": {
