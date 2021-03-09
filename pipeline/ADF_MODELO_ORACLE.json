@@ -782,7 +782,7 @@
 								"source": {
 									"type": "SqlPoolSource",
 									"sqlReaderQuery": {
-										"value": "@concat('select * from ', activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.',activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,' where ',activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW,' =  select max(' , activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' ) from ',activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.',activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,')')",
+										"value": "@concat('select * from ', \nactivity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.',activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,\n' where ',\nactivity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW,\n' =  (select max(',activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW,') from ',\nactivity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.',activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,')')",
 										"type": "Expression"
 									}
 								},
