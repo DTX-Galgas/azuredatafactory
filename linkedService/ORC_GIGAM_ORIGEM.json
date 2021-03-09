@@ -10,11 +10,12 @@
 					"referenceName": "AzureKeyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "con-malwee-orcl-cigam"
+				"secretName": "con-malwee-orcl-cigam",
+				"secretVersion": "https://dlpocmalweeg2.dfs.core.windows.net"
 			}
 		},
 		"connectVia": {
-			"referenceName": "ir-dev-malwee",
+			"referenceName": "ir-dev-malwee-2",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
