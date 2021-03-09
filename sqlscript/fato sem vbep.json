@@ -1,0 +1,19 @@
+{
+	"name": "fato sem vbep",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL/sap"
+		},
+		"content": {
+			"query": "--select sum(convert(numeric(18,2),NETWR)) as NETWR,\n--sum(convert(numeric(18,2),KWMENG)) as KWMENG\n--from cleansing_data.sap_vbap where VBELN = '0001289876'\n\n--select sum(convert(numeric(18,2),KWERT)) as KWERT,\n--sum(convert(numeric(18,2),KAWRT))  as KAWRT\n--from cleansing_data.sap_konv\n--where KSTAT is null  and KSCHL in('ZCMI','ICMI','ZNFC')\n--and  VBELN = '0001289876'\n\n\n;with vbak_vbap_cte as\n(\nselect \nconcat(vbak.KNUMV,vbap.POSNR) as pk_vbak_vbap\n,vbap.VBELN\t\n,vbap.POSNR\t  \n,vbap.MATNR\t\n,vbap.PSTYV\t\n,vbap.UMZIZ\t\n,vbap.UMZIN\t\n,vbap.NETWR\t\n,vbap.KWMENG\t\n,vbap.VRKME\t\n,vbap.WERKS\n,vbak.ERDAT\t\n,vbak.ERNAM\t\n,vbak.AUDAT\t\n,vbak.VBTYP\t\n,vbak.AUART\t\n,vbak.VKORG\t\n,vbak.VTWEG\t\n,vbak.SPART\t\n,vbak.VKGRP\t\n,vbak.VKBUR\t\n,vbak.KNUMV\t\n,vbak.VDATU\t\n,vbak.BSARK\t\n,vbak.KUNNR\t\n,vbak.AEDAT\t\n,vbak.KVGR3\t\n,vbak.BUKRS_VF\nfrom cleansing_data.sap_vbap as vbap   \nleft join cleansing_data.sap_vbak as vbak on vbap.VBELN = vbak.VBELN\nwhere vbap.VBELN\t='0001260624'\n) \n,konv_cte \nas\n(\n \tselect \n\tconcat(KNUMV,KPOSN) as pk_konv_cte\n\t,KNUMV\t\n\t,KPOSN\t\n\t,STUNR\t\n\t,ZAEHK\t\n\t,KSCHL\t\n\t,KWERT\t\n\t,KAWRT\t\n\t,KBETR\t\n\t,KSTAT\t\n\t,KDATU\t\n\t,VBELN\t\n\tfrom cleansing_data.sap_konv\n\twhere KSTAT is null  and KSCHL in('ZCMI','ICMI','ZNFC')\n\tand VBELN\t='0001260624'\n)\n\nselect \n--vbak_vbap_cte.VBELN\t\n--vbak_vbap_cte.POSNR\t  \n--,vbak_vbap_cte.MATNR\t\n--,vbak_vbap_cte.PSTYV\t\n--,vbak_vbap_cte.UMZIZ\t\n--,vbak_vbap_cte.UMZIN\t\n--,vbak_vbap_cte.NETWR\t\n--,vbak_vbap_cte.KWMENG\t\n--,vbak_vbap_cte.VRKME\t\n--,vbak_vbap_cte.WERKS\n--,vbak_vbap_cte.ERDAT\t\n--,vbak_vbap_cte.ERNAM\t\n--,vbak_vbap_cte.AUDAT\t\n--,vbak_vbap_cte.VBTYP\t\n--,vbak_vbap_cte.AUART\t\n--,vbak_vbap_cte.VKORG\t\n--,vbak_vbap_cte.VTWEG\t\n--,vbak_vbap_cte.SPART\t\n--,vbak_vbap_cte.VKGRP\t\n--,vbak_vbap_cte.VKBUR\t\n--,vbak_vbap_cte.KNUMV\t\n--,vbak_vbap_cte.VDATU\t\n--,vbak_vbap_cte.BSARK\t\n--,vbak_vbap_cte.KUNNR\t\n--,vbak_vbap_cte.AEDAT\t\n--,vbak_vbap_cte.KVGR3\t\n--,vbak_vbap_cte.BUKRS_VF\n--,konv_cte.KPOSN\t\n--,konv_cte.STUNR\t\n--,konv_cte.ZAEHK\t\n--,konv_cte.KSCHL\t\n--,konv_cte.KWERT\t\n--,konv_cte.KAWRT\t\n--,konv_cte.KBETR\t\n--,konv_cte.KSTAT\t\n--,konv_cte.KDATU\t\nvbak_vbap_cte.VBELN\n,vbak_vbap_cte.POSNR\t  \n,vbak_vbap_cte.MATNR\n,sum(convert(numeric(18,2),vbak_vbap_cte.NETWR)) as NETWR\n,sum(convert(numeric(18,2),vbak_vbap_cte.KWMENG)) as KWMENG\n,sum(convert(numeric(18,2),konv_cte.KWERT)) as KWERT\n,sum(convert(numeric(18,2),konv_cte.KAWRT)) as KAWRT\nfrom vbak_vbap_cte inner join konv_cte on \nvbak_vbap_cte.pk_vbak_vbap = konv_cte.pk_konv_cte\ngroup by  vbak_vbap_cte.VBELN,vbak_vbap_cte.POSNR\t  \n,vbak_vbap_cte.MATNR\n\n \n\n  ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
