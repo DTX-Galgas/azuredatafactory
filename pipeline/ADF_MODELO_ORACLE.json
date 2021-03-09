@@ -724,6 +724,9 @@
 			},
 			"DestinationStore_Directory": {
 				"type": "string"
+			},
+			"ParIndDataCleansing": {
+				"type": "string"
 			}
 		},
 		"variables": {
