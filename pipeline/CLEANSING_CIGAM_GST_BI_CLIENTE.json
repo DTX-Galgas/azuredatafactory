@@ -24,6 +24,316 @@
 						"DBName": "dwmwe"
 					}
 				}
+			},
+			{
+				"name": "CIGAM_GST_BI_CLIENTE_PARQUET",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "CLEANSING_CIGAM_GST_BI_CLIENTE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource",
+						"sqlReaderQuery": "\nSELECT \n[pk_cliente], \n[estab_idcigam], \n[cliente_codigo], \n[cliente_nome], \n[cliente_cpfcnpj], \n[cliente_email], \n[cliente_cidade], \n[cliente_estado], \n[cliente_sexo], \n[cliente_aniversario], \n[cliente_ddd_celular], \n[cliente_celular], \n[cliente_endereco], \n[cliente_numero], \n[cliente_complemento], \n[cliente_bairro], \n[cliente_cep], \n[num_matricula], \n[flag_vigencia], \n[dat_inicio_vigencia], \n[dat_final_vigencia]\nFROM TEMP.CIGAM_CLIENTES_FINAL"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "pk_cliente",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "pk_cliente",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "estab_idcigam",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "estab_idcigam",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_codigo",
+									"type": "Single",
+									"physicalType": "float"
+								},
+								"sink": {
+									"name": "cliente_codigo",
+									"type": "Single",
+									"physicalType": "FLOAT"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_nome",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_nome",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_cpfcnpj",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_cpfcnpj",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_email",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_email",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_cidade",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_cidade",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_estado",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_estado",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_sexo",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_sexo",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_aniversario",
+									"type": "DateTime",
+									"physicalType": "datetime2"
+								},
+								"sink": {
+									"name": "cliente_aniversario",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_ddd_celular",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_ddd_celular",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_celular",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_celular",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_endereco",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_endereco",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_numero",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_numero",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_complemento",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_complemento",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_bairro",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_bairro",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "cliente_cep",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "cliente_cep",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "num_matricula",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "num_matricula",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "flag_vigencia",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "flag_vigencia",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "dat_inicio_vigencia",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "dat_inicio_vigencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							},
+							{
+								"source": {
+									"name": "dat_final_vigencia",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "dat_final_vigencia",
+									"type": "DateTime",
+									"physicalType": "INT_96"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "GST_BI_CLIENTES_PARQUET",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GST_BI_CLIENTES",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
