@@ -782,7 +782,7 @@
 								"source": {
 									"type": "SqlPoolSource",
 									"sqlReaderQuery": {
-										"value": "@concat(\n'select * from ', activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW, '.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' where ' \n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW\n,' =  select max(' , activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' ) from '\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,')'\n)\n",
+										"value": "@concat(\n'select * from ', activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW, '.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW, ' where ' \n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW\n,' =  select max(' , activity('LeCredenciaisDBorigem').output.firstRow.NOM_COLUNA_REFERENCIA_RAW, ' ) from '\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_SCHEMA_RAW,'.'\n,activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW,')'\n)",
 										"type": "Expression"
 									}
 								},
@@ -809,7 +809,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(pipeline().parameters.ParNomeTabelaDestino)))",
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'.parquet'))",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
 											"type": "Expression"
 										}
 									}
