@@ -26,13 +26,8 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "ParquetSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*",
-							"enablePartitionDiscovery": false
-						}
+						"type": "SqlPoolSource",
+						"sqlReaderQuery": "SELECT    \n PK_CLIENTE\n,[ESTAB_IDCIGAM]\n,[CLIENTE_CODIGO]\n,[CLIENTE_NOME]\n,[CLIENTE_CPFCNPJ]\n,[CLIENTE_EMAIL]\n,[CLIENTE_CIDADE]\n,[CLIENTE_ESTADO]\n,[CLIENTE_SEXO]\n,[CLIENTE_ANIVERSARIO]\n,[CLIENTE_DDD_CELULAR]\n,[CLIENTE_CELULAR]\n,[CLIENTE_ENDERECO]\n,[CLIENTE_NUMERO]\n,[CLIENTE_COMPLEMENTO]\n,[CLIENTE_BAIRRO]\n,[CLIENTE_CEP]\n,[NUM_MATRICULA]\n,FLAG_VIGENCIA\n,DAT_INICIO_VIGENCIA\n,DAT_FINAL_VIGENCIA \nFROM TEMP.CIGAM_CLIENTES_PROCESSAMENTO"
 					},
 					"sink": {
 						"type": "ParquetSink",
@@ -45,17 +40,231 @@
 						}
 					},
 					"enableStaging": false,
-					"validateDataConsistency": false
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "PK_CLIENTE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PK_CLIENTE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ESTAB_IDCIGAM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ESTAB_IDCIGAM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CODIGO",
+									"type": "Single"
+								},
+								"sink": {
+									"name": "CLIENTE_CODIGO",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_NOME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_NOME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CPFCNPJ",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_CPFCNPJ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_EMAIL",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_EMAIL",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CIDADE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_CIDADE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ESTADO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_ESTADO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_SEXO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_SEXO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ANIVERSARIO",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CLIENTE_ANIVERSARIO",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_DDD_CELULAR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_DDD_CELULAR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CELULAR",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_CELULAR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_ENDERECO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_ENDERECO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_NUMERO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_NUMERO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_COMPLEMENTO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_COMPLEMENTO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_BAIRRO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_BAIRRO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CLIENTE_CEP",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CLIENTE_CEP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NUM_MATRICULA",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NUM_MATRICULA",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FLAG_VIGENCIA",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "FLAG_VIGENCIA",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "DAT_INICIO_VIGENCIA",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DAT_INICIO_VIGENCIA",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "DAT_FINAL_VIGENCIA",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "DAT_FINAL_VIGENCIA",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_mly",
+						"referenceName": "SqlPoolTable5",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Parquet2",
 						"type": "DatasetReference"
 					}
 				]
