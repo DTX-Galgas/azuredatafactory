@@ -27,7 +27,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlPoolSource",
-						"sqlReaderQuery": "SELECT    \n PK_CLIENTE\n,[ESTAB_IDCIGAM]\n,[CLIENTE_CODIGO]\n,[CLIENTE_NOME]\n,[CLIENTE_CPFCNPJ]\n,[CLIENTE_EMAIL]\n,[CLIENTE_CIDADE]\n,[CLIENTE_ESTADO]\n,[CLIENTE_SEXO]\n,[CLIENTE_ANIVERSARIO]\n,[CLIENTE_DDD_CELULAR]\n,[CLIENTE_CELULAR]\n,[CLIENTE_ENDERECO]\n,[CLIENTE_NUMERO]\n,[CLIENTE_COMPLEMENTO]\n,[CLIENTE_BAIRRO]\n,[CLIENTE_CEP]\n,[NUM_MATRICULA]\n,FLAG_VIGENCIA\n,DAT_INICIO_VIGENCIA\n,NULL as DAT_FINAL_VIGENCIA \nFROM TEMP.CIGAM_CLIENTES_PROCESSAMENTO"
+						"sqlReaderQuery": "\nSELECT \n[pk_cliente], \n[estab_idcigam], \n[cliente_codigo], \n[cliente_nome], \n[cliente_cpfcnpj], \n[cliente_email], \n[cliente_cidade], \n[cliente_estado], \n[cliente_sexo], \n[cliente_aniversario], \n[cliente_ddd_celular], \n[cliente_celular], \n[cliente_endereco], \n[cliente_numero], \n[cliente_complemento], \n[cliente_bairro], \n[cliente_cep], \n[num_matricula], \n[flag_vigencia], \n[dat_inicio_vigencia], \n[dat_final_vigencia]\nFROM TEMP.CIGAM_CLIENTES_FINAL"
 					},
 					"sink": {
 						"type": "ParquetSink",
@@ -44,211 +44,211 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "PK_CLIENTE",
+									"name": "pk_cliente",
 									"type": "String"
 								},
 								"sink": {
-									"name": "PK_CLIENTE",
+									"name": "pk_cliente",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "ESTAB_IDCIGAM",
+									"name": "estab_idcigam",
 									"type": "String"
 								},
 								"sink": {
-									"name": "ESTAB_IDCIGAM",
+									"name": "estab_idcigam",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_CODIGO",
+									"name": "cliente_codigo",
 									"type": "Single"
 								},
 								"sink": {
-									"name": "CLIENTE_CODIGO",
+									"name": "cliente_codigo",
 									"type": "Single"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_NOME",
+									"name": "cliente_nome",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_NOME",
+									"name": "cliente_nome",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_CPFCNPJ",
+									"name": "cliente_cpfcnpj",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_CPFCNPJ",
+									"name": "cliente_cpfcnpj",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_EMAIL",
+									"name": "cliente_email",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_EMAIL",
+									"name": "cliente_email",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_CIDADE",
+									"name": "cliente_cidade",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_CIDADE",
+									"name": "cliente_cidade",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_ESTADO",
+									"name": "cliente_estado",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_ESTADO",
+									"name": "cliente_estado",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_SEXO",
+									"name": "cliente_sexo",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_SEXO",
+									"name": "cliente_sexo",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_ANIVERSARIO",
+									"name": "cliente_aniversario",
 									"type": "DateTime"
 								},
 								"sink": {
-									"name": "CLIENTE_ANIVERSARIO",
+									"name": "cliente_aniversario",
 									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_DDD_CELULAR",
+									"name": "cliente_ddd_celular",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_DDD_CELULAR",
+									"name": "cliente_ddd_celular",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_CELULAR",
+									"name": "cliente_celular",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_CELULAR",
+									"name": "cliente_celular",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_ENDERECO",
+									"name": "cliente_endereco",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_ENDERECO",
+									"name": "cliente_endereco",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_NUMERO",
+									"name": "cliente_numero",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_NUMERO",
+									"name": "cliente_numero",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_COMPLEMENTO",
+									"name": "cliente_complemento",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_COMPLEMENTO",
+									"name": "cliente_complemento",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_BAIRRO",
+									"name": "cliente_bairro",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_BAIRRO",
+									"name": "cliente_bairro",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "CLIENTE_CEP",
+									"name": "cliente_cep",
 									"type": "String"
 								},
 								"sink": {
-									"name": "CLIENTE_CEP",
+									"name": "cliente_cep",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "NUM_MATRICULA",
+									"name": "num_matricula",
 									"type": "String"
 								},
 								"sink": {
-									"name": "NUM_MATRICULA",
+									"name": "num_matricula",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "FLAG_VIGENCIA",
+									"name": "flag_vigencia",
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "FLAG_VIGENCIA",
+									"name": "flag_vigencia",
 									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"name": "DAT_INICIO_VIGENCIA",
+									"name": "dat_inicio_vigencia",
 									"type": "DateTime"
 								},
 								"sink": {
-									"name": "DAT_INICIO_VIGENCIA",
+									"name": "dat_inicio_vigencia",
 									"type": "DateTime"
 								}
 							},
 							{
 								"source": {
-									"name": "DAT_FINAL_VIGENCIA",
+									"name": "dat_final_vigencia",
 									"type": "DateTime"
 								},
 								"sink": {
-									"name": "DAT_FINAL_VIGENCIA",
+									"name": "dat_final_vigencia",
 									"type": "DateTime"
 								}
 							}
