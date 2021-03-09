@@ -844,42 +844,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['orderId']"
-								},
-								"sink": {
-									"name": "orderId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['items'][0]['uniqueId']"
-								},
-								"sink": {
-									"name": "uniqueId",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['items'][0]['id']"
-								},
-								"sink": {
-									"name": "iditems",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['shippingData']['id']"
-								},
-								"sink": {
-									"name": "idshipping",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "$['shippingData']['address']['addressType']"
 								},
 								"sink": {
@@ -985,9 +949,45 @@
 									"name": "reference",
 									"type": "String"
 								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['id']"
+								},
+								"sink": {
+									"name": "idshipping",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['uniqueId']"
+								},
+								"sink": {
+									"name": "uniqueId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "iditems",
+									"type": "String"
+								}
 							}
 						],
-						"collectionReference": "$['shippingData']['address']['geoCoordinates']",
+						"collectionReference": "$['items']",
 						"mapComplexValuesToString": true
 					}
 				},
