@@ -806,7 +806,13 @@
 							"outputs": [
 								{
 									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(pipeline().parameters.ParNomeTabelaDestino)))",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
