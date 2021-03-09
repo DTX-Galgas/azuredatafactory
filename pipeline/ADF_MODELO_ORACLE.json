@@ -758,6 +758,38 @@
 									}
 								}
 							}
+						},
+						{
+							"name": "Copy_SQLOP_TO_ADLS_copy1",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToCleansing",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlPoolSource"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "wsdevbrsynapse",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
@@ -810,6 +842,15 @@
 				"type": "string"
 			},
 			"ParIndDataCleansing": {
+				"type": "string"
+			},
+			"ParNomeSchemaOrigemRAW": {
+				"type": "string"
+			},
+			"ParNomeTabelaOrigemRAW": {
+				"type": "string"
+			},
+			"ParNomeColunaReferenciaRAW": {
 				"type": "string"
 			}
 		},
