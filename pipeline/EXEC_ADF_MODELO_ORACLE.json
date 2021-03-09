@@ -365,7 +365,7 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "IndDestinoSQL",
+								"variableName": "IndDataCleansing",
 								"value": {
 									"value": "@activity('GravaLogInicio').output.firstRow.IND_DATA_CLEANSING",
 									"type": "Expression"
