@@ -676,7 +676,13 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(equals(variables('TipoArmazenamento'),'SQLOP'),equals(pipeline().parameters.ParIndDataCleansing,'1'))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
