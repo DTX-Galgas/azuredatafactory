@@ -117,7 +117,22 @@
 										"value": "@pipeline().parameters.ParCodTabela",
 										"type": "Expression"
 									},
-									"ParIndDataCleansing": "@variables('IndDataCleansing')"
+									"ParIndDataCleansing": {
+										"value": "@variables('IndDataCleansing')",
+										"type": "Expression"
+									},
+									"ParNomeSchemaOrigemRAW": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_SCHEMA_RAW",
+										"type": "Expression"
+									},
+									"ParNomeTabelaOrigemRAW": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_TABELA_RAW",
+										"type": "Expression"
+									},
+									"ParNomeColunaReferenciaRAW": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_COLUNA_REFERENCIA_RAW",
+										"type": "Expression"
+									}
 								}
 							}
 						},
