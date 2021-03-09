@@ -1,0 +1,16 @@
+{
+	"name": "vtext_client_cleasing",
+	"properties": {
+		"content": {
+			"query": "SELECT \n [orderId]\n,[email]\n,[firstName]\n,[lastName]\n,[documentType]\n,[document]\n,[phone]\n FROM [raw_data].[vtex_client]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "dwserverless"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
