@@ -6,14 +6,7 @@
 			{
 				"name": "GravaLogFim",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "RAW_TO_CLEANSING",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -663,25 +656,6 @@
 							}
 						}
 					]
-				}
-			},
-			{
-				"name": "RAW_TO_CLEANSING",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "SeSQL_SQLOP_TO_DL",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@and(equals(variables('TipoArmazenamento'),'SQLOP'),equals(pipeline().parameters.ParIndDataCleansing,'1'))",
-						"type": "Expression"
-					}
 				}
 			}
 		],
