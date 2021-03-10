@@ -53,7 +53,7 @@
 					{
 						"activity": "download json",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
@@ -92,105 +92,60 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['KNUMV']"
+									"path": "['OBJEK']"
 								},
 								"sink": {
-									"name": "KNUMV",
+									"name": "OBJEK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KPOSN']"
+									"path": "['ATINN']"
 								},
 								"sink": {
-									"name": "KPOSN",
+									"name": "ATINN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['STUNR']"
+									"path": "['ATZHL']"
 								},
 								"sink": {
-									"name": "STUNR",
+									"name": "ATZHL",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ZAEHK']"
+									"path": "['MAFID']"
 								},
 								"sink": {
-									"name": "ZAEHK",
+									"name": "MAFID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KSCHL']"
+									"path": "['KLART']"
 								},
 								"sink": {
-									"name": "KSCHL",
+									"name": "KLART",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KWERT']"
+									"path": "['ATWRT']"
 								},
 								"sink": {
-									"name": "KWERT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KAWRT']"
-								},
-								"sink": {
-									"name": "KAWRT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KBETR']"
-								},
-								"sink": {
-									"name": "KBETR",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KSTAT']"
-								},
-								"sink": {
-									"name": "KSTAT",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['KDATU']"
-								},
-								"sink": {
-									"name": "KDATU",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['VBELN']"
-								},
-								"sink": {
-									"name": "VBELN",
+									"name": "ATWRT",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_KONV']",
+						"collectionReference": "$['E_AUSP']",
 						"mapComplexValuesToString": true
 					}
 				},
