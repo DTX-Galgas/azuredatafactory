@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "vtex_client.parquet",
-				"folderPath": "brazil/vtex/Client/2021/1100000588353-01",
+				"folderPath": "brazil/vtex/Client/2021/1100013106415-01",
 				"fileSystem": "raw"
 			},
 			"compressionCodec": "snappy"
