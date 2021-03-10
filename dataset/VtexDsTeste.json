@@ -8,7 +8,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "orders/1100000588353-01"
+			"relativeUrl": {
+				"value": "orders/1100001161770-01, orders/1100000588353-01, orders/1100013106415-01, orders/1100013122052-01, orders/1100010392966-01, orders/1100010768934-01, orders/1100022729241-01, orders/1100022740819-01, orders/1100023324468-01, orders/1100020491327-01, orders/1100042797334-01, orders/1100040833934-01, orders/1100052604635-01, orders/1100053008432-01, orders/1100050750047-01\n",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
