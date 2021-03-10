@@ -9,7 +9,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "orders/1100023324468-01",
+				"value": "orders/1100020491327-01",
 				"type": "Expression"
 			}
 		},
