@@ -15,6 +15,39 @@
 				"fileSystem": "raw"
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_AUSP": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"OBJEK": {
+								"type": "string"
+							},
+							"ATINN": {
+								"type": "string"
+							},
+							"ATZHL": {
+								"type": "string"
+							},
+							"MAFID": {
+								"type": "string"
+							},
+							"KLART": {
+								"type": "string"
+							},
+							"ATWRT": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"E_MENSAGEM": {
+					"type": "string"
+				}
+			}
+		}
 	}
 }
