@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "vtext_payment.parquet",
-				"folderPath": "brazil/vtex/Payment/2021",
+				"folderPath": "brazil/vtex/Payment/2021/1100001161770-01",
 				"fileSystem": "raw"
 			},
 			"compressionCodec": "snappy"
