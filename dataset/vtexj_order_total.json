@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "order.json",
+				"fileName": "order_total.json",
 				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			}
