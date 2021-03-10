@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "recebe_data",
+						"activity": "DataBRZ",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -28,7 +28,7 @@
 							{
 								"name": "DATA_EXPORTACAO",
 								"value": {
-									"value": "@activity('recebe_data').output.firstRow.DATABRZ\n",
+									"value": "@variables('DataBRZ')",
 									"type": "Expression"
 								}
 							}
@@ -230,11 +230,37 @@
 					},
 					"dataset": {
 						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "tabela"
+						}
 					}
+				}
+			},
+			{
+				"name": "DataBRZ",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "recebe_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DataBRZ",
+					"value": ""
 				}
 			}
 		],
+		"variables": {
+			"DataBRZ": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
 		"folder": {
 			"name": "Modelos/VTEX"
 		},
