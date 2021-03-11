@@ -2,6 +2,10 @@
 	"name": "BinaryDataDestination",
 	"properties": {
 		"description": "It describes the destination store.",
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"FolderPath": {
 				"type": "String"
@@ -20,11 +24,7 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"folderPath": {
-					"value": "@concat(dataset().FolderPath,'/',dataset().Directory)",
-					"type": "Expression"
-				}
+				"type": "AzureBlobFSLocation"
 			}
 		}
 	}
