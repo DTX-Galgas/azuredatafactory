@@ -1,6 +1,10 @@
 {
 	"name": "DS_HTTP_BIN_ORIGEM",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"RalativeURL": {
 				"type": "string"
@@ -13,11 +17,7 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation",
-				"relativeUrl": {
-					"value": "@dataset().RalativeURL",
-					"type": "Expression"
-				}
+				"type": "AzureBlobFSLocation"
 			}
 		}
 	}
