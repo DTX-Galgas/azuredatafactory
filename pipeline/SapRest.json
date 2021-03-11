@@ -101,24 +101,105 @@
 							},
 							{
 								"source": {
-									"path": "['PARVW']"
+									"path": "['POSNR']"
 								},
 								"sink": {
-									"name": "PARVW",
+									"name": "POSNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['LIFNR']"
+									"path": "['MATNR']"
 								},
 								"sink": {
-									"name": "LIFNR",
+									"name": "MATNR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['PSTYV']"
+								},
+								"sink": {
+									"name": "PSTYV",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UMZIZ']"
+								},
+								"sink": {
+									"name": "UMZIZ",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['UMZIN']"
+								},
+								"sink": {
+									"name": "UMZIN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['NETWR']"
+								},
+								"sink": {
+									"name": "NETWR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KWMENG']"
+								},
+								"sink": {
+									"name": "KWMENG",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VRKME']"
+								},
+								"sink": {
+									"name": "VRKME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['WERKS']"
+								},
+								"sink": {
+									"name": "WERKS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['J_3ASEAN']"
+								},
+								"sink": {
+									"name": "J_3ASEAN",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['_-AFS_-COLLECTION']"
+								},
+								"sink": {
+									"name": "_-AFS_-COLLECTION",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_VBPA']",
+						"collectionReference": "$['E_VBAP']",
 						"mapComplexValuesToString": true
 					}
 				},
