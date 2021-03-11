@@ -25,9 +25,7 @@
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": {
-						"id": 1
-					}
+					"body": "id=1"
 				}
 			},
 			{
