@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "LogicApp Google drive",
+				"description": "1=1",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -44,6 +45,7 @@
 			},
 			{
 				"name": "LogicApp Google drive tentativa2",
+				"description": "1=1",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
@@ -91,6 +93,7 @@
 			},
 			{
 				"name": "LogicApp Google drive tentativa3",
+				"description": "1=1",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
