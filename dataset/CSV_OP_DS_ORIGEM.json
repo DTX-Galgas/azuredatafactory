@@ -1,6 +1,10 @@
 {
 	"name": "CSV_OP_DS_ORIGEM",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"FilePath": {
 				"type": "string"
@@ -16,15 +20,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"fileName": {
-					"value": "@dataset().FileName",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@dataset().FilePath",
-					"type": "Expression"
-				}
+				"type": "AzureBlobFSLocation"
 			},
 			"columnDelimiter": ";",
 			"escapeChar": "\\",
