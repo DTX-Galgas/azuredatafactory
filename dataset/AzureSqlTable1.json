@@ -90,7 +90,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "DIM_DATA"
+			"table": "planilha_produto"
 		}
 	}
 }
