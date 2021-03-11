@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "KONV.json",
-				"folderPath": "brazil/transacional/saprest/konv",
+				"fileName": "VBPA.json",
+				"folderPath": "brazil/transacional/saprest/vbpa",
 				"fileSystem": "raw"
 			}
 		},
