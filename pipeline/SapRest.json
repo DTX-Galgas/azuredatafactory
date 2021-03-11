@@ -5,7 +5,14 @@
 			{
 				"name": "download json",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "convert parquet",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "10.00:00:00",
 					"retry": 0,
@@ -20,7 +27,7 @@
 						"httpRequestTimeout": "10.00:00:00",
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "POST",
-						"requestBody": "{\n    \"I_BUKRS\": [\n        \"2001\",\n        \"5001\"\n    ],\n    \"I_DATA_INI\":\"2020-12-07\",\n    \"I_DATA_FIM\":\"2020-12-07\",\n    \"I_REGISTRO_CRIADO\":\"X\",\n    \"I_REGISTRO_ALTERADO\":\"\",\n    \"I_QTDE_REGISTROS\":\"\"\n}"
+						"requestBody": "{\n    \"I_BUKRS\": [\n        \"2001\",\n        \"5001\"\n    ],\n    \"I_DATA_INI\":\"2020-12-07\",\n    \"I_DATA_FIM\":\"2020-12-07\",\n    \"I_REGISTRO_CRIADO\":\"X\",\n    \"I_REGISTRO_ALTERADO\":\"\",\n    \"I_QTDE_REGISTROS\":\"1000\"\n}"
 					},
 					"sink": {
 						"type": "JsonSink",
@@ -49,14 +56,7 @@
 			{
 				"name": "convert parquet",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "download json",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -92,60 +92,105 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['OBJEK']"
+									"path": "['KNUMV']"
 								},
 								"sink": {
-									"name": "OBJEK",
+									"name": "KNUMV",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATINN']"
+									"path": "['KPOSN']"
 								},
 								"sink": {
-									"name": "ATINN",
+									"name": "KPOSN",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATZHL']"
+									"path": "['STUNR']"
 								},
 								"sink": {
-									"name": "ATZHL",
+									"name": "STUNR",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['MAFID']"
+									"path": "['ZAEHK']"
 								},
 								"sink": {
-									"name": "MAFID",
+									"name": "ZAEHK",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['KLART']"
+									"path": "['KSCHL']"
 								},
 								"sink": {
-									"name": "KLART",
+									"name": "KSCHL",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['ATWRT']"
+									"path": "['KWERT']"
 								},
 								"sink": {
-									"name": "ATWRT",
+									"name": "KWERT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KAWRT']"
+								},
+								"sink": {
+									"name": "KAWRT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KBETR']"
+								},
+								"sink": {
+									"name": "KBETR",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KSTAT']"
+								},
+								"sink": {
+									"name": "KSTAT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['KDATU']"
+								},
+								"sink": {
+									"name": "KDATU",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['VBELN']"
+								},
+								"sink": {
+									"name": "VBELN",
 									"type": "String"
 								}
 							}
 						],
-						"collectionReference": "$['E_AUSP']",
+						"collectionReference": "$['E_KONV']",
 						"mapComplexValuesToString": true
 					}
 				},
