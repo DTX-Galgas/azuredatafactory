@@ -2,6 +2,10 @@
 	"name": "BinaryDataSource_File",
 	"properties": {
 		"description": "It describes the file in the data source store.",
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"FolderPath": {
 				"type": "String"
@@ -17,15 +21,7 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"fileName": {
-					"value": "@dataset().filename",
-					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@concat(dataset().FolderPath)",
-					"type": "Expression"
-				}
+				"type": "AzureBlobFSLocation"
 			}
 		}
 	}
