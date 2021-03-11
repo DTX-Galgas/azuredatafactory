@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "AUSP.json",
-				"folderPath": "brazil/transacional/saprest/ausp",
+				"fileName": "KONV.json",
+				"folderPath": "brazil/transacional/saprest/konv",
 				"fileSystem": "raw"
 			}
 		},
