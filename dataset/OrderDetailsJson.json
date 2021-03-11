@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "order_total.json",
-				"folderPath": "brazil/vtex/",
+				"folderPath": "brazil/vtex",
 				"fileSystem": "raw"
 			}
 		},
