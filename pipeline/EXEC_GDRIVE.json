@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "LogicApp Google drive",
-				"description": "1=1",
+				"description": "{\"id\":1}",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -25,7 +25,9 @@
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": []
+					"body": {
+						"id": 1
+					}
 				}
 			},
 			{
@@ -70,9 +72,12 @@
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
 					},
-					"method": "GET",
+					"method": "POST",
 					"headers": {
 						"Content-Type": "application/json"
+					},
+					"body": {
+						"id": 1
 					}
 				}
 			},
@@ -118,9 +123,12 @@
 						"referenceName": "AutoResolveIntegrationRuntime",
 						"type": "IntegrationRuntimeReference"
 					},
-					"method": "GET",
+					"method": "POST",
 					"headers": {
 						"Content-Type": "application/json"
+					},
+					"body": {
+						"id": 1
 					}
 				}
 			}
