@@ -51,6 +51,12 @@
 					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
