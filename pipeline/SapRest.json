@@ -5,14 +5,7 @@
 			{
 				"name": "download json",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "convert parquet",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "10.00:00:00",
 					"retry": 0,
@@ -56,7 +49,14 @@
 			{
 				"name": "convert parquet",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "download json",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
