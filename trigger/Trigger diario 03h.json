@@ -33,6 +33,12 @@
 					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
