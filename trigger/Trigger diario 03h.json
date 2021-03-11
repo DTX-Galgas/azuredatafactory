@@ -15,6 +15,12 @@
 					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
