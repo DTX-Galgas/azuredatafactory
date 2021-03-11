@@ -251,7 +251,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "DataBRZ",
-					"value": ""
+					"value": "."
 				}
 			}
 		],
