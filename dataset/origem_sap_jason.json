@@ -10,57 +10,33 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "KONV.json",
-				"folderPath": "brazil/transacional/saprest/konv",
+				"fileName": "VBPA.json",
+				"folderPath": "brazil/transacional/saprest/vbpa",
 				"fileSystem": "raw"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"E_KONV": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBPA": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"KNUMV": {
-								"type": "string"
-							},
-							"KPOSN": {
-								"type": "string"
-							},
-							"STUNR": {
-								"type": "string"
-							},
-							"ZAEHK": {
-								"type": "string"
-							},
-							"KSCHL": {
-								"type": "string"
-							},
-							"KWERT": {
-								"type": "number"
-							},
-							"KAWRT": {
-								"type": "number"
-							},
-							"KBETR": {
-								"type": "number"
-							},
-							"KSTAT": {
-								"type": "string"
-							},
-							"KDATU": {
-								"type": "string"
-							},
 							"VBELN": {
+								"type": "string"
+							},
+							"PARVW": {
+								"type": "string"
+							},
+							"LIFNR": {
 								"type": "string"
 							}
 						}
 					}
-				},
-				"E_MENSAGEM": {
-					"type": "string"
 				}
 			}
 		}
