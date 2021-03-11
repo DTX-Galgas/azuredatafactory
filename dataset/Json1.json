@@ -1,6 +1,10 @@
 {
 	"name": "Json1",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BLOB_IMAGENS",
+			"type": "LinkedServiceReference"
+		},
 		"parameters": {
 			"ParRelativeURL": {
 				"type": "string"
@@ -10,11 +14,7 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation",
-				"relativeUrl": {
-					"value": "@dataset().ParRelativeURL",
-					"type": "Expression"
-				}
+				"type": "AzureBlobStorageLocation"
 			}
 		},
 		"schema": {}
