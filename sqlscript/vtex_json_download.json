@@ -1,0 +1,19 @@
+{
+	"name": "vtex_json_download",
+	"properties": {
+		"folder": {
+			"name": "MODELO DIMENSIONAL/vtex"
+		},
+		"content": {
+			"query": "\n\n\n\nurl = \"https://malwee.vtexcommercestable.com.br/api/oms/pvt/orders?f_creationDate=creationDate:[2020-02-02T00:09:00.000Z TO 2020-02-02T23:10:00.000Z]\"\n\nupdate [dbo].[CTR_ADF_API_ENDPOINT] \nset NOM_URL_RELATIVA = 'orders?f_creationDate=creationDate:',\nVAL_PARAMETRO_1 = 'BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO',\nVAL_PARAMETRO_2 = 'vtexappkey-malwee-AHFBTB',\nVAL_PARAMETRO_3 = null,\nVAL_PARAMETRO_4 = NULL\nwhere  COD_ENDPOINT = 4\n\nSELECT CONVERT(varchar(50), DAT_INGESTAO, 127) +'Z',DAT_INGESTAO    FROM [dbo].[CTR_ADF_API_ENDPOINT] where  COD_ENDPOINT = 4\n\n\n2021-03-11T00:00:00.000Z\nSELECT\nCONVERT(VARCHAR,CONVERT(DATE,DAT_INGESTAO)) + 'T00:00:00.000Z' AS DATA_INICIO_ORDER_VTEX ,\nCONVERT(VARCHAR,CONVERT(DATE,DAT_ULTI_PROCESSAMENTO)) + 'T00:00:00.000Z' AS DATA_FINAL_ORDER_VTEX\nFROM [dbo].[CTR_ADF_API_ENDPOINT] where  COD_ENDPOINT = 4\n\n \nSELECT * FROM  [dbo].[CTR_ADF_API_ENDPOINT] where  COD_ENDPOINT = 4\n\n\n\n\nBGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO\n\n\n\n\n[dbo].[PADFCredenciaisAPI]  5\n[dbo].[PADFCredenciaisAPI] 4\n[dbo].[PLogADFItemAPI] 4\n\n\n@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']')\n\n\n[dbo].[PADFCredenciaisAPI] 4\nGO\n\n[dbo].[PADFDataProcessamentoAPI] 4\nGO\n\n\nurl = \"https://malwee.vtexcommercestable.com.br/api/oms/pvt/orders?f_creationDate=creationDate:[2020-02-02T00:09:00.000Z TO 2020-02-02T23:10:00.000Z]\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\torders?f_creationDate=creationDate:[2021-01-28T00:00:00.000Z TO 2021-03-11T00:00:00.000Z]\n\n\n@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT,\n'_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json')) \n\n@concat(\nactivity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']')",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
