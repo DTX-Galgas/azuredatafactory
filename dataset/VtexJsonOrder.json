@@ -1,0 +1,222 @@
+{
+	"name": "VtexJsonOrder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "vtex_orders_202103112220.json",
+				"folderPath": "brazil/vtex/vtex_orders/2021/03/11",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"list": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"orderId": {
+								"type": "string"
+							},
+							"creationDate": {
+								"type": "string"
+							},
+							"clientName": {
+								"type": "string"
+							},
+							"items": {
+								"type": "null"
+							},
+							"totalValue": {
+								"type": "number"
+							},
+							"paymentNames": {
+								"type": "string"
+							},
+							"status": {
+								"type": "string"
+							},
+							"statusDescription": {
+								"type": "string"
+							},
+							"marketPlaceOrderId": {
+								"type": "null"
+							},
+							"sequence": {
+								"type": "string"
+							},
+							"salesChannel": {
+								"type": "string"
+							},
+							"affiliateId": {
+								"type": "string"
+							},
+							"origin": {
+								"type": "string"
+							},
+							"workflowInErrorState": {
+								"type": "boolean"
+							},
+							"workflowInRetry": {
+								"type": "boolean"
+							},
+							"lastMessageUnread": {
+								"type": "string"
+							},
+							"ShippingEstimatedDate": {
+								"type": "null"
+							},
+							"ShippingEstimatedDateMax": {
+								"type": "string"
+							},
+							"ShippingEstimatedDateMin": {
+								"type": "string"
+							},
+							"orderIsComplete": {
+								"type": "boolean"
+							},
+							"listId": {
+								"type": "null"
+							},
+							"listType": {
+								"type": "null"
+							},
+							"authorizedDate": {
+								"type": "string"
+							},
+							"callCenterOperatorName": {
+								"type": "null"
+							},
+							"totalItems": {
+								"type": "integer"
+							},
+							"currencyCode": {
+								"type": "string"
+							},
+							"hostname": {
+								"type": "string"
+							},
+							"invoiceOutput": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"invoiceInput": {
+								"type": "null"
+							}
+						}
+					}
+				},
+				"facets": {
+					"type": "array"
+				},
+				"paging": {
+					"type": "object",
+					"properties": {
+						"total": {
+							"type": "integer"
+						},
+						"pages": {
+							"type": "integer"
+						},
+						"currentPage": {
+							"type": "integer"
+						},
+						"perPage": {
+							"type": "integer"
+						}
+					}
+				},
+				"stats": {
+					"type": "object",
+					"properties": {
+						"stats": {
+							"type": "object",
+							"properties": {
+								"totalValue": {
+									"type": "object",
+									"properties": {
+										"Count": {
+											"type": "integer"
+										},
+										"Max": {
+											"type": "number"
+										},
+										"Mean": {
+											"type": "number"
+										},
+										"Min": {
+											"type": "number"
+										},
+										"Missing": {
+											"type": "integer"
+										},
+										"StdDev": {
+											"type": "number"
+										},
+										"Sum": {
+											"type": "number"
+										},
+										"SumOfSquares": {
+											"type": "number"
+										},
+										"Facets": {
+											"type": "object"
+										}
+									}
+								},
+								"totalItems": {
+									"type": "object",
+									"properties": {
+										"Count": {
+											"type": "integer"
+										},
+										"Max": {
+											"type": "number"
+										},
+										"Mean": {
+											"type": "number"
+										},
+										"Min": {
+											"type": "number"
+										},
+										"Missing": {
+											"type": "integer"
+										},
+										"StdDev": {
+											"type": "number"
+										},
+										"Sum": {
+											"type": "number"
+										},
+										"SumOfSquares": {
+											"type": "number"
+										},
+										"Facets": {
+											"type": "object"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"reportRecordsLimit": {
+					"type": "integer"
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
