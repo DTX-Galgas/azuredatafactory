@@ -116,6 +116,10 @@
 									"ParCodTabela": {
 										"value": "@pipeline().parameters.ParCodTabela",
 										"type": "Expression"
+									},
+									"ParIndDataCleansing": {
+										"value": "@activity('GravaLogInicio').output.firstRow.IND_DATA_CLEANSING",
+										"type": "Expression"
 									}
 								}
 							}
