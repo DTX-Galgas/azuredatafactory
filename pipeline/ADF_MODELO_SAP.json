@@ -740,7 +740,10 @@
 								},
 								"dataset": {
 									"referenceName": "SQL_DS_CONTROLE",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "Tabela"
+									}
 								}
 							}
 						},
