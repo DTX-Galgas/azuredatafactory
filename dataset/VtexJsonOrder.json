@@ -5,6 +5,17 @@
 			"referenceName": "ADLS_DESTINO_GEN2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FilePathRaw": {
+				"type": "string"
+			},
+			"FileNameRaw": {
+				"type": "string"
+			},
+			"FileSystemRaw": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
