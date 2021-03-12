@@ -68,18 +68,10 @@
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Day",
+				"frequency": "Hour",
 				"interval": 1,
 				"startTime": "2021-03-10T12:58:00",
-				"timeZone": "E. South America Standard Time",
-				"schedule": {
-					"minutes": [
-						0
-					],
-					"hours": [
-						10
-					]
-				}
+				"timeZone": "E. South America Standard Time"
 			}
 		}
 	}
