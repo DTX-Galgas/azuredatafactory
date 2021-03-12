@@ -471,6 +471,12 @@
 			},
 			"PathRaw": {
 				"type": "String"
+			},
+			"AppToken": {
+				"type": "String"
+			},
+			"AappKey": {
+				"type": "String"
 			}
 		},
 		"folder": {
