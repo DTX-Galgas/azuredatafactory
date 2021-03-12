@@ -15,7 +15,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "con-malwee-sap-ecc",
-				"secretVersion": "https://dlpocmalweeg2.dfs.core.windows.net"
+				"secretVersion": ""
 			},
 			"server": "srvsqecc01.malwee.com.br",
 			"systemNumber": "00"
