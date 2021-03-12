@@ -136,7 +136,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,18)",
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
 												"type": "Expression"
 											}
 										}
