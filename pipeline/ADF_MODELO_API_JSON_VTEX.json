@@ -395,7 +395,7 @@
 								{
 									"activity": "API_JSON_TO_PARQUET",
 									"dependencyConditions": [
-										"Succeeded"
+										"Skipped"
 									]
 								}
 							],
@@ -515,7 +515,7 @@
 								{
 									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
-										"Succeeded"
+										"Skipped"
 									]
 								}
 							],
