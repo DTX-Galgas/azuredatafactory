@@ -539,11 +539,26 @@
 										"type": "JsonReadSettings"
 									}
 								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "VtexJsonOrder",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 									"type": "DatasetReference"
 								}
 							]
