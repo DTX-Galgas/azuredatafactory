@@ -559,7 +559,21 @@
 							"outputs": [
 								{
 									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRaw')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRaw')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
