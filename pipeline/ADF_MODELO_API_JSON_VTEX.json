@@ -145,7 +145,10 @@
 									"requestInterval": "00.00:00:00.010",
 									"requestMethod": "GET",
 									"additionalHeaders": {
-										"X-VTEX-API-AppToken": "BGSTNGUYXERIIEDBJRZSYUKFBQKUWMSXDYKWMCMYQUIWBNIBKWWHACSHVNSWWZCKMTFKTHOGEACELODNHIKAPKXAGDAZKQCQRXJIHYICHPCAANVHJEONPCUBWFEPHPWO",
+										"X-VTEX-API-AppToken": {
+											"value": "@variables('AppToken')",
+											"type": "Expression"
+										},
 										"x-vtex-api-appkey": "vtexappkey-malwee-AHFBTB"
 									}
 								},
