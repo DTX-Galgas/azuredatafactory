@@ -21,9 +21,18 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "vtex_orders_202103112220.json",
-				"folderPath": "brazil/vtex/vtex_orders/2021/03/11",
-				"fileSystem": "raw"
+				"fileName": {
+					"value": "@dataset().FileNameRaw",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePathRaw",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystemRaw",
+					"type": "Expression"
+				}
 			}
 		},
 		"schema": {
