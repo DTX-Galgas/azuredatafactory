@@ -611,7 +611,8 @@
 												"path": "['status']"
 											},
 											"sink": {
-												"name": "status"
+												"name": "status",
+												"type": "String"
 											}
 										},
 										{
@@ -799,7 +800,8 @@
 												"path": "['invoiceOutput']"
 											},
 											"sink": {
-												"name": "itemsInvoiceOutput"
+												"name": "itemsInvoiceOutput",
+												"type": "String"
 											}
 										},
 										{
