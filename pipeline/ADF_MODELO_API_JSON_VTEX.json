@@ -149,7 +149,10 @@
 											"value": "@variables('AppToken')",
 											"type": "Expression"
 										},
-										"x-vtex-api-appkey": "vtexappkey-malwee-AHFBTB"
+										"x-vtex-api-appkey": {
+											"value": "@variables('AppKey')",
+											"type": "Expression"
+										}
 									}
 								},
 								"sink": {
