@@ -584,7 +584,7 @@
 												"path": "['items']"
 											},
 											"sink": {
-												"name": "items"
+												"name": "itemsOrder"
 											}
 										},
 										{
@@ -798,8 +798,7 @@
 												"path": "['invoiceOutput']"
 											},
 											"sink": {
-												"name": "items",
-												"type": "String"
+												"name": "itemsInvoiceOutput"
 											}
 										},
 										{
