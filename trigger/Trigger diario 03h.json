@@ -69,7 +69,7 @@
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 1,
+				"interval": 15,
 				"startTime": "2021-03-10T12:58:00",
 				"timeZone": "E. South America Standard Time"
 			}
