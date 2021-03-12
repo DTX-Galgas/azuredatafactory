@@ -553,7 +553,21 @@
 							"inputs": [
 								{
 									"referenceName": "VtexJsonOrder",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePathRaw": {
+											"value": "@variables('FilePathRaw')",
+											"type": "Expression"
+										},
+										"FileNameRaw": {
+											"value": "@variables('FileNameRaw')",
+											"type": "Expression"
+										},
+										"FileSystemRaw": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
