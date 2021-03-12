@@ -351,6 +351,19 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "IndDataCleansing",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "IndDestinoSQL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": []
 						}
 					]
 				}
