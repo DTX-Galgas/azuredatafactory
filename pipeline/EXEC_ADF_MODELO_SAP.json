@@ -393,6 +393,9 @@
 			},
 			"IndDestinoSQL": {
 				"type": "String"
+			},
+			"IndDataCleansing": {
+				"type": "String"
 			}
 		},
 		"folder": {
