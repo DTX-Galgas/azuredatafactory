@@ -393,7 +393,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_PARQUET",
+									"activity": "ATUALIZA_PAGAMENTO_PENDENTE",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -910,7 +910,14 @@
 						{
 							"name": "ATUALIZA_PAGAMENTO_PENDENTE",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
