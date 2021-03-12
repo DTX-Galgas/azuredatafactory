@@ -115,7 +115,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "RelativeURL",
+									"activity": "AppKey",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -401,6 +401,46 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "AppToken",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "RelativeURL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppToken",
+								"value": {
+									"value": "activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppKey",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "AppToken",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppKey",
+								"value": {
+									"value": "activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -475,7 +515,7 @@
 			"AppToken": {
 				"type": "String"
 			},
-			"AappKey": {
+			"AppKey": {
 				"type": "String"
 			}
 		},
