@@ -584,7 +584,8 @@
 												"path": "['items']"
 											},
 											"sink": {
-												"name": "itemsOrder"
+												"name": "itemsOrder",
+												"type": "String"
 											}
 										},
 										{
