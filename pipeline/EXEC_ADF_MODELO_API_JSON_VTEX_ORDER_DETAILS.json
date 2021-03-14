@@ -187,6 +187,9 @@
 		"parameters": {
 			"ParCodEndPoint": {
 				"type": "int"
+			},
+			"ParNumeroOrder": {
+				"type": "string"
 			}
 		},
 		"variables": {
