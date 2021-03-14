@@ -600,7 +600,10 @@
 									"referenceName": "VtexOrderDetailsOrderParquet",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": "brazil/vtex/vtex_orders_details/parquet/",
+										"FilePath": {
+											"value": "@variables('FilePathRawOderHeaderParquet')",
+											"type": "Expression"
+										},
 										"FileName": {
 											"value": "@variables('FileNameRawParquet')",
 											"type": "Expression"
