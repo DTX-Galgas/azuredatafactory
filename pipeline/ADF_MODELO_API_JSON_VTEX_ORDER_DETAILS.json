@@ -900,7 +900,7 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "FileNameRawJson",
+								"variableName": "FilePathRawParquet",
 								"value": {
 									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'.parquet'))\n",
 									"type": "Expression"
