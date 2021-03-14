@@ -810,7 +810,7 @@
 												"path": "$['orderId']"
 											},
 											"sink": {
-												"type": "String"
+												"name": "orderid"
 											}
 										}
 									],
