@@ -551,12 +551,31 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sequence']"
+											},
+											"sink": {
+												"name": "sequence"
+											}
+										}
+									],
+									"collectionReference": "",
 									"mapComplexValuesToString": true
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"referenceName": "VtexOrderDetailsOrder",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
