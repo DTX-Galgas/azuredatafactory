@@ -56,7 +56,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER",
+						"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
@@ -67,6 +67,10 @@
 						},
 						"ParCodEndPoint": {
 							"value": "@pipeline().parameters.ParCodEndPoint",
+							"type": "Expression"
+						},
+						"ParNumeroOrder": {
+							"value": "@pipeline().parameters.ParNumeroOrder",
 							"type": "Expression"
 						}
 					}
