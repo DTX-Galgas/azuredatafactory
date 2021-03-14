@@ -397,6 +397,12 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
 							],
 							"userProperties": [],
@@ -754,6 +760,89 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "API_JSON_TO_ORDER_TOTALS_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": ""
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderTotalsParquet",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
