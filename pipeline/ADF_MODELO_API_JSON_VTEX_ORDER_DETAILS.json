@@ -551,18 +551,6 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"path": "$['orderId']"
-											},
-											"sink": {
-												"name": "orderid",
-												"type": "String"
-											}
-										}
-									],
-									"collectionReference": "",
 									"mapComplexValuesToString": true
 								}
 							},
