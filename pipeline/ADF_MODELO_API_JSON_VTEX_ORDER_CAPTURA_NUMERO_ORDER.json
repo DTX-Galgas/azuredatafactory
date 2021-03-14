@@ -1,0 +1,9 @@
+{
+	"name": "ADF_MODELO_API_JSON_VTEX_ORDER_CAPTURA_NUMERO_ORDER",
+	"properties": {
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	}
+}
