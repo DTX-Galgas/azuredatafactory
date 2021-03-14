@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CAPTURA NUMERO ORDER",
+				"name": "CapturaDataExportacao",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -29,8 +29,72 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "DataExportacao",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "CapturaDataExportacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "DATA_HORA_EXPORTACAO",
+					"value": {
+						"value": "@activity('CapturaDataExportacao').output.FirstRow.DATA_HORA_EXPORTACAO\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "OrderID",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "DataExportacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource",
+						"sqlReaderStoredProcedureName": "[dbo].[SP_VTEX_RETORNA_ORDERID_PENDENTE]",
+						"storedProcedureParameters": {
+							"DATA_HORA_EXPORTACAO": {
+								"type": "String",
+								"value": {
+									"value": "@variables('DATA_HORA_EXPORTACAO')",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "wsdevbrsynapse",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
+		"variables": {
+			"DATA_HORA_EXPORTACAO": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "Modelos/API JSON/VTEX"
 		},
