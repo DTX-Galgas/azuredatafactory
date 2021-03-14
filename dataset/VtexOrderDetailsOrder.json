@@ -9,10 +9,10 @@
 			"FilePath": {
 				"type": "string"
 			},
-			"FileSystem": {
+			"FileName": {
 				"type": "string"
 			},
-			"FileName": {
+			"FileSystem": {
 				"type": "string"
 			}
 		},
