@@ -703,7 +703,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexOrderDetailsOrder",
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
