@@ -601,7 +601,10 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": "brazil/vtex/vtex_orders_details/parquet/",
-										"FileName": "order.parquet",
+										"FileName": {
+											"value": "@variables('FileNameRawParquet')",
+											"type": "Expression"
+										},
 										"FileSystem": {
 											"value": "@variables('FileSystemRaw')",
 											"type": "Expression"
@@ -643,7 +646,7 @@
 							],
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "FilePathRawOderHeaderParquet",
+								"variableName": "FileNameRawJson",
 								"value": {
 									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_header.parquet'))\n",
 									"type": "Expression"
