@@ -805,7 +805,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nReplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW)))",
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nReplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_DESTINO)))",
 											"type": "Expression"
 										},
 										"FileName": {
