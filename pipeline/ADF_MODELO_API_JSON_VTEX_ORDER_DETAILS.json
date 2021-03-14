@@ -557,7 +557,8 @@
 												"path": "$['orderId']"
 											},
 											"sink": {
-												"name": "orderid"
+												"name": "orderid",
+												"type": "String"
 											}
 										},
 										{
@@ -565,7 +566,8 @@
 												"path": "$['sequence']"
 											},
 											"sink": {
-												"name": "sequence"
+												"name": "sequence",
+												"type": "String"
 											}
 										}
 									],
