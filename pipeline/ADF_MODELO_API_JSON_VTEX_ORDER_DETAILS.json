@@ -602,7 +602,10 @@
 									"parameters": {
 										"FilePath": "brazil/vtex/vtex_orders_details/parquet/",
 										"FileName": "order.parquet",
-										"FileSystem": "raw"
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
 									}
 								}
 							]
