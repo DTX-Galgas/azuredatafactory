@@ -812,6 +812,33 @@
 											"sink": {
 												"name": "orderid"
 											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['id']"
+											},
+											"sink": {
+												"name": "total_items_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['name']"
+											},
+											"sink": {
+												"name": "total_items_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['value']"
+											},
+											"sink": {
+												"name": "total_items_value",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": ""
