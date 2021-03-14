@@ -1,6 +1,36 @@
 {
 	"name": "ADF_MODELO_API_JSON_VTEX_ORDER_CAPTURA_NUMERO_ORDER",
 	"properties": {
+		"activities": [
+			{
+				"name": "CAPTURA NUMERO ORDER",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": " \nselect   CONVERT(VARCHAR(16),DAT_ULTI_PROCESSAMENTO,120)+':00' as DATA_HORA_EXPORTACAO \nfrom CTR_ADF_API_ENDPOINT where COD_ENDPOINT = 4",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			}
+		],
 		"folder": {
 			"name": "Modelos/API JSON/VTEX"
 		},
