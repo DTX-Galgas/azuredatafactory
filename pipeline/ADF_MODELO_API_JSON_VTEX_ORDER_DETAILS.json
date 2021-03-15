@@ -1345,6 +1345,12 @@
 			},
 			"FileNameRawOrderItemsParquet": {
 				"type": "String"
+			},
+			"FilePathRawOderClientParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderClientParquet": {
+				"type": "String"
 			}
 		},
 		"folder": {
