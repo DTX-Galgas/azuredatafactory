@@ -1286,7 +1286,93 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['email']"
+											},
+											"sink": {
+												"name": "email",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['firstName']"
+											},
+											"sink": {
+												"name": "firstName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['firstName']"
+											},
+											"sink": {
+												"name": "firstName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['lastName']"
+											},
+											"sink": {
+												"name": "lastName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['documentType']"
+											},
+											"sink": {
+												"name": "documentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['document']"
+											},
+											"sink": {
+												"name": "document",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['phone']"
+											},
+											"sink": {
+												"name": "phone",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['street']"
+											},
+											"sink": {
+												"name": "street",
+												"type": "String"
+											}
+										}
+									]
+								}
 							},
 							"inputs": [
 								{
