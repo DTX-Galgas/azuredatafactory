@@ -962,7 +962,129 @@
 										"type": "JsonReadSettings"
 									}
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['uniqueId']"
+											},
+											"sink": {
+												"name": "uniqueid"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['id']"
+											},
+											"sink": {
+												"name": "id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['ean']"
+											},
+											"sink": {
+												"name": "ean",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['lockId']"
+											},
+											"sink": {
+												"name": "lockId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['quantity']"
+											},
+											"sink": {
+												"name": "quantity",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['seller']"
+											},
+											"sink": {
+												"name": "seller",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['name']"
+											},
+											"sink": {
+												"name": "name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['refId']"
+											},
+											"sink": {
+												"name": "refId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['imageUrl']"
+											},
+											"sink": {
+												"name": "imageUrl"
+											}
+										}
+									],
+									"collectionReference": "$['items']",
+									"mapComplexValuesToString": true
+								}
 							},
 							"inputs": [
 								{
@@ -972,6 +1094,26 @@
 										"FilePath": "@variables('FilePathRawJson')",
 										"FileName": "@variables('FileNameRawJson')",
 										"FileSystem": "@variables('FileSystemRaw')"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderItemsParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderItemsParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderItemsParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
 									}
 								}
 							]
