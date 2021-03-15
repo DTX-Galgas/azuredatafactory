@@ -43,47 +43,13 @@
 				}
 			},
 			{
-				"name": "adfModeloVetex",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "GravaLogInicio",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ParIdPipeline": {
-							"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
-							"type": "Expression"
-						},
-						"ParCodEndPoint": {
-							"value": "@pipeline().parameters.ParCodEndPoint",
-							"type": "Expression"
-						},
-						"ParNumeroOrder": {
-							"value": "@pipeline().parameters.ParNumeroOrder",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "GravaLogErroUPD",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "adfModeloVetex",
+						"activity": "Execute Pipeline1",
 						"dependencyConditions": [
-							"Failed"
+							"Succeeded"
 						]
 					}
 				],
@@ -185,6 +151,26 @@
 						"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT,']')",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "GravaLogInicio",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
