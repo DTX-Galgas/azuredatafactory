@@ -2011,7 +2011,7 @@
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_items.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_items.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
