@@ -43,7 +43,7 @@
 				}
 			},
 			{
-				"name": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS_copy1",
+				"name": "adfModeloVetex",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -81,7 +81,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS_copy1",
+						"activity": "adfModeloVetex",
 						"dependencyConditions": [
 							"Failed"
 						]
