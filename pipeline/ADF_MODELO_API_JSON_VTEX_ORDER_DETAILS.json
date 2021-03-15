@@ -951,8 +951,30 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": "@variables('FilePathRawJson')",
+										"FileName": "@variables('FileNameRawJson')",
+										"FileSystem": "@variables('FileSystemRaw')"
+									}
+								}
+							]
 						},
 						{
 							"name": "FilePathRawOderItemsParquet",
