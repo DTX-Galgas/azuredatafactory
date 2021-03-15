@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX",
+						"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
