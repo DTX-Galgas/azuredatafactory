@@ -1144,6 +1144,24 @@
 												"name": "categories_name_2",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][2]['id']"
+											},
+											"sink": {
+												"name": "categories_id_3",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][2]['name']"
+											},
+											"sink": {
+												"name": "categories_name_3",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": "$['items']",
