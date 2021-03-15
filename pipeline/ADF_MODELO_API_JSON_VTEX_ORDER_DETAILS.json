@@ -2086,6 +2086,45 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "FileNameCleansingOrderHeaderParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameCleansingOrderHeaderParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_header.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameCleansingOrderTotalsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameCleansingOrderTotalsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_totals.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameCleansingOrderItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameCleansingOrderItemsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_items.parquet'))",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -2174,6 +2213,27 @@
 				"type": "String"
 			},
 			"FileSystemCleansing": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderHeaderParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderTotalsParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderItemsParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderClientParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderPaymentParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderShippingParquet": {
+				"type": "String"
+			},
+			"FileNameCleansingOrderShippingItemsParquet": {
 				"type": "String"
 			}
 		},
