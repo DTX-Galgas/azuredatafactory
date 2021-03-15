@@ -401,6 +401,12 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
 							],
 							"userProperties": [],
@@ -1305,6 +1311,229 @@
 										},
 										"FileName": {
 											"value": "@variables('FileNameRawOrderPaymentParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_SHIPPING_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']"
+											},
+											"sink": {
+												"name": "addressType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['receiverName']"
+											},
+											"sink": {
+												"name": "receiverName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['addressId']"
+											},
+											"sink": {
+												"name": "addressId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['postalCode']"
+											},
+											"sink": {
+												"name": "postalCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['city']"
+											},
+											"sink": {
+												"name": "city",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['state']"
+											},
+											"sink": {
+												"name": "state",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['country']"
+											},
+											"sink": {
+												"name": "country",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['street']"
+											},
+											"sink": {
+												"name": "street",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['number']"
+											},
+											"sink": {
+												"name": "number",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['neighborhood']"
+											},
+											"sink": {
+												"name": "neighborhood",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['complement']"
+											},
+											"sink": {
+												"name": "complement",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['reference']"
+											},
+											"sink": {
+												"name": "reference",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][0]"
+											},
+											"sink": {
+												"name": "geoCoordinates_X",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][1]"
+											},
+											"sink": {
+												"name": "geoCoordinates_Y",
+												"type": "String"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderShippingParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderShippingParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderShippingParquet')",
 											"type": "Expression"
 										},
 										"FileSystem": {
