@@ -1078,7 +1078,26 @@
 												"path": "$['items'][0]['imageUrl']"
 											},
 											"sink": {
-												"name": "imageUrl"
+												"name": "imageUrl",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandName']"
+											},
+											"sink": {
+												"name": "brandName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandId']"
+											},
+											"sink": {
+												"name": "brandId",
+												"type": "String"
 											}
 										}
 									],
