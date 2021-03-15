@@ -2159,6 +2159,9 @@
 			},
 			"FileNameRawOrderShippingItemsParquet": {
 				"type": "String"
+			},
+			"FileSystemCleansing": {
+				"type": "String"
 			}
 		},
 		"folder": {
