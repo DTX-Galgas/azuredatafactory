@@ -2073,6 +2073,19 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "FileSystemCleansing",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileSystemCleansing",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
