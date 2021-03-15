@@ -303,26 +303,6 @@
 							}
 						},
 						{
-							"name": "RelativeURL",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GravaLogInicioItem-ToDL",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "RalativeURL",
-								"value": {
-									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,pipeline().parameters.ParNumeroOrder)\n",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "GravaLogInicioItem-ToDL",
 							"type": "Lookup",
 							"dependsOn": [],
@@ -437,7 +417,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "RelativeURL",
+									"activity": "GravaLogInicioItem-ToDL",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1698,7 +1678,22 @@
 					"expression": {
 						"value": "@equals(1,1)",
 						"type": "Expression"
-					}
+					},
+					"ifTrueActivities": [
+						{
+							"name": "RelativeURL",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RalativeURL",
+								"value": {
+									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,pipeline().parameters.ParNumeroOrder)\n",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
