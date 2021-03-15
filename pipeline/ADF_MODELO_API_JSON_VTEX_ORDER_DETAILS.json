@@ -1224,19 +1224,19 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
+												"path": "$['orderId']"
 											},
 											"sink": {
-												"name": "id",
+												"name": "OrderId",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
 											},
 											"sink": {
-												"name": "paymentSystem",
+												"name": "id",
 												"type": "String"
 											}
 										},
@@ -1251,10 +1251,10 @@
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
 											},
 											"sink": {
-												"name": "value",
+												"name": "paymentSystem",
 												"type": "String"
 											}
 										},
@@ -1273,6 +1273,15 @@
 											},
 											"sink": {
 												"name": "referenceValue",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+											},
+											"sink": {
+												"name": "value",
 												"type": "String"
 											}
 										}
