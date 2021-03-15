@@ -1,0 +1,9 @@
+{
+	"name": "ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS_RAW_CLEANSING",
+	"properties": {
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	}
+}
