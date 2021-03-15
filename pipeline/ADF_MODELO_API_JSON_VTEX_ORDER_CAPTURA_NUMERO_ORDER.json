@@ -88,6 +88,48 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "executa downlod order detalhe",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "OrderID",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('OrderID').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "executa EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParCodEndPoint": "5",
+									"ParNumeroOrder": {
+										"value": "@{item().OrderID}",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
