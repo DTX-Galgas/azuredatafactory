@@ -97,7 +97,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "GravaVariaveis",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -1681,6 +1681,25 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "GravaVariaveis",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(1,1)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -1751,6 +1770,12 @@
 				"type": "String"
 			},
 			"FileNameRawOrderPaymentParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderShippingParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderShippingParquet": {
 				"type": "String"
 			}
 		},
