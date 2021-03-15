@@ -815,7 +815,7 @@
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['id']"
+												"path": "['id']"
 											},
 											"sink": {
 												"name": "total_items_id",
@@ -824,7 +824,7 @@
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['name']"
+												"path": "['name']"
 											},
 											"sink": {
 												"name": "total_items_name",
@@ -833,7 +833,7 @@
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['value']"
+												"path": "['value']"
 											},
 											"sink": {
 												"name": "total_items_value",
@@ -841,7 +841,7 @@
 											}
 										}
 									],
-									"collectionReference": ""
+									"collectionReference": "$['totals']"
 								}
 							},
 							"inputs": [
