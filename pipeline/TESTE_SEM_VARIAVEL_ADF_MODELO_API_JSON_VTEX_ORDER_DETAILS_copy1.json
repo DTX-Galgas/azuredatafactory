@@ -1,0 +1,2170 @@
+{
+	"name": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS_copy1",
+	"properties": {
+		"activities": [
+			{
+				"name": "GravaLogFim",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[PADFIdPacoteFIM]",
+					"storedProcedureParameters": {
+						"COD_LOG": {
+							"value": {
+								"value": "@pipeline().parameters.ParIdPipeline",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_PARAMETROS": {
+							"value": {
+								"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"COD": {
+							"value": {
+								"value": "@pipeline().parameters.ParCodEndPoint",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_TIPO": {
+							"value": "API",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "LeCredenciaisOrigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciaisAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "SeAPI_JSON_TO_DL",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "GravaVariaveis",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('LeCredenciaisOrigem').output.FirstRow.NOM_RETORNO_URL,'JSON')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy_API_JSON_TO_ADLS",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToDL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"X-VTEX-API-AppToken": {
+											"value": "@variables('AppToken')",
+											"type": "Expression"
+										},
+										"x-vtex-api-appkey": {
+											"value": "@variables('AppKey')",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestVTEX",
+									"type": "DatasetReference",
+									"parameters": {
+										"ParRelativeURL": {
+											"value": "@variables('RalativeURL')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "GravaLogFimItem-ToDL",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "API_TO_ADLS_SizeCopied",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[PLogADFItemFimAPI]",
+								"storedProcedureParameters": {
+									"COD_LOG": {
+										"value": {
+											"value": "@pipeline().parameters.ParIdPipeline",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NUM_SIZE_ARQUIVO": {
+										"value": {
+											"value": "@variables('SizeArquivo')",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"COD_ENDPOINT": {
+										"value": {
+											"value": "@pipeline().parameters.ParCodEndPoint",
+											"type": "Expression"
+										},
+										"type": "Int"
+									},
+									"DESTINO": {
+										"value": "ToDataLake",
+										"type": "String"
+									},
+									"ORIGEM": {
+										"value": "API-JSON",
+										"type": "String"
+									},
+									"NOM_ALIAS_ENDPOINT": {
+										"value": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"COD_LOG_ITEM": {
+										"value": {
+											"value": "@activity('GravaLogInicioItem-ToDL').output.FirstRow.COD_LOG_ITEM",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NUM_REGISTROS": {
+										"value": "0",
+										"type": "Int64"
+									},
+									"DSC_OBS": {
+										"value": {
+											"value": "@variables('PathRaw')",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "API_TO_ADLS_SizeCopied",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SQLOP_TO_ADLS_PATH_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "SizeArquivo",
+								"value": {
+									"value": "@string(activity('Copy_API_JSON_TO_ADLS').output.dataWritten)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "GravaLogInicioItem-ToDL",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[PLogADFItemAPI]",
+									"storedProcedureParameters": {
+										"COD_ENDPOINT": {
+											"type": "Int32",
+											"value": {
+												"value": "@pipeline().parameters.ParCodEndPoint",
+												"type": "Expression"
+											}
+										},
+										"COD_LOG": {
+											"type": "Int64",
+											"value": {
+												"value": "@pipeline().parameters.ParIdPipeline",
+												"type": "Expression"
+											}
+										},
+										"DAT_EXPORTACAO": {
+											"type": "String",
+											"value": {
+												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+												"type": "Expression"
+											}
+										},
+										"DESTINO": {
+											"type": "String",
+											"value": "ToDataLake"
+										},
+										"NOM_ALIAS_ENDPOINT": {
+											"type": "String",
+											"value": {
+												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+												"type": "Expression"
+											}
+										},
+										"ORIGEM": {
+											"type": "String",
+											"value": "API-JSON"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "SQL_DS_CONTROLE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "Tabela"
+									}
+								}
+							}
+						},
+						{
+							"name": "SQLOP_TO_ADLS_PATH_RAW",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_CLIENT_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_HEADER_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_ITEMS_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "PathRaw",
+								"value": {
+									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "API_JSON_TO_ORDER_HEADER_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sequence']"
+											},
+											"sink": {
+												"name": "sequence",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplaceOrderId']"
+											},
+											"sink": {
+												"name": "marketplaceOrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellerOrderId']"
+											},
+											"sink": {
+												"name": "sellerOrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['origin']"
+											},
+											"sink": {
+												"name": "origin",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['affiliateId']"
+											},
+											"sink": {
+												"name": "affiliateId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['salesChannel']"
+											},
+											"sink": {
+												"name": "salesChannel",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['merchantName']"
+											},
+											"sink": {
+												"name": "merchantName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['status']"
+											},
+											"sink": {
+												"name": "status",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['statusDescription']"
+											},
+											"sink": {
+												"name": "statusDescription",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['value']"
+											},
+											"sink": {
+												"name": "value",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['creationDate']"
+											},
+											"sink": {
+												"name": "creationDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['orderGroup']"
+											},
+											"sink": {
+												"name": "orderGroup",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_TOTALS_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid"
+											}
+										},
+										{
+											"source": {
+												"path": "['id']"
+											},
+											"sink": {
+												"name": "total_items_id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['name']"
+											},
+											"sink": {
+												"name": "total_items_name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['value']"
+											},
+											"sink": {
+												"name": "total_items_value",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['totals']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderTotalsParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderTotalsParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderTotalsParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_ITEMS_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['uniqueId']"
+											},
+											"sink": {
+												"name": "uniqueid"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['id']"
+											},
+											"sink": {
+												"name": "id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['ean']"
+											},
+											"sink": {
+												"name": "ean",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['lockId']"
+											},
+											"sink": {
+												"name": "lockId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['quantity']"
+											},
+											"sink": {
+												"name": "quantity",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['seller']"
+											},
+											"sink": {
+												"name": "seller",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['name']"
+											},
+											"sink": {
+												"name": "name",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['refId']"
+											},
+											"sink": {
+												"name": "refId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['imageUrl']"
+											},
+											"sink": {
+												"name": "imageUrl",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandName']"
+											},
+											"sink": {
+												"name": "brandName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandId']"
+											},
+											"sink": {
+												"name": "brandId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+											},
+											"sink": {
+												"name": "categoriesIds",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
+											},
+											"sink": {
+												"name": "categories_id_1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
+											},
+											"sink": {
+												"name": "categories_name_1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][1]['id']"
+											},
+											"sink": {
+												"name": "categories_id_2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][1]['name']"
+											},
+											"sink": {
+												"name": "categories_name_2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][2]['id']"
+											},
+											"sink": {
+												"name": "categories_id_3",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][2]['name']"
+											},
+											"sink": {
+												"name": "categories_name_3",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['items']",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": "@variables('FilePathRawJson')",
+										"FileName": "@variables('FileNameRawJson')",
+										"FileSystem": "@variables('FileSystemRaw')"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderItemsParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderItemsParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderItemsParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_CLIENT_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['email']"
+											},
+											"sink": {
+												"name": "email",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['firstName']"
+											},
+											"sink": {
+												"name": "firstName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['lastName']"
+											},
+											"sink": {
+												"name": "lastName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['documentType']"
+											},
+											"sink": {
+												"name": "documentType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['document']"
+											},
+											"sink": {
+												"name": "document",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['phone']"
+											},
+											"sink": {
+												"name": "phone",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['street']"
+											},
+											"sink": {
+												"name": "street",
+												"type": "String"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderClientParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderClientParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderClientParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_PAYMENT_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "OrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
+											},
+											"sink": {
+												"name": "id",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
+											},
+											"sink": {
+												"name": "paymentSystemName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
+											},
+											"sink": {
+												"name": "paymentSystem",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
+											},
+											"sink": {
+												"name": "installments",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
+											},
+											"sink": {
+												"name": "referenceValue",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+											},
+											"sink": {
+												"name": "value",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['paymentData']['transactions']"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderPaymentParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderPaymentParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderPaymentParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_SHIPPING_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['addressType']"
+											},
+											"sink": {
+												"name": "addressType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['receiverName']"
+											},
+											"sink": {
+												"name": "receiverName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['addressId']"
+											},
+											"sink": {
+												"name": "addressId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['postalCode']"
+											},
+											"sink": {
+												"name": "postalCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['city']"
+											},
+											"sink": {
+												"name": "city",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['state']"
+											},
+											"sink": {
+												"name": "state",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['country']"
+											},
+											"sink": {
+												"name": "country",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['street']"
+											},
+											"sink": {
+												"name": "street",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['number']"
+											},
+											"sink": {
+												"name": "number",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['neighborhood']"
+											},
+											"sink": {
+												"name": "neighborhood",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['complement']"
+											},
+											"sink": {
+												"name": "complement",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['reference']"
+											},
+											"sink": {
+												"name": "reference",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][0]"
+											},
+											"sink": {
+												"name": "geoCoordinates_X",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][1]"
+											},
+											"sink": {
+												"name": "geoCoordinates_Y",
+												"type": "String"
+											}
+										}
+									],
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderShippingParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderShippingParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderShippingParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "OrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['itemIndex']"
+											},
+											"sink": {
+												"name": "itemIndex",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['selectedSla']"
+											},
+											"sink": {
+												"name": "selectedSla",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['slas'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['deliveryCompany']"
+											},
+											"sink": {
+												"name": "deliveryCompany",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['shippingEstimateDate']"
+											},
+											"sink": {
+												"name": "shippingEstimateDate",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['shippingData']['logisticsInfo']",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawJson')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawJson')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderShippingItemsParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderShippingItemsParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderShippingItemsParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "LeDataProcessamento",
+				"description": "Recupera a data de processamento da tabela de controle",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "LeCredenciaisOrigem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "int",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "GravaVariaveis",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(1,1)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "RelativeURL",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RalativeURL",
+								"value": {
+									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,pipeline().parameters.ParNumeroOrder)\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppToken",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppToken",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppKey",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppKey",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawJson",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawJson",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawJson",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawJson",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileSystemRaw",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileSystemRaw",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderHeaderParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderHeaderParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_header/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderHeaderParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderHeaderParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderTotalsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderTotalsParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_totals/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderTotalsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderTotalsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_totals_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderItemsParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderItemsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderClientParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderClientParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_client_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderClientParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderClientParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_client/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderPaymentParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderPaymentParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_payment/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderPaymentParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderPaymentParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_payment_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderShippingParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderShippingParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderShippingParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderShippingParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FilePathRawOderShippingItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FilePathRawOderShippingItemsParquet",
+								"value": {
+									"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameRawOrderShippingItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameRawOrderShippingItemsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ParIdPipeline": {
+				"type": "String"
+			},
+			"ParCodEndPoint": {
+				"type": "int"
+			},
+			"ParNumeroOrder": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"receiver": {
+				"type": "String"
+			},
+			"RalativeURL": {
+				"type": "String"
+			},
+			"SizeArquivo": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"PathRaw": {
+				"type": "String"
+			},
+			"AppToken": {
+				"type": "String"
+			},
+			"AppKey": {
+				"type": "String"
+			},
+			"FilePathRawJson": {
+				"type": "String"
+			},
+			"FileNameRawJson": {
+				"type": "String"
+			},
+			"FileSystemRaw": {
+				"type": "String"
+			},
+			"FilePathRawOderHeaderParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderHeaderParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderTotalsParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderTotalsParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderItemsParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderItemsParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderClientParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderClientParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderPaymentParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderPaymentParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderShippingParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderShippingParquet": {
+				"type": "String"
+			},
+			"FilePathRawOderShippingItemsParquet": {
+				"type": "String"
+			},
+			"FileNameRawOrderShippingItemsParquet": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
