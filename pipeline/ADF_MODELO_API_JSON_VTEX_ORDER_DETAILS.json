@@ -1397,7 +1397,21 @@
 							"outputs": [
 								{
 									"referenceName": "VtexOrderDetailsOrderClientParquet",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderClientParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderClientParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						},
