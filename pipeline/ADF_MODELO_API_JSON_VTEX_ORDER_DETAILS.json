@@ -1385,7 +1385,7 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']"
+												"path": "$['shippingData']['address']['addressType']"
 											},
 											"sink": {
 												"name": "addressType",
@@ -1509,7 +1509,8 @@
 												"type": "String"
 											}
 										}
-									]
+									],
+									"mapComplexValuesToString": true
 								}
 							},
 							"inputs": [
