@@ -1277,6 +1277,15 @@
 										"type": "JsonReadSettings"
 									}
 								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -1297,6 +1306,12 @@
 											"type": "Expression"
 										}
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderClientParquet",
+									"type": "DatasetReference"
 								}
 							]
 						},
