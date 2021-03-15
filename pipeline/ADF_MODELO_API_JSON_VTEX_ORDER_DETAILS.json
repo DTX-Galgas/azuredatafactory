@@ -1600,7 +1600,112 @@
 										"type": "ParquetWriteSettings"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "OrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
+											},
+											"sink": {
+												"name": "itemIndex",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
+											},
+											"sink": {
+												"name": "selectedSla",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
+											},
+											"sink": {
+												"name": "deliveryCompany",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
+											},
+											"sink": {
+												"name": "shippingEstimateDate",
+												"type": "String"
+											}
+										}
+									],
+									"mapComplexValuesToString": true
+								}
 							},
 							"inputs": [
 								{
