@@ -1319,15 +1319,6 @@
 										},
 										{
 											"source": {
-												"path": "$['clientProfileData']['firstName']"
-											},
-											"sink": {
-												"name": "firstName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "$['clientProfileData']['lastName']"
 											},
 											"sink": {
