@@ -1777,7 +1777,24 @@
 										"enablePartitionDiscovery": false
 									}
 								},
-								"enableStaging": false
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
 							},
 							"inputs": [
 								{
@@ -1794,6 +1811,26 @@
 										},
 										"FileSystem": {
 											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathCleansingOderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameCleansingOrderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemCleansing')",
 											"type": "Expression"
 										}
 									}
