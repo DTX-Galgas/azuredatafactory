@@ -56,7 +56,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+						"referenceName": "TESTE_SEM_VARIAVEL_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
