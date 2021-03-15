@@ -403,7 +403,7 @@
 									]
 								},
 								{
-									"activity": "API_JSON_TO_ORDER_PARQUET",
+									"activity": "API_JSON_TO_ORDER_HEADER_PARQUET",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -425,7 +425,7 @@
 							}
 						},
 						{
-							"name": "API_JSON_TO_ORDER_PARQUET",
+							"name": "API_JSON_TO_ORDER_HEADER_PARQUET",
 							"type": "Copy",
 							"dependsOn": [
 								{
