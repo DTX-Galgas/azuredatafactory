@@ -2151,6 +2151,32 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "FileNameCleansingOrderShippingParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameCleansingOrderShippingParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_shipping.parquet'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "FileNameCleansingOrderShippingItemsParquet",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "FileNameCleansingOrderShippingItemsParquet",
+								"value": {
+									"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,'_order_shipping_items.parquet'))",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
