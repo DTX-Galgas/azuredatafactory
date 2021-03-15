@@ -373,12 +373,6 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_PARQUET",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
 									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET",
 									"dependencyConditions": [
 										"Succeeded"
@@ -410,6 +404,12 @@
 								},
 								{
 									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_PARQUET_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1748,6 +1748,57 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "API_JSON_TO_ORDER_PARQUET_CLEANSING",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_ORDER_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ParquetSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrderParquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@variables('FilePathRawOderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@variables('FileNameRawOrderHeaderParquet')",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@variables('FileSystemRaw')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
@@ -2286,6 +2337,27 @@
 				"type": "String"
 			},
 			"FileNameCleansingOrderShippingItemsParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderHeaderParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderTotalsParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderItemsParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderClientParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderPaymentParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderShippingParquet": {
+				"type": "String"
+			},
+			"FilePathCleansingOderShippingItemsParquet": {
 				"type": "String"
 			}
 		},
