@@ -1099,6 +1099,15 @@
 												"name": "brandId",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+											},
+											"sink": {
+												"name": "categoriesIds",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": "$['items']",
