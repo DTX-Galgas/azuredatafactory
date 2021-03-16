@@ -97,7 +97,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "GravaVariaveis",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -413,7 +413,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "RelativeURL",
+									"activity": "Body",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -806,6 +806,19 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Body",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "RelativeURL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": []
 						}
 					]
 				}
@@ -853,6 +866,25 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "GravaVariaveis",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(1,1)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -881,21 +913,6 @@
 				"type": "String"
 			},
 			"AppKey": {
-				"type": "String"
-			},
-			"FilePathRawJson": {
-				"type": "String"
-			},
-			"FileNameRawJson": {
-				"type": "String"
-			},
-			"FileSystemRaw": {
-				"type": "String"
-			},
-			"FilePathRawParquet": {
-				"type": "String"
-			},
-			"FileNameRawParquet": {
 				"type": "String"
 			}
 		},
