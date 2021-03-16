@@ -56,7 +56,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER",
+						"referenceName": "ADF_MODELO_API_JSON_SAP",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
