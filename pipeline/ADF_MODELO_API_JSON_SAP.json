@@ -635,7 +635,7 @@
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
@@ -667,14 +667,11 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
+									"type": "ParquetSource",
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
 									}
 								},
 								"sink": {
@@ -833,22 +830,20 @@
 												"type": "String"
 											}
 										}
-									],
-									"collectionReference": "$['E_VBAP']",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "dataset_sapjson_vbak",
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
@@ -864,15 +859,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/'))\n",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
 											"type": "Expression"
 										}
 									}
