@@ -115,7 +115,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "AppKey",
+									"activity": "GravaLogInicioItem-ToDL",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -303,26 +303,6 @@
 							}
 						},
 						{
-							"name": "RelativeURL",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GravaLogInicioItem-ToDL",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "RalativeURL",
-								"value": {
-									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']&per_page=10000')",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "GravaLogInicioItem-ToDL",
 							"type": "Lookup",
 							"dependsOn": [],
@@ -404,46 +384,6 @@
 								"variableName": "PathRaw",
 								"value": {
 									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "AppToken",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "Body",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "AppToken",
-								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "AppKey",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "AppToken",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "AppKey",
-								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
 									"type": "Expression"
 								}
 							}
@@ -806,19 +746,6 @@
 									}
 								}
 							]
-						},
-						{
-							"name": "Body",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "RelativeURL",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": []
 						}
 					]
 				}
@@ -883,7 +810,28 @@
 					"expression": {
 						"value": "@equals(1,1)",
 						"type": "Expression"
-					}
+					},
+					"ifTrueActivities": [
+						{
+							"name": "RelativeURL",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RalativeURL",
+								"value": {
+									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']&per_page=10000')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Body",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": []
+						}
+					]
 				}
 			}
 		],
