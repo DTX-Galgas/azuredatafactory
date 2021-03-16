@@ -213,7 +213,7 @@
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
+											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
@@ -398,7 +398,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_PARQUET",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -412,6 +412,365 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "API_JSON_TO_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['creationDate']"
+											},
+											"sink": {
+												"name": "creationDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['clientName']"
+											},
+											"sink": {
+												"name": "clientName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['items']"
+											},
+											"sink": {
+												"name": "itemsOrder",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['totalValue']"
+											},
+											"sink": {
+												"name": "totalValue",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['paymentNames']"
+											},
+											"sink": {
+												"name": "paymentNames",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['status']"
+											},
+											"sink": {
+												"name": "status",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['statusDescription']"
+											},
+											"sink": {
+												"name": "statusDescription",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['marketPlaceOrderId']"
+											},
+											"sink": {
+												"name": "marketPlaceOrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['sequence']"
+											},
+											"sink": {
+												"name": "sequence",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['salesChannel']"
+											},
+											"sink": {
+												"name": "salesChannel",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['affiliateId']"
+											},
+											"sink": {
+												"name": "affiliateId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['origin']"
+											},
+											"sink": {
+												"name": "origin",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['workflowInErrorState']"
+											},
+											"sink": {
+												"name": "workflowInErrorState",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['workflowInRetry']"
+											},
+											"sink": {
+												"name": "workflowInRetry",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['lastMessageUnread']"
+											},
+											"sink": {
+												"name": "lastMessageUnread",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShippingEstimatedDate']"
+											},
+											"sink": {
+												"name": "ShippingEstimatedDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShippingEstimatedDateMax']"
+											},
+											"sink": {
+												"name": "ShippingEstimatedDateMax",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ShippingEstimatedDateMin']"
+											},
+											"sink": {
+												"name": "ShippingEstimatedDateMin",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['orderIsComplete']"
+											},
+											"sink": {
+												"name": "orderIsComplete",
+												"type": "Boolean"
+											}
+										},
+										{
+											"source": {
+												"path": "['listId']"
+											},
+											"sink": {
+												"name": "listId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['listType']"
+											},
+											"sink": {
+												"name": "listType",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['authorizedDate']"
+											},
+											"sink": {
+												"name": "authorizedDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['callCenterOperatorName']"
+											},
+											"sink": {
+												"name": "callCenterOperatorName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['totalItems']"
+											},
+											"sink": {
+												"name": "totalItems",
+												"type": "Int64"
+											}
+										},
+										{
+											"source": {
+												"path": "['currencyCode']"
+											},
+											"sink": {
+												"name": "currencyCode",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['hostname']"
+											},
+											"sink": {
+												"name": "hostname",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['invoiceOutput']"
+											},
+											"sink": {
+												"name": "itemsInvoiceOutput",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['invoiceInput']"
+											},
+											"sink": {
+												"name": "invoiceInput",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO"
+											}
+										}
+									],
+									"collectionReference": "$['list']",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
