@@ -415,6 +415,60 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "GravaLogFim",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[PADFIdPacoteFIM]",
+					"storedProcedureParameters": {
+						"COD_LOG": {
+							"value": {
+								"value": "@pipeline().parameters.ParIdPipeline",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_PARAMETROS": {
+							"value": {
+								"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"COD": {
+							"value": {
+								"value": "@pipeline().parameters.ParCodEndPoint",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_TIPO": {
+							"value": "API",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
