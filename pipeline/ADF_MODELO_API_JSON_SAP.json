@@ -97,7 +97,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "GravaVariaveis",
+						"activity": "Stored procedure1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -820,7 +820,7 @@
 							"typeProperties": {
 								"variableName": "RalativeURL",
 								"value": {
-									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']&per_page=10000')",
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA",
 									"type": "Expression"
 								}
 							}
@@ -829,9 +829,52 @@
 							"name": "Body",
 							"type": "SetVariable",
 							"dependsOn": [],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Body",
+								"value": {
+									"value": "@concat('{',\n'\"I_BUKRS\": [\"2001\",\"5001\"]',\n'\"I_DATA_INI\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_SAP_JSON,'\"',\n'\"I_DATA_FIM\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_SAP_JSON,'\"',\n'\"I_REGISTRO_CRIADO\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\n'\"I_REGISTRO_ALTERADO\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_5,\n'\"I_QTDE_REGISTROS\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_6,\n'}'\n)",
+									"type": "Expression"
+								}
+							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "GravaVariaveis",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_insert_sap_url]",
+					"storedProcedureParameters": {
+						"url": {
+							"value": {
+								"value": "@variables('Body')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
@@ -857,10 +900,7 @@
 			"PathRaw": {
 				"type": "String"
 			},
-			"AppToken": {
-				"type": "String"
-			},
-			"AppKey": {
+			"Body": {
 				"type": "String"
 			}
 		},
