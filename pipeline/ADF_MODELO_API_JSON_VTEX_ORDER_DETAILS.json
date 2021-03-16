@@ -1673,15 +1673,6 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
-											},
-											"sink": {
-												"name": "OrderId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "['itemIndex']"
 											},
 											"sink": {
@@ -1772,7 +1763,16 @@
 										},
 										{
 											"source": {
-												"path": "DATA_HORA_EXPORTACAO"
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "OrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
 												"name": "DATA_HORA_EXPORTACAO",
