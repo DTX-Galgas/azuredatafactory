@@ -686,14 +686,6 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
-											},
-											"sink": {
-												"name": "orderid"
-											}
-										},
-										{
-											"source": {
 												"path": "['id']"
 											},
 											"sink": {
@@ -716,6 +708,15 @@
 											},
 											"sink": {
 												"name": "total_items_value",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderid",
 												"type": "String"
 											}
 										},
