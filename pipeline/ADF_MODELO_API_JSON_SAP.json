@@ -456,6 +456,152 @@
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['VBELN']"
+											},
+											"sink": {
+												"name": "VBELN",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['POSNR']"
+											},
+											"sink": {
+												"name": "POSNR",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['MATNR']"
+											},
+											"sink": {
+												"name": "MATNR",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['PSTYV']"
+											},
+											"sink": {
+												"name": "PSTYV",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ABGRU']"
+											},
+											"sink": {
+												"name": "ABGRU",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UMZIZ']"
+											},
+											"sink": {
+												"name": "UMZIZ",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['UMZIN']"
+											},
+											"sink": {
+												"name": "UMZIN",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['NETWR']"
+											},
+											"sink": {
+												"name": "NETWR"
+											}
+										},
+										{
+											"source": {
+												"path": "['KWMENG']"
+											},
+											"sink": {
+												"name": "KWMENG",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['VRKME']"
+											},
+											"sink": {
+												"name": "VRKME",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['WERKS']"
+											},
+											"sink": {
+												"name": "WERKS",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KONDM']"
+											},
+											"sink": {
+												"name": "KONDM",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['MVGR3']"
+											},
+											"sink": {
+												"name": "MVGR3",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['J_3ASEAN']"
+											},
+											"sink": {
+												"name": "J_3ASEAN",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['_-AFS_-COLLECTION']"
+											},
+											"sink": {
+												"name": "_-AFS_-COLLECTION",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "$['E_VBAP']",
 									"mapComplexValuesToString": true
 								}
 							},
