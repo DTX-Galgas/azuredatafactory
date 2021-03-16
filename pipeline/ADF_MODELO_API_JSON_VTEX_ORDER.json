@@ -768,18 +768,18 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexJsonOrder",
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePathRaw": {
+										"FilePath": {
 											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
 											"type": "Expression"
 										},
-										"FileNameRaw": {
+										"FileName": {
 											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
 											"type": "Expression"
 										},
-										"FileSystemRaw": {
+										"FileSystem": {
 											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
 											"type": "Expression"
 										}
