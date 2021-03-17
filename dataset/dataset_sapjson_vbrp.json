@@ -35,6 +35,111 @@
 				}
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBRP": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"POSNR": {
+								"type": "string"
+							},
+							"FKIMG": {
+								"type": "number"
+							},
+							"VRKME": {
+								"type": "string"
+							},
+							"FKLMG": {
+								"type": "number"
+							},
+							"NETWR": {
+								"type": "number"
+							},
+							"VGBEL": {
+								"type": "string"
+							},
+							"AUBEL": {
+								"type": "string"
+							},
+							"AUPOS": {
+								"type": "string"
+							},
+							"MATNR": {
+								"type": "string"
+							},
+							"PSTYV": {
+								"type": "string"
+							},
+							"POSPA": {
+								"type": "string"
+							},
+							"WERKS": {
+								"type": "string"
+							},
+							"SKFBP": {
+								"type": "number"
+							},
+							"KONDM": {
+								"type": "string"
+							},
+							"VKGRP": {
+								"type": "string"
+							},
+							"VKBUR": {
+								"type": "string"
+							},
+							"BWTAR": {
+								"type": "string"
+							},
+							"VTWEG_AUFT": {
+								"type": "string"
+							},
+							"MWSBP": {
+								"type": "number"
+							},
+							"J_1BCFOP": {
+								"type": "string"
+							},
+							"BRTWR": {
+								"type": "number"
+							},
+							"J_3AETENR": {
+								"type": "string"
+							},
+							"J_3AVGETE": {
+								"type": "string"
+							},
+							"J_3ASZGR": {
+								"type": "string"
+							},
+							"J_3ASEAN": {
+								"type": "string"
+							},
+							"_-AFS_-COLLECTION": {
+								"type": "string"
+							},
+							"J_3ASIZE": {
+								"type": "string"
+							},
+							"J_3APGNR": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
 	}
 }
