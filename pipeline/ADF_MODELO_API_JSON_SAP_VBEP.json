@@ -483,117 +483,55 @@
 										},
 										{
 											"source": {
-												"path": "['MATNR']"
+												"path": "['ETENR']"
 											},
 											"sink": {
-												"name": "MATNR",
+												"name": "ETENR",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['PSTYV']"
+												"path": "['WMENG']"
 											},
 											"sink": {
-												"name": "PSTYV",
+												"name": "WMENG",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['ABGRU']"
+												"path": "['J_3ASIZE']"
 											},
 											"sink": {
-												"name": "ABGRU",
+												"name": "J_3ASIZE",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['UMZIZ']"
+												"path": "['J_3AABGRU']"
 											},
 											"sink": {
-												"name": "UMZIZ",
+												"name": "J_3AABGRU",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['UMZIN']"
+												"path": "['J_3ASZGR']"
 											},
 											"sink": {
-												"name": "UMZIN",
+												"name": "J_3ASZGR",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['NETWR']"
+												"path": "['J_3ANETW']"
 											},
 											"sink": {
-												"name": "NETWR"
-											}
-										},
-										{
-											"source": {
-												"path": "['KWMENG']"
-											},
-											"sink": {
-												"name": "KWMENG",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['VRKME']"
-											},
-											"sink": {
-												"name": "VRKME",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['WERKS']"
-											},
-											"sink": {
-												"name": "WERKS",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['KONDM']"
-											},
-											"sink": {
-												"name": "KONDM",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['MVGR3']"
-											},
-											"sink": {
-												"name": "MVGR3",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASEAN']"
-											},
-											"sink": {
-												"name": "J_3ASEAN",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['_-AFS_-COLLECTION']"
-											},
-											"sink": {
-												"name": "_-AFS_-COLLECTION",
+												"name": "J_3ANETW",
 												"type": "String"
 											}
 										},
@@ -607,7 +545,7 @@
 											}
 										}
 									],
-									"collectionReference": "$['E_VBAP']",
+									"collectionReference": "$['E_VBEP']",
 									"mapComplexValuesToString": true
 								}
 							},
