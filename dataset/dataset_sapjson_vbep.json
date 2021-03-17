@@ -41,7 +41,7 @@
 				"E_MENSAGEM": {
 					"type": "string"
 				},
-				"E_VBAP": {
+				"E_VBEP": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -52,44 +52,23 @@
 							"POSNR": {
 								"type": "string"
 							},
-							"MATNR": {
+							"ETENR": {
 								"type": "string"
 							},
-							"PSTYV": {
-								"type": "string"
-							},
-							"ABGRU": {
-								"type": "string"
-							},
-							"UMZIZ": {
-								"type": "integer"
-							},
-							"UMZIN": {
-								"type": "integer"
-							},
-							"NETWR": {
+							"WMENG": {
 								"type": "number"
 							},
-							"KWMENG": {
+							"J_3ASIZE": {
+								"type": "string"
+							},
+							"J_3AABGRU": {
+								"type": "string"
+							},
+							"J_3ASZGR": {
+								"type": "string"
+							},
+							"J_3ANETW": {
 								"type": "number"
-							},
-							"VRKME": {
-								"type": "string"
-							},
-							"WERKS": {
-								"type": "string"
-							},
-							"KONDM": {
-								"type": "string"
-							},
-							"MVGR3": {
-								"type": "string"
-							},
-							"J_3ASEAN": {
-								"type": "string"
-							},
-							"_-AFS_-COLLECTION": {
-								"type": "string"
 							}
 						}
 					}
