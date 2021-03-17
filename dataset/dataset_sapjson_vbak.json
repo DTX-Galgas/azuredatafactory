@@ -41,7 +41,7 @@
 				"E_MENSAGEM": {
 					"type": "string"
 				},
-				"E_VBAP": {
+				"E_VBAK": {
 					"type": "array",
 					"items": {
 						"type": "object",
@@ -49,46 +49,64 @@
 							"VBELN": {
 								"type": "string"
 							},
-							"POSNR": {
+							"ERDAT": {
 								"type": "string"
 							},
-							"MATNR": {
+							"ERNAM": {
 								"type": "string"
 							},
-							"PSTYV": {
+							"AUDAT": {
 								"type": "string"
 							},
-							"ABGRU": {
+							"VBTYP": {
 								"type": "string"
 							},
-							"UMZIZ": {
-								"type": "integer"
-							},
-							"UMZIN": {
-								"type": "integer"
-							},
-							"NETWR": {
-								"type": "number"
-							},
-							"KWMENG": {
-								"type": "number"
-							},
-							"VRKME": {
+							"AUART": {
 								"type": "string"
 							},
-							"WERKS": {
+							"LIFSK": {
 								"type": "string"
 							},
-							"KONDM": {
+							"FAKSK": {
 								"type": "string"
 							},
-							"MVGR3": {
+							"VKORG": {
 								"type": "string"
 							},
-							"J_3ASEAN": {
+							"VTWEG": {
 								"type": "string"
 							},
-							"_-AFS_-COLLECTION": {
+							"SPART": {
+								"type": "string"
+							},
+							"VKGRP": {
+								"type": "string"
+							},
+							"VKBUR": {
+								"type": "string"
+							},
+							"KNUMV": {
+								"type": "string"
+							},
+							"VDATU": {
+								"type": "string"
+							},
+							"BSARK": {
+								"type": "string"
+							},
+							"KUNNR": {
+								"type": "string"
+							},
+							"AEDAT": {
+								"type": "string"
+							},
+							"KVGR3": {
+								"type": "string"
+							},
+							"BUKRS_VF": {
+								"type": "string"
+							},
+							"ZZCODMOD": {
 								"type": "string"
 							}
 						}
