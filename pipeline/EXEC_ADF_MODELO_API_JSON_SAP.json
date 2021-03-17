@@ -56,7 +56,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "ADF_MODELO_API_JSON_SAP_VBAP",
+						"referenceName": "ADF_MODELO_API_JSON_SAP_VBPA",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
