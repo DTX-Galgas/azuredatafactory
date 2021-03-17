@@ -5,10 +5,18 @@
 			"referenceName": "SapRest",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"RelativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "ZGFDL_INTER_RET_VBAP"
+			"relativeUrl": {
+				"value": "@dataset().RelativeURL",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
