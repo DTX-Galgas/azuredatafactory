@@ -211,7 +211,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "dataset_sapjson_vbap",
+									"referenceName": "dataset_sapjson_vbpa",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
@@ -613,7 +613,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dataset_sapjson_vbap",
+									"referenceName": "dataset_sapjson_vbpa",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
