@@ -211,7 +211,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "dataset_sapjson_vbak",
+									"referenceName": "dataset_sapjson_marc",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
@@ -667,7 +667,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "dataset_sapjson_vbak",
+									"referenceName": "dataset_sapjson_marc",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
