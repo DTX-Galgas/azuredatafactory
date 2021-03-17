@@ -35,6 +35,51 @@
 				}
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MARC": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"MATNR": {
+								"type": "string"
+							},
+							"WERKS": {
+								"type": "string"
+							},
+							"MMSTA": {
+								"type": "string"
+							},
+							"LVORM": {
+								"type": "string"
+							},
+							"SOBSK": {
+								"type": "string"
+							},
+							"DISPO": {
+								"type": "string"
+							},
+							"EISBE": {
+								"type": "number"
+							},
+							"PLIFZ": {
+								"type": "integer"
+							},
+							"MRPPP": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
 	}
 }
