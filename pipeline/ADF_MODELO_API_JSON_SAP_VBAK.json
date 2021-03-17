@@ -200,7 +200,13 @@
 							"inputs": [
 								{
 									"referenceName": "DsSapRest",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"RelativeURL": {
+											"value": "@variables('RalativeURL')",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
