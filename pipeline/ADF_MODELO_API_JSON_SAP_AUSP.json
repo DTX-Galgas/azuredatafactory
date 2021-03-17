@@ -121,7 +121,7 @@
 							"typeProperties": {
 								"variableName": "Body",
 								"value": {
-									"value": "@concat('{',\n'\"I_BUKRS\": [\"2001\",\"5001\"],',\n'\"I_DATA_INI\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_SAP_JSON,'\",',\n'\"I_DATA_FIM\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_SAP_JSON,'\"',\n'}'\n)",
+									"value": "@concat('{',\n'\"I_ATINN\":[\"140\",\"141\",\"143\",\"144\",\"145\",\"147\",\"148\",\"175\",\"264\",\"275\",\"272\",\"268\",\"139\",\"493\",\"405\",\"349\",\"385\",\"265\",\"269\",\"270\",\"267\",\"816\",\"820\",\"829\",\"892\"],',\n'\"I_KLART\":[\"001\",\"026\",\"200\",\"300\"]','}'\n)",
 									"type": "Expression"
 								}
 							}
