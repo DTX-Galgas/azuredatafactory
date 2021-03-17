@@ -465,276 +465,60 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "['VBELN']"
+												"path": "['OBJEK']"
 											},
 											"sink": {
-												"name": "VBELN",
+												"name": "OBJEK",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['POSNR']"
+												"path": "['ATINN']"
 											},
 											"sink": {
-												"name": "POSNR",
+												"name": "ATINN",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['FKIMG']"
+												"path": "['ATZHL']"
 											},
 											"sink": {
-												"name": "FKIMG",
+												"name": "ATZHL",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VRKME']"
+												"path": "['MAFID']"
 											},
 											"sink": {
-												"name": "VRKME",
+												"name": "MAFID",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['FKLMG']"
+												"path": "['KLART']"
 											},
 											"sink": {
-												"name": "FKLMG",
+												"name": "KLART",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['NETWR']"
+												"path": "['ATWRT']"
 											},
 											"sink": {
-												"name": "NETWR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['VGBEL']"
-											},
-											"sink": {
-												"name": "VGBEL",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['AUBEL']"
-											},
-											"sink": {
-												"name": "AUBEL",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['AUPOS']"
-											},
-											"sink": {
-												"name": "AUPOS",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['MATNR']"
-											},
-											"sink": {
-												"name": "MATNR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['PSTYV']"
-											},
-											"sink": {
-												"name": "PSTYV",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['POSPA']"
-											},
-											"sink": {
-												"name": "POSPA",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['WERKS']"
-											},
-											"sink": {
-												"name": "WERKS",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['SKFBP']"
-											},
-											"sink": {
-												"name": "SKFBP",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['KONDM']"
-											},
-											"sink": {
-												"name": "KONDM",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['VKGRP']"
-											},
-											"sink": {
-												"name": "VKGRP",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['VKBUR']"
-											},
-											"sink": {
-												"name": "VKBUR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['BWTAR']"
-											},
-											"sink": {
-												"name": "BWTAR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['VTWEG_AUFT']"
-											},
-											"sink": {
-												"name": "VTWEG_AUFT",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['MWSBP']"
-											},
-											"sink": {
-												"name": "MWSBP",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_1BCFOP']"
-											},
-											"sink": {
-												"name": "J_1BCFOP",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['BRTWR']"
-											},
-											"sink": {
-												"name": "BRTWR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3AETENR']"
-											},
-											"sink": {
-												"name": "J_3AETENR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3AVGETE']"
-											},
-											"sink": {
-												"name": "J_3AVGETE",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASZGR']"
-											},
-											"sink": {
-												"name": "J_3ASZGR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASEAN']"
-											},
-											"sink": {
-												"name": "J_3ASEAN",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['_-AFS_-COLLECTION']"
-											},
-											"sink": {
-												"name": "_-AFS_-COLLECTION",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASIZE']"
-											},
-											"sink": {
-												"name": "J_3ASIZE",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3APGNR']"
-											},
-											"sink": {
-												"name": "J_3APGNR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
-											},
-											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
+												"name": "ATWRT",
 												"type": "String"
 											}
 										}
 									],
-									"collectionReference": "$['E_VBRP']",
+									"collectionReference": "$['E_AUSP']",
 									"mapComplexValuesToString": true
 								}
 							},
