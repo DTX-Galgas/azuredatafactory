@@ -516,6 +516,15 @@
 												"name": "ATWRT",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "DATA_HORA_EXPORTACAO"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": "$['E_AUSP']",
