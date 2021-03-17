@@ -211,7 +211,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "dataset_sapjson_vbep",
+									"referenceName": "dataset_sapjson_konv",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
@@ -465,73 +465,109 @@
 									"mappings": [
 										{
 											"source": {
+												"path": "['KNUMV']"
+											},
+											"sink": {
+												"name": "KNUMV",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KPOSN']"
+											},
+											"sink": {
+												"name": "KPOSN",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['STUNR']"
+											},
+											"sink": {
+												"name": "STUNR",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['ZAEHK']"
+											},
+											"sink": {
+												"name": "ZAEHK",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KSCHL']"
+											},
+											"sink": {
+												"name": "KSCHL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KWERT']"
+											},
+											"sink": {
+												"name": "KWERT",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KAWRT']"
+											},
+											"sink": {
+												"name": "KAWRT",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KBETR']"
+											},
+											"sink": {
+												"name": "KBETR",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KSTAT']"
+											},
+											"sink": {
+												"name": "KSTAT",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KDATU']"
+											},
+											"sink": {
+												"name": "KDATU",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['KINAK']"
+											},
+											"sink": {
+												"name": "KINAK",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
 												"path": "['VBELN']"
 											},
 											"sink": {
 												"name": "VBELN",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['POSNR']"
-											},
-											"sink": {
-												"name": "POSNR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['ETENR']"
-											},
-											"sink": {
-												"name": "ETENR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['WMENG']"
-											},
-											"sink": {
-												"name": "WMENG",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASIZE']"
-											},
-											"sink": {
-												"name": "J_3ASIZE",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3AABGRU']"
-											},
-											"sink": {
-												"name": "J_3AABGRU",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ASZGR']"
-											},
-											"sink": {
-												"name": "J_3ASZGR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['J_3ANETW']"
-											},
-											"sink": {
-												"name": "J_3ANETW",
 												"type": "String"
 											}
 										},
@@ -545,13 +581,13 @@
 											}
 										}
 									],
-									"collectionReference": "$['E_VBEP']",
+									"collectionReference": "$['E_KONV']",
 									"mapComplexValuesToString": true
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "dataset_sapjson_vbep",
+									"referenceName": "dataset_sapjson_konv",
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
