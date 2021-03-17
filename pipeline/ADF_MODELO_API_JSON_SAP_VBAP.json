@@ -474,180 +474,126 @@
 										},
 										{
 											"source": {
-												"path": "['ERDAT']"
+												"path": "['POSNR']"
 											},
 											"sink": {
-												"name": "ERDAT",
+												"name": "POSNR",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['ERNAM']"
+												"path": "['MATNR']"
 											},
 											"sink": {
-												"name": "ERNAM",
+												"name": "MATNR",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['AUDAT']"
+												"path": "['PSTYV']"
 											},
 											"sink": {
-												"name": "AUDAT",
+												"name": "PSTYV",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VBTYP']"
+												"path": "['ABGRU']"
 											},
 											"sink": {
-												"name": "VBTYP",
+												"name": "ABGRU",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['AUART']"
+												"path": "['UMZIZ']"
 											},
 											"sink": {
-												"name": "AUART",
+												"name": "UMZIZ",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['LIFSK']"
+												"path": "['UMZIN']"
 											},
 											"sink": {
-												"name": "LIFSK"
-											}
-										},
-										{
-											"source": {
-												"path": "['FAKSK']"
-											},
-											"sink": {
-												"name": "FAKSK",
+												"name": "UMZIN",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VKORG']"
+												"path": "['NETWR']"
 											},
 											"sink": {
-												"name": "VKORG",
+												"name": "NETWR",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VTWEG']"
+												"path": "['KWMENG']"
 											},
 											"sink": {
-												"name": "VTWEG",
+												"name": "KWMENG",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['SPART']"
+												"path": "['VRKME']"
 											},
 											"sink": {
-												"name": "SPART",
+												"name": "VRKME",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VKGRP']"
+												"path": "['WERKS']"
 											},
 											"sink": {
-												"name": "VKGRP",
+												"name": "WERKS",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VKBUR']"
+												"path": "['KONDM']"
 											},
 											"sink": {
-												"name": "VKBUR",
+												"name": "KONDM",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['KNUMV']"
+												"path": "['MVGR3']"
 											},
 											"sink": {
-												"name": "KNUMV",
+												"name": "MVGR3",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['VDATU']"
+												"path": "['J_3ASEAN']"
 											},
 											"sink": {
-												"name": "VDATU",
-												"type": "String"
+												"name": "J_3ASEAN"
 											}
 										},
 										{
 											"source": {
-												"path": "['BSARK']"
+												"path": "['_-AFS_-COLLECTION']"
 											},
 											"sink": {
-												"name": "BSARK",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['KUNNR']"
-											},
-											"sink": {
-												"name": "KUNNR",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['AEDAT']"
-											},
-											"sink": {
-												"name": "AEDAT",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['KVGR3']"
-											},
-											"sink": {
-												"name": "KVGR3",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['BUKRS_VF']"
-											},
-											"sink": {
-												"name": "BUKRS_VF",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['ZZCODMOD']"
-											},
-											"sink": {
-												"name": "ZZCODMOD",
+												"name": "_-AFS_-COLLECTION",
 												"type": "String"
 											}
 										},
@@ -661,7 +607,7 @@
 											}
 										}
 									],
-									"collectionReference": "$['E_VBAK']",
+									"collectionReference": "$['E_VBAP']",
 									"mapComplexValuesToString": true
 								}
 							},
