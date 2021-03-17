@@ -121,7 +121,7 @@
 							"typeProperties": {
 								"variableName": "Body",
 								"value": {
-									"value": "@concat('{',\n'\"I_BUKRS\": [\"2001\",\"5001\"],',\n'\"I_DATA_INI\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_SAP_JSON,'\",',\n'\"I_DATA_FIM\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_SAP_JSON,'\",',\n'\"I_REGISTRO_CRIADO\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,',',\n'\"I_REGISTRO_ALTERADO\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_5,',',\n'\"I_QTDE_REGISTROS\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_6,\n'}'\n)",
+									"value": "@concat('{',\n'\"I_DATA_INI\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_SAP_JSON,'\",',\n'\"I_DATA_FIM\":\"',activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_SAP_JSON,'\",',\n'\"I_QTDE_REGISTROS\":',activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_6,\n'}'\n)",
 									"type": "Expression"
 								}
 							}
