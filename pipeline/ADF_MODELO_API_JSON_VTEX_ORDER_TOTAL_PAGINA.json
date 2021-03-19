@@ -118,7 +118,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"ParRelativeURL": {
-											"value": "@variables('RalativeURL')",
+											"value": "@variables('RelativeURL')",
 											"type": "Expression"
 										}
 									}
