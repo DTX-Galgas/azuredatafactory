@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[SP_01_DIM_CIGAM_CLIENTE]"
+					"storedProcedureName": "SP_CIGAM_PROCESSA_DIMENSIONAL"
 				},
 				"linkedServiceName": {
 					"referenceName": "wsdevbrsynapse-WorkspaceDefaultSqlServer",
