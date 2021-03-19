@@ -861,6 +861,9 @@
 			},
 			"ParCodEndPoint": {
 				"type": "int"
+			},
+			"ParPagina": {
+				"type": "string"
 			}
 		},
 		"variables": {
