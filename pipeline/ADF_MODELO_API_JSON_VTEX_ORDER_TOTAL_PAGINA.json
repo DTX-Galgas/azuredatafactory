@@ -137,109 +137,6 @@
 							]
 						},
 						{
-							"name": "GravaLogFimItem-ToDL",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "API_TO_ADLS_SizeCopied",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[PLogADFItemFimAPI]",
-								"storedProcedureParameters": {
-									"COD_LOG": {
-										"value": {
-											"value": "@pipeline().parameters.ParIdPipeline",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"NUM_SIZE_ARQUIVO": {
-										"value": {
-											"value": "@variables('SizeArquivo')",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"COD_ENDPOINT": {
-										"value": {
-											"value": "@pipeline().parameters.ParCodEndPoint",
-											"type": "Expression"
-										},
-										"type": "Int"
-									},
-									"DESTINO": {
-										"value": "ToDataLake",
-										"type": "String"
-									},
-									"ORIGEM": {
-										"value": "API-JSON",
-										"type": "String"
-									},
-									"NOM_ALIAS_ENDPOINT": {
-										"value": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"COD_LOG_ITEM": {
-										"value": {
-											"value": "@activity('GravaLogInicioItem-ToDL').output.FirstRow.COD_LOG_ITEM",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"NUM_REGISTROS": {
-										"value": "0",
-										"type": "Int64"
-									},
-									"DSC_OBS": {
-										"value": {
-											"value": "@variables('PathRaw')",
-											"type": "Expression"
-										},
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "SQL_CONTROLE",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
-							"name": "API_TO_ADLS_SizeCopied",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "SQLOP_TO_ADLS_PATH_RAW",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "SizeArquivo",
-								"value": {
-									"value": "@string(activity('Copy_API_JSON_TO_ADLS').output.dataWritten)",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "RelativeURL",
 							"type": "SetVariable",
 							"dependsOn": [],
@@ -248,26 +145,6 @@
 								"variableName": "RalativeURL",
 								"value": {
 									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\n'1'\n)",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "SQLOP_TO_ADLS_PATH_RAW",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "API_JSON_TO_PARQUET",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "PathRaw",
-								"value": {
-									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
 									"type": "Expression"
 								}
 							}
