@@ -863,7 +863,7 @@
 				"type": "int"
 			},
 			"ParPagina": {
-				"type": "string"
+				"type": "int"
 			}
 		},
 		"variables": {
