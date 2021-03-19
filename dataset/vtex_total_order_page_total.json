@@ -1,0 +1,20 @@
+{
+	"name": "vtex_total_order_page_total",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "vtex_order_page_total.json",
+				"folderPath": "brazil/vtex/vtex_order_page_total/",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {}
+	}
+}
