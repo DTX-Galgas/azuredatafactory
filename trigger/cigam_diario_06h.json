@@ -63,12 +63,6 @@
 					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
 					"type": "PipelineReference"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PROCESSA_DIMENSIONAL",
-					"type": "PipelineReference"
-				}
 			}
 		],
 		"type": "ScheduleTrigger",
