@@ -3,60 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "GravaLogFim",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "SeAPI_JSON_TO_DL",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[PADFIdPacoteFIM]",
-					"storedProcedureParameters": {
-						"COD_LOG": {
-							"value": {
-								"value": "@pipeline().parameters.ParIdPipeline",
-								"type": "Expression"
-							},
-							"type": "Int64"
-						},
-						"DSC_PARAMETROS": {
-							"value": {
-								"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
-								"type": "Expression"
-							},
-							"type": "String"
-						},
-						"COD": {
-							"value": {
-								"value": "@pipeline().parameters.ParCodEndPoint",
-								"type": "Expression"
-							},
-							"type": "Int64"
-						},
-						"DSC_TIPO": {
-							"value": "API",
-							"type": "String"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "SQL_CONTROLE",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "LeCredenciaisOrigem",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -97,7 +43,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "LeCredenciaisOrigem",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -183,18 +129,9 @@
 									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
-											"type": "Expression"
-										}
+										"FilePath": "brazil/vtex/vtex_total_order_page_total/",
+										"FileName": "vtex_total_order_page_total.json",
+										"FileSystem": "raw"
 									}
 								}
 							]
@@ -305,86 +242,13 @@
 						{
 							"name": "RelativeURL",
 							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "GravaLogInicioItem-ToDL",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "RalativeURL",
 								"value": {
 									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\n'1'\n)",
 									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "GravaLogInicioItem-ToDL",
-							"type": "Lookup",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"sqlReaderStoredProcedureName": "[dbo].[PLogADFItemAPI]",
-									"storedProcedureParameters": {
-										"COD_ENDPOINT": {
-											"type": "Int32",
-											"value": {
-												"value": "@pipeline().parameters.ParCodEndPoint",
-												"type": "Expression"
-											}
-										},
-										"COD_LOG": {
-											"type": "Int64",
-											"value": {
-												"value": "@pipeline().parameters.ParIdPipeline",
-												"type": "Expression"
-											}
-										},
-										"DAT_EXPORTACAO": {
-											"type": "String",
-											"value": {
-												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
-												"type": "Expression"
-											}
-										},
-										"DESTINO": {
-											"type": "String",
-											"value": "ToDataLake"
-										},
-										"NOM_ALIAS_ENDPOINT": {
-											"type": "String",
-											"value": {
-												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-												"type": "Expression"
-											}
-										},
-										"ORIGEM": {
-											"type": "String",
-											"value": "API-JSON"
-										}
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "SQL_DS_CONTROLE",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "Tabela"
-									}
 								}
 							}
 						},
@@ -809,56 +673,9 @@
 						}
 					]
 				}
-			},
-			{
-				"name": "LeDataProcessamento",
-				"description": "Recupera a data de processamento da tabela de controle",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "LeCredenciaisOrigem",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
-						"storedProcedureParameters": {
-							"COD_ENDPOINT": {
-								"type": "int",
-								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
-					}
-				}
 			}
 		],
 		"parameters": {
-			"ParIdPipeline": {
-				"type": "String"
-			},
 			"ParCodEndPoint": {
 				"type": "int"
 			},
