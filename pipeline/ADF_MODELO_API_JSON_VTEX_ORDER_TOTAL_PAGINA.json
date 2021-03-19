@@ -127,12 +127,7 @@
 							"outputs": [
 								{
 									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
-									"type": "DatasetReference",
-									"parameters": {
-										"FilePath": "brazil/vtex/vtex_total_order_page_total/",
-										"FileName": "vtex_total_order_page_total.json",
-										"FileSystem": "raw"
-									}
+									"type": "DatasetReference"
 								}
 							]
 						},
