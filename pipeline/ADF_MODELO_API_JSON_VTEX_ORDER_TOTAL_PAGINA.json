@@ -314,38 +314,13 @@
 			}
 		},
 		"variables": {
-			"receiver": {
-				"type": "String"
-			},
-			"RalativeURL": {
-				"type": "String"
-			},
-			"SizeArquivo": {
-				"type": "String",
-				"defaultValue": "0"
-			},
-			"PathRaw": {
-				"type": "String"
-			},
 			"AppToken": {
 				"type": "String"
 			},
 			"AppKey": {
 				"type": "String"
 			},
-			"FilePathRawJson": {
-				"type": "String"
-			},
-			"FileNameRawJson": {
-				"type": "String"
-			},
-			"FileSystemRaw": {
-				"type": "String"
-			},
-			"FilePathRawParquet": {
-				"type": "String"
-			},
-			"FileNameRawParquet": {
+			"RelativeURL": {
 				"type": "String"
 			}
 		},
