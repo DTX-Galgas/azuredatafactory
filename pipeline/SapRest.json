@@ -36,7 +36,10 @@
 				"inputs": [
 					{
 						"referenceName": "DsSapRest",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"RelativeURL": "www.vtex.com.br"
+						}
 					}
 				],
 				"outputs": [
