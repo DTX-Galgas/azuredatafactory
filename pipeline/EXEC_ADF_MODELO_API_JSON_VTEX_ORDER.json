@@ -68,6 +68,10 @@
 						"ParCodEndPoint": {
 							"value": "@pipeline().parameters.ParCodEndPoint",
 							"type": "Expression"
+						},
+						"ParPagina": {
+							"value": "@pipeline().parameters.ParPagina",
+							"type": "Expression"
 						}
 					}
 				}
