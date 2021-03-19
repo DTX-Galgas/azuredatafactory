@@ -3,13 +3,80 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PROCESSA_DIMENSIONAL",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2021-03-19T13:48:00",
+				"startTime": "2021-03-10T12:58:00",
 				"timeZone": "E. South America Standard Time",
 				"schedule": {
 					"minutes": [
