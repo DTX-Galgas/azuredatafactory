@@ -53,7 +53,7 @@
 								"value": "int(variables('Contador'))",
 								"type": "Expression"
 							},
-							"type": "String"
+							"type": "Int32"
 						}
 					}
 				},
