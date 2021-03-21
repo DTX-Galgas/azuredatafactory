@@ -397,6 +397,22 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"timeout": "7.00:00:00"
+				}
 			}
 		],
 		"parameters": {
@@ -419,6 +435,10 @@
 			},
 			"TotalPaginas": {
 				"type": "String"
+			},
+			"PaginaInicial": {
+				"type": "String",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
