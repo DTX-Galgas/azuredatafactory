@@ -446,17 +446,6 @@
 			},
 			"RelativeURL": {
 				"type": "String"
-			},
-			"TotalPaginas": {
-				"type": "String"
-			},
-			"PaginaInicial": {
-				"type": "String",
-				"defaultValue": "1"
-			},
-			"Contador": {
-				"type": "String",
-				"defaultValue": "0"
 			}
 		},
 		"folder": {
