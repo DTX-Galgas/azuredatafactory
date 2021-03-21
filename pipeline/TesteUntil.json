@@ -45,49 +45,9 @@
 					},
 					"activities": [
 						{
-							"name": "IndexValue",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "IndexValue",
-								"value": {
-									"value": "int(@add(variables('Contador'),1))",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "Contador",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "IndexValue",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Contador",
-								"value": {
-									"value": "int(@variables('IndexValue'))",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "testeunil",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "Contador",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
