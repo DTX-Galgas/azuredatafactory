@@ -27,59 +27,8 @@
 				}
 			},
 			{
-				"name": "Until1",
-				"type": "Until",
-				"dependsOn": [
-					{
-						"activity": "atribuiValorPaginaFinal",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@greaterOrEquals(int(variables('Contador')),10)",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "testeunil",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[testeunil]",
-								"storedProcedureParameters": {
-									"contador": {
-										"value": {
-											"value": "@variables('Contador')",
-											"type": "Expression"
-										},
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "SQL_CONTROLE",
-								"type": "LinkedServiceReference"
-							}
-						}
-					],
-					"timeout": "7.00:00:00"
-				}
-			},
-			{
-				"name": "atribuiValorPaginaFinal",
-				"type": "SetVariable",
+				"name": "testeunil",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
 						"activity": "LeTotalPaginasArquivo",
@@ -88,13 +37,29 @@
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "PaginaFinal",
-					"value": {
-						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.pages)",
-						"type": "Expression"
+					"storedProcedureName": "[dbo].[testeunil]",
+					"storedProcedureParameters": {
+						"contador": {
+							"value": {
+								"value": "int(@variables('Contador'))",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
