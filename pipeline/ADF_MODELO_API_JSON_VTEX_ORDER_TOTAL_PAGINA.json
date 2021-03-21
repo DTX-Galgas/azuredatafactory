@@ -397,37 +397,6 @@
 						}
 					}
 				}
-			},
-			{
-				"name": "RetornaTotalPaginas",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "SeAPI_JSON_TO_DL",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlPoolSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFRetornaPaginasAPI]"
-					},
-					"dataset": {
-						"referenceName": "wsdevbrsynapse",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
 			}
 		],
 		"parameters": {
