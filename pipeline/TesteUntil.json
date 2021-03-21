@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(variables('Contador'),variables('PaginaFinal'))",
+						"value": "@greaterOrEquals(int(variables('Contador')),int(variables('PaginaFinal')))",
 						"type": "Expression"
 					},
 					"activities": [
