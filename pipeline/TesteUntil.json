@@ -121,7 +121,7 @@
 								"storedProcedureParameters": {
 									"contador": {
 										"value": {
-											"value": "@variables('Contador')",
+											"value": "int(@variables('Contador'))",
 											"type": "Expression"
 										},
 										"type": "Int32"
