@@ -300,56 +300,6 @@
 									"type": "DatasetReference"
 								}
 							]
-						},
-						{
-							"name": "LeTotalPaginas",
-							"type": "Lookup",
-							"dependsOn": [
-								{
-									"activity": "API_JSON_TO_PARQUET",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "SqlPoolSource",
-									"sqlReaderQuery": "select pages from raw_data.vtex_orders_page_total"
-								},
-								"dataset": {
-									"referenceName": "wsdevbrsynapse",
-									"type": "DatasetReference"
-								}
-							}
-						},
-						{
-							"name": "TotalPaginas",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "LeTotalPaginas",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "TotalPaginas",
-								"value": {
-									"value": "int(@activity('LeTotalPaginas').output.FirstRow.pages)\n\n",
-									"type": "Expression"
-								}
-							}
 						}
 					]
 				}
