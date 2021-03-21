@@ -266,7 +266,16 @@
 											},
 											"sink": {
 												"name": "perPage",
-												"type": "Int16"
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
 											}
 										}
 									],
