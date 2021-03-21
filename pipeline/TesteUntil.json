@@ -124,7 +124,7 @@
 											"value": "@variables('Contador')",
 											"type": "Expression"
 										},
-										"type": "Int32"
+										"type": "String"
 									}
 								}
 							},
