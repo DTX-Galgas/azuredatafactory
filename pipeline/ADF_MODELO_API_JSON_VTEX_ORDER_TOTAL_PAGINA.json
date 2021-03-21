@@ -425,7 +425,8 @@
 					"dataset": {
 						"referenceName": "wsdevbrsynapse",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
