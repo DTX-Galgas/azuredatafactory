@@ -330,6 +330,26 @@
 									"type": "DatasetReference"
 								}
 							}
+						},
+						{
+							"name": "TotalPaginas",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "LeTotalPaginas",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "TotalPaginas",
+								"value": {
+									"value": "@activity('LeTotalPaginas').output.FirstRow.pages\n",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
