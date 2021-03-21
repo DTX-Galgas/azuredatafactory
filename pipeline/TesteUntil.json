@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@lessOrEquals(variables('Contador'),variables('PaginaFinal'))",
+						"value": "@less(variables('Contador'),variables('PaginaFinal'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -145,7 +145,7 @@
 			},
 			"Contador": {
 				"type": "String",
-				"defaultValue": "1"
+				"defaultValue": "0"
 			},
 			"IndexValue": {
 				"type": "String",
