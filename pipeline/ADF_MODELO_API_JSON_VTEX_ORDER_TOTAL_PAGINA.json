@@ -346,7 +346,7 @@
 							"typeProperties": {
 								"variableName": "TotalPaginas",
 								"value": {
-									"value": "@activity('LeTotalPaginas').output.FirstRow.pages\n",
+									"value": "int(@activity('LeTotalPaginas').output.FirstRow.pages)\n\n",
 									"type": "Expression"
 								}
 							}
