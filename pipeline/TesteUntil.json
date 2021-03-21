@@ -41,7 +41,7 @@
 				"typeProperties": {
 					"variableName": "PaginaFinal",
 					"value": {
-						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal)\n",
+						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal))\n",
 						"type": "Expression"
 					}
 				}
@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(string(int(variables('Contador'))),'5')\n",
+						"value": "@greaterOrEquals(string(int(variables('Contador'))),string(int(variables('PaginaFinal'))))\n\n\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -88,7 +88,7 @@
 								"storedProcedureParameters": {
 									"contador": {
 										"value": {
-											"value": "@variables('PaginaFinal')\n ",
+											"value": "@string(int(variables('Contador')))",
 											"type": "Expression"
 										},
 										"type": "String"
