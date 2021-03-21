@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(string(int(variables('Contador'))),string(int(variables('PaginaFinal'))))\n",
+						"value": "@greaterOrEquals(string(int(variables('Contador'))),'5')\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -88,7 +88,7 @@
 								"storedProcedureParameters": {
 									"contador": {
 										"value": {
-											"value": "@string(int(variables('Contador')))",
+											"value": "@string(variables('PaginaFinal'))\n ",
 											"type": "Expression"
 										},
 										"type": "String"
