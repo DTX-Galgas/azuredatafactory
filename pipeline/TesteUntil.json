@@ -41,7 +41,7 @@
 				"typeProperties": {
 					"variableName": "PaginaFinal",
 					"value": {
-						"value": "@activity('LeTotalPaginasArquivo').output.FirstRow.pages",
+						"value": "@activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal",
 						"type": "Expression"
 					}
 				}
