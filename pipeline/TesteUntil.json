@@ -41,24 +41,78 @@
 				"typeProperties": {
 					"variableName": "PaginaFinal",
 					"value": {
-						"value": "@activity('LeTotalPaginasArquivo').output.FirstRow.pages\n",
+						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.pages)\n",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "PaginalFinal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(variables('Contador'),variables('PaginaFinal'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "IndexValue",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "IndexValue",
+								"value": {
+									"value": "int(@add(variables('Contador'),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Contador",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "IndexValue",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Contador",
+								"value": {
+									"value": "@variables('IndexValue')",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
 				}
 			}
 		],
 		"variables": {
-			"PaginaInicial": {
-				"type": "String",
-				"defaultValue": "1"
-			},
 			"PaginaFinal": {
 				"type": "String",
 				"defaultValue": "0"
 			},
 			"Contador": {
 				"type": "String",
-				"defaultValue": "0"
+				"defaultValue": "1"
+			},
+			"IndexValue": {
+				"type": "String"
 			}
 		},
 		"folder": {
