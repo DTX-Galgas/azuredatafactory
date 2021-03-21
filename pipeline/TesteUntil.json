@@ -88,7 +88,7 @@
 								"storedProcedureParameters": {
 									"contador": {
 										"value": {
-											"value": "@string(variables('PaginaFinal'))\n ",
+											"value": "variables('PaginaFinal')\n ",
 											"type": "Expression"
 										},
 										"type": "String"
