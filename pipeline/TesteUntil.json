@@ -23,7 +23,7 @@
 						"referenceName": "wsdevbrsynapse",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -41,7 +41,7 @@
 				"typeProperties": {
 					"variableName": "PaginaFinal",
 					"value": {
-						"value": "@activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal",
+						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal)",
 						"type": "Expression"
 					}
 				}
@@ -67,7 +67,14 @@
 						{
 							"name": "testeunil",
 							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "modificaContador",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "7.00:00:00",
 								"retry": 0,
@@ -91,6 +98,39 @@
 							"linkedServiceName": {
 								"referenceName": "SQL_CONTROLE",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "modificaIndexValue",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "IndexValue",
+								"value": {
+									"value": "@string(add(int(variables('Contador')),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "modificaContador",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "modificaIndexValue",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Contador",
+								"value": {
+									"value": "@string(int(variables('IndexValue')))",
+									"type": "Expression"
+								}
 							}
 						}
 					],
