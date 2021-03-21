@@ -148,7 +148,8 @@
 				"defaultValue": "1"
 			},
 			"IndexValue": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "1"
 			}
 		},
 		"folder": {
