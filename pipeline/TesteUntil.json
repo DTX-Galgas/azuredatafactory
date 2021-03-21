@@ -60,7 +60,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(1,12)",
+						"value": "@greaterOrEquals(5,1)",
 						"type": "Expression"
 					},
 					"activities": [
