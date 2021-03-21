@@ -50,10 +50,10 @@
 					"storedProcedureParameters": {
 						"contador": {
 							"value": {
-								"value": "int(variables('Contador'))",
+								"value": "@string(int(variables('Contador')))",
 								"type": "Expression"
 							},
-							"type": "Int32"
+							"type": "String"
 						}
 					}
 				},
