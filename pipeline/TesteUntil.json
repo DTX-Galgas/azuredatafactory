@@ -92,7 +92,7 @@
 							"typeProperties": {
 								"variableName": "Contador",
 								"value": {
-									"value": "@variables('IndexValue')",
+									"value": "int(@variables('IndexValue'))",
 									"type": "Expression"
 								}
 							}
