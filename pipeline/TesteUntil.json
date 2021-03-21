@@ -27,31 +27,11 @@
 				}
 			},
 			{
-				"name": "PaginalFinal",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "LeTotalPaginasArquivo",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "PaginaFinal",
-					"value": {
-						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.pages)\n",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Until1",
 				"type": "Until",
 				"dependsOn": [
 					{
-						"activity": "PaginalFinal",
+						"activity": "atribuiValorPaginaFinal",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -60,7 +40,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(int(variables('Contador')),int(variables('PaginaFinal')))",
+						"value": "@greaterOrEquals(int(variables('Contador')),variables('PaginaFinal'))",
 						"type": "Expression"
 					},
 					"activities": [
@@ -136,6 +116,26 @@
 					],
 					"timeout": "7.00:00:00"
 				}
+			},
+			{
+				"name": "atribuiValorPaginaFinal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LeTotalPaginasArquivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PaginaFinal",
+					"value": {
+						"value": "int(@activity('LeTotalPaginasArquivo').output.FirstRow.pages)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -149,7 +149,7 @@
 			},
 			"IndexValue": {
 				"type": "String",
-				"defaultValue": "1"
+				"defaultValue": "0"
 			}
 		},
 		"folder": {
