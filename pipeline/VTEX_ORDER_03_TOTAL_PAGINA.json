@@ -136,7 +136,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(pipeline().parameters.DataProcessamento,0,19)",
+												"value": "@substring(pipeline().parameters.DataHoraProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
