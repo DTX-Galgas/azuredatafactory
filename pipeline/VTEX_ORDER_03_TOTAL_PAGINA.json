@@ -864,6 +864,15 @@
 			},
 			"ParPagina": {
 				"type": "int"
+			},
+			"DataInicioOrderVTEX": {
+				"type": "string"
+			},
+			"DataFimOrderVtex": {
+				"type": "string"
+			},
+			"DataIngestao": {
+				"type": "string"
 			}
 		},
 		"variables": {
