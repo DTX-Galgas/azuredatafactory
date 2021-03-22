@@ -400,7 +400,7 @@
 				}
 			},
 			{
-				"name": "CHAMA VTEX_ORDER_02_TOTAL_PAGINA",
+				"name": "EXEC VTEX_ORDER_02_TOTAL_PAGINA",
 				"type": "Until",
 				"dependsOn": [
 					{
