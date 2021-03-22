@@ -518,7 +518,7 @@
 										"type": "Expression"
 									},
 									"DataFimOrderVtex": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,",
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX",
 										"type": "Expression"
 									},
 									"DataIngestao": {
