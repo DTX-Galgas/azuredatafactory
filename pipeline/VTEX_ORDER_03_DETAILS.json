@@ -1204,6 +1204,15 @@
 												"name": "street",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
 										}
 									],
 									"mapComplexValuesToString": true
@@ -1363,6 +1372,15 @@
 											},
 											"sink": {
 												"name": "OrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
 												"type": "String"
 											}
 										}
@@ -1598,6 +1616,14 @@
 											"sink": {
 												"name": "geoCoordinates_Y",
 												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO"
 											}
 										}
 									],
