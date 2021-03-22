@@ -84,6 +84,14 @@
 						"DataIngestao": {
 							"value": "@pipeline().parameters.DataIngestao",
 							"type": "Expression"
+						},
+						"DataProcessamento": {
+							"value": "@pipeline().parameters.DataProcessamento",
+							"type": "Expression"
+						},
+						"DataHoraProcessamento": {
+							"value": "@pipeline().parameters.DataHoraProcessamento",
+							"type": "Expression"
 						}
 					}
 				}
