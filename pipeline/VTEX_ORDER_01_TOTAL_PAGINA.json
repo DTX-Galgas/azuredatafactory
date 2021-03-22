@@ -525,16 +525,8 @@
 										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
 										"type": "Expression"
 									},
-									"NomeAliasEndPoint1": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-										"type": "Expression"
-									},
-									"NomeRetornURL": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_FORMATO_ARQUIVO_1",
-										"type": "Expression"
-									},
-									"NomeURLRelatia": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA",
+									"DataUltimoProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_ULTI_PROCESSAMENTO",
 										"type": "Expression"
 									}
 								}
