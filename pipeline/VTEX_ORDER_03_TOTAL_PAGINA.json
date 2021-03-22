@@ -106,7 +106,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('LeCredenciaisOrigem').output.FirstRow.NOM_RETORNO_URL,'JSON')",
+						"value": "@equals(pipeline().parameters.NomeRetornoURL,'JSON')\n",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -367,7 +367,7 @@
 										"NOM_ALIAS_ENDPOINT": {
 											"type": "String",
 											"value": {
-												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+												"value": "@pipeline().parameters.NomeAliasEndPoint1",
 												"type": "Expression"
 											}
 										},
@@ -878,6 +878,9 @@
 				"type": "string"
 			},
 			"NomeRetornoURL": {
+				"type": "string"
+			},
+			"NomeURLRelatia": {
 				"type": "string"
 			}
 		},
