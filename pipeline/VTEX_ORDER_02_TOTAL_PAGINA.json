@@ -43,7 +43,7 @@
 				}
 			},
 			{
-				"name": "ExecutaPipelineModeloAPI",
+				"name": "EXEC VTEX_ORDER_03_TOTAL_PAGINA",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -81,7 +81,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "ExecutaPipelineModeloAPI",
+						"activity": "EXEC VTEX_ORDER_03_TOTAL_PAGINA",
 						"dependencyConditions": [
 							"Failed"
 						]
