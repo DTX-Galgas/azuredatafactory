@@ -397,6 +397,15 @@
 			},
 			"RelativeURL": {
 				"type": "String"
+			},
+			"PaginaFinal": {
+				"type": "String"
+			},
+			"Contador": {
+				"type": "String"
+			},
+			"IndexValue": {
+				"type": "String"
 			}
 		},
 		"folder": {
