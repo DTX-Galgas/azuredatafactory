@@ -220,7 +220,7 @@
 			"DataIngestao": {
 				"type": "string"
 			},
-			"DataUltimoProcessamento": {
+			"DataProcessamento": {
 				"type": "string"
 			}
 		},
