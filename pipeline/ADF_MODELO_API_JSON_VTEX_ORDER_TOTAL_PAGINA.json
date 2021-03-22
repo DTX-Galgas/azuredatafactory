@@ -400,7 +400,7 @@
 				}
 			},
 			{
-				"name": "Until1",
+				"name": "chama EXEC_ADF_MODELO_API_JSON_VTEX_ORDER",
 				"type": "Until",
 				"dependsOn": [
 					{
@@ -483,6 +483,33 @@
 								"value": {
 									"value": "@string(int(variables('IndexValue')))",
 									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "testeunil",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX_ORDER",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParCodEndPoint": "4",
+									"ParPagina": {
+										"value": "@string(int(variables('Contador')))",
+										"type": "Expression"
+									}
 								}
 							}
 						}
