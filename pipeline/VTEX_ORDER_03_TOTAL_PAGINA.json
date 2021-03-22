@@ -356,7 +356,7 @@
 										"DAT_EXPORTACAO": {
 											"type": "String",
 											"value": {
-												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+												"value": "@pipeline().parameters.DataIngestao",
 												"type": "Expression"
 											}
 										},
@@ -872,6 +872,9 @@
 				"type": "string"
 			},
 			"DataIngestao": {
+				"type": "string"
+			},
+			"NomeAliasEndPoint1": {
 				"type": "string"
 			}
 		},
