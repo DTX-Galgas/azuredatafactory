@@ -222,6 +222,9 @@
 			},
 			"DataProcessamento": {
 				"type": "string"
+			},
+			"DataHoraProcessamento": {
+				"type": "string"
 			}
 		},
 		"variables": {
