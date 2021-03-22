@@ -584,6 +584,15 @@
 												"name": "orderGroup",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": "",
@@ -717,6 +726,15 @@
 											},
 											"sink": {
 												"name": "orderid",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
 												"type": "String"
 											}
 										}
