@@ -84,14 +84,6 @@
 						"DataIngestao": {
 							"value": "@pipeline().parameters.DataIngestao",
 							"type": "Expression"
-						},
-						"NomeAliasEndPoint1": {
-							"value": "@pipeline().parameters.NomeAliasEndPoint1",
-							"type": "Expression"
-						},
-						"NomeRetornoURL": {
-							"value": "@pipeline().parameters.NomeRetornURL",
-							"type": "Expression"
 						}
 					}
 				}
@@ -228,13 +220,7 @@
 			"DataIngestao": {
 				"type": "string"
 			},
-			"NomeAliasEndPoint1": {
-				"type": "string"
-			},
-			"NomeRetornURL": {
-				"type": "string"
-			},
-			"NomeURLRelatia": {
+			"DataUltimoProcessamento": {
 				"type": "string"
 			}
 		},
