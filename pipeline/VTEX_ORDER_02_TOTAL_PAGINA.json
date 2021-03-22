@@ -233,6 +233,9 @@
 			},
 			"NomeRetornURL": {
 				"type": "string"
+			},
+			"NomeURLRelatia": {
+				"type": "string"
 			}
 		},
 		"variables": {
