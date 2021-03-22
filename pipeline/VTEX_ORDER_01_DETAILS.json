@@ -110,13 +110,13 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "executa EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+							"name": "executa VTEX_ORDER_02_DETAILS",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+									"referenceName": "VTEX_ORDER_02_DETAILS",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
