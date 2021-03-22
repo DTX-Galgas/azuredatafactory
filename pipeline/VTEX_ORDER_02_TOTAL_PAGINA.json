@@ -219,6 +219,9 @@
 			},
 			"DataIngestao": {
 				"type": "string"
+			},
+			"NomeAliasEndPoint1": {
+				"type": "string"
 			}
 		},
 		"variables": {
