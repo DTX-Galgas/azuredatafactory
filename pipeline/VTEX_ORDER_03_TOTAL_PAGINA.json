@@ -97,7 +97,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "LeCredenciaisOrigem",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -808,50 +808,6 @@
 							]
 						}
 					]
-				}
-			},
-			{
-				"name": "LeDataProcessamento",
-				"description": "Recupera a data de processamento da tabela de controle",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "LeCredenciaisOrigem",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
-						"storedProcedureParameters": {
-							"COD_ENDPOINT": {
-								"type": "int",
-								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
-					}
 				}
 			}
 		],
