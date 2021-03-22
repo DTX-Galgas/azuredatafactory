@@ -1030,8 +1030,7 @@
 												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
+												"name": "DATA_HORA_EXPORTACAO"
 											}
 										}
 									],
@@ -1210,8 +1209,7 @@
 												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
+												"name": "DATA_HORA_EXPORTACAO"
 											}
 										}
 									],
@@ -1380,8 +1378,7 @@
 												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
+												"name": "DATA_HORA_EXPORTACAO"
 											}
 										}
 									],
