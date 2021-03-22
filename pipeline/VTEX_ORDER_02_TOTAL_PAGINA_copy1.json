@@ -43,7 +43,7 @@
 				}
 			},
 			{
-				"name": "EXEC VTEX_ORDER_03_TOTAL_PAGINA",
+				"name": "EXEC_VTEX_ORDER_03_TOTAL_PAGINA",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -81,7 +81,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "EXEC VTEX_ORDER_03_TOTAL_PAGINA",
+						"activity": "EXEC_VTEX_ORDER_03_TOTAL_PAGINA",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -107,7 +107,7 @@
 						},
 						"DSC_ERRO": {
 							"value": {
-								"value": "@activity('ExecutaPipelineModeloAPI').Error.Message",
+								"value": "@activity('EXEC_VTEX_ORDER_03_TOTAL_PAGINA').Error.Message",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -157,12 +157,16 @@
 						"value": "https://prod-21.brazilsouth.logic.azure.com:443/workflows/741f9460457d489996f012404ef44c15/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=j67cgGl-SI96CK3Ef9EClXXCdWao6ACexeV0h3sDZEU",
 						"type": "Expression"
 					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
 					"method": "POST",
 					"headers": {
 						"Content-Type": "application/json"
 					},
 					"body": {
-						"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('ExecutaPipelineModeloAPI').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{activity('GravaLogInicio').output.firstRow.DESC_EMAIL_ERRO}\",\n    \"schema\": \"\",  \n    \"table\": \"\",\n\"servername\": \"\",\n\"type\":\"API\",\n\"endpoint\":\"@{activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT}\",\n\"url\":\"@{variables('FullURL')}\",\n\"output\":\"@{activity('GravaLogInicio').output.firstRow.NOM_RETORNO_URL}\" \n}\n",
+						"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('EXEC_VTEX_ORDER_03_TOTAL_PAGINA').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{activity('GravaLogInicio').output.firstRow.DESC_EMAIL_ERRO}\",\n    \"schema\": \"\",  \n    \"table\": \"\",\n\"servername\": \"\",\n\"type\":\"API\",\n\"endpoint\":\"@{activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT}\",\n\"url\":\"@{variables('FullURL')}\",\n\"output\":\"@{activity('GravaLogInicio').output.firstRow.NOM_RETORNO_URL}\" \n}\n",
 						"type": "Expression"
 					}
 				}
