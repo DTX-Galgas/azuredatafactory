@@ -525,8 +525,8 @@
 										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
 										"type": "Expression"
 									},
-									"DataUltimoProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_ULTI_PROCESSAMENTO",
+									"DataProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
 										"type": "Expression"
 									}
 								}
