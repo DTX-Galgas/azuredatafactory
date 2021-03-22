@@ -132,15 +132,6 @@
 							"typeProperties": {
 								"source": {
 									"type": "RestSource",
-									"additionalColumns": [
-										{
-											"name": "DATA_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-												"type": "Expression"
-											}
-										}
-									],
 									"httpRequestTimeout": "00:01:40",
 									"requestInterval": "00.00:00:00.010",
 									"requestMethod": "GET",
@@ -446,6 +437,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -662,6 +662,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -797,6 +806,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -1084,6 +1102,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -1254,6 +1281,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -1416,6 +1452,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
@@ -1649,6 +1694,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
