@@ -72,6 +72,18 @@
 						"ParPagina": {
 							"value": "@pipeline().parameters.ParPagina",
 							"type": "Expression"
+						},
+						"DataInicioOrderVTEX": {
+							"value": "@pipeline().parameters.DataInicioOrderVTEX",
+							"type": "Expression"
+						},
+						"DataFimOrderVtex": {
+							"value": "@pipeline().parameters.DataFimOrderVtex",
+							"type": "Expression"
+						},
+						"DataIngestao": {
+							"value": "@pipeline().parameters.DataIngestao",
+							"type": "Expression"
 						}
 					}
 				}
