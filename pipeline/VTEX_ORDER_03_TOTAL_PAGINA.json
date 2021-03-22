@@ -885,21 +885,6 @@
 			},
 			"AppKey": {
 				"type": "String"
-			},
-			"FilePathRawJson": {
-				"type": "String"
-			},
-			"FileNameRawJson": {
-				"type": "String"
-			},
-			"FileSystemRaw": {
-				"type": "String"
-			},
-			"FilePathRawParquet": {
-				"type": "String"
-			},
-			"FileNameRawParquet": {
-				"type": "String"
 			}
 		},
 		"folder": {
