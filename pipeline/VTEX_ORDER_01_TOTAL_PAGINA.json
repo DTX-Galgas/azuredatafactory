@@ -528,6 +528,10 @@
 									"DataProcessamento": {
 										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
 										"type": "Expression"
+									},
+									"DataHoraProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
+										"type": "Expression"
 									}
 								}
 							}
