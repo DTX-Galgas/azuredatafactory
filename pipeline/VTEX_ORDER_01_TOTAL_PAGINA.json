@@ -505,7 +505,10 @@
 								},
 								"waitOnCompletion": true,
 								"parameters": {
-									"ParCodEndPoint": "4",
+									"ParCodEndPoint": {
+										"value": "@pipeline().parameters.ParCodEndPoint",
+										"type": "Expression"
+									},
 									"ParPagina": {
 										"value": "@string(int(variables('Contador')))",
 										"type": "Expression"
