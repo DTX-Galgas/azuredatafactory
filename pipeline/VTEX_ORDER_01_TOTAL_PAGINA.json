@@ -524,6 +524,10 @@
 									"DataIngestao": {
 										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
 										"type": "Expression"
+									},
+									"NomeAliasEndPoint1": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+										"type": "Expression"
 									}
 								}
 							}
