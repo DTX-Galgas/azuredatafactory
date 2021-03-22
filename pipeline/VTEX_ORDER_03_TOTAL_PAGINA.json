@@ -876,6 +876,9 @@
 			},
 			"NomeAliasEndPoint1": {
 				"type": "string"
+			},
+			"NomeRetornoURL": {
+				"type": "string"
 			}
 		},
 		"variables": {
