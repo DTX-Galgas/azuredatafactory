@@ -874,13 +874,7 @@
 			"DataIngestao": {
 				"type": "string"
 			},
-			"NomeAliasEndPoint1": {
-				"type": "string"
-			},
-			"NomeRetornoURL": {
-				"type": "string"
-			},
-			"NomeURLRelatia": {
+			"DataUltimoProcessamento": {
 				"type": "string"
 			}
 		},
