@@ -270,7 +270,7 @@
 									},
 									"DSC_OBS": {
 										"value": {
-											"value": "@variables('PathRaw')",
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
 											"type": "Expression"
 										},
 										"type": "String"
