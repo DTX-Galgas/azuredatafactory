@@ -510,13 +510,16 @@
 				"type": "String"
 			},
 			"PaginaFinal": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "0"
 			},
 			"Contador": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "0"
 			},
 			"IndexValue": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "0"
 			}
 		},
 		"folder": {
