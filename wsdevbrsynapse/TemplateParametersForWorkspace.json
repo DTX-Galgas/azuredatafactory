@@ -1,0 +1,102 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "wsdevbrsynapse"
+		},
+		"RestService1_password": {
+			"value": ""
+		},
+		"RestServiceVtex_password": {
+			"value": ""
+		},
+		"SQL_CONTROLE_connectionString": {
+			"value": ""
+		},
+		"SapRest_password": {
+			"value": ""
+		},
+		"VtexTeste_password": {
+			"value": ""
+		},
+		"as-dev-us-synapse-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"linkedService1_accountKey": {
+			"value": ""
+		},
+		"linkedService2_accountKey": {
+			"value": ""
+		},
+		"wsbisinapsys-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"wsdevbrdatalake-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"wsdevbrsynapse-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-dev-br-datalake-mwe.vault.azure.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://kv-dev-br-datalake-mwe.vault.azure.net/"
+		},
+		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+			"value": "Storage-Imagens-material"
+		},
+		"ORC_GIGAM_ORIGEM_properties_typeProperties_connectionString_secretName": {
+			"value": "con-malwee-orcl-cigam"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://ihub.infracommerce.com.br/api/invoices/list/"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"value": "123"
+		},
+		"RestServiceVtex_properties_typeProperties_url": {
+			"value": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"RestServiceVtex_properties_typeProperties_userName": {
+			"value": "malwee"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
+			"value": "300"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_userName": {
+			"value": "RFC_USER_QTQ"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_server": {
+			"value": "srvsqecc01.malwee.com.br"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SapRest_properties_typeProperties_url": {
+			"value": "https://webdisp-homologacao.malwee.com.br:8445/datalake/"
+		},
+		"SapRest_properties_typeProperties_userName": {
+			"value": "RFC_USER_QTQ"
+		},
+		"VtexTeste_properties_typeProperties_url": {
+			"value": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"VtexTeste_properties_typeProperties_userName": {
+			"value": "mawee"
+		},
+		"linkedService1_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"linkedService2_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		}
+	}
+}
