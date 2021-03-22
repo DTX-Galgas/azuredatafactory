@@ -332,7 +332,7 @@
 							"COD_ENDPOINT": {
 								"type": "int",
 								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
+									"value": "@pipeline().parameters.ParCodEndPoint\n",
 									"type": "Expression"
 								}
 							}
