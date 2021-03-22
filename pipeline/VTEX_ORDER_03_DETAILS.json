@@ -1024,6 +1024,15 @@
 												"name": "categories_name_3",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
 										}
 									],
 									"collectionReference": "$['items']",
