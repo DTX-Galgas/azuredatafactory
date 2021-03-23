@@ -168,6 +168,10 @@
 									"ParFormatoArquivo": {
 										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
 										"type": "Expression"
+									},
+									"DataProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
+										"type": "Expression"
 									}
 								}
 							}
