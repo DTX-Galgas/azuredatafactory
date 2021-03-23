@@ -134,7 +134,7 @@
 										"type": "Expression"
 									},
 									"ParCodEndPoint": {
-										"value": "5",
+										"value": "@pipeline().parameters.ParCodEndPoint",
 										"type": "Expression"
 									},
 									"ParNumeroOrder": {
@@ -170,7 +170,7 @@
 										"type": "Expression"
 									},
 									"ParDataProcessamento": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.DAT_PROCESSAMENTO",
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
 										"type": "Expression"
 									},
 									"ParContainerRaw": {
