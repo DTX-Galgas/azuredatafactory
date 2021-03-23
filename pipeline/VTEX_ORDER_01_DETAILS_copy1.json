@@ -118,74 +118,32 @@
 					"batchCount": 15,
 					"activities": [
 						{
-							"name": "executa VTEX_ORDER_03_DETAILS",
-							"type": "ExecutePipeline",
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"pipeline": {
-									"referenceName": "VTEX_ORDER_03_DETAILS_copy2",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": false,
-								"parameters": {
-									"ParIdPipeline": {
-										"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
-										"type": "Expression"
-									},
-									"ParCodEndPoint": {
-										"value": "@pipeline().parameters.ParCodEndPoint",
-										"type": "Expression"
-									},
-									"ParNumeroOrder": {
-										"value": "@{item().ORDERID}",
-										"type": "Expression"
-									},
-									"ParRelativeURL": {
-										"value": "@(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA\n",
-										"type": "Expression"
-									},
-									"ParAppToken": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1",
-										"type": "Expression"
-									},
-									"ParAppKey": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
-										"type": "Expression"
-									},
-									"ParNomeAliasEndPoint": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-										"type": "Expression"
-									},
-									"ParRegiao": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION",
-										"type": "Expression"
-									},
-									"ParSistemaOrigem": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM",
-										"type": "Expression"
-									},
-									"ParFormatoArquivo_1": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
-										"type": "Expression"
-									},
-									"ParDataProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
-										"type": "Expression"
-									},
-									"ParContainerRaw": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
-										"type": "Expression"
-									},
-									"ParFormatoArquivo_2": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2",
-										"type": "Expression"
-									},
-									"ParContainerCleansing": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
-										"type": "Expression"
+								"storedProcedureName": "[dbo].[testeunil]",
+								"storedProcedureParameters": {
+									"contador": {
+										"value": {
+											"value": "@{item().ORDERID}",
+											"type": "Expression"
+										},
+										"type": "String"
 									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
