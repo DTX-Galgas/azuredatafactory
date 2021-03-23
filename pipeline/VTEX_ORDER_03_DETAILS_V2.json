@@ -2541,7 +2541,7 @@
 							"typeProperties": {
 								"variableName": "AppToken",
 								"value": {
-									"value": "pipeline().parameters.ParAppToken",
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
 									"type": "Expression"
 								}
 							}
@@ -2554,20 +2554,7 @@
 							"typeProperties": {
 								"variableName": "AppKey",
 								"value": {
-									"value": "pipeline().parameters.ParAppKey",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "DataHoraProcessamento",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "DataHoraProcessamento",
-								"value": {
-									"value": "formatDateTime(convertTimeZone(utcnow(),'UTC','Eastern Standard Time'),'yyyy-MM-ddTHHmmss')",
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
 									"type": "Expression"
 								}
 							}
