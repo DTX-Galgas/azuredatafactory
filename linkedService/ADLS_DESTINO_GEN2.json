@@ -16,7 +16,7 @@
 			}
 		},
 		"connectVia": {
-			"referenceName": "ir-dev-malwee-2",
+			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
 	},
