@@ -152,6 +152,10 @@
 									"ParAppKey": {
 										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
 										"type": "Expression"
+									},
+									"ParNomeAliasEndPoint": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+										"type": "Expression"
 									}
 								}
 							}
