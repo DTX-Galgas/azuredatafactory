@@ -2630,9 +2630,6 @@
 			},
 			"ParAppKey": {
 				"type": "string"
-			},
-			"ParNomeAliasEndPoint": {
-				"type": "string"
 			}
 		},
 		"variables": {
