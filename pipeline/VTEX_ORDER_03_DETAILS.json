@@ -123,8 +123,8 @@
 							],
 							"policy": {
 								"timeout": "0.00:00:15",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
+								"retry": 2,
+								"retryIntervalInSeconds": 15,
 								"secureOutput": false,
 								"secureInput": false
 							},
