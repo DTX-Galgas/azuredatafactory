@@ -18,29 +18,6 @@
 						"ParPagina": "1"
 					}
 				}
-			},
-			{
-				"name": "DETAILS",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "ORDER",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "VTEX_ORDER_01_DETAILS",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": false,
-					"parameters": {
-						"ParCodEndPoint": "5"
-					}
-				}
 			}
 		],
 		"folder": {
