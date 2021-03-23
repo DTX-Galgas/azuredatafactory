@@ -374,7 +374,7 @@
 							"typeProperties": {
 								"variableName": "PathRaw",
 								"value": {
-									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
+									"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 									"type": "Expression"
 								}
 							}
