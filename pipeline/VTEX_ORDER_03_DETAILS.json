@@ -70,7 +70,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('LeCredenciaisOrigem').output.FirstRow.NOM_RETORNO_URL,'JSON')",
+						"value": "@equals(pipeline().parameters.ParFormatoArquivo_1,'JSON')\n",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
