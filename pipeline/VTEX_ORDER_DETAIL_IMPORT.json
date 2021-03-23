@@ -36,7 +36,10 @@
 						"referenceName": "VTEX_ORDER_01_DETAILS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": false
+					"waitOnCompletion": false,
+					"parameters": {
+						"ParCodEndPoint": "5"
+					}
 				}
 			}
 		],
