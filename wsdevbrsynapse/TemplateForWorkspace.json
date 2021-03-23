@@ -130,6 +130,10 @@
 		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_copy1_parameters_ParCodEndPoint": {
+			"type": "string",
+			"defaultValue": "5"
 		}
 	},
 	"variables": {
@@ -45480,6 +45484,46 @@
 				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]",
 				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_03_DETAILS_copy2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/teste_api_bvtex')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "VTEX_ORDER_01_DETAILS_copy1",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"ParCodEndPoint": "[parameters('teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_copy1_parameters_ParCodEndPoint')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-23T21:34:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								0
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_DETAILS_copy1')]"
 			]
 		}
 	]
