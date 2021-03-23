@@ -2551,6 +2551,19 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "DataHoraProcessamento",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "DataHoraProcessamento",
+								"value": {
+									"value": "formatDateTime(convertTimeZone(utcnow(),'UTC','Eastern Standard Time'),'yyyy-MM-ddTHHmmss')",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
@@ -2599,55 +2612,7 @@
 			"AppKey": {
 				"type": "String"
 			},
-			"FilePathRawJson": {
-				"type": "String"
-			},
-			"FileNameRawJson": {
-				"type": "String"
-			},
-			"FileSystemRaw": {
-				"type": "String"
-			},
-			"FilePathRawOderHeaderParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderHeaderParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderTotalsParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderTotalsParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderItemsParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderItemsParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderClientParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderClientParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderPaymentParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderPaymentParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderShippingParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderShippingParquet": {
-				"type": "String"
-			},
-			"FilePathRawOderShippingItemsParquet": {
-				"type": "String"
-			},
-			"FileNameRawOrderShippingItemsParquet": {
+			"DataHoraProcessamento": {
 				"type": "String"
 			}
 		},
