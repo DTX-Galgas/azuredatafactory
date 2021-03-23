@@ -98,9 +98,6 @@
 		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
 		},
-		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_copy1_parameters_ParCodEndPoint": {
-			"value": "5"
-		},
 		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
 			"value": "5"
 		}
