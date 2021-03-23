@@ -297,7 +297,7 @@
 				"typeProperties": {
 					"variableName": "MsgErro",
 					"value": {
-						"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT,']')",
+						"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT_1,']')",
 						"type": "Expression"
 					}
 				}
