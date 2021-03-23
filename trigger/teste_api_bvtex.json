@@ -6,15 +6,6 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "VTEX_ORDER_01_DETAILS_copy1",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"ParCodEndPoint": "5"
-				}
-			},
-			{
-				"pipelineReference": {
 					"referenceName": "VTEX_ORDER_01_DETAILS",
 					"type": "PipelineReference"
 				},
