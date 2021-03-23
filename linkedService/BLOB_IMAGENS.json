@@ -10,11 +10,12 @@
 					"referenceName": "AzureKeyVault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "Storage-Imagens-material"
+				"secretName": "Storage-Imagens-material",
+				"secretVersion": ""
 			}
 		},
 		"connectVia": {
-			"referenceName": "AutoResolveIntegrationRuntime",
+			"referenceName": "ir-dev-malwee-2",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
