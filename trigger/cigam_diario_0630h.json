@@ -20,10 +20,10 @@
 				"timeZone": "E. South America Standard Time",
 				"schedule": {
 					"minutes": [
-						50
+						30
 					],
 					"hours": [
-						8
+						6
 					]
 				}
 			}
