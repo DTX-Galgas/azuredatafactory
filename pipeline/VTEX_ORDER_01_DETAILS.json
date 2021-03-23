@@ -7,7 +7,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "GravaLogInicio",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -102,7 +102,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "GravaLogInicio",
+						"activity": "OrderID",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -196,7 +196,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "OrderID",
+						"activity": "LeDataProcessamento",
 						"dependencyConditions": [
 							"Succeeded"
 						]
