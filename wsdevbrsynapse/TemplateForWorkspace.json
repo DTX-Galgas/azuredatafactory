@@ -40120,6 +40120,460 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SAP_trigger')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_AFS_DPRG_KOND",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_AFS_MVKE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T134T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T179T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_MARA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_MAKT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_J_3APGEN",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_J_3APGHD",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_CAWN",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_CAWNT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_001",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_002",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_003",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_004",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_005",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_006",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_007",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_008",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_011",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_012",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T141T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T179",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_J_3AGENDRT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_J_3AMSEA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_J_3ASEANT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_MVKE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T178T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_MARM",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T023T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTMM075",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ESLL",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTMM027",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_CDHDR",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVAKT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T176T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVTKT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T042ZT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T188T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T189T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVFST",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVLST",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T151T",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVAGT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTSD007",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTSD_MODL_001",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTSD050",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTWM043",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_ZTSD126",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_KNA1",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_TVTWT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_T006A",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_KNVK",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_SAP_AUSP",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-23T13:16:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_AFS_DPRG_KOND')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_AFS_MVKE')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T134T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T179T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_MARA')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_MAKT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_J_3APGEN')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_J_3APGHD')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_CAWN')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_CAWNT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_001')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_002')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_003')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_004')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_005')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_006')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_007')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_008')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_011')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTPP_RE_012')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T141T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T179')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_J_3AGENDRT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_J_3AMSEA')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_J_3ASEANT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_MVKE')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T178T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_MARM')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T023T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTMM075')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ESLL')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTMM027')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_CDHDR')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVAKT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T176T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVTKT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T042ZT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T188T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T189T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVFST')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVLST')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T151T')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVAGT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTSD007')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTSD_MODL_001')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTSD050')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTWM043')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_ZTSD126')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_KNA1')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_TVTWT')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_T006A')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_KNVK')]",
+				"[concat(variables('workspaceId'), '/pipelines/EXEC_PIPE_SAP_AUSP')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Trigger diario 00h')]",
 			"type": "Microsoft.Synapse/workspaces/triggers",
 			"apiVersion": "2019-06-01-preview",
@@ -40203,10 +40657,10 @@
 						"timeZone": "E. South America Standard Time",
 						"schedule": {
 							"minutes": [
-								50
+								30
 							],
 							"hours": [
-								8
+								6
 							]
 						}
 					}
@@ -40304,10 +40758,10 @@
 						"timeZone": "E. South America Standard Time",
 						"schedule": {
 							"minutes": [
-								20
+								0
 							],
 							"hours": [
-								8
+								6
 							]
 						}
 					}
