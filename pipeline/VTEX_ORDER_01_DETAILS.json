@@ -165,7 +165,7 @@
 										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM",
 										"type": "Expression"
 									},
-									"ParFormatoArquivo": {
+									"ParFormatoArquivo_1": {
 										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
 										"type": "Expression"
 									},
@@ -175,6 +175,10 @@
 									},
 									"ParContainerRaw": {
 										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"type": "Expression"
+									},
+									"ParFormatoArquivo_2": {
+										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2",
 										"type": "Expression"
 									}
 								}
