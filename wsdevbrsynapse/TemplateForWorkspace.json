@@ -7856,7 +7856,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/ADF_MODELO_API_JSON_VTEX_ORDER_CAPTURA_NUMERO_ORDER')]",
+			"name": "[concat(parameters('workspaceName'), '/VTEX_ORDER_01_DETAILS')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -7970,13 +7970,13 @@
 							"isSequential": true,
 							"activities": [
 								{
-									"name": "executa EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+									"name": "executa VTEX_ORDER_02_DETAILS",
 									"type": "ExecutePipeline",
 									"dependsOn": [],
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+											"referenceName": "VTEX_ORDER_02_DETAILS",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": true,
@@ -8009,11 +8009,11 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SQL_DS_CONTROLE')]",
 				"[concat(variables('workspaceId'), '/datasets/wsdevbrsynapse')]",
-				"[concat(variables('workspaceId'), '/pipelines/EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS')]"
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_02_DETAILS')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS')]",
+			"name": "[concat(parameters('workspaceName'), '/VTEX_ORDER_03_DETAILS')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -8148,15 +8148,6 @@
 									"typeProperties": {
 										"source": {
 											"type": "RestSource",
-											"additionalColumns": [
-												{
-													"name": "DATA_HORA_EXPORTACAO",
-													"value": {
-														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-														"type": "Expression"
-													}
-												}
-											],
 											"httpRequestTimeout": "00:01:40",
 											"requestInterval": "00.00:00:00.010",
 											"requestMethod": "GET",
@@ -8462,6 +8453,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -8603,7 +8603,7 @@
 												},
 												{
 													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
 														"name": "DATA_HORA_EXPORTACAO",
@@ -8678,6 +8678,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -8738,7 +8747,7 @@
 												},
 												{
 													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
 														"name": "DATA_HORA_EXPORTACAO",
@@ -8813,6 +8822,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -8837,6 +8855,140 @@
 											"mappings": [
 												{
 													"source": {
+														"path": "[['uniqueId']"
+													},
+													"sink": {
+														"name": "uniqueid"
+													}
+												},
+												{
+													"source": {
+														"path": "[['id']"
+													},
+													"sink": {
+														"name": "id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['ean']"
+													},
+													"sink": {
+														"name": "ean",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['lockId']"
+													},
+													"sink": {
+														"name": "lockId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['quantity']"
+													},
+													"sink": {
+														"name": "quantity",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['seller']"
+													},
+													"sink": {
+														"name": "seller",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['refId']"
+													},
+													"sink": {
+														"name": "refId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['price']"
+													},
+													"sink": {
+														"name": "price",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['listPrice']"
+													},
+													"sink": {
+														"name": "listPrice",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['imageUrl']"
+													},
+													"sink": {
+														"name": "imageUrl",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['additionalInfo']['brandName']"
+													},
+													"sink": {
+														"name": "brandName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['additionalInfo']['brandId']"
+													},
+													"sink": {
+														"name": "brandId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['additionalInfo']['categoriesIds']"
+													},
+													"sink": {
+														"name": "categoriesIds",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['additionalInfo']['categories'][0]['id']"
+													},
+													"sink": {
+														"name": "categories_id_1",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['additionalInfo']['categories'][0]['name']"
+													},
+													"sink": {
+														"name": "categories_name_1",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
 														"path": "$['orderId']"
 													},
 													"sink": {
@@ -8846,144 +8998,10 @@
 												},
 												{
 													"source": {
-														"path": "$['items'][0]['uniqueId']"
-													},
-													"sink": {
-														"name": "uniqueid"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['id']"
-													},
-													"sink": {
-														"name": "id",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['ean']"
-													},
-													"sink": {
-														"name": "ean",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['lockId']"
-													},
-													"sink": {
-														"name": "lockId",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['quantity']"
-													},
-													"sink": {
-														"name": "quantity",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['seller']"
-													},
-													"sink": {
-														"name": "seller",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
 														"path": "$['totals'][0]['name']"
 													},
 													"sink": {
 														"name": "name",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['refId']"
-													},
-													"sink": {
-														"name": "refId",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['price']"
-													},
-													"sink": {
-														"name": "price",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['listPrice']"
-													},
-													"sink": {
-														"name": "listPrice",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['imageUrl']"
-													},
-													"sink": {
-														"name": "imageUrl",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['additionalInfo']['brandName']"
-													},
-													"sink": {
-														"name": "brandName",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['additionalInfo']['brandId']"
-													},
-													"sink": {
-														"name": "brandId",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['additionalInfo']['categoriesIds']"
-													},
-													"sink": {
-														"name": "categoriesIds",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
-													},
-													"sink": {
-														"name": "categories_id_1",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
-													},
-													"sink": {
-														"name": "categories_name_1",
 														"type": "String"
 													}
 												},
@@ -9025,11 +9043,10 @@
 												},
 												{
 													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
-														"name": "DATA_HORA_EXPORTACAO",
-														"type": "String"
+														"name": "DATA_HORA_EXPORTACAO"
 													}
 												}
 											],
@@ -9100,6 +9117,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -9196,11 +9222,10 @@
 												},
 												{
 													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
-														"name": "DATA_HORA_EXPORTACAO",
-														"type": "String"
+														"name": "DATA_HORA_EXPORTACAO"
 													}
 												}
 											],
@@ -9270,6 +9295,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -9294,6 +9328,60 @@
 											"mappings": [
 												{
 													"source": {
+														"path": "[['payments'][0]['id']"
+													},
+													"sink": {
+														"name": "id",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['payments'][0]['paymentSystemName']"
+													},
+													"sink": {
+														"name": "paymentSystemName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['payments'][0]['paymentSystem']"
+													},
+													"sink": {
+														"name": "paymentSystem",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['payments'][0]['installments']"
+													},
+													"sink": {
+														"name": "installments",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['payments'][0]['referenceValue']"
+													},
+													"sink": {
+														"name": "referenceValue",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "[['payments'][0]['value']"
+													},
+													"sink": {
+														"name": "value",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
 														"path": "$['orderId']"
 													},
 													"sink": {
@@ -9303,65 +9391,10 @@
 												},
 												{
 													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
-														"name": "id",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
-													},
-													"sink": {
-														"name": "paymentSystemName",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
-													},
-													"sink": {
-														"name": "paymentSystem",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
-													},
-													"sink": {
-														"name": "installments",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
-													},
-													"sink": {
-														"name": "referenceValue",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
-													},
-													"sink": {
-														"name": "value",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
-													},
-													"sink": {
-														"name": "DATA_HORA_EXPORTACAO",
-														"type": "String"
+														"name": "DATA_HORA_EXPORTACAO"
 													}
 												}
 											],
@@ -9432,6 +9465,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -9573,7 +9615,7 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][0]"
+														"path": "$['shippingData']['address']['geoCoordinates']"
 													},
 													"sink": {
 														"name": "geoCoordinates_X",
@@ -9591,11 +9633,10 @@
 												},
 												{
 													"source": {
-														"path": "DATA_HORA_EXPORTACAO"
+														"path": "$['DATA_HORA_EXPORTACAO']"
 													},
 													"sink": {
-														"name": "DATA_HORA_EXPORTACAO",
-														"type": "String"
+														"name": "DATA_HORA_EXPORTACAO"
 													}
 												}
 											],
@@ -9665,6 +9706,15 @@
 									"typeProperties": {
 										"source": {
 											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "DATA_HORA_EXPORTACAO",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
@@ -13467,7 +13517,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/EXEC_ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS')]",
+			"name": "[concat(parameters('workspaceName'), '/VTEX_ORDER_02_DETAILS')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -13526,7 +13576,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
-								"referenceName": "ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS",
+								"referenceName": "VTEX_ORDER_03_DETAILS",
 								"type": "PipelineReference"
 							},
 							"waitOnCompletion": true,
@@ -13685,7 +13735,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SQL_DS_CONTROLE')]",
-				"[concat(variables('workspaceId'), '/pipelines/ADF_MODELO_API_JSON_VTEX_ORDER_DETAILS')]",
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_03_DETAILS')]",
 				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]"
 			]
 		},
@@ -26088,7 +26138,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "_Testes de Conectividade"
 				},
 				"annotations": []
 			},
@@ -26245,7 +26295,7 @@
 									"typeProperties": {
 										"variableName": "RelativeURL",
 										"value": {
-											"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\n'1'\n)",
+											"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\nstring(pipeline().parameters.ParPagina)\n)",
 											"type": "Expression"
 										}
 									}
@@ -26615,6 +26665,26 @@
 											"ParPagina": {
 												"value": "@string(int(variables('Contador')))",
 												"type": "Expression"
+											},
+											"DataInicioOrderVTEX": {
+												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX",
+												"type": "Expression"
+											},
+											"DataFimOrderVtex": {
+												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX",
+												"type": "Expression"
+											},
+											"DataIngestao": {
+												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+												"type": "Expression"
+											},
+											"DataProcessamento": {
+												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
+												"type": "Expression"
+											},
+											"DataHoraProcessamento": {
+												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
+												"type": "Expression"
 											}
 										}
 									}
@@ -26746,6 +26816,26 @@
 								"ParPagina": {
 									"value": "@pipeline().parameters.ParPagina",
 									"type": "Expression"
+								},
+								"DataInicioOrderVTEX": {
+									"value": "@pipeline().parameters.DataInicioOrderVTEX",
+									"type": "Expression"
+								},
+								"DataFimOrderVtex": {
+									"value": "@pipeline().parameters.DataFimOrderVtex",
+									"type": "Expression"
+								},
+								"DataIngestao": {
+									"value": "@pipeline().parameters.DataIngestao",
+									"type": "Expression"
+								},
+								"DataProcessamento": {
+									"value": "@pipeline().parameters.DataProcessamento",
+									"type": "Expression"
+								},
+								"DataHoraProcessamento": {
+									"value": "@pipeline().parameters.DataHoraProcessamento",
+									"type": "Expression"
 								}
 							}
 						}
@@ -26872,6 +26962,21 @@
 					},
 					"ParPagina": {
 						"type": "int"
+					},
+					"DataInicioOrderVTEX": {
+						"type": "string"
+					},
+					"DataFimOrderVtex": {
+						"type": "string"
+					},
+					"DataIngestao": {
+						"type": "string"
+					},
+					"DataProcessamento": {
+						"type": "string"
+					},
+					"DataHoraProcessamento": {
+						"type": "string"
 					}
 				},
 				"variables": {
@@ -26935,7 +27040,7 @@
 								},
 								"DSC_PARAMETROS": {
 									"value": {
-										"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
+										"value": "@variables('RalativeURL')",
 										"type": "Expression"
 									},
 									"type": "String"
@@ -26999,7 +27104,7 @@
 						"type": "IfCondition",
 						"dependsOn": [
 							{
-								"activity": "LeDataProcessamento",
+								"activity": "LeCredenciaisOrigem",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -27038,7 +27143,7 @@
 												{
 													"name": "DATA_HORA_EXPORTACAO",
 													"value": {
-														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"value": "@substring(pipeline().parameters.DataHoraProcessamento,0,19)",
 														"type": "Expression"
 													}
 												}
@@ -27086,11 +27191,11 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"FilePath": {
-													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(pipeline().parameters.DataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataProcessamento,8,2)))",
 													"type": "Expression"
 												},
 												"FileName": {
-													"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
+													"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,\n'_',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,11,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,14,2),\n'_page_',\nstring(pipeline().parameters.ParPagina),\n'.json'))\n",
 													"type": "Expression"
 												},
 												"FileSystem": {
@@ -27172,7 +27277,7 @@
 											},
 											"DSC_OBS": {
 												"value": {
-													"value": "@variables('PathRaw')",
+													"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
 													"type": "Expression"
 												},
 												"type": "String"
@@ -27219,7 +27324,7 @@
 									"typeProperties": {
 										"variableName": "RalativeURL",
 										"value": {
-											"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\nstring(pipeline().parameters.ParPagina)\n)",
+											"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\npipeline().parameters.DataInicioOrderVTEX,\n' TO ',\npipeline().parameters.DataFimOrderVtex,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\nstring(pipeline().parameters.ParPagina)\n)\n",
 											"type": "Expression"
 										}
 									}
@@ -27258,7 +27363,7 @@
 												"DAT_EXPORTACAO": {
 													"type": "String",
 													"value": {
-														"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+														"value": "@pipeline().parameters.DataIngestao",
 														"type": "Expression"
 													}
 												},
@@ -27305,7 +27410,7 @@
 									"typeProperties": {
 										"variableName": "PathRaw",
 										"value": {
-											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(pipeline().parameters.DataHoraProcessamento,0,4),'/',substring(pipeline().parameters.DataHoraProcessamento,5,2),'/',substring(pipeline().parameters.DataHoraProcessamento,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(pipeline().parameters.DataHoraProcessamento,0,4),substring(pipeline().parameters.DataHoraProcessamento,5,2),substring(pipeline().parameters.DataHoraProcessamento,8,2),substring(pipeline().parameters.DataHoraProcessamento,11,2),substring(pipeline().parameters.DataHoraProcessamento,14,2),'.json'))\n",
 											"type": "Expression"
 										}
 									}
@@ -27674,11 +27779,11 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"FilePath": {
-													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(pipeline().parameters.DataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataProcessamento,8,2)))",
 													"type": "Expression"
 												},
 												"FileName": {
-													"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))",
+													"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,\n'_',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,11,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,14,2),\n'_page_',\nstring(pipeline().parameters.ParPagina),\n'.json'))\n",
 													"type": "Expression"
 												},
 												"FileSystem": {
@@ -27694,11 +27799,11 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"FilePath": {
-													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2)))",
 													"type": "Expression"
 												},
 												"FileName": {
-													"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))",
+													"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(pipeline().parameters.DataHoraProcessamento,0,4),substring(pipeline().parameters.DataHoraProcessamento,5,2),substring(pipeline().parameters.DataHoraProcessamento,8,2),substring(pipeline().parameters.DataHoraProcessamento,11,2),substring(pipeline().parameters.DataHoraProcessamento,14,2),'_page_',string(pipeline().parameters.ParPagina),'.parquet'))",
 													"type": "Expression"
 												},
 												"FileSystem": {
@@ -27711,50 +27816,6 @@
 								}
 							]
 						}
-					},
-					{
-						"name": "LeDataProcessamento",
-						"description": "Recupera a data de processamento da tabela de controle",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "LeCredenciaisOrigem",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "[[dbo].[PADFDataProcessamentoAPI]",
-								"storedProcedureParameters": {
-									"COD_ENDPOINT": {
-										"type": "int",
-										"value": {
-											"value": "@pipeline().parameters.ParCodEndPoint",
-											"type": "Expression"
-										}
-									}
-								},
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "SQL_DS_CONTROLE",
-								"type": "DatasetReference",
-								"parameters": {
-									"NomeTabela": "Tabela"
-								}
-							}
-						}
 					}
 				],
 				"parameters": {
@@ -27766,6 +27827,21 @@
 					},
 					"ParPagina": {
 						"type": "int"
+					},
+					"DataInicioOrderVTEX": {
+						"type": "string"
+					},
+					"DataFimOrderVtex": {
+						"type": "string"
+					},
+					"DataIngestao": {
+						"type": "string"
+					},
+					"DataProcessamento": {
+						"type": "string"
+					},
+					"DataHoraProcessamento": {
+						"type": "string"
 					}
 				},
 				"variables": {
@@ -27786,21 +27862,6 @@
 						"type": "String"
 					},
 					"AppKey": {
-						"type": "String"
-					},
-					"FilePathRawJson": {
-						"type": "String"
-					},
-					"FileNameRawJson": {
-						"type": "String"
-					},
-					"FileSystemRaw": {
-						"type": "String"
-					},
-					"FilePathRawParquet": {
-						"type": "String"
-					},
-					"FileNameRawParquet": {
 						"type": "String"
 					}
 				},
@@ -41513,6 +41574,99 @@
 			"apiVersion": "2019-06-01-preview",
 			"properties": {},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/VTEX_ORDER_DETAIL_IMPORT')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "ORDER",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodEndPoint": "4",
+								"ParPagina": "1"
+							}
+						}
+					},
+					{
+						"name": "DETAILS",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "ORDER",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "VTEX_ORDER_01_DETAILS",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"folder": {
+					"name": "Modelos/API JSON/VTEX"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_TOTAL_PAGINA')]",
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_DETAILS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/vtex_diario_6h')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "VTEX_ORDER_DETAIL_IMPORT",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-23T02:25:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_DETAIL_IMPORT')]"
+			]
 		}
 	]
 }
