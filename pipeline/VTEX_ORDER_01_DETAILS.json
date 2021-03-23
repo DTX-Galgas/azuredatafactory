@@ -7,7 +7,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "LeCredenciaisOrigem",
+						"activity": "LeDataProcessamento",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -42,7 +42,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "CapturaDataExportacao",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -395,7 +395,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "CapturaDataExportacao",
+						"activity": "LeCredenciaisOrigem",
 						"dependencyConditions": [
 							"Succeeded"
 						]
