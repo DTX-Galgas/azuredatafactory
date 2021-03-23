@@ -134,6 +134,10 @@
 		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_copy1_parameters_ParCodEndPoint": {
 			"type": "string",
 			"defaultValue": "5"
+		},
+		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
+			"type": "string",
+			"defaultValue": "5"
 		}
 	},
 	"variables": {
@@ -23173,7 +23177,7 @@
 												"type": "Expression"
 											},
 											"ParRelativeURL": {
-												"value": "@(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA\n",
+												"value": "@activity('LeDataProcessamento').output.FirstRow.NOM_URL_RELATIVA\n",
 												"type": "Expression"
 											},
 											"ParAppToken": {
@@ -44160,6 +44164,15 @@
 						"parameters": {
 							"ParCodEndPoint": "[parameters('teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_copy1_parameters_ParCodEndPoint')]"
 						}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "VTEX_ORDER_01_DETAILS",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"ParCodEndPoint": "[parameters('teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint')]"
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
@@ -44181,7 +44194,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_DETAILS_copy1')]"
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_DETAILS_copy1')]",
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_01_DETAILS')]"
 			]
 		},
 		{
