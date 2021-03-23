@@ -100,6 +100,9 @@
 		},
 		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
 			"value": "5"
+		},
+		"teste_api_bvtex_properties_VTEX_ORDER_01_DETAILS_V2_parameters_ParCodEndPoint": {
+			"value": "5"
 		}
 	}
 }
