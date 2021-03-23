@@ -118,7 +118,7 @@
 					"batchCount": 15,
 					"activities": [
 						{
-							"name": "executa VTEX_ORDER_02_DETAILS",
+							"name": "executa VTEX_ORDER_03_DETAILS",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
