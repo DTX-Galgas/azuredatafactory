@@ -51,19 +51,6 @@
 									"type": "Expression"
 								}
 							}
-						},
-						{
-							"name": "DataHoraProcessamento",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "DataHoraProcessamento",
-								"value": {
-									"value": "formatDateTime(convertTimeZone(utcnow(),'UTC','Eastern Standard Time'),'yyyy-MM-ddTHHmmss')",
-									"type": "Expression"
-								}
-							}
 						}
 					]
 				}
