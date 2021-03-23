@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "VTEX_ORDER_01_DETAILS",
+						"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true,
