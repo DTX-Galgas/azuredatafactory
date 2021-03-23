@@ -15,6 +15,12 @@
 					"referenceName": "EXEC_PIPE_SAP_AFS_MVKE",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_AUSP",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
