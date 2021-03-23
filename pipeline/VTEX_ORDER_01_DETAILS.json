@@ -169,8 +169,12 @@
 										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
 										"type": "Expression"
 									},
-									"DataProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
+									"ParDataProcessamento": {
+										"value": "@activity('LeCredenciaisOrigem').output.firstRow.DAT_PROCESSAMENTO",
+										"type": "Expression"
+									},
+									"ParContainerRaw": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
 										"type": "Expression"
 									}
 								}
