@@ -276,7 +276,7 @@
 						},
 						"NOM_ALIAS_ENDPOINT": {
 							"value": {
-								"value": "@activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT",
+								"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
 								"type": "Expression"
 							},
 							"type": "String"
