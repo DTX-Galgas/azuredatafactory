@@ -124,7 +124,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_03_DETAILS",
+									"referenceName": "VTEX_ORDER_03_DETAILS_V2",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": false,
@@ -140,54 +140,6 @@
 									"ParNumeroOrder": {
 										"value": "@{item().ORDERID}",
 										"type": "Expression"
-									},
-									"ParRelativeURL": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA",
-										"type": "Expression"
-									},
-									"ParAppToken": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1",
-										"type": "Expression"
-									},
-									"ParAppKey": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
-										"type": "Expression"
-									},
-									"ParNomeAliasEndPoint": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-										"type": "Expression"
-									},
-									"ParRegiao": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION",
-										"type": "Expression"
-									},
-									"ParSistemaOrigem": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM",
-										"type": "Expression"
-									},
-									"ParFormatoArquivo_1": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
-										"type": "Expression"
-									},
-									"ParDataProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
-										"type": "Expression"
-									},
-									"ParContainerRaw": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
-										"type": "Expression"
-									},
-									"ParFormatoArquivo_2": {
-										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2",
-										"type": "Expression"
-									},
-									"ParContainerCleansing": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
-										"type": "Expression"
-									},
-									"ParDataIngestao": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
-										"type": "Expression"
 									}
 								}
 							}
@@ -198,14 +150,7 @@
 			{
 				"name": "GravaLogInicio",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "LeDataProcessamento",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -354,86 +299,6 @@
 					"value": {
 						"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT,']')",
 						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "LeCredenciaisOrigem",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.00:00:30",
-					"retry": 2,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciaisAPI]",
-						"storedProcedureParameters": {
-							"COD_ENDPOINT": {
-								"type": "Int32",
-								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
-					}
-				}
-			},
-			{
-				"name": "LeDataProcessamento",
-				"description": "Recupera a data de processamento da tabela de controle",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "LeCredenciaisOrigem",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.00:00:30",
-					"retry": 2,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
-						"storedProcedureParameters": {
-							"COD_ENDPOINT": {
-								"type": "int",
-								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
 					}
 				}
 			}
