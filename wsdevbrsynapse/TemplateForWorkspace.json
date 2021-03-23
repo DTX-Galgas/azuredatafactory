@@ -41631,7 +41631,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/vtex_diario_6h')]",
+			"name": "[concat(parameters('workspaceName'), '/vtex_diario_06h')]",
 			"type": "Microsoft.Synapse/workspaces/triggers",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -41651,7 +41651,7 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 1,
-						"startTime": "2021-03-23T02:25:00",
+						"startTime": "2021-03-23T02:26:00",
 						"timeZone": "E. South America Standard Time",
 						"schedule": {
 							"minutes": [
