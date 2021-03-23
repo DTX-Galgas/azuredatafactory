@@ -156,6 +156,18 @@
 									"ParNomeAliasEndPoint": {
 										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
 										"type": "Expression"
+									},
+									"ParRegiao": {
+										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION",
+										"type": "Expression"
+									},
+									"ParSistemaOrigem": {
+										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM",
+										"type": "Expression"
+									},
+									"ParFormatoArquivo": {
+										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1",
+										"type": "Expression"
 									}
 								}
 							}

@@ -2590,6 +2590,15 @@
 			},
 			"ParNomeAliasEndPoint": {
 				"type": "string"
+			},
+			"ParRegiao": {
+				"type": "string"
+			},
+			"ParSistemaOrigem": {
+				"type": "string"
+			},
+			"ParFormatoArquivo": {
+				"type": "string"
 			}
 		},
 		"variables": {
