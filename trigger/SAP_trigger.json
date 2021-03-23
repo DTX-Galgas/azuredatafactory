@@ -18,6 +18,306 @@
 			},
 			{
 				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T134T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T179T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_MARA",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_MAKT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_J_3APGEN",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_J_3APGHD",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_CAWN",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_CAWNT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_001",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_002",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_003",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_004",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_005",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_006",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_007",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_008",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_011",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTPP_RE_012",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T141T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T179",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_J_3AGENDRT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_J_3AMSEA",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_J_3ASEANT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_MVKE",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T178T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_MARM",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T023T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTMM075",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ESLL",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTMM027",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_CDHDR",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVAKT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T176T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVTKT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T042ZT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T188T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T189T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVFST",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVLST",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T151T",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVAGT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTSD007",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTSD_MODL_001",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTSD050",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTWM043",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_ZTSD126",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_KNA1",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_TVTWT",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_T006A",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_KNVK",
+					"type": "PipelineReference"
+				}
+			},
+			{
+				"pipelineReference": {
 					"referenceName": "EXEC_PIPE_SAP_AUSP",
 					"type": "PipelineReference"
 				}
