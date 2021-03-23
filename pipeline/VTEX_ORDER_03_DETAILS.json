@@ -33,7 +33,7 @@
 						},
 						"DSC_PARAMETROS": {
 							"value": {
-								"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
+								"value": "@pipeline().parameters.ParRelativeURL",
 								"type": "Expression"
 							},
 							"type": "String"
