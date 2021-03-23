@@ -139,11 +139,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',variables('DataHoraProcessamento'),'.json'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
@@ -2601,6 +2601,9 @@
 				"type": "string"
 			},
 			"ParDataProcessamento": {
+				"type": "string"
+			},
+			"ParContainerRaw": {
 				"type": "string"
 			}
 		},
