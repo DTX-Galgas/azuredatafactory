@@ -2564,7 +2564,7 @@
 							"typeProperties": {
 								"variableName": "RalativeURL",
 								"value": {
-									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,pipeline().parameters.ParNumeroOrder)\n",
+									"value": "@concat(pipeline().parameters.ParRelativeURL,pipeline().parameters.ParNumeroOrder)\n",
 									"type": "Expression"
 								}
 							}
@@ -2577,7 +2577,7 @@
 							"typeProperties": {
 								"variableName": "AppToken",
 								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
+									"value": "pipeline().parameters.ParAppToken",
 									"type": "Expression"
 								}
 							}
@@ -2590,7 +2590,7 @@
 							"typeProperties": {
 								"variableName": "AppKey",
 								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
+									"value": "pipeline().parameters.ParAppKey",
 									"type": "Expression"
 								}
 							}
