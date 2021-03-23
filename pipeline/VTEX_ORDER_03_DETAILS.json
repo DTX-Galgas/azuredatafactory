@@ -2479,7 +2479,7 @@
 								"storedProcedureParameters": {
 									"contador": {
 										"value": {
-											"value": "@pipeline().parameters.ParRelativeURL",
+											"value": "@variables('RalativeURL')",
 											"type": "Expression"
 										},
 										"type": "String"
