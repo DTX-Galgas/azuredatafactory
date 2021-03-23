@@ -107,7 +107,8 @@
 						"value": "@activity('OrderID').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
+					"batchCount": 3,
 					"activities": [
 						{
 							"name": "executa VTEX_ORDER_02_DETAILS",
@@ -119,7 +120,7 @@
 									"referenceName": "VTEX_ORDER_02_DETAILS",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true,
+								"waitOnCompletion": false,
 								"parameters": {
 									"ParCodEndPoint": {
 										"value": "5",

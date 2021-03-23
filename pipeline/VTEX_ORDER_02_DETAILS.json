@@ -59,7 +59,7 @@
 						"referenceName": "VTEX_ORDER_03_DETAILS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
+					"waitOnCompletion": false,
 					"parameters": {
 						"ParIdPipeline": {
 							"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
