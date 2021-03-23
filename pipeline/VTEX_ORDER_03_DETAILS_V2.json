@@ -2528,7 +2528,7 @@
 							"typeProperties": {
 								"variableName": "RalativeURL",
 								"value": {
-									"value": "@concat(pipeline().parameters.ParRelativeURL,pipeline().parameters.ParNumeroOrder)\n",
+									"value": "@concat(\nactivity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\npipeline().parameters.ParNumeroOrder)\n",
 									"type": "Expression"
 								}
 							}
