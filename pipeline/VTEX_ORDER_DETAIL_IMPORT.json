@@ -1,0 +1,48 @@
+{
+	"name": "VTEX_ORDER_DETAIL_IMPORT",
+	"properties": {
+		"activities": [
+			{
+				"name": "ORDER",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodEndPoint": "4",
+						"ParPagina": "1"
+					}
+				}
+			},
+			{
+				"name": "DETAILS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ORDER",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "VTEX_ORDER_01_DETAILS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	}
+}
