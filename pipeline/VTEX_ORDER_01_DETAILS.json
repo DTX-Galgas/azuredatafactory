@@ -180,6 +180,10 @@
 									"ParFormatoArquivo_2": {
 										"value": "@activity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2",
 										"type": "Expression"
+									},
+									"ParContainerCleansing": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+										"type": "Expression"
 									}
 								}
 							}
