@@ -117,16 +117,20 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_02_DETAILS",
+									"referenceName": "VTEX_ORDER_03_DETAILS",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": false,
 								"parameters": {
+									"ParIdPipeline": {
+										"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+										"type": "Expression"
+									},
 									"ParCodEndPoint": {
 										"value": "5",
 										"type": "Expression"
 									},
-									"ParOrderID": {
+									"ParNumeroOrder": {
 										"value": "@{item().ORDERID}",
 										"type": "Expression"
 									}
