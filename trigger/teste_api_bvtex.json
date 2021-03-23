@@ -12,6 +12,15 @@
 				"parameters": {
 					"ParCodEndPoint": "5"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "VTEX_ORDER_01_DETAILS",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParCodEndPoint": "5"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
