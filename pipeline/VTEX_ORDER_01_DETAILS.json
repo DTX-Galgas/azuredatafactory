@@ -5,7 +5,14 @@
 			{
 				"name": "CapturaDataExportacao",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LeCredenciaisOrigem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -132,6 +139,18 @@
 									},
 									"ParNumeroOrder": {
 										"value": "@{item().ORDERID}",
+										"type": "Expression"
+									},
+									"ParRelativeURL": {
+										"value": "@(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA\n",
+										"type": "Expression"
+									},
+									"ParAppToken": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1",
+										"type": "Expression"
+									},
+									"ParAppKey": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
 										"type": "Expression"
 									}
 								}
@@ -301,8 +320,50 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "LeCredenciaisOrigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:00:30",
+					"retry": 2,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciaisAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
 			}
 		],
+		"parameters": {
+			"ParCodEndPoint": {
+				"type": "string",
+				"defaultValue": "5"
+			}
+		},
 		"variables": {
 			"DATA_HORA_EXPORTACAO": {
 				"type": "String"

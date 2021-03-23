@@ -2608,6 +2608,15 @@
 			},
 			"ParNumeroOrder": {
 				"type": "string"
+			},
+			"ParRelativeURL": {
+				"type": "string"
+			},
+			"ParAppToken": {
+				"type": "string"
+			},
+			"ParAppKey": {
+				"type": "string"
 			}
 		},
 		"variables": {
