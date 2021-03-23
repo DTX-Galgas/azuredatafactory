@@ -418,42 +418,6 @@
 					},
 					"activities": [
 						{
-							"name": "testeunil",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "modificaContador",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[testeunil]",
-								"storedProcedureParameters": {
-									"contador": {
-										"value": {
-											"value": "@string(int(variables('Contador')))",
-											"type": "Expression"
-										},
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "SQL_CONTROLE",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
 							"name": "modificaIndexValue",
 							"type": "SetVariable",
 							"dependsOn": [],
@@ -491,7 +455,7 @@
 							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "testeunil",
+									"activity": "modificaContador",
 									"dependencyConditions": [
 										"Succeeded"
 									]
