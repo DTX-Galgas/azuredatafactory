@@ -139,7 +139,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -569,7 +569,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -589,15 +589,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_header/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_header/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_header',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -713,7 +713,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -733,15 +733,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_totals/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_totals/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_totals_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))\n",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_totals_',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1008,7 +1008,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))\n",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1028,15 +1028,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_items/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))\n",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_items',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1186,7 +1186,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1206,15 +1206,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_client/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_client/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_client_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_client',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1356,7 +1356,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1376,15 +1376,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_payment/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_payment/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_payment_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_payment',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1597,7 +1597,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1617,15 +1617,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "\n@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_shipping',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))\n",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1804,7 +1804,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_1,'/',\nsubstring(pipeline().parameters.ParDataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.ParDataProcessamento,8,2)))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1824,15 +1824,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping_items/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_shipping_items',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1892,15 +1892,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_header/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_header/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_header',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -1912,7 +1912,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_header/'))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_header/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -1980,15 +1980,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_totals/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_totals/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_totals_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))\n",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_totals_',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2068,15 +2068,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_payment/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_payment/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_payment_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_payment',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2156,15 +2156,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_shipping',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))\n",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2244,15 +2244,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping_items/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_shipping_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_shipping_items',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2332,15 +2332,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_items/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_items/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_items_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))\n",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_items',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2420,15 +2420,15 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_client/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_client/',\nvariables('DataHoraProcessamento')))",
 											"type": "Expression"
 										},
 										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_client_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.parquet'))",
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'order_client',\n'_order_shipping_items_',variables('DataHoraProcessamento'),'.parquet'))",
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
@@ -2607,6 +2607,9 @@
 				"type": "string"
 			},
 			"ParFormatoArquivo_2": {
+				"type": "string"
+			},
+			"ParContainerCleansing": {
 				"type": "string"
 			}
 		},
