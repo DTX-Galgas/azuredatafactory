@@ -328,8 +328,8 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2021-03-23T13:16:00Z",
-				"timeZone": "UTC",
+				"startTime": "2021-03-23T13:16:00",
+				"timeZone": "E. South America Standard Time",
 				"schedule": {
 					"minutes": [
 						0
