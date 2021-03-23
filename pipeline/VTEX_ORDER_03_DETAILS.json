@@ -1920,7 +1920,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2000,7 +2000,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_totals/'))\n",
+											"value": "\n@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_totals/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2008,7 +2008,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2088,7 +2088,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_payment/'))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_payment/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2096,7 +2096,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "\n@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2176,7 +2176,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping/'))\n",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2184,7 +2184,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2264,7 +2264,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_shipping_items/'))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_shipping_items/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2272,7 +2272,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2352,7 +2352,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_items/'))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_items/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2360,7 +2360,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
@@ -2440,7 +2440,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\n'order_client/'))",
+											"value": "@toLower(concat(\npipeline().parameters.ParRegiao,'/',\nreplace(pipeline().parameters.ParSistemaOrigem,'_',''),'/',\npipeline().parameters.ParNomeAliasEndPoint,'/',\npipeline().parameters.ParFormatoArquivo_2,'/',\n'order_client/'))",
 											"type": "Expression"
 										},
 										"FileName": {
@@ -2448,7 +2448,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"value": "@pipeline().parameters.ParContainerCleansing",
 											"type": "Expression"
 										}
 									}
