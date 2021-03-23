@@ -147,7 +147,7 @@
 											"type": "Expression"
 										},
 										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"value": "@pipeline().parameters.ParContainerRaw",
 											"type": "Expression"
 										}
 									}
