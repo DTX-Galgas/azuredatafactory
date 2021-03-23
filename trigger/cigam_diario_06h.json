@@ -74,10 +74,10 @@
 				"timeZone": "E. South America Standard Time",
 				"schedule": {
 					"minutes": [
-						15
+						20
 					],
 					"hours": [
-						11
+						8
 					]
 				}
 			}
