@@ -23166,7 +23166,8 @@
 								"value": "@activity('OrderID').output.value",
 								"type": "Expression"
 							},
-							"isSequential": true,
+							"isSequential": false,
+							"batchCount": 3,
 							"activities": [
 								{
 									"name": "executa VTEX_ORDER_02_DETAILS",
@@ -23178,7 +23179,7 @@
 											"referenceName": "VTEX_ORDER_02_DETAILS",
 											"type": "PipelineReference"
 										},
-										"waitOnCompletion": true,
+										"waitOnCompletion": false,
 										"parameters": {
 											"ParCodEndPoint": {
 												"value": "5",
@@ -23635,42 +23636,6 @@
 							},
 							"activities": [
 								{
-									"name": "testeunil",
-									"type": "SqlServerStoredProcedure",
-									"dependsOn": [
-										{
-											"activity": "modificaContador",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"storedProcedureName": "[[dbo].[testeunil]",
-										"storedProcedureParameters": {
-											"contador": {
-												"value": {
-													"value": "@string(int(variables('Contador')))",
-													"type": "Expression"
-												},
-												"type": "String"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "SQL_CONTROLE",
-										"type": "LinkedServiceReference"
-									}
-								},
-								{
 									"name": "modificaIndexValue",
 									"type": "SetVariable",
 									"dependsOn": [],
@@ -23708,7 +23673,7 @@
 									"type": "ExecutePipeline",
 									"dependsOn": [
 										{
-											"activity": "testeunil",
+											"activity": "modificaContador",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -23800,7 +23765,6 @@
 				"[concat(variables('workspaceId'), '/datasets/RestVTEX')]",
 				"[concat(variables('workspaceId'), '/datasets/DS_ADSL_GEN2_JSON_DESTINO')]",
 				"[concat(variables('workspaceId'), '/datasets/vtex_total_order_page_total')]",
-				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]",
 				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_02_TOTAL_PAGINA')]"
 			]
 		},
@@ -23867,7 +23831,7 @@
 								"referenceName": "VTEX_ORDER_03_DETAILS",
 								"type": "PipelineReference"
 							},
-							"waitOnCompletion": true,
+							"waitOnCompletion": false,
 							"parameters": {
 								"ParIdPipeline": {
 									"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
@@ -27918,7 +27882,7 @@
 								"referenceName": "VTEX_ORDER_01_DETAILS",
 								"type": "PipelineReference"
 							},
-							"waitOnCompletion": true,
+							"waitOnCompletion": false,
 							"parameters": {}
 						}
 					}
@@ -39726,9 +39690,14 @@
 						"secretName": "key-storage-acount-dev",
 						"secretVersion": ""
 					}
+				},
+				"connectVia": {
+					"referenceName": "ir-dev-malwee-2",
+					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/ir-dev-malwee-2')]",
 				"[concat(variables('workspaceId'), '/linkedServices/AzureKeyVault')]"
 			]
 		},
@@ -39772,16 +39741,17 @@
 							"referenceName": "AzureKeyVault",
 							"type": "LinkedServiceReference"
 						},
-						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
+						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]",
+						"secretVersion": ""
 					}
 				},
 				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
+					"referenceName": "ir-dev-malwee-2",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/ir-dev-malwee-2')]",
 				"[concat(variables('workspaceId'), '/linkedServices/AzureKeyVault')]"
 			]
 		},
@@ -39855,9 +39825,15 @@
 						"type": "SecureString",
 						"value": "[parameters('RestServiceVtex_password')]"
 					}
+				},
+				"connectVia": {
+					"referenceName": "ir-dev-malwee-2",
+					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/ir-dev-malwee-2')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/SAP_TABLE_ORIGEM')]",
