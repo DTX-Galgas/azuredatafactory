@@ -142,7 +142,7 @@
 										"type": "Expression"
 									},
 									"ParRelativeURL": {
-										"value": "@(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA",
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA",
 										"type": "Expression"
 									},
 									"ParAppToken": {
