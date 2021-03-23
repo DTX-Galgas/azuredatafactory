@@ -21,6 +21,12 @@
 					"referenceName": "EXEC_PIPE_SAP_AUSP",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_PIPE_SAP_CAWN",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
