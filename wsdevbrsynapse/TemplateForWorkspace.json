@@ -23122,7 +23122,7 @@
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -23144,16 +23144,20 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "VTEX_ORDER_02_DETAILS",
+											"referenceName": "VTEX_ORDER_03_DETAILS",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": false,
 										"parameters": {
+											"ParIdPipeline": {
+												"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+												"type": "Expression"
+											},
 											"ParCodEndPoint": {
 												"value": "5",
 												"type": "Expression"
 											},
-											"ParOrderID": {
+											"ParNumeroOrder": {
 												"value": "@{item().ORDERID}",
 												"type": "Expression"
 											}
@@ -23162,10 +23166,181 @@
 								}
 							]
 						}
+					},
+					{
+						"name": "GravaLogInicio",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "OrderID",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "PADFIdPacoteAPI",
+								"storedProcedureParameters": {
+									"COD_ENDPOINT": {
+										"type": "Int32",
+										"value": {
+											"value": "5",
+											"type": "Expression"
+										}
+									},
+									"NOM_PACOTE": {
+										"type": "String",
+										"value": "ADF_MODELO_API"
+									}
+								},
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_CONTROLE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "Tabela"
+								}
+							}
+						}
+					},
+					{
+						"name": "GravaLogErroUPD",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "executa downlod order detalhe",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[PLogADFItemErroAPI]",
+							"storedProcedureParameters": {
+								"COD_LOG": {
+									"value": {
+										"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+										"type": "Expression"
+									},
+									"type": "Int64"
+								},
+								"DSC_ERRO": {
+									"value": {
+										"value": "@activity('executa downlod order detalhe').Error.Message",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"NOM_ALIAS_ENDPOINT": {
+									"value": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"COD_ENDPOINT": {
+									"value": {
+										"value": "5",
+										"type": "Expression"
+									},
+									"type": "Int64"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "SQL_CONTROLE",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "EnviaEmailDeErroUPD",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "MsgErroUPD",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "https://prod-21.brazilsouth.logic.azure.com:443/workflows/741f9460457d489996f012404ef44c15/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=j67cgGl-SI96CK3Ef9EClXXCdWao6ACexeV0h3sDZEU",
+								"type": "Expression"
+							},
+							"connectVia": {
+								"referenceName": "AutoResolveIntegrationRuntime",
+								"type": "IntegrationRuntimeReference"
+							},
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('executa downlod order detalhe').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{activity('GravaLogInicio').output.firstRow.DESC_EMAIL_ERRO}\",\n    \"schema\": \"\",  \n    \"table\": \"\",\n\"servername\": \"\",\n\"type\":\"API\",\n\"endpoint\":\"@{activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT}\",\n\"url\":\"@{variables('FullURL')}\",\n\"output\":\"@{activity('GravaLogInicio').output.firstRow.NOM_RETORNO_URL}\" \n}\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "MsgErroUPD",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "GravaLogErroUPD",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "MsgErro",
+							"value": {
+								"value": "@concat('Pipeline com erro: API_TO_ADLS: [',activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT,']')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"variables": {
 					"DATA_HORA_EXPORTACAO": {
+						"type": "String"
+					},
+					"MsgErro": {
+						"type": "String"
+					},
+					"receiver": {
+						"type": "String"
+					},
+					"FullURL": {
 						"type": "String"
 					}
 				},
@@ -23177,7 +23352,9 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/datasets/SQL_DS_CONTROLE')]",
 				"[concat(variables('workspaceId'), '/datasets/wsdevbrsynapse')]",
-				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_02_DETAILS')]"
+				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
+				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_03_DETAILS')]"
 			]
 		},
 		{
@@ -23743,56 +23920,9 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "GravaLogInicio",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderStoredProcedureName": "PADFIdPacoteAPI",
-								"storedProcedureParameters": {
-									"COD_ENDPOINT": {
-										"type": "Int32",
-										"value": {
-											"value": "@pipeline().parameters.ParCodEndPoint",
-											"type": "Expression"
-										}
-									},
-									"NOM_PACOTE": {
-										"type": "String",
-										"value": "ADF_MODELO_API"
-									}
-								},
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "SQL_DS_CONTROLE",
-								"type": "DatasetReference",
-								"parameters": {
-									"NomeTabela": "Tabela"
-								}
-							}
-						}
-					},
-					{
 						"name": "ExecutaPipelineModeloAPI",
 						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "GravaLogInicio",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
@@ -23802,7 +23932,7 @@
 							"waitOnCompletion": false,
 							"parameters": {
 								"ParIdPipeline": {
-									"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+									"value": "@pipeline().parameters.ParCodLog",
 									"type": "Expression"
 								},
 								"ParCodEndPoint": {
@@ -23897,6 +24027,10 @@
 								"value": "https://prod-21.brazilsouth.logic.azure.com:443/workflows/741f9460457d489996f012404ef44c15/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=j67cgGl-SI96CK3Ef9EClXXCdWao6ACexeV0h3sDZEU",
 								"type": "Expression"
 							},
+							"connectVia": {
+								"referenceName": "AutoResolveIntegrationRuntime",
+								"type": "IntegrationRuntimeReference"
+							},
 							"method": "POST",
 							"headers": {
 								"Content-Type": "application/json"
@@ -23934,6 +24068,9 @@
 					},
 					"ParOrderID": {
 						"type": "string"
+					},
+					"ParCodLog": {
+						"type": "int"
 					}
 				},
 				"variables": {
@@ -23954,9 +24091,9 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/SQL_DS_CONTROLE')]",
 				"[concat(variables('workspaceId'), '/pipelines/VTEX_ORDER_03_DETAILS')]",
-				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]"
+				"[concat(variables('workspaceId'), '/linkedServices/SQL_CONTROLE')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
@@ -24287,8 +24424,8 @@
 						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
+							"timeout": "0.00:00:30",
+							"retry": 2,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
@@ -24428,8 +24565,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -24524,8 +24661,8 @@
 									"type": "Lookup",
 									"dependsOn": [],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -24653,8 +24790,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -24878,8 +25015,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -25022,8 +25159,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -25317,8 +25454,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -25495,8 +25632,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -25665,8 +25802,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -25906,8 +26043,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26113,8 +26250,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26201,8 +26338,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26289,8 +26426,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26377,8 +26514,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26465,8 +26602,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26553,8 +26690,8 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
+										"timeout": "0.00:00:30",
+										"retry": 2,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
 										"secureInput": false
@@ -26733,8 +26870,8 @@
 							}
 						],
 						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
+							"timeout": "0.00:00:30",
+							"retry": 2,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
