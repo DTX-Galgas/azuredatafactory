@@ -9,13 +9,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
-						"referenceName": "VTEX_ORDER_03_TOTAL_PAGINA",
+						"referenceName": "VTEX_ORDER_01_DETAILS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ParCodEndPoint": "4"
-					}
+					"waitOnCompletion": true
 				}
 			}
 		],
