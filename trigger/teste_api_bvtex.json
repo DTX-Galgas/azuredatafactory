@@ -17,6 +17,9 @@
 				"pipelineReference": {
 					"referenceName": "VTEX_ORDER_01_DETAILS_V2",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParCodEndPoint": "5"
 				}
 			}
 		],
