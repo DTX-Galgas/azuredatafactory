@@ -405,7 +405,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
@@ -630,7 +630,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
@@ -774,7 +774,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)\n\n",
 												"type": "Expression"
 											}
 										}
@@ -1069,7 +1069,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
@@ -1247,7 +1247,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
@@ -1417,7 +1417,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
@@ -1658,7 +1658,7 @@
 										{
 											"name": "DATA_HORA_EXPORTACAO",
 											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"value": "@substring(pipeline().parameters.ParDataProcessamento,0,19)",
 												"type": "Expression"
 											}
 										}
