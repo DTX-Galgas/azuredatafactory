@@ -214,7 +214,7 @@
 						},
 						"DSC_ERRO": {
 							"value": {
-								"value": "@activity('ExecutaPipelineModeloAPI').Error.Message",
+								"value": "@activity('executa downlod order detalhe').Error.Message",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -228,7 +228,7 @@
 						},
 						"COD_ENDPOINT": {
 							"value": {
-								"value": "@pipeline().parameters.ParCodEndPoint",
+								"value": "5",
 								"type": "Expression"
 							},
 							"type": "Int64"
@@ -273,7 +273,7 @@
 						"Content-Type": "application/json"
 					},
 					"body": {
-						"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('ExecutaPipelineModeloAPI').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{activity('GravaLogInicio').output.firstRow.DESC_EMAIL_ERRO}\",\n    \"schema\": \"\",  \n    \"table\": \"\",\n\"servername\": \"\",\n\"type\":\"API\",\n\"endpoint\":\"@{activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT}\",\n\"url\":\"@{variables('FullURL')}\",\n\"output\":\"@{activity('GravaLogInicio').output.firstRow.NOM_RETORNO_URL}\" \n}\n",
+						"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('executa downlod order detalhe').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{activity('GravaLogInicio').output.firstRow.DESC_EMAIL_ERRO}\",\n    \"schema\": \"\",  \n    \"table\": \"\",\n\"servername\": \"\",\n\"type\":\"API\",\n\"endpoint\":\"@{activity('GravaLogInicio').output.firstRow.NOM_ALIAS_ENDPOINT}\",\n\"url\":\"@{variables('FullURL')}\",\n\"output\":\"@{activity('GravaLogInicio').output.firstRow.NOM_RETORNO_URL}\" \n}\n",
 						"type": "Expression"
 					}
 				}
@@ -301,6 +301,15 @@
 		],
 		"variables": {
 			"DATA_HORA_EXPORTACAO": {
+				"type": "String"
+			},
+			"MsgErro": {
+				"type": "String"
+			},
+			"receiver": {
+				"type": "String"
+			},
+			"FullURL": {
 				"type": "String"
 			}
 		},
