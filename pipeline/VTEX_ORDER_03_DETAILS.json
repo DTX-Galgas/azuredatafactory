@@ -2600,7 +2600,7 @@
 			"ParFormatoArquivo": {
 				"type": "string"
 			},
-			"DataProcessamento": {
+			"ParDataProcessamento": {
 				"type": "string"
 			}
 		},
