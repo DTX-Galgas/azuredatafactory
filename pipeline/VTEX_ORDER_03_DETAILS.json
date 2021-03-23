@@ -291,7 +291,7 @@
 										"DAT_EXPORTACAO": {
 											"type": "String",
 											"value": {
-												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+												"value": "@pipeline().parameters.ParDataIngestao",
 												"type": "Expression"
 											}
 										},
