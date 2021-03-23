@@ -118,16 +118,32 @@
 					"batchCount": 15,
 					"activities": [
 						{
-							"name": "Set variable1",
-							"type": "SetVariable",
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "DATA_HORA_EXPORTACAO",
-								"value": {
-									"value": "@variables('receiver')",
-									"type": "Expression"
+								"storedProcedureName": "[dbo].[testeunil]",
+								"storedProcedureParameters": {
+									"contador": {
+										"value": {
+											"value": "@variables('DATA_HORA_EXPORTACAO')",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
