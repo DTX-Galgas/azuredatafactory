@@ -184,6 +184,10 @@
 									"ParContainerCleansing": {
 										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
 										"type": "Expression"
+									},
+									"ParDataIngestao": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+										"type": "Expression"
 									}
 								}
 							}
