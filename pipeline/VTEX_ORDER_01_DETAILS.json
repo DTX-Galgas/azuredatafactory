@@ -42,7 +42,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "CapturaDataExportacao",
+						"activity": "LeDataProcessamento",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -356,6 +356,50 @@
 						"storedProcedureParameters": {
 							"COD_ENDPOINT": {
 								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "LeDataProcessamento",
+				"description": "Recupera a data de processamento da tabela de controle",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "CapturaDataExportacao",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:00:30",
+					"retry": 2,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "int",
 								"value": {
 									"value": "@pipeline().parameters.ParCodEndPoint",
 									"type": "Expression"

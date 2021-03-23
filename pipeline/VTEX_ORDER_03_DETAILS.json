@@ -2599,6 +2599,9 @@
 			},
 			"ParFormatoArquivo": {
 				"type": "string"
+			},
+			"DataProcessamento": {
+				"type": "string"
 			}
 		},
 		"variables": {
