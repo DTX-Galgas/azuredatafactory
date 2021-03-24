@@ -68,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ADF_MODELO_ORACLE_BACKUP",
+									"referenceName": "ADF_MODELO_ORACLE",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
