@@ -315,7 +315,7 @@
 				}
 			},
 			{
-				"name": "SeSQL_SQLOP_TO_DL",
+				"name": "Incremental",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
@@ -364,7 +364,7 @@
 										}
 									],
 									"oracleReaderQuery": {
-										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
+										"value": "@concat(\n'select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',pipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= ''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO,''' \nand ',activity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,' <= ''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO,'''' )",
 										"type": "Expression"
 									},
 									"partitionOption": "None",
@@ -670,7 +670,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "SeSQL_SQLOP_TO_DL",
+						"activity": "Incremental",
 						"dependencyConditions": [
 							"Succeeded"
 						]
