@@ -1,5 +1,5 @@
 {
-	"name": "ADF_MODELO_ORACLE_V2",
+	"name": "ADF_MODELO_ORACLE_BACKUP",
 	"properties": {
 		"description": "Modelo de importação de tabelas do ADF a partir de uma tabela de controle com as tabelas a importar, suas origens e colunas.",
 		"activities": [
