@@ -133,7 +133,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_03_DETAILS",
+									"referenceName": "VTEX_ORDER_03_DETAILS_V3",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": false,
