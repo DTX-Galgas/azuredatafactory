@@ -770,7 +770,8 @@
 												"path": "['uniqueId']"
 											},
 											"sink": {
-												"name": "uniqueid"
+												"name": "uniqueid",
+												"type": "String"
 											}
 										},
 										{
@@ -901,19 +902,19 @@
 										},
 										{
 											"source": {
-												"path": "$['orderId']"
+												"path": "['name']"
 											},
 											"sink": {
-												"name": "orderId",
+												"name": "name",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['name']"
+												"path": "$['orderId']"
 											},
 											"sink": {
-												"name": "name",
+												"name": "orderId",
 												"type": "String"
 											}
 										},
@@ -958,7 +959,8 @@
 												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO"
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
 											}
 										}
 									],
