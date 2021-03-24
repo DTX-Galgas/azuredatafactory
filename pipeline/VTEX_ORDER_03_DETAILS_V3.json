@@ -77,14 +77,7 @@
 						{
 							"name": "Copy_API_JSON_TO_ADLS",
 							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "GravaLogInicioItem-ToDL",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "0.00:02:00",
 								"retry": 2,
@@ -153,195 +146,6 @@
 									}
 								}
 							]
-						},
-						{
-							"name": "GravaLogFimItem-ToDL",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "API_TO_ADLS_SizeCopied",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.00:02:00",
-								"retry": 2,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[PLogADFItemFimAPI]",
-								"storedProcedureParameters": {
-									"COD_LOG": {
-										"value": {
-											"value": "@pipeline().parameters.ParIdPipeline",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"NUM_SIZE_ARQUIVO": {
-										"value": {
-											"value": "@variables('SizeArquivo')",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"COD_ENDPOINT": {
-										"value": {
-											"value": "@pipeline().parameters.ParCodEndPoint",
-											"type": "Expression"
-										},
-										"type": "Int"
-									},
-									"DESTINO": {
-										"value": "ToDataLake",
-										"type": "String"
-									},
-									"ORIGEM": {
-										"value": "API-JSON",
-										"type": "String"
-									},
-									"NOM_ALIAS_ENDPOINT": {
-										"value": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-											"type": "Expression"
-										},
-										"type": "String"
-									},
-									"COD_LOG_ITEM": {
-										"value": {
-											"value": "@activity('GravaLogInicioItem-ToDL').output.FirstRow.COD_LOG_ITEM",
-											"type": "Expression"
-										},
-										"type": "Int64"
-									},
-									"NUM_REGISTROS": {
-										"value": "0",
-										"type": "Int64"
-									},
-									"DSC_OBS": {
-										"value": {
-											"value": "@variables('PathRaw')",
-											"type": "Expression"
-										},
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "SQL_CONTROLE",
-								"type": "LinkedServiceReference"
-							}
-						},
-						{
-							"name": "API_TO_ADLS_SizeCopied",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "SQLOP_TO_ADLS_PATH_RAW",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "SizeArquivo",
-								"value": {
-									"value": "@string(activity('Copy_API_JSON_TO_ADLS').output.dataWritten)",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "GravaLogInicioItem-ToDL",
-							"type": "Lookup",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.00:02:00",
-								"retry": 2,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"sqlReaderStoredProcedureName": "[dbo].[PLogADFItemAPI]",
-									"storedProcedureParameters": {
-										"COD_ENDPOINT": {
-											"type": "Int32",
-											"value": {
-												"value": "@pipeline().parameters.ParCodEndPoint",
-												"type": "Expression"
-											}
-										},
-										"COD_LOG": {
-											"type": "Int64",
-											"value": {
-												"value": "@pipeline().parameters.ParIdPipeline",
-												"type": "Expression"
-											}
-										},
-										"DAT_EXPORTACAO": {
-											"type": "String",
-											"value": {
-												"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
-												"type": "Expression"
-											}
-										},
-										"DESTINO": {
-											"type": "String",
-											"value": "ToDataLake"
-										},
-										"NOM_ALIAS_ENDPOINT": {
-											"type": "String",
-											"value": {
-												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
-												"type": "Expression"
-											}
-										},
-										"ORIGEM": {
-											"type": "String",
-											"value": "API-JSON"
-										}
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "SQL_DS_CONTROLE",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "Tabela"
-									}
-								}
-							}
-						},
-						{
-							"name": "SQLOP_TO_ADLS_PATH_RAW",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "API_JSON_TO_ORDER_HEADER_PARQUET_CLEANSING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "PathRaw",
-								"value": {
-									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.json'))\n",
-									"type": "Expression"
-								}
-							}
 						},
 						{
 							"name": "API_JSON_TO_ORDER_HEADER_PARQUET_RAW",
@@ -2418,6 +2222,56 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "PLogADFItemAPI",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_ORDER_HEADER_PARQUET_CLEANSING",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[PLogADFItemAPI]",
+								"storedProcedureParameters": {
+									"COD_LOG": {
+										"value": {
+											"value": "@pipeline().parameters.ParIdPipeline",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NUM_ORDER": {
+										"value": {
+											"value": "@pipeline().parameters.ParNumeroOrder",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"URL_ORDEM": {
+										"value": {
+											"value": "@variables('RalativeURL')",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
