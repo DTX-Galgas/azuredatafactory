@@ -332,42 +332,6 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET_CLEANSING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_CLEANSING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET_CLEANSING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_CLEASING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_ITEMS_PARQUET_CLEANSGIN",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "API_JSON_TO_ORDER_CLIENT_PARQUET_CLEANSING",
-									"dependencyConditions": [
-										"Succeeded"
-									]
 								}
 							],
 							"userProperties": [],
@@ -384,7 +348,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -609,7 +573,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_ITEMS_PARQUET_CLEANSGIN",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -753,7 +717,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_CLIENT_PARQUET_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1048,7 +1012,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1226,7 +1190,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1396,7 +1360,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_CLEASING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
