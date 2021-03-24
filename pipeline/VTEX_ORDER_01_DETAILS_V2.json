@@ -24,7 +24,16 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select   CONVERT(VARCHAR(16),DAT_ULTI_PROCESSAMENTO,120)+':00' as DATA_HORA_EXPORTACAO \nfrom CTR_ADF_API_ENDPOINT where COD_ENDPOINT = 4\n",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFDataExportacao]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
