@@ -1,5 +1,5 @@
 {
-	"name": "VTEX_ORDER_03_DETAILS",
+	"name": "VTEX_ORDER_03_DETAILS_v1",
 	"properties": {
 		"activities": [
 			{
@@ -2633,7 +2633,7 @@
 			}
 		},
 		"folder": {
-			"name": "Modelos/API JSON/VTEX"
+			"name": "Modelos/API JSON/VTEX/backup"
 		},
 		"annotations": []
 	},
