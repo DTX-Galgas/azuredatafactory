@@ -50226,7 +50226,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[dbo].[PLogADFItemAPI]",
+										"storedProcedureName": "[[dbo].[PLogADFOrderAPI]",
 										"storedProcedureParameters": {
 											"COD_LOG": {
 												"value": {
