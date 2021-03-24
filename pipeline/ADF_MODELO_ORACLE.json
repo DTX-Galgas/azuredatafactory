@@ -328,7 +328,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@and(equals(variables('TipoArmazenamento'),'SQLOP'),equals(pipeline().parameters.ParIndDestinoDL,'1'))",
+						"value": "@and(equals(variables('TipoArmazenamento'),'SQLOP'),equals(pipeline().parameters.ParTipoETL,'U'))",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
