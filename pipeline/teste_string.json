@@ -4,60 +4,6 @@
 		"description": "Modelo de importação de tabelas do ADF a partir de uma tabela de controle com as tabelas a importar, suas origens e colunas.",
 		"activities": [
 			{
-				"name": "GravaLogFim",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "LeDataProcessamento",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[PADFIdPacoteFIM]",
-					"storedProcedureParameters": {
-						"COD_LOG": {
-							"value": {
-								"value": "@pipeline().parameters.ParIdPipeline",
-								"type": "Expression"
-							},
-							"type": "Int64"
-						},
-						"DSC_PARAMETROS": {
-							"value": {
-								"value": "@variables('dscParameters')",
-								"type": "Expression"
-							},
-							"type": "String"
-						},
-						"COD": {
-							"value": {
-								"value": "@pipeline().parameters.ParCodTabela",
-								"type": "Expression"
-							},
-							"type": "Int64"
-						},
-						"DSC_TIPO": {
-							"value": "TABELA",
-							"type": "String"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "SQL_CONTROLE",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "LeDataProcessamento",
 				"description": "Recupera a data de processamento da tabela de controle",
 				"type": "Lookup",
@@ -312,6 +258,42 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[testeunil]",
+					"storedProcedureParameters": {
+						"contador": {
+							"value": {
+								"value": "@concat(\n'select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',pipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= ''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO,''' \nand ',activity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,' <= ''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO,'''' )",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
