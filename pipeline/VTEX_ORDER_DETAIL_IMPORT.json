@@ -17,6 +17,29 @@
 						"ParCodEndPoint": "4"
 					}
 				}
+			},
+			{
+				"name": "DETAILS",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ORDER",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "VTEX_ORDER_01_DETAILS",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodEndPoint": "4"
+					}
+				}
 			}
 		],
 		"folder": {
