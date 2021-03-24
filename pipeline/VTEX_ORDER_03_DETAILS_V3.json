@@ -574,7 +574,8 @@
 												"path": "['uniqueId']"
 											},
 											"sink": {
-												"name": "uniqueid"
+												"name": "uniqueid",
+												"type": "String"
 											}
 										},
 										{
@@ -660,7 +661,7 @@
 										},
 										{
 											"source": {
-												"path": "['additionalInfo']['brandName']"
+												"path": "$['items'][0]['additionalInfo']['brandName']"
 											},
 											"sink": {
 												"name": "brandName",
@@ -669,7 +670,7 @@
 										},
 										{
 											"source": {
-												"path": "['additionalInfo']['brandId']"
+												"path": "$['items'][0]['additionalInfo']['brandId']"
 											},
 											"sink": {
 												"name": "brandId",
@@ -678,7 +679,7 @@
 										},
 										{
 											"source": {
-												"path": "['additionalInfo']['categoriesIds']"
+												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
 											},
 											"sink": {
 												"name": "categoriesIds",
@@ -687,7 +688,7 @@
 										},
 										{
 											"source": {
-												"path": "['additionalInfo']['categories'][0]['id']"
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
 											},
 											"sink": {
 												"name": "categories_id_1",
@@ -696,7 +697,7 @@
 										},
 										{
 											"source": {
-												"path": "['additionalInfo']['categories'][0]['name']"
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
 											},
 											"sink": {
 												"name": "categories_name_1",
@@ -714,7 +715,7 @@
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['name']"
+												"path": "$['items'][0]['name']"
 											},
 											"sink": {
 												"name": "name",
@@ -762,7 +763,8 @@
 												"path": "$['DATA_HORA_EXPORTACAO']"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO"
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
 											}
 										}
 									],
