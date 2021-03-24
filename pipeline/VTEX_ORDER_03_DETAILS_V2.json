@@ -86,7 +86,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:45",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -166,7 +166,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:01:00",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -262,7 +262,7 @@
 							"type": "Lookup",
 							"dependsOn": [],
 							"policy": {
-								"timeout": "0.00:01:00",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -391,7 +391,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -616,7 +616,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -760,7 +760,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1055,7 +1055,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1233,7 +1233,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1403,7 +1403,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1644,7 +1644,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1851,7 +1851,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -1939,7 +1939,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -2027,7 +2027,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -2115,7 +2115,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -2203,7 +2203,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -2291,7 +2291,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:30",
+								"timeout": "0.00:02:00",
 								"retry": 2,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
@@ -2379,7 +2379,7 @@
 								}
 							],
 							"policy": {
-								"timeout": "7.00:00:00",
+								"timeout": "0.00:02:00",
 								"retry": 0,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
