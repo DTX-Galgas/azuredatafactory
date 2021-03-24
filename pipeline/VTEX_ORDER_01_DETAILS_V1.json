@@ -124,7 +124,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_03_DETAILS",
+									"referenceName": "VTEX_ORDER_03_DETAILS_v1",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": false,
@@ -459,7 +459,7 @@
 			}
 		},
 		"folder": {
-			"name": "Modelos/API JSON/VTEX"
+			"name": "Modelos/API JSON/VTEX/backup"
 		},
 		"annotations": []
 	}

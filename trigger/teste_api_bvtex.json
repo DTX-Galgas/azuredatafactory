@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "VTEX_ORDER_01_DETAILS",
+					"referenceName": "VTEX_ORDER_01_DETAILS_V1",
 					"type": "PipelineReference"
 				},
 				"parameters": {
@@ -15,7 +15,7 @@
 			},
 			{
 				"pipelineReference": {
-					"referenceName": "VTEX_ORDER_01_DETAILS_V2",
+					"referenceName": "VTEX_ORDER_01_DETAILS",
 					"type": "PipelineReference"
 				},
 				"parameters": {
