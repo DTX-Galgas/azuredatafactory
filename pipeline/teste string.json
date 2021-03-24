@@ -1,0 +1,9 @@
+{
+	"name": "teste string",
+	"properties": {
+		"folder": {
+			"name": "Modelos/ORACLE"
+		},
+		"annotations": []
+	}
+}
