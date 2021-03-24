@@ -284,7 +284,7 @@
 					"storedProcedureParameters": {
 						"contador": {
 							"value": {
-								"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,''',DD-MON-YYYY HH24: MI:SS:FF'') and',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n'')\n",
+								"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''')",
 								"type": "Expression"
 							},
 							"type": "String"
