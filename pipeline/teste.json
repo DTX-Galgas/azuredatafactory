@@ -1,0 +1,17 @@
+{
+	"name": "teste",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
+		"folder": {
+			"name": "Modelos/Cigam"
+		},
+		"annotations": []
+	}
+}
