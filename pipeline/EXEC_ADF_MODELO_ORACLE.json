@@ -68,7 +68,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "ADF_MODELO_ORACLE",
+									"referenceName": "teste_string",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
