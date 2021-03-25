@@ -674,6 +674,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Carga Full",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -825,6 +831,25 @@
 							]
 						}
 					]
+				}
+			},
+			{
+				"name": "Carga Full",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@and(equals(variables('TipoArmazenamento'),'SQLOP'),equals(pipeline().parameters.ParTipoETL,'U'))",
+						"type": "Expression"
+					}
 				}
 			}
 		],
