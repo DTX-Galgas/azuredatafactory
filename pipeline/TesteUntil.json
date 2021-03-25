@@ -1,0 +1,160 @@
+{
+	"name": "TesteUntil",
+	"properties": {
+		"activities": [
+			{
+				"name": "LeTotalPaginasArquivo",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource",
+						"sqlReaderQuery": "select pages as PaginaFinal from raw_data.vtex_orders_page_total\n"
+					},
+					"dataset": {
+						"referenceName": "wsdevbrsynapse",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "modificaPaginaFinal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LeTotalPaginasArquivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PaginaFinal",
+					"value": {
+						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal))\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "modificaPaginaFinal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(int(variables('Contador')),int(variables('PaginaFinal')))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "testeunil",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "modificaContador",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[testeunil]",
+								"storedProcedureParameters": {
+									"contador": {
+										"value": {
+											"value": "@string(int(variables('Contador')))",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "modificaIndexValue",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "IndexValue",
+								"value": {
+									"value": "@string(add(int(variables('Contador')),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "modificaContador",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "modificaIndexValue",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Contador",
+								"value": {
+									"value": "@string(int(variables('IndexValue')))",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"variables": {
+			"PaginaFinal": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"Contador": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"IndexValue": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
+		"folder": {
+			"name": "_Testes de Conectividade"
+		},
+		"annotations": []
+	}
+}
