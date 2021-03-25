@@ -1,0 +1,21 @@
+{
+	"name": "CTR_ADF_PIPELINE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_CONTROLE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "NOM_PIPELINE",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CTR_ADF_PIPELINE"
+		}
+	}
+}

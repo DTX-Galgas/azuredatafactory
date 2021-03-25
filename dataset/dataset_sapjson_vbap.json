@@ -1,0 +1,103 @@
+{
+	"name": "dataset_sapjson_vbap",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FilePath": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			},
+			"FileSystem": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePath",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBAP": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"POSNR": {
+								"type": "string"
+							},
+							"MATNR": {
+								"type": "string"
+							},
+							"PSTYV": {
+								"type": "string"
+							},
+							"ABGRU": {
+								"type": "string"
+							},
+							"UMZIZ": {
+								"type": "integer"
+							},
+							"UMZIN": {
+								"type": "integer"
+							},
+							"NETWR": {
+								"type": "number"
+							},
+							"KWMENG": {
+								"type": "number"
+							},
+							"VRKME": {
+								"type": "string"
+							},
+							"WERKS": {
+								"type": "string"
+							},
+							"KONDM": {
+								"type": "string"
+							},
+							"MVGR3": {
+								"type": "string"
+							},
+							"J_3ASEAN": {
+								"type": "string"
+							},
+							"_-AFS_-COLLECTION": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

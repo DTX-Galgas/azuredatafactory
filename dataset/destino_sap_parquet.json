@@ -1,0 +1,21 @@
+{
+	"name": "destino_sap_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "VBAP.parquet",
+				"folderPath": "brazil/transacional/saptable/saprest/vbap",
+				"fileSystem": "cleansing"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

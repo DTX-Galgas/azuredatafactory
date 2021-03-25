@@ -1,0 +1,96 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_CONTROLE",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "IdData",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Ano",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AnoMes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AnoMesDia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Data",
+				"type": "date"
+			},
+			{
+				"name": "Dia",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Mes",
+				"type": "varchar"
+			},
+			{
+				"name": "MesAnoDesc",
+				"type": "varchar"
+			},
+			{
+				"name": "NumeroMes",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumeroDiaDaSemana",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DiaSemana",
+				"type": "varchar"
+			},
+			{
+				"name": "DiaDoAno",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NumeroSemanaDoAno",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Trimestre",
+				"type": "varchar"
+			},
+			{
+				"name": "NumeroTrimestre",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Semestre",
+				"type": "varchar"
+			},
+			{
+				"name": "NumeroSemestre",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dw",
+			"table": "DIM_DATA"
+		}
+	}
+}

@@ -1,0 +1,42 @@
+{
+	"name": "order_payment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Vtex_payment.parquet",
+				"folderPath": "brazil/vtex",
+				"fileSystem": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "orderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "brandName",
+				"type": "UTF8"
+			},
+			{
+				"name": "brandId",
+				"type": "UTF8"
+			},
+			{
+				"name": "categoriesid",
+				"type": "UTF8"
+			},
+			{
+				"name": "categoriesname",
+				"type": "UTF8"
+			}
+		]
+	}
+}

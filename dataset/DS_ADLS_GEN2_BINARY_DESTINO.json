@@ -1,0 +1,42 @@
+{
+	"name": "DS_ADLS_GEN2_BINARY_DESTINO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FilePath": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			},
+			"FileSystem": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DESTINO"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePath",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}

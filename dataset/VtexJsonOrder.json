@@ -1,0 +1,242 @@
+{
+	"name": "VtexJsonOrder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FilePathRaw": {
+				"type": "string"
+			},
+			"FileNameRaw": {
+				"type": "string"
+			},
+			"FileSystemRaw": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileNameRaw",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePathRaw",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystemRaw",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"list": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"orderId": {
+								"type": "string"
+							},
+							"creationDate": {
+								"type": "string"
+							},
+							"clientName": {
+								"type": "string"
+							},
+							"items": {
+								"type": "null"
+							},
+							"totalValue": {
+								"type": "number"
+							},
+							"paymentNames": {
+								"type": "string"
+							},
+							"status": {
+								"type": "string"
+							},
+							"statusDescription": {
+								"type": "string"
+							},
+							"marketPlaceOrderId": {
+								"type": "null"
+							},
+							"sequence": {
+								"type": "string"
+							},
+							"salesChannel": {
+								"type": "string"
+							},
+							"affiliateId": {
+								"type": "string"
+							},
+							"origin": {
+								"type": "string"
+							},
+							"workflowInErrorState": {
+								"type": "boolean"
+							},
+							"workflowInRetry": {
+								"type": "boolean"
+							},
+							"lastMessageUnread": {
+								"type": "string"
+							},
+							"ShippingEstimatedDate": {
+								"type": "null"
+							},
+							"ShippingEstimatedDateMax": {
+								"type": "string"
+							},
+							"ShippingEstimatedDateMin": {
+								"type": "string"
+							},
+							"orderIsComplete": {
+								"type": "boolean"
+							},
+							"listId": {
+								"type": "null"
+							},
+							"listType": {
+								"type": "null"
+							},
+							"authorizedDate": {
+								"type": "string"
+							},
+							"callCenterOperatorName": {
+								"type": "null"
+							},
+							"totalItems": {
+								"type": "integer"
+							},
+							"currencyCode": {
+								"type": "string"
+							},
+							"hostname": {
+								"type": "string"
+							},
+							"invoiceOutput": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"invoiceInput": {
+								"type": "null"
+							}
+						}
+					}
+				},
+				"facets": {
+					"type": "array"
+				},
+				"paging": {
+					"type": "object",
+					"properties": {
+						"total": {
+							"type": "integer"
+						},
+						"pages": {
+							"type": "integer"
+						},
+						"currentPage": {
+							"type": "integer"
+						},
+						"perPage": {
+							"type": "integer"
+						}
+					}
+				},
+				"stats": {
+					"type": "object",
+					"properties": {
+						"stats": {
+							"type": "object",
+							"properties": {
+								"totalValue": {
+									"type": "object",
+									"properties": {
+										"Count": {
+											"type": "integer"
+										},
+										"Max": {
+											"type": "number"
+										},
+										"Mean": {
+											"type": "number"
+										},
+										"Min": {
+											"type": "number"
+										},
+										"Missing": {
+											"type": "integer"
+										},
+										"StdDev": {
+											"type": "number"
+										},
+										"Sum": {
+											"type": "number"
+										},
+										"SumOfSquares": {
+											"type": "number"
+										},
+										"Facets": {
+											"type": "object"
+										}
+									}
+								},
+								"totalItems": {
+									"type": "object",
+									"properties": {
+										"Count": {
+											"type": "integer"
+										},
+										"Max": {
+											"type": "number"
+										},
+										"Mean": {
+											"type": "number"
+										},
+										"Min": {
+											"type": "number"
+										},
+										"Missing": {
+											"type": "integer"
+										},
+										"StdDev": {
+											"type": "number"
+										},
+										"Sum": {
+											"type": "number"
+										},
+										"SumOfSquares": {
+											"type": "number"
+										},
+										"Facets": {
+											"type": "object"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"reportRecordsLimit": {
+					"type": "integer"
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "testeimagemdesino",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "vtex.parquet",
+				"folderPath": "imagens",
+				"fileSystem": "raw"
+			}
+		}
+	}
+}
