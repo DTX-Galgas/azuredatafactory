@@ -1,14 +1,14 @@
 {
-	"name": "AutoResolveIntegrationRuntime",
+	"name": "AutoResolveIR",
 	"properties": {
 		"type": "Managed",
 		"typeProperties": {
 			"computeProperties": {
-				"location": "AutoResolve",
+				"location": "Brazil South",
 				"dataFlowProperties": {
 					"computeType": "General",
 					"coreCount": 8,
-					"timeToLive": 0
+					"timeToLive": 10
 				}
 			}
 		}

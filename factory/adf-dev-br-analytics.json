@@ -1,0 +1,9 @@
+{
+	"name": "adf-dev-br-analytics",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "896650bf-025f-4bf6-b670-dbc8e37a82bf",
+		"tenantId": "0dedee76-b62e-475a-a0cb-d1f127fbd0c1"
+	}
+}
