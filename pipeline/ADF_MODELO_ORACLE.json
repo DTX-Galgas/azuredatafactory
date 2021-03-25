@@ -959,7 +959,7 @@
 										}
 									],
 									"oracleReaderQuery": {
-										"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n');'\n)",
+										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
 										"type": "Expression"
 									},
 									"partitionOption": "None",
