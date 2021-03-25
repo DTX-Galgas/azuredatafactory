@@ -926,6 +926,260 @@
 									}
 								}
 							}
+						},
+						{
+							"name": "Copy_SQLOP_TO_ADLS_U",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToDL_CSV_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"additionalColumns": [
+										{
+											"name": "DAT_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"oracleReaderQuery": {
+										"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n');'\n)",
+										"type": "Expression"
+									},
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "OracleTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "TABELA",
+										"UserName": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+											"type": "Expression"
+										},
+										"SecretNamePWD": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+											"type": "Expression"
+										},
+										"SecretNameCON": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "GravaLogFimItem-ToDL_U",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Set dscParametros SQLOP_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[PLogADFItemFim]",
+								"storedProcedureParameters": {
+									"COD_LOG": {
+										"value": {
+											"value": "@pipeline().parameters.ParIdPipeline",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NOM_SCHEMA_ORIGEM": {
+										"value": {
+											"value": "@pipeline().parameters.ParNomeSchemaOrigem",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"NOM_TABELA_ORIGEM": {
+										"value": {
+											"value": "@pipeline().parameters.ParNomeTabelaOrigem",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"NUM_REGISTROS": {
+										"value": {
+											"value": "@variables('nuregistros')",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"COD_SERVIDOR": {
+										"value": {
+											"value": "@pipeline().parameters.ParCodServidor",
+											"type": "Expression"
+										},
+										"type": "Int"
+									},
+									"DESTINO": {
+										"value": "ToDataLake",
+										"type": "String"
+									},
+									"COD_TABELA": {
+										"value": {
+											"value": "@pipeline().parameters.ParCodTabela",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"ORIGEM": {
+										"value": {
+											"value": "@variables('TipoArmazenamento')",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"FILE_SIZE": {
+										"value": {
+											"value": "@variables('FileSize')",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"DSC_OBS": {
+										"value": {
+											"value": "@variables('PathRaw')",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"COD_LOG_ITEM": {
+										"value": {
+											"value": "@activity('GravaLogInicioItem-ToDL_CSV_U').output.FirstRow.COD_LOG_ITEM",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "SQLOP_TO_ADLS_Rows_U",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Copy_SQLOP_TO_ADLS_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "nuregistros",
+								"value": {
+									"value": "@string(activity('Copy_SQLOP_TO_ADLS_U').output.rowsCopied)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "SQLOP_TO_ADLS_PATH_RAW_U",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SQLOP_TO_ADLS_Rows_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "PathRaw",
+								"value": {
+									"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.orc'))\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set dscParametros SQLOP_U",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SQLOP_TO_ADLS_PATH_RAW_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "dscParameters",
+								"value": {
+									"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
