@@ -1,0 +1,73 @@
+{
+	"name": "dataset_sapjson_vbpa",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FilePath": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			},
+			"FileSystem": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePath",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBPA": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"POSNR": {
+								"type": "string"
+							},
+							"PARVW": {
+								"type": "string"
+							},
+							"LIFNR": {
+								"type": "string"
+							},
+							"PERNR": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

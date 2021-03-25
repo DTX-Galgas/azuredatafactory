@@ -1,0 +1,15 @@
+{
+	"name": "SapTableResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_TABLE_ORIGEM",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "VBEP"
+		}
+	}
+}

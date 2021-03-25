@@ -1,0 +1,20 @@
+{
+	"name": "sap_destino_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "VBAP.json",
+				"folderPath": "brazil/transacional/saprest/vbap",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,0 +1,105 @@
+{
+	"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+	"properties": {
+		"activities": [
+			{
+				"name": "Gestor_CRMProduto",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "119"
+					}
+				}
+			},
+			{
+				"name": "wait_vw_alocacao_credito_tentativa_2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Gestor_CRMProduto",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			},
+			{
+				"name": "wait_vw_alocacao_credito_tentativa_3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Gestor_CRMProduto_Tentativa_2",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			},
+			{
+				"name": "Gestor_CRMProduto_Tentativa_2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_vw_alocacao_credito_tentativa_2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "119"
+					}
+				}
+			},
+			{
+				"name": "Gestor_CRMProduto_Tentativa_3",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "wait_vw_alocacao_credito_tentativa_3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "119"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/CIGAM"
+		},
+		"annotations": []
+	}
+}

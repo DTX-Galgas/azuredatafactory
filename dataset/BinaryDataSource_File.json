@@ -1,0 +1,28 @@
+{
+	"name": "BinaryDataSource_File",
+	"properties": {
+		"description": "It describes the file in the data source store.",
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderPath": {
+				"type": "String"
+			},
+			"filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ORIGEM"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		}
+	}
+}

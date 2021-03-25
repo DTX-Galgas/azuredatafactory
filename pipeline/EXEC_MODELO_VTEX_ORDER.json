@@ -1,0 +1,1274 @@
+{
+	"name": "EXEC_MODELO_VTEX_ORDER",
+	"properties": {
+		"activities": [
+			{
+				"name": "VtexOrder",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sequence']"
+								},
+								"sink": {
+									"name": "sequence",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['marketplaceOrderId']"
+								},
+								"sink": {
+									"name": "marketplaceOrderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sellerOrderId']"
+								},
+								"sink": {
+									"name": "sellerOrderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['origin']"
+								},
+								"sink": {
+									"name": "origin",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['affiliateId']"
+								},
+								"sink": {
+									"name": "affiliateId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['salesChannel']"
+								},
+								"sink": {
+									"name": "salesChannel",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['merchantName']"
+								},
+								"sink": {
+									"name": "merchantName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['status']"
+								},
+								"sink": {
+									"name": "status",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['statusDescription']"
+								},
+								"sink": {
+									"name": "statusDescription",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['creationDate']"
+								},
+								"sink": {
+									"name": "creationDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['orderGroup']"
+								},
+								"sink": {
+									"name": "orderGroup",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['totals']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexOrder_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexOrder_total",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexOrder",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['sequence']"
+								},
+								"sink": {
+									"name": "sequence",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['name']"
+								},
+								"sink": {
+									"name": "name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['totals']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexorder_totals_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexClient",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexShipping_logistcInfo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['email']"
+								},
+								"sink": {
+									"name": "email",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['firstName']"
+								},
+								"sink": {
+									"name": "firstName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['lastName']"
+								},
+								"sink": {
+									"name": "lastName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['documentType']"
+								},
+								"sink": {
+									"name": "documentType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['document']"
+								},
+								"sink": {
+									"name": "document",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['clientProfileData']['phone']"
+								},
+								"sink": {
+									"name": "phone",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexclient_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexItems",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexOrder_total",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['uniqueId']"
+								},
+								"sink": {
+									"name": "uniqueId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ean']"
+								},
+								"sink": {
+									"name": "ean",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['lockId']"
+								},
+								"sink": {
+									"name": "lockId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity']"
+								},
+								"sink": {
+									"name": "quantity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['seller']"
+								},
+								"sink": {
+									"name": "seller",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['name']"
+								},
+								"sink": {
+									"name": "name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['refId']"
+								},
+								"sink": {
+									"name": "refId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['price']"
+								},
+								"sink": {
+									"name": "price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['listPrice']"
+								},
+								"sink": {
+									"name": "listPrice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['imageUrl']"
+								},
+								"sink": {
+									"name": "imageUrl",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['additionalInfo']['brandName']"
+								},
+								"sink": {
+									"name": "brandName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['additionalInfo']['brandId']"
+								},
+								"sink": {
+									"name": "brandId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['additionalInfo']['categoriesIds']"
+								},
+								"sink": {
+									"name": "categoriesIds",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['items']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexitems_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexItems_categories",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexItems",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+								},
+								"sink": {
+									"name": "categoriesIds",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "idcat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['name']"
+								},
+								"sink": {
+									"name": "namecat",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['items'][0]['additionalInfo']['categories']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexitems_categories_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Vtexpayment",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexClient",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['uniqueId']"
+								},
+								"sink": {
+									"name": "uniqueId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['items'][0]['id']"
+								},
+								"sink": {
+									"name": "idItem",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "idpayment",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['installments']"
+								},
+								"sink": {
+									"name": "installments",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['referenceValue']"
+								},
+								"sink": {
+									"name": "referenceValue",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['paymentData']['transactions'][0]['payments']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexpayment_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexShipping",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexItems_categories",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['uniqueId']"
+								},
+								"sink": {
+									"name": "uniqueId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['id']"
+								},
+								"sink": {
+									"name": "iditems",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['addressType']"
+								},
+								"sink": {
+									"name": "addressType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['receiverName']"
+								},
+								"sink": {
+									"name": "receiverName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['addressId']"
+								},
+								"sink": {
+									"name": "addressId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['postalCode']"
+								},
+								"sink": {
+									"name": "postalCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['city']"
+								},
+								"sink": {
+									"name": "city",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['state']"
+								},
+								"sink": {
+									"name": "state",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['country']"
+								},
+								"sink": {
+									"name": "country",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['street']"
+								},
+								"sink": {
+									"name": "street",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['number']"
+								},
+								"sink": {
+									"name": "number",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['neighborhood']"
+								},
+								"sink": {
+									"name": "neighborhood",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['complement']"
+								},
+								"sink": {
+									"name": "complement",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['address']['reference']"
+								},
+								"sink": {
+									"name": "reference",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['shippingData']['id']"
+								},
+								"sink": {
+									"name": "idshipping",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['items']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexshipping_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "VtexShipping_logistcInfo",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "VtexShipping",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "DATA_HORA_EXPORTACAO",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['orderId']"
+								},
+								"sink": {
+									"name": "orderId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['itemIndex']"
+								},
+								"sink": {
+									"name": "itemIndex",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['selectedSla']"
+								},
+								"sink": {
+									"name": "selectedSla",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['lockTTL']"
+								},
+								"sink": {
+									"name": "lockTTL",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['price']"
+								},
+								"sink": {
+									"name": "price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['listPrice']"
+								},
+								"sink": {
+									"name": "listPrice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['sellingPrice']"
+								},
+								"sink": {
+									"name": "sellingPrice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['deliveryWindow']"
+								},
+								"sink": {
+									"name": "deliveryWindow",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['deliveryCompany']"
+								},
+								"sink": {
+									"name": "deliveryCompany",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['shippingEstimate']"
+								},
+								"sink": {
+									"name": "shippingEstimate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['shippingEstimateDate']"
+								},
+								"sink": {
+									"name": "shippingEstimateDate",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['shippingData']['logisticsInfo']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OrderDetailsJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "vtexshippingLogistical_parquet",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Modelos/VTEX"
+		},
+		"annotations": []
+	}
+}

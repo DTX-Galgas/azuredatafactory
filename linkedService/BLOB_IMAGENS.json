@@ -1,0 +1,22 @@
+{
+	"name": "BLOB_IMAGENS",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "Storage-Imagens-material",
+				"secretVersion": ""
+			}
+		},
+		"connectVia": {
+			"referenceName": "ir-dev-malwee-2",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

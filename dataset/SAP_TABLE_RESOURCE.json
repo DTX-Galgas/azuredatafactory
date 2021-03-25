@@ -1,0 +1,23 @@
+{
+	"name": "SAP_TABLE_RESOURCE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SAP_TABLE_ORIGEM",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"NomeTabela": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SapTableResource",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().NomeTabela",
+				"type": "Expression"
+			}
+		}
+	}
+}

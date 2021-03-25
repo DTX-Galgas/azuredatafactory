@@ -1,0 +1,27 @@
+{
+	"name": "ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP_CIGAM_PROCESSA_DIMENSIONAL",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "SP_CIGAM_PROCESSA_DIMENSIONAL"
+				}
+			}
+		],
+		"folder": {
+			"name": "Modelos/ORACLE"
+		},
+		"annotations": []
+	}
+}

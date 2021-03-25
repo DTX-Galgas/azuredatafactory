@@ -1,0 +1,97 @@
+{
+	"name": "teste_string",
+	"properties": {
+		"description": "Modelo de importação de tabelas do ADF a partir de uma tabela de controle com as tabelas a importar, suas origens e colunas.",
+		"activities": [
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[testeunil]",
+					"storedProcedureParameters": {
+						"contador": {
+							"value": {
+								"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n')'\n)",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"variables": {
+			"nuregistros": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"receiver": {
+				"type": "String"
+			},
+			"ComandoGeraSelect": {
+				"type": "String",
+				"defaultValue": ",@coluna\t\tvarchar(max)  select   \t\t@coluna =  \t\t\tcase  \t\t\t\twhen @coluna is null  \t\t\t\t\tThen 'Convert(varchar(max),isnull('+ name  + ',' +\t \t\t\t\t\t\t\t\tcase when xtype in (56,60,62,104,106,127) then '0' +'))' \t\t\t\t\t\t\t\t\t when xtype in (42,61)\t\t\t\t  then '''1900-01-01'''+'),121)' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  else '''''' +'))' \t\t\t\t\t\t\t\tend  \t\t\t\tElse \t\t  \t\t\t\t\t @coluna + '+' + 'Convert(varchar(max),isnull('+ name + ','\t+ \t\t\t\t\t\t\t\tcase when xtype in (56,60,62,104,106,127)\tthen '0' +'))' \t\t\t\t\t\t\t\t\t when xtype in (42,61)\t\t\t\t\tthen '''1900-01-01'''+'),121)' \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\telse '''''' +'))' \t\t\t\t\t\t\t\tend \t\t\t\tend from  \t\tsys.syscolumns  where  \t\tid = OBJECT_ID(@Tabela) order by colid  select @coluna = ' SUBSTRING(sys.fn_sqlvarbasetostr(HASHBYTES(''MD5'',' +\t@coluna + ')),3,32) HASH_KEY from ' + @tabela  select @coluna ComandoSelectHash"
+			},
+			"ComandoSelectHash": {
+				"type": "String"
+			},
+			"DataBaseName": {
+				"type": "String"
+			},
+			"UserName": {
+				"type": "String"
+			},
+			"Password": {
+				"type": "String"
+			},
+			"TipoArmazenamento": {
+				"type": "String"
+			},
+			"ServerName": {
+				"type": "String"
+			},
+			"NomeBucket": {
+				"type": "String",
+				"defaultValue": "dl"
+			},
+			"DestinoDL": {
+				"type": "String"
+			},
+			"SecretNamePassword": {
+				"type": "String"
+			},
+			"FileSize": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"PathRaw": {
+				"type": "String"
+			},
+			"NumFiles": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"dscParameters": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Modelos/ORACLE"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
