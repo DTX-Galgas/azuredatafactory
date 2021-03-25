@@ -16,13 +16,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "SP_CIGAM_PROCESSA_DIMENSIONAL"
-				},
-				"linkedServiceName": {
-					"referenceName": "wsdevbrsynapse-WorkspaceDefaultSqlServer",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"DBName": "dwmwe"
-					}
 				}
 			}
 		],
