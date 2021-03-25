@@ -2,7 +2,7 @@
 	"name": "cigam_diario_0630h",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
