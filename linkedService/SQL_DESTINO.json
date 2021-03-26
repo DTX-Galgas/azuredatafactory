@@ -1,5 +1,5 @@
 {
-	"name": "SQL_CONTROLE",
+	"name": "SQL_DESTINO",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],

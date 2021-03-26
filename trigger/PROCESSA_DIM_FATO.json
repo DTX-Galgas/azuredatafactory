@@ -1,0 +1,34 @@
+{
+	"name": "PROCESSA_DIM_FATO",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ADF_PROCESSA_DIM_FATO",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-09-02T01:17:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						14,
+						19,
+						23
+					]
+				}
+			}
+		}
+	}
+}

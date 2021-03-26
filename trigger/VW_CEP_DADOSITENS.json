@@ -1,0 +1,39 @@
+{
+	"name": "VW_CEP_DADOSITENS",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_ADF_MODELO",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParNomeSchemaOrigem": "pwrbi",
+					"ParNomeTabelaOrigem": "vw_cep_dadositens",
+					"ParCodServidor": 1
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-09-02T01:00:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						14,
+						19,
+						23
+					]
+				}
+			}
+		}
+	}
+}

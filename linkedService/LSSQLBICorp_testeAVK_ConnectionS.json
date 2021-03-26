@@ -1,5 +1,5 @@
 {
-	"name": "SQL_CONTROLE",
+	"name": "LSSQLBICorp_testeAVK_ConnectionS",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
@@ -11,7 +11,7 @@
 					"referenceName": "LSAKVBICORP",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "AzureSQLBICorpMI"
+				"secretName": "AzureSQLBICorpConnectionS"
 			}
 		}
 	}

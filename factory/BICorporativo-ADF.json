@@ -1,0 +1,9 @@
+{
+	"name": "BICorporativo-ADF",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "08adb334-1de1-47a5-93d7-64f38acb6b3a",
+		"tenantId": "81c5408a-c8f7-459e-bd30-8d4071263391"
+	}
+}

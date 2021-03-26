@@ -1,0 +1,39 @@
+{
+	"name": "FEG_BALANCA_AVULSO",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_ADF_MODELO",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParNomeSchemaOrigem": "pwrbi",
+					"ParNomeTabelaOrigem": "vw_feg_balanca_avulso",
+					"ParCodServidor": 1
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-09-02T00:44:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						14,
+						19,
+						23
+					]
+				}
+			}
+		}
+	}
+}

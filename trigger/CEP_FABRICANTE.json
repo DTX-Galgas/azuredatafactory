@@ -1,0 +1,39 @@
+{
+	"name": "CEP_FABRICANTE",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EXEC_ADF_MODELO",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParNomeSchemaOrigem": "pwrbi",
+					"ParNomeTabelaOrigem": "vw_cep_fabricante",
+					"ParCodServidor": 1
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-09-02T00:34:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						14,
+						19,
+						23
+					]
+				}
+			}
+		}
+	}
+}
