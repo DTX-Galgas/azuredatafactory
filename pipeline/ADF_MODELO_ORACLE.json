@@ -196,7 +196,7 @@
 							"typeProperties": {
 								"variableName": "UserName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.NOM_USUARIO",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
 									"type": "Expression"
 								}
 							}
@@ -216,7 +216,7 @@
 							"typeProperties": {
 								"variableName": "Password",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.DESC_PASSWORD",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_PASSWORD",
 									"type": "Expression"
 								}
 							}
@@ -236,7 +236,7 @@
 							"typeProperties": {
 								"variableName": "TipoArmazenamento",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.IND_TIPO_ARMAZENAMENTO",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.IND_TIPO_ARMAZENAMENTO",
 									"type": "Expression"
 								}
 							}
@@ -256,7 +256,7 @@
 							"typeProperties": {
 								"variableName": "SecretNamePassword",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.DESC_SECRET_PWD",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
 									"type": "Expression"
 								}
 							}
@@ -1021,7 +1021,7 @@
 							"NomeTabela": "Tabela"
 						}
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			}
 		],
