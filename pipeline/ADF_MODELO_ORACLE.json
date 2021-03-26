@@ -209,7 +209,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "ServerName",
+									"activity": "Set variable1",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -285,19 +285,6 @@
 							}
 						},
 						{
-							"name": "ServerName",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "ServerName",
-								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "SecretNamePassword",
 							"type": "SetVariable",
 							"dependsOn": [
@@ -313,6 +300,19 @@
 								"variableName": "SecretNamePassword",
 								"value": {
 									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ServerName",
+								"value": {
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR\n\n",
 									"type": "Expression"
 								}
 							}
