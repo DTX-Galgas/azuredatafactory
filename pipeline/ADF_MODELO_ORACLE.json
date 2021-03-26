@@ -276,7 +276,7 @@
 							"typeProperties": {
 								"variableName": "ServerName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR",
+									"value": "@activity('LeCredenciaisDBorigem').output.NOM_SERVIDOR",
 									"type": "Expression"
 								}
 							}
