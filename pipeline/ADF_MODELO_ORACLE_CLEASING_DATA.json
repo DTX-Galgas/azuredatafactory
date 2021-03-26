@@ -801,7 +801,10 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": "TABELA",
-										"UserName": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+										"UserName": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+											"type": "Expression"
+										},
 										"SecretNamePWD": {
 											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
 											"type": "Expression"
