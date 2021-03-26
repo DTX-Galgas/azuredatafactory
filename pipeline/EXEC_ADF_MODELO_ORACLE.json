@@ -71,7 +71,57 @@
 									"referenceName": "ADF_MODELO_ORACLE",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParNomeSchemaOrigem": {
+										"value": "@replace(variables('VarNomeSchemaOrigem'),' ','')",
+										"type": "Expression"
+									},
+									"ParIdPipeline": {
+										"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+										"type": "Expression"
+									},
+									"ParNomeTabelaOrigem": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_TABELA_ORIGEM",
+										"type": "Expression"
+									},
+									"ParNomeSchemaDestino": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_SCHEMA_DESTINO",
+										"type": "Expression"
+									},
+									"ParNomeAlias": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_ALIAS",
+										"type": "Expression"
+									},
+									"ParNomeTabelaDestino": {
+										"value": "@activity('GravaLogInicio').output.firstRow.NOM_TABELA_DESTINO",
+										"type": "Expression"
+									},
+									"ParCodServidor": {
+										"value": "@activity('GravaLogInicio').output.firstRow.COD_SERVIDOR",
+										"type": "Expression"
+									},
+									"ParTipoETL": {
+										"value": "@variables('TipoETL')",
+										"type": "Expression"
+									},
+									"ParIndDestinoDL": {
+										"value": "@variables('IndDestinoDL')",
+										"type": "Expression"
+									},
+									"ParIndDestinoSQL": {
+										"value": "@variables('IndDestinoSQL')",
+										"type": "Expression"
+									},
+									"ParCodTabela": {
+										"value": "@pipeline().parameters.ParCodTabela",
+										"type": "Expression"
+									},
+									"ParIndDataCleansing": {
+										"value": "@variables('IndDataCleansing')",
+										"type": "Expression"
+									}
+								}
 							}
 						},
 						{
