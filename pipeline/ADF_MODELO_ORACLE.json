@@ -209,7 +209,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Set variable1",
+									"activity": "ServerName",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -305,7 +305,7 @@
 							}
 						},
 						{
-							"name": "Set variable1",
+							"name": "ServerName",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"userProperties": [],
