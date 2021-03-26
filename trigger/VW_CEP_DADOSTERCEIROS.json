@@ -3,19 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "EXEC_ADF_MODELO",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"ParNomeSchemaOrigem": "pwrbi",
-					"ParNomeTabelaOrigem": "vw_cep_dadosterceiros",
-					"ParCodServidor": 1
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
