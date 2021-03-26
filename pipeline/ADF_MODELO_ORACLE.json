@@ -171,14 +171,7 @@
 						{
 							"name": "DataBaseName",
 							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "ServerName",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "DataBaseName",
@@ -271,7 +264,14 @@
 						{
 							"name": "ServerName",
 							"type": "SetVariable",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "SecretNamePassword",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "ServerName",
