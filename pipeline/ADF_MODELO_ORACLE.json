@@ -501,7 +501,7 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Copy_SQLOP_TO_ADLS",
+									"activity": "Copy_SQLOP_TO_ADLS_CLEANSING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -631,6 +631,95 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Copy_SQLOP_TO_ADLS_CLEANSING",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_SQLOP_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ParquetSource",
+									"additionalColumns": [
+										{
+											"name": "DAT_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',\ntoLower(activity('LeCredenciaisDBorigem').output.firstRow.NOM_TABELA_RAW)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'.parquet'))",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
