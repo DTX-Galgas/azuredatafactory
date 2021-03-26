@@ -151,42 +151,6 @@
 				}
 			},
 			{
-				"name": "LeCredenciaisDBorigem",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciais]",
-						"storedProcedureParameters": {
-							"COD_TABELA": {
-								"type": "Int32",
-								"value": {
-									"value": "@pipeline().parameters.ParCodTabela",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
-					}
-				}
-			},
-			{
 				"name": "Variaveis-SrvOrigem",
 				"type": "IfCondition",
 				"dependsOn": [
@@ -207,19 +171,12 @@
 						{
 							"name": "DataBaseName",
 							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "ServerName",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "DataBaseName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_BASE",
+									"value": "@activity('LeCredenciaisDBorigem').output.NOM_BASE",
 									"type": "Expression"
 								}
 							}
@@ -285,19 +242,6 @@
 							}
 						},
 						{
-							"name": "ServerName",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "ServerName",
-								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR",
-									"type": "Expression"
-								}
-							}
-						},
-						{
 							"name": "SecretNamePassword",
 							"type": "SetVariable",
 							"dependsOn": [
@@ -313,6 +257,26 @@
 								"variableName": "SecretNamePassword",
 								"value": {
 									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "ServerName",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SecretNamePassword",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ServerName",
+								"value": {
+									"value": "@activity('LeCredenciaisDBorigem').output.NOM_SERVIDOR",
 									"type": "Expression"
 								}
 							}
@@ -1020,6 +984,44 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "LeCredenciaisDBorigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciais]",
+						"storedProcedureParameters": {
+							"COD_TABELA": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodTabela",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					},
+					"firstRowOnly": true
 				}
 			}
 		],
