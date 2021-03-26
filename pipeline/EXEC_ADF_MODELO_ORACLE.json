@@ -16,21 +16,29 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "XmlSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFIdPacote]",
+						"storedProcedureParameters": {
+							"COD_TABELA": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodTabela",
+									"type": "Expression"
+								}
+							},
+							"NOM_PACOTE": {
+								"type": "String",
+								"value": "ADF_MODELO"
+							}
 						},
-						"formatSettings": {
-							"type": "XmlReadSettings",
-							"validationMode": "none",
-							"namespaces": true
-						}
+						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "Xml1",
-						"type": "DatasetReference"
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
 					}
 				}
 			},
