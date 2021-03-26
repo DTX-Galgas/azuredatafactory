@@ -13,114 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Gestor_CRMProduto",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EXEC_ADF_MODELO_ORACLE",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"ParCodTabela": "120"
-							}
-						}
-					},
-					{
-						"name": "wait_vw_alocacao_credito_tentativa_2",
-						"type": "Wait",
-						"dependsOn": [
-							{
-								"activity": "Gestor_CRMProduto",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 5
-						}
-					},
-					{
-						"name": "wait_vw_alocacao_credito_tentativa_3",
-						"type": "Wait",
-						"dependsOn": [
-							{
-								"activity": "Gestor_CRMProduto_Tentativa_2",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 5
-						}
-					},
-					{
-						"name": "Gestor_CRMProduto_Tentativa_2",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "wait_vw_alocacao_credito_tentativa_2",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EXEC_ADF_MODELO_ORACLE",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"ParCodTabela": "120"
-							}
-						}
-					},
-					{
-						"name": "Gestor_CRMProduto_Tentativa_3",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "wait_vw_alocacao_credito_tentativa_3",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EXEC_ADF_MODELO_ORACLE",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"ParCodTabela": "120"
-							}
-						}
-					}
-				],
-				"folder": {
-					"name": "Malhas/CIGAM"
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_METALOJA')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -659,6 +551,111 @@
 				"annotations": []
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger_CIGAM')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-26T23:45:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_METALOJA')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_VENDAS')]"
+			]
 		}
 	]
 }

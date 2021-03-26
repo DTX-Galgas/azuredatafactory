@@ -3938,36 +3938,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PROCESSA_DIMENSIONAL')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"folder": {
-					"name": "Malhas/CIGAM"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -5050,6 +5020,116 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger_CIGAM')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-26T23:45:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_CLIENTES')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_METALOJA')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_')]",
+				"[concat(variables('factoryId'), '/pipelines/EXEC_PIPE_CIGAM_GST_BI_VENDAS')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ir-dev-malwee')]",

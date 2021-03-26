@@ -98,6 +98,10 @@
 		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "Storage-Imagens-material"
 		}
 	},
 	"variables": {
@@ -358,36 +362,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PROCESSA_DIMENSIONAL')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"folder": {
-					"name": "Malhas/CIGAM"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/ADF_MODELO_ORACLE_PROCESSA_DIMENSIONAL')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ADLS_DS_DESTINO_PARQUET_GEN2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -490,6 +464,29 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SQL_DW_MALWEE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BLOB_IMAGENS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]",
+						"secretVersion": ""
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault')]"
 			]
 		}
 	]

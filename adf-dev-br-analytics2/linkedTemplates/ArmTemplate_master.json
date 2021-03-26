@@ -258,6 +258,9 @@
 					},
 					"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
 						"value": "[parameters('wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					},
+					"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},
@@ -285,9 +288,6 @@
 					},
 					"ORC_GIGAM_ORIGEM_connectionString": {
 						"value": "[parameters('ORC_GIGAM_ORIGEM_connectionString')]"
-					},
-					"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
-						"value": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
 					},
 					"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
 						"value": "[parameters('LSODBCPROGRESS_Password_properties_typeProperties_userName')]"

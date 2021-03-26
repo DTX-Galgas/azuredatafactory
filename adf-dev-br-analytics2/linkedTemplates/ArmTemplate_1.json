@@ -19,10 +19,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ORC_GIGAM_ORIGEM'"
 		},
-		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "Storage-Imagens-material"
-		},
 		"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "pwrbi"
@@ -76,27 +72,6 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/BLOB_IMAGENS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]",
-						"secretVersion": ""
-					}
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LSODBCPROGRESS_Password')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -3896,6 +3871,116 @@
 							"waitOnCompletion": true,
 							"parameters": {
 								"ParCodTabela": "116"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/EXEC_ADF_MODELO_ORACLE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
 							}
 						}
 					}
