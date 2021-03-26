@@ -176,7 +176,7 @@
 							"typeProperties": {
 								"variableName": "DataBaseName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.NOM_BASE",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR",
 									"type": "Expression"
 								}
 							}
@@ -196,7 +196,7 @@
 							"typeProperties": {
 								"variableName": "UserName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+									"value": "@activity('LeCredenciaisDBorigem').output.NOM_BASE",
 									"type": "Expression"
 								}
 							}
