@@ -323,22 +323,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "OracleSource",
-									"additionalColumns": [
-										{
-											"name": "DAT_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
-												"type": "Expression"
-											}
-										}
-									],
-									"oracleReaderQuery": {
-										"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n');'\n)",
-										"type": "Expression"
-									},
-									"partitionOption": "None",
-									"queryTimeout": "02:00:00"
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -353,20 +340,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "OracleTable1",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"NomeTabela": "TABELA",
-										"UserName": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
-											"type": "Expression"
-										},
-										"SecretNamePWD": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
-											"type": "Expression"
-										},
-										"SecretNameCON": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
@@ -659,12 +637,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "ParquetSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -679,19 +654,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
