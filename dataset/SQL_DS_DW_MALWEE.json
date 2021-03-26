@@ -14,8 +14,10 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "dw",
-			"table": "DIM_CALENDARIO"
+			"tableName": {
+				"value": "@dataset().NomeTabela",
+				"type": "Expression"
+			}
 		}
 	}
 }
