@@ -505,6 +505,12 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "Copy_SQLOP_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
 							],
 							"userProperties": [],
@@ -637,7 +643,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_SQLOP_TO_ADLS",
+									"activity": "Insere na tabela Cleansing I",
 									"dependencyConditions": [
 										"Succeeded"
 									]
