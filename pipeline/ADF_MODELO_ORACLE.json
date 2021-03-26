@@ -151,42 +151,6 @@
 				}
 			},
 			{
-				"name": "LeCredenciaisDBorigem",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciais]",
-						"storedProcedureParameters": {
-							"COD_TABELA": {
-								"type": "Int32",
-								"value": {
-									"value": "@pipeline().parameters.ParCodTabela",
-									"type": "Expression"
-								}
-							}
-						},
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "Tabela"
-						}
-					}
-				}
-			},
-			{
 				"name": "Variaveis-SrvOrigem",
 				"type": "IfCondition",
 				"dependsOn": [
@@ -1020,6 +984,43 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "LeCredenciaisDBorigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciais]",
+						"storedProcedureParameters": {
+							"COD_TABELA": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodTabela",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
 				}
 			}
 		],
