@@ -654,15 +654,6 @@
 							"typeProperties": {
 								"source": {
 									"type": "ParquetSource",
-									"additionalColumns": [
-										{
-											"name": "DAT_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
-												"type": "Expression"
-											}
-										}
-									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
