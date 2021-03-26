@@ -1,0 +1,21 @@
+{
+	"name": "SQL_DS_DW_MALWEE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_DW_MALWEE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"NomeTabela": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dw",
+			"table": "DIM_CALENDARIO"
+		}
+	}
+}
