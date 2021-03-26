@@ -1,0 +1,121 @@
+{
+	"name": "dataset_sapjson_vbak",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FilePath": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			},
+			"FileSystem": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePath",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().FileSystem",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"E_MENSAGEM": {
+					"type": "string"
+				},
+				"E_VBAK": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"VBELN": {
+								"type": "string"
+							},
+							"ERDAT": {
+								"type": "string"
+							},
+							"ERNAM": {
+								"type": "string"
+							},
+							"AUDAT": {
+								"type": "string"
+							},
+							"VBTYP": {
+								"type": "string"
+							},
+							"AUART": {
+								"type": "string"
+							},
+							"LIFSK": {
+								"type": "string"
+							},
+							"FAKSK": {
+								"type": "string"
+							},
+							"VKORG": {
+								"type": "string"
+							},
+							"VTWEG": {
+								"type": "string"
+							},
+							"SPART": {
+								"type": "string"
+							},
+							"VKGRP": {
+								"type": "string"
+							},
+							"VKBUR": {
+								"type": "string"
+							},
+							"KNUMV": {
+								"type": "string"
+							},
+							"VDATU": {
+								"type": "string"
+							},
+							"BSARK": {
+								"type": "string"
+							},
+							"KUNNR": {
+								"type": "string"
+							},
+							"AEDAT": {
+								"type": "string"
+							},
+							"KVGR3": {
+								"type": "string"
+							},
+							"BUKRS_VF": {
+								"type": "string"
+							},
+							"ZZCODMOD": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"DATA_HORA_EXPORTACAO": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

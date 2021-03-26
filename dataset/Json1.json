@@ -1,16 +1,22 @@
 {
-	"name": "Xml1",
+	"name": "Json1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "BLOB_IMAGENS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"ParRelativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
-		"type": "Xml",
+		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation"
 			}
-		}
+		},
+		"schema": {}
 	}
 }
