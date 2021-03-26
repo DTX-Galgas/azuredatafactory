@@ -1,0 +1,18 @@
+{
+	"name": "SQL_DESTINO",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "LSAKVBICORP",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "AzureSQLBICorpMI"
+			}
+		}
+	}
+}

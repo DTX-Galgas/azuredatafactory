@@ -1,0 +1,24 @@
+{
+	"name": "ODBC_OP_PROGRESS_CC8010",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ODBC_OP_PROGRESS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "OdbcTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
