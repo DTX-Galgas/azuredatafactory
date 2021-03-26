@@ -1,0 +1,132 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-dev-br-analytics2"
+		},
+		"ADLS_DESTINO_GEN2_accountKey": {
+			"value": ""
+		},
+		"LSODBCPROGRESS_Password_connectionString": {
+			"value": ""
+		},
+		"LSSQLBICorp_testeAKV_password_connectionString": {
+			"value": ""
+		},
+		"ORC_GIGAM_ORIGEM_connectionString": {
+			"value": ""
+		},
+		"RestService1_password": {
+			"value": ""
+		},
+		"RestServiceVtex_password": {
+			"value": ""
+		},
+		"SQL_CONTROLE_connectionString": {
+			"value": ""
+		},
+		"SQL_DW_MALWEE_connectionString": {
+			"value": ""
+		},
+		"SapRest_password": {
+			"value": ""
+		},
+		"VtexTeste_password": {
+			"value": ""
+		},
+		"linkedService1_accountKey": {
+			"value": ""
+		},
+		"linkedService2_accountKey": {
+			"value": ""
+		},
+		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
+			"value": "https://sadevbranalytics2.dfs.core.windows.net"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-dev-br-analytics2.vault.azure.net/"
+		},
+		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+			"value": "Storage-Imagens-material"
+		},
+		"LSAKVBICORP_properties_typeProperties_baseUrl": {
+			"value": "https://AKVBICorporativo.vault.azure.net/"
+		},
+		"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
+			"value": "pwrbi"
+		},
+		"LSODBCPROGRESS_String_properties_typeProperties_connectionString_secretName": {
+			"value": "ODBCPROGRESSString"
+		},
+		"LSODBCPROGRESS_String_properties_typeProperties_userName": {
+			"value": "pwrbi"
+		},
+		"LSSQLBICorp_testeAVK_ConnectionS_properties_typeProperties_connectionString_secretName": {
+			"value": "AzureSQLBICorpConnectionS"
+		},
+		"LSSQLBICorp_testeManagedIdentity_properties_typeProperties_connectionString_secretName": {
+			"value": "AzureSQLBICorpMI"
+		},
+		"ODBC_OP_PROGRESS_properties_typeProperties_connectionString_secretName": {
+			"value": "ODBCPROGRESSString"
+		},
+		"ODBC_OP_PROGRESS_properties_typeProperties_userName": {
+			"value": "pwrbi"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://ihub.infracommerce.com.br/api/invoices/list/"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"value": "123"
+		},
+		"RestServiceVtex_properties_typeProperties_url": {
+			"value": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"RestServiceVtex_properties_typeProperties_userName": {
+			"value": "malwee"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
+			"value": "300"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_userName": {
+			"value": "RFC_USER_QTQ"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_server": {
+			"value": "srvsqecc01.malwee.com.br"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber": {
+			"value": "00"
+		},
+		"SQL_DESTINO_properties_typeProperties_connectionString_secretName": {
+			"value": "AzureSQLBICorpMI"
+		},
+		"SapRest_properties_typeProperties_url": {
+			"value": "https://webdisp-homologacao.malwee.com.br:8445/datalake/"
+		},
+		"SapRest_properties_typeProperties_userName": {
+			"value": "RFC_USER_QTQ"
+		},
+		"VtexTeste_properties_typeProperties_url": {
+			"value": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"VtexTeste_properties_typeProperties_userName": {
+			"value": "mawee"
+		},
+		"linkedService1_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"linkedService2_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

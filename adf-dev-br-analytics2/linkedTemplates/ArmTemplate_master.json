@@ -1,0 +1,355 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-dev-br-analytics2"
+		},
+		"ADLS_DESTINO_GEN2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS_DESTINO_GEN2'"
+		},
+		"LSODBCPROGRESS_Password_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LSODBCPROGRESS_Password'"
+		},
+		"LSSQLBICorp_testeAKV_password_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LSSQLBICorp_testeAKV_password'"
+		},
+		"ORC_GIGAM_ORIGEM_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ORC_GIGAM_ORIGEM'"
+		},
+		"RestService1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestService1'"
+		},
+		"RestServiceVtex_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'RestServiceVtex'"
+		},
+		"SQL_CONTROLE_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_CONTROLE'"
+		},
+		"SQL_DW_MALWEE_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_DW_MALWEE'"
+		},
+		"SapRest_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SapRest'"
+		},
+		"VtexTeste_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'VtexTeste'"
+		},
+		"linkedService1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'linkedService1'"
+		},
+		"linkedService2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'linkedService2'"
+		},
+		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadevbranalytics2.dfs.core.windows.net"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-dev-br-analytics2.vault.azure.net/"
+		},
+		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "Storage-Imagens-material"
+		},
+		"LSAKVBICORP_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AKVBICorporativo.vault.azure.net/"
+		},
+		"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pwrbi"
+		},
+		"LSODBCPROGRESS_String_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "ODBCPROGRESSString"
+		},
+		"LSODBCPROGRESS_String_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pwrbi"
+		},
+		"LSSQLBICorp_testeAVK_ConnectionS_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "AzureSQLBICorpConnectionS"
+		},
+		"LSSQLBICorp_testeManagedIdentity_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "AzureSQLBICorpMI"
+		},
+		"ODBC_OP_PROGRESS_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "ODBCPROGRESSString"
+		},
+		"ODBC_OP_PROGRESS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "pwrbi"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ihub.infracommerce.com.br/api/invoices/list/"
+		},
+		"RestService1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "123"
+		},
+		"RestServiceVtex_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"RestServiceVtex_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "malwee"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
+			"type": "string",
+			"defaultValue": "300"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "RFC_USER_QTQ"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "srvsqecc01.malwee.com.br"
+		},
+		"SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber": {
+			"type": "string",
+			"defaultValue": "00"
+		},
+		"SQL_DESTINO_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "AzureSQLBICorpMI"
+		},
+		"SapRest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://webdisp-homologacao.malwee.com.br:8445/datalake/"
+		},
+		"SapRest_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "RFC_USER_QTQ"
+		},
+		"VtexTeste_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://malwee.vtexcommercestable.com.br/api/oms/pvt/"
+		},
+		"VtexTeste_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "mawee"
+		},
+		"linkedService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"linkedService2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-dev-br-analytics2_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLS_DESTINO_GEN2_accountKey": {
+						"value": "[parameters('ADLS_DESTINO_GEN2_accountKey')]"
+					},
+					"RestService1_password": {
+						"value": "[parameters('RestService1_password')]"
+					},
+					"RestServiceVtex_password": {
+						"value": "[parameters('RestServiceVtex_password')]"
+					},
+					"SQL_CONTROLE_connectionString": {
+						"value": "[parameters('SQL_CONTROLE_connectionString')]"
+					},
+					"SQL_DW_MALWEE_connectionString": {
+						"value": "[parameters('SQL_DW_MALWEE_connectionString')]"
+					},
+					"SapRest_password": {
+						"value": "[parameters('SapRest_password')]"
+					},
+					"VtexTeste_password": {
+						"value": "[parameters('VtexTeste_password')]"
+					},
+					"linkedService1_accountKey": {
+						"value": "[parameters('linkedService1_accountKey')]"
+					},
+					"linkedService2_accountKey": {
+						"value": "[parameters('linkedService2_accountKey')]"
+					},
+					"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_DESTINO_GEN2_properties_typeProperties_url')]"
+					},
+					"AzureKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"LSAKVBICORP_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LSAKVBICORP_properties_typeProperties_baseUrl')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
+					"RestService1_properties_typeProperties_userName": {
+						"value": "[parameters('RestService1_properties_typeProperties_userName')]"
+					},
+					"RestServiceVtex_properties_typeProperties_url": {
+						"value": "[parameters('RestServiceVtex_properties_typeProperties_url')]"
+					},
+					"RestServiceVtex_properties_typeProperties_userName": {
+						"value": "[parameters('RestServiceVtex_properties_typeProperties_userName')]"
+					},
+					"SapRest_properties_typeProperties_url": {
+						"value": "[parameters('SapRest_properties_typeProperties_url')]"
+					},
+					"SapRest_properties_typeProperties_userName": {
+						"value": "[parameters('SapRest_properties_typeProperties_userName')]"
+					},
+					"VtexTeste_properties_typeProperties_url": {
+						"value": "[parameters('VtexTeste_properties_typeProperties_url')]"
+					},
+					"VtexTeste_properties_typeProperties_userName": {
+						"value": "[parameters('VtexTeste_properties_typeProperties_userName')]"
+					},
+					"linkedService1_properties_typeProperties_url": {
+						"value": "[parameters('linkedService1_properties_typeProperties_url')]"
+					},
+					"linkedService2_properties_typeProperties_url": {
+						"value": "[parameters('linkedService2_properties_typeProperties_url')]"
+					},
+					"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
+						"value": "[parameters('wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-dev-br-analytics2_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LSODBCPROGRESS_Password_connectionString": {
+						"value": "[parameters('LSODBCPROGRESS_Password_connectionString')]"
+					},
+					"LSSQLBICorp_testeAKV_password_connectionString": {
+						"value": "[parameters('LSSQLBICorp_testeAKV_password_connectionString')]"
+					},
+					"ORC_GIGAM_ORIGEM_connectionString": {
+						"value": "[parameters('ORC_GIGAM_ORIGEM_connectionString')]"
+					},
+					"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
+						"value": "[parameters('LSODBCPROGRESS_Password_properties_typeProperties_userName')]"
+					},
+					"LSODBCPROGRESS_String_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LSODBCPROGRESS_String_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LSODBCPROGRESS_String_properties_typeProperties_userName": {
+						"value": "[parameters('LSODBCPROGRESS_String_properties_typeProperties_userName')]"
+					},
+					"LSSQLBICorp_testeAVK_ConnectionS_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LSSQLBICorp_testeAVK_ConnectionS_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LSSQLBICorp_testeManagedIdentity_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LSSQLBICorp_testeManagedIdentity_properties_typeProperties_connectionString_secretName')]"
+					},
+					"ODBC_OP_PROGRESS_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('ODBC_OP_PROGRESS_properties_typeProperties_connectionString_secretName')]"
+					},
+					"ODBC_OP_PROGRESS_properties_typeProperties_userName": {
+						"value": "[parameters('ODBC_OP_PROGRESS_properties_typeProperties_userName')]"
+					},
+					"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
+						"value": "[parameters('SAP_TABLE_ORIGEM_properties_typeProperties_clientId')]"
+					},
+					"SAP_TABLE_ORIGEM_properties_typeProperties_userName": {
+						"value": "[parameters('SAP_TABLE_ORIGEM_properties_typeProperties_userName')]"
+					},
+					"SAP_TABLE_ORIGEM_properties_typeProperties_server": {
+						"value": "[parameters('SAP_TABLE_ORIGEM_properties_typeProperties_server')]"
+					},
+					"SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber": {
+						"value": "[parameters('SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber')]"
+					},
+					"SQL_DESTINO_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('SQL_DESTINO_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics2_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-dev-br-analytics2_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics2_ArmTemplate_1')]"
+			]
+		}
+	]
+}

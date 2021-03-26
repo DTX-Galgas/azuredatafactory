@@ -1,0 +1,664 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-dev-br-analytics2"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "120"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_METALOJA')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "117"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "117"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "117"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "119"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "119"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "119"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "111"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "111"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "111"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRMProduto",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "118"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRMProduto_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "118"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRMProduto_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "118"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_VENDAS')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Gestor_CRM",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "115"
+							}
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRM",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "wait_vw_alocacao_credito_tentativa_3",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Gestor_CRM_Tentativa_2",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 5
+						}
+					},
+					{
+						"name": "Gestor_CRM_Tentativa_2",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "115"
+							}
+						}
+					},
+					{
+						"name": "Gestor_CRM_Tentativa_3",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "wait_vw_alocacao_credito_tentativa_3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EXEC_ADF_MODELO_ORACLE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"ParCodTabela": "115"
+							}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
