@@ -276,7 +276,7 @@
 							"typeProperties": {
 								"variableName": "ServerName",
 								"value": {
-									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR\n\n",
+									"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_SERVIDOR",
 									"type": "Expression"
 								}
 							}
@@ -1020,7 +1020,8 @@
 						"parameters": {
 							"NomeTabela": "Tabela"
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
