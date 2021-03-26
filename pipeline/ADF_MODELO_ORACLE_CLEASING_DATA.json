@@ -735,7 +735,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "pipeline().parameters.ParNomeTabelaOrigem\n@concat('delete ',\npipeline().parameters.ParNomeSchemaDestino,\npipeline().parameters.ParNomeTabelaDestino,\n' SELECT 0')",
+										"value": "@concat('delete ',pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino,\n' SELECT 0')",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
