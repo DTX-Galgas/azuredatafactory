@@ -1,0 +1,74 @@
+{
+	"name": "vtexorder_totals_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_DESTINO_GEN2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "vtex_order_totals.parquet",
+				"folderPath": "brazil/vtex/Order_Total/2021",
+				"fileSystem": "raw"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "orderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "sequence",
+				"type": "UTF8"
+			},
+			{
+				"name": "marketplaceOrderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "sellerOrderId",
+				"type": "UTF8"
+			},
+			{
+				"name": "origin",
+				"type": "UTF8"
+			},
+			{
+				"name": "affiliateId",
+				"type": "UTF8"
+			},
+			{
+				"name": "salesChannel",
+				"type": "UTF8"
+			},
+			{
+				"name": "merchantName",
+				"type": "UTF8"
+			},
+			{
+				"name": "status",
+				"type": "UTF8"
+			},
+			{
+				"name": "statusDescription",
+				"type": "UTF8"
+			},
+			{
+				"name": "value",
+				"type": "UTF8"
+			},
+			{
+				"name": "creationDate",
+				"type": "UTF8"
+			},
+			{
+				"name": "orderGroup",
+				"type": "UTF8"
+			}
+		]
+	}
+}

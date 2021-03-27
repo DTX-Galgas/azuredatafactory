@@ -1,0 +1,18 @@
+{
+	"name": "VtexDsTeste",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "VtexTeste",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "orders/1100050750047-01",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
