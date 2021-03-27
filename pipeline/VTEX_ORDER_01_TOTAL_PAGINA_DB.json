@@ -43,7 +43,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "TabelaTotalPaginas",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -302,7 +302,7 @@
 							]
 						},
 						{
-							"name": "Copy data1",
+							"name": "Grava tabela total paginas ordem",
 							"type": "Copy",
 							"dependsOn": [
 								{
@@ -346,6 +346,9 @@
 										}
 									}
 								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -358,6 +361,12 @@
 											"type": "Expression"
 										}
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference"
 								}
 							]
 						}
@@ -558,6 +567,44 @@
 						}
 					],
 					"timeout": "7.00:00:00"
+				}
+			},
+			{
+				"name": "TabelaTotalPaginas",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "select \nNOM_TABELA_DESTINO , NOM_SCHEMA_DESTINO\nfrom [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 1",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
 				}
 			}
 		],
