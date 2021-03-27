@@ -4,44 +4,44 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory name",
+			"metadata": "Nome do Data Factory",
 			"defaultValue": "adf-dev-br-analytics"
 		},
 		"ADLS_DESTINO_GEN2_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ADLS_DESTINO_GEN2'"
+			"metadata": "Cadeia de caracteres segura para 'accountKey' de 'ADLS_DESTINO_GEN2'"
 		},
 		"ORC_GIGAM_ORIGEM_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ORC_GIGAM_ORIGEM'"
+			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'ORC_GIGAM_ORIGEM'"
 		},
 		"RestService1_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'RestService1'"
+			"metadata": "Cadeia de caracteres segura para 'password' de 'RestService1'"
 		},
 		"RestServiceVtex_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'RestServiceVtex'"
+			"metadata": "Cadeia de caracteres segura para 'password' de 'RestServiceVtex'"
 		},
 		"SQL_CONTROLE_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SQL_CONTROLE'"
+			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'SQL_CONTROLE'"
 		},
 		"SQL_DESTINO_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SQL_DESTINO'"
+			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'SQL_DESTINO'"
 		},
 		"SQL_DW_MALWEE_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'SQL_DW_MALWEE'"
+			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'SQL_DW_MALWEE'"
 		},
 		"SapRest_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SapRest'"
+			"metadata": "Cadeia de caracteres segura para 'password' de 'SapRest'"
 		},
 		"VtexTeste_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'VtexTeste'"
+			"metadata": "Cadeia de caracteres segura para 'password' de 'VtexTeste'"
 		},
 		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
 			"type": "string",
@@ -105,11 +105,11 @@
 		},
 		"containerUri": {
 			"type": "string",
-			"metadata": "URI to storage account containing linked ARM templates"
+			"metadata": "URI para a conta de armazenamento contendo os modelos do ARM vinculados"
 		},
 		"containerSasToken": {
 			"type": "string",
-			"metadata": "Sas token to storage account containing linked ARM templates"
+			"metadata": "Token SAS para a conta de armazenamento contendo modelos do ARM vinculados"
 		}
 	},
 	"variables": {
