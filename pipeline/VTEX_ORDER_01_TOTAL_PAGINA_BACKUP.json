@@ -1,5 +1,5 @@
 {
-	"name": "VTEX_ORDER_01_TOTAL_PAGINA",
+	"name": "VTEX_ORDER_01_TOTAL_PAGINA_BACKUP",
 	"properties": {
 		"activities": [
 			{
@@ -460,7 +460,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA_BACKUP",
+									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
