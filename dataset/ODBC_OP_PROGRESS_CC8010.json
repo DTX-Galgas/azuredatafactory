@@ -1,10 +1,6 @@
 {
 	"name": "ODBC_OP_PROGRESS_CC8010",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ODBC_OP_PROGRESS",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"table_name": {
 				"type": "string"
