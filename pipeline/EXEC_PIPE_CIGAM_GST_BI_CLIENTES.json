@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "Cigam",
+				"description": "t",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
