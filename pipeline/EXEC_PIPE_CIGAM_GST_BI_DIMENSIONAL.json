@@ -1,0 +1,27 @@
+{
+	"name": "EXEC_PIPE_CIGAM_GST_BI_DIMENSIONAL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Cigam",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "114"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Malhas/CIGAM"
+		},
+		"annotations": []
+	}
+}
