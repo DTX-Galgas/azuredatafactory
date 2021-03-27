@@ -1,0 +1,541 @@
+{
+	"name": "VTEX_ORDER_01_TOTAL_PAGINA_DB",
+	"properties": {
+		"activities": [
+			{
+				"name": "LeCredenciaisOrigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciaisAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "SeAPI_JSON_TO_DL",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('LeCredenciaisOrigem').output.FirstRow.NOM_RETORNO_URL,'JSON')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy_API_JSON_TO_ADLS",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "AppKey",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.00:00:15",
+								"retry": 2,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"X-VTEX-API-AppToken": {
+											"value": "@variables('AppToken')",
+											"type": "Expression"
+										},
+										"x-vtex-api-appkey": {
+											"value": "@variables('AppKey')",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestVTEX",
+									"type": "DatasetReference",
+									"parameters": {
+										"ParRelativeURL": {
+											"value": "@variables('RelativeURL')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": "brazil/vtex/vtex_order_page_total/",
+										"FileName": "vtex_order_page_total.json",
+										"FileSystem": "raw"
+									}
+								}
+							]
+						},
+						{
+							"name": "RelativeURL",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RelativeURL",
+								"value": {
+									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX,\n' TO ',\nactivity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\nstring(pipeline().parameters.ParPagina)\n)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppToken",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "RelativeURL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppToken",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppKey",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "AppToken",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppKey",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "API_JSON_TO_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.00:00:15",
+								"retry": 2,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['paging']['total']"
+											},
+											"sink": {
+												"name": "total",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paging']['pages']"
+											},
+											"sink": {
+												"name": "pages",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paging']['currentPage']"
+											},
+											"sink": {
+												"name": "currentPage",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paging']['perPage']"
+											},
+											"sink": {
+												"name": "perPage",
+												"type": "Int32"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											},
+											"sink": {
+												"name": "DATA_HORA_EXPORTACAO",
+												"type": "String"
+											}
+										}
+									],
+									"collectionReference": "",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": "brazil/vtex/vtex_order_page_total/",
+										"FileName": "vtex_order_page_total.json",
+										"FileSystem": "raw"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "vtex_total_order_page_total",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "LeDataProcessamento",
+				"description": "Recupera a data de processamento da tabela de controle",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "LeCredenciaisOrigem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFDataProcessamentoAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "int",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint\n",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "LeTotalPaginasArquivo",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlPoolSource",
+						"sqlReaderQuery": "select pages as PaginaFinal from raw_data.vtex_orders_page_total"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "modificaPaginaFinal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LeTotalPaginasArquivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PaginaFinal",
+					"value": {
+						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal))\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "EXEC VTEX_ORDER_02_TOTAL_PAGINA",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "modificaPaginaFinal",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greaterOrEquals(int(variables('Contador')),int(variables('PaginaFinal')))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "modificaIndexValue",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "IndexValue",
+								"value": {
+									"value": "@string(add(int(variables('Contador')),1))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "modificaContador",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "modificaIndexValue",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Contador",
+								"value": {
+									"value": "@string(int(variables('IndexValue')))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "VTEX_ORDER_02_TOTAL_PAGINA",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "modificaContador",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ParCodEndPoint": {
+										"value": "@pipeline().parameters.ParCodEndPoint",
+										"type": "Expression"
+									},
+									"ParPagina": {
+										"value": "@string(int(variables('Contador')))",
+										"type": "Expression"
+									},
+									"DataInicioOrderVTEX": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX",
+										"type": "Expression"
+									},
+									"DataFimOrderVtex": {
+										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX",
+										"type": "Expression"
+									},
+									"DataIngestao": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
+										"type": "Expression"
+									},
+									"DataProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
+										"type": "Expression"
+									},
+									"DataHoraProcessamento": {
+										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					],
+					"timeout": "7.00:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"ParCodEndPoint": {
+				"type": "int"
+			},
+			"ParPagina": {
+				"type": "int"
+			}
+		},
+		"variables": {
+			"AppToken": {
+				"type": "String"
+			},
+			"AppKey": {
+				"type": "String"
+			},
+			"RelativeURL": {
+				"type": "String"
+			},
+			"PaginaFinal": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"Contador": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"IndexValue": {
+				"type": "String",
+				"defaultValue": "0"
+			}
+		},
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
