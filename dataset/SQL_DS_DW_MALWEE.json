@@ -1,0 +1,23 @@
+{
+	"name": "SQL_DS_DW_MALWEE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_DW_MALWEE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"NomeTabela": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": {
+				"value": "@dataset().NomeTabela",
+				"type": "Expression"
+			}
+		}
+	}
+}

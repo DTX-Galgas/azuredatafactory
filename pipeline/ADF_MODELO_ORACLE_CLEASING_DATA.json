@@ -1,5 +1,5 @@
 {
-	"name": "ADF_MODELO_ORACLE",
+	"name": "ADF_MODELO_ORACLE_CLEASING_DATA",
 	"properties": {
 		"description": "Modelo de importação de tabelas do ADF a partir de uma tabela de controle com as tabelas a importar, suas origens e colunas.",
 		"activities": [
@@ -307,7 +307,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "GravaLogInicioItem-ToDL_CSV",
+									"activity": "Insere na tabela Cleansing I",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -323,22 +323,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "OracleSource",
-									"additionalColumns": [
-										{
-											"name": "DAT_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
-												"type": "Expression"
-											}
-										}
-									],
-									"oracleReaderQuery": {
-										"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n');'\n)",
-										"type": "Expression"
-									},
-									"partitionOption": "None",
-									"queryTimeout": "02:00:00"
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -353,20 +340,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "OracleTable1",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"NomeTabela": "TABELA",
-										"UserName": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
-											"type": "Expression"
-										},
-										"SecretNamePWD": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
-											"type": "Expression"
-										},
-										"SecretNameCON": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
@@ -505,6 +483,12 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "Copy_SQLOP_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
 							],
 							"userProperties": [],
@@ -637,7 +621,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_SQLOP_TO_ADLS",
+									"activity": "Insere na tabela Cleansing I",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -653,12 +637,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "ParquetSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -673,19 +654,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
@@ -706,6 +679,132 @@
 										},
 										"FileSystem": {
 											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Limpa Tabela Destino_I",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToDL_CSV",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat('delete ',pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino,\n' SELECT 0')",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "pipeline().parameters.ParNomeTabelaOrigem",
+											"type": "Expression"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "Insere na tabela Cleansing I",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Limpa Tabela Destino_I",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"additionalColumns": [
+										{
+											"name": "DAT_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"oracleReaderQuery": {
+										"value": "@concat(\n'select ',\nactivity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,\n' from ',\npipeline().parameters.ParNomeSchemaOrigem,\nif(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),\npipeline().parameters.ParNomeTabelaOrigem,\n' where ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' >= TO_TIMESTAMP(',\n'''',activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO_CIGAM,'''',',',\n'''','DD-MON-YYYY HH24: MI:SS:FF','''',')',\n' and ',\nactivity('LeDataProcessamento').output.firstRow.NOM_COLUNA_REFERENCIA,\n' <= TO_TIMESTAMP(',\n'''',\nactivity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO_CIGAM,\n'''',\n',',\n'''',\n'DD-MON-YYYY HH24: MI:SS:FF',\n'''',\n');'\n)",
+										"type": "Expression"
+									},
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "OracleTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "TABELA",
+										"UserName": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+											"type": "Expression"
+										},
+										"SecretNamePWD": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+											"type": "Expression"
+										},
+										"SecretNameCON": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
@@ -808,97 +907,6 @@
 									}
 								}
 							}
-						},
-						{
-							"name": "Copy_SQLOP_TO_ADLS_U",
-							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "GravaLogInicioItem-ToDL_CSV_U",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "OracleSource",
-									"additionalColumns": [
-										{
-											"name": "DAT_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
-												"type": "Expression"
-											}
-										}
-									],
-									"oracleReaderQuery": {
-										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
-										"type": "Expression"
-									},
-									"partitionOption": "None",
-									"queryTimeout": "02:00:00"
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "OracleTable1",
-									"type": "DatasetReference",
-									"parameters": {
-										"NomeTabela": "TABELA",
-										"UserName": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
-											"type": "Expression"
-										},
-										"SecretNamePWD": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
-											"type": "Expression"
-										},
-										"SecretNameCON": {
-											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-									"type": "DatasetReference",
-									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(activity('LeCredenciaisDBorigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisDBorigem').output.firstRow.NOM_ALIAS,'_',''),'/',toLower(pipeline().parameters.ParNomeTabelaDestino),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))\n",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(toLower(pipeline().parameters.ParNomeTabelaDestino),'_',substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),'.parquet'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
-											"type": "Expression"
-										}
-									}
-								}
-							]
 						},
 						{
 							"name": "GravaLogFimItem-ToDL_U",
@@ -1008,7 +1016,13 @@
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Copy_SQLOP_TO_ADLS_CLEANSING_u",
+									"activity": "Copy_SQLOP_TO_ADLS_CLEANSING__U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "Copy_SQLOP_TO_ADLS_U",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1064,11 +1078,11 @@
 							}
 						},
 						{
-							"name": "Copy_SQLOP_TO_ADLS_CLEANSING_u",
+							"name": "Copy_SQLOP_TO_ADLS_U",
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_SQLOP_TO_ADLS_U",
+									"activity": "Insere na tabela Cleansing_U",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -1084,12 +1098,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "ParquetSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -1104,6 +1115,18 @@
 							},
 							"inputs": [
 								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
 									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
 									"type": "DatasetReference",
 									"parameters": {
@@ -1117,6 +1140,55 @@
 										},
 										"FileSystem": {
 											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy_SQLOP_TO_ADLS_CLEANSING__U",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Insere na tabela Cleansing_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}
@@ -1137,6 +1209,132 @@
 										},
 										"FileSystem": {
 											"value": "@activity('LeCredenciaisDBorigem').output.FirstRow.NOM_CONTAINER_CLEANSING",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Limpa Tabela Destino_U",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToDL_CSV_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat('delete ',pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino,\n' SELECT 0')",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "pipeline().parameters.ParNomeTabelaOrigem",
+											"type": "Expression"
+										}
+									}
+								}
+							}
+						},
+						{
+							"name": "Insere na tabela Cleansing_U",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Limpa Tabela Destino_U",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "OracleSource",
+									"additionalColumns": [
+										{
+											"name": "DAT_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,16)",
+												"type": "Expression"
+											}
+										}
+									],
+									"oracleReaderQuery": {
+										"value": "@concat('select ',activity('LeDataProcessamento').output.firstRow.DSC_COLUNAS_NAO_SENSIVEIS,' from ',pipeline().parameters.ParNomeSchemaOrigem,if(equals(pipeline().parameters.ParNomeSchemaOrigem,''),'','.'),pipeline().parameters.ParNomeTabelaOrigem)",
+										"type": "Expression"
+									},
+									"partitionOption": "None",
+									"queryTimeout": "02:00:00"
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "OracleTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "TABELA",
+										"UserName": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.NOM_USUARIO",
+											"type": "Expression"
+										},
+										"SecretNamePWD": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_PWD",
+											"type": "Expression"
+										},
+										"SecretNameCON": {
+											"value": "@activity('LeCredenciaisDBorigem').output.firstRow.DESC_SECRET_CON",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@concat(pipeline().parameters.ParNomeSchemaDestino,pipeline().parameters.ParNomeTabelaDestino)",
 											"type": "Expression"
 										}
 									}

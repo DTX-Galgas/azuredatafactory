@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "Cigam",
+				"description": "t",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -19,7 +20,7 @@
 				}
 			},
 			{
-				"name": "wait_vw_alocacao_credito_tentativa_2",
+				"name": "Wait1",
 				"type": "Wait",
 				"dependsOn": [
 					{
@@ -31,69 +32,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 5
-				}
-			},
-			{
-				"name": "wait_vw_alocacao_credito_tentativa_3",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "Cigam_2",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 5
-				}
-			},
-			{
-				"name": "Cigam_2",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "wait_vw_alocacao_credito_tentativa_2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORACLE",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ParCodTabela": "114"
-					}
-				}
-			},
-			{
-				"name": "Cigam_3",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "wait_vw_alocacao_credito_tentativa_3",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EXEC_ADF_MODELO_ORACLE",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"ParCodTabela": "114"
-					}
+					"waitTimeInSeconds": 1
 				}
 			}
 		],
