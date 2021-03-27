@@ -372,10 +372,6 @@
 						"type": "SqlPoolSource",
 						"sqlReaderQuery": "select pages as PaginaFinal from raw_data.vtex_orders_page_total"
 					},
-					"dataset": {
-						"referenceName": "wsdevbrsynapse",
-						"type": "DatasetReference"
-					},
 					"firstRowOnly": true
 				}
 			},
@@ -464,7 +460,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA",
+									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA_BACKUP",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": true,
