@@ -4,7 +4,7 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Nome do Data Factory",
+			"metadata": "Data Factory name",
 			"defaultValue": "adf-dev-br-analytics"
 		},
 		"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
@@ -94,7 +94,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -125,7 +125,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADF_MODELO_ORACLE')]",
+			"name": "[concat(parameters('factoryName'), '/ADF_MODELO_ORACLE_BACKUP')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1419,7 +1419,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/ORACLE"
+					"name": "Modelos/ORACLE/backup"
 				},
 				"annotations": []
 			},
@@ -1428,7 +1428,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ADF_MODELO_ORACLE_CLEASING_DATA')]",
+			"name": "[concat(parameters('factoryName'), '/ADF_MODELO_ORACLE')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -3000,7 +3000,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "ADF_MODELO_ORACLE_CLEASING_DATA",
+											"referenceName": "ADF_MODELO_ORACLE",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": true,
@@ -3347,7 +3347,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/ADF_MODELO_ORACLE_CLEASING_DATA')]"
+				"[concat(variables('factoryId'), '/pipelines/ADF_MODELO_ORACLE')]"
 			]
 		},
 		{
@@ -4317,7 +4317,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
