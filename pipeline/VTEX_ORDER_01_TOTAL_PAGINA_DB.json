@@ -300,6 +300,66 @@
 									"type": "DatasetReference"
 								}
 							]
+						},
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"additionalColumns": [
+										{
+											"name": "DATA_HORA_EXPORTACAO",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"X-VTEX-API-AppToken": {
+											"value": "@variables('AppToken')",
+											"type": "Expression"
+										},
+										"x-vtex-api-appkey": {
+											"value": "@variables('AppKey')",
+											"type": "Expression"
+										}
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestVTEX",
+									"type": "DatasetReference",
+									"parameters": {
+										"ParRelativeURL": {
+											"value": "@variables('RelativeURL')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
