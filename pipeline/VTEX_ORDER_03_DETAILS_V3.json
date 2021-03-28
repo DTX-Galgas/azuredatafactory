@@ -2399,7 +2399,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LimpaVtexOrderDetailsOrderShippingItems",
+						"activity": "LeDataProcessamento",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2486,79 +2486,6 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"NomeTabela": "Tabela"
-						}
-					}
-				}
-			},
-			{
-				"name": "VtexOrderDetailsOrderShippingItems",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "LeDataProcessamento",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select \nNOM_SCHEMA_DESTINO,NOM_TABELA_DESTINO\nfrom [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 3\n",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "TABELA"
-						}
-					}
-				}
-			},
-			{
-				"name": "LimpaVtexOrderDetailsOrderShippingItems",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "VtexOrderDetailsOrderShippingItems",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "@concat('truncate table  ',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
-							"type": "Expression"
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "SQL_DS_DW_MALWEE",
-						"type": "DatasetReference",
-						"parameters": {
-							"NomeTabela": "TABELA"
 						}
 					}
 				}
