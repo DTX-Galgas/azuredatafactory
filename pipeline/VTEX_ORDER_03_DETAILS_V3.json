@@ -1407,7 +1407,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Copy_API_JSON_TO_ADLS",
+									"activity": "API_JSON_TO_SQL_ORDER_SHIPPING_ITEMS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2274,6 +2274,78 @@
 								"referenceName": "SQL_CONTROLE",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "API_JSON_TO_SQL_ORDER_SHIPPING_ITEMS",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "data_hora_exportacao",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
@@ -2327,7 +2399,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "LeDataProcessamento",
+						"activity": "LimpaVtexOrderDetailsOrderShippingItems",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -2414,6 +2486,79 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "VtexOrderDetailsOrderShippingItems",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "LeDataProcessamento",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select \nNOM_SCHEMA_DESTINO,NOM_TABELA_DESTINO\nfrom [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 3\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			},
+			{
+				"name": "LimpaVtexOrderDetailsOrderShippingItems",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "VtexOrderDetailsOrderShippingItems",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('truncate table  ',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
 						}
 					}
 				}
