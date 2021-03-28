@@ -92,6 +92,10 @@
 						"DataHoraProcessamento": {
 							"value": "@pipeline().parameters.DataHoraProcessamento",
 							"type": "Expression"
+						},
+						"ParTabelaListOrder": {
+							"value": "@pipeline().parameters.ParTabelaListOrder",
+							"type": "Expression"
 						}
 					}
 				}
@@ -228,6 +232,9 @@
 				"type": "string"
 			},
 			"DataHoraProcessamento": {
+				"type": "string"
+			},
+			"ParTabelaListOrder": {
 				"type": "string"
 			}
 		},

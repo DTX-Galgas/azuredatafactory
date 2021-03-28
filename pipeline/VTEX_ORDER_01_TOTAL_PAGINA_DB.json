@@ -646,6 +646,10 @@
 									"DataHoraProcessamento": {
 										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
 										"type": "Expression"
+									},
+									"ParTabelaListOrder": {
+										"value": "@concat(\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+										"type": "Expression"
 									}
 								}
 							}
