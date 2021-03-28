@@ -535,7 +535,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@concat(\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+											"value": "@pipeline().parameters.ParTabelaListOrder",
 											"type": "Expression"
 										}
 									}
@@ -609,7 +609,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@concat(\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+											"value": "@pipeline().parameters.ParTabelaListOrder",
 											"type": "Expression"
 										}
 									}
