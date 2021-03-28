@@ -89,6 +89,42 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CIGAM_0640')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "EXEC_PIPE_CIGAM_GST_BI_DIMENSIONAL",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-28T13:51:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								4
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ADF_MODELO_ORACLE')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -406,7 +442,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -475,7 +511,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:10:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -720,7 +756,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -830,7 +866,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -1012,7 +1048,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -1181,7 +1217,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -1250,7 +1286,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -1360,7 +1396,7 @@
 										}
 									],
 									"policy": {
-										"timeout": "7.00:00:00",
+										"timeout": "0.00:30:00",
 										"retry": 0,
 										"retryIntervalInSeconds": 30,
 										"secureOutput": false,
@@ -4276,7 +4312,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger_CIGAM')]",
+			"name": "[concat(parameters('factoryName'), '/CIGAM_0600')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
