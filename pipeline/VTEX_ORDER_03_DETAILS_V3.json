@@ -2318,7 +2318,118 @@
 								"sink": {
 									"type": "AzureSqlSink"
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['itemIndex']"
+											},
+											"sink": {
+												"name": "itemIndex",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['selectedSla']"
+											},
+											"sink": {
+												"name": "selectedSla",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['deliveryCompany']"
+											},
+											"sink": {
+												"name": "deliveryCompany",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "['shippingEstimateDate']"
+											},
+											"sink": {
+												"name": "shippingEstimateDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['DATA_HORA_EXPORTACAO']"
+											}
+										}
+									],
+									"collectionReference": "$['shippingData']['logisticsInfo']",
+									"mapComplexValuesToString": true
+								}
 							},
 							"inputs": [
 								{
