@@ -655,42 +655,12 @@
 									"mappings": [
 										{
 											"source": {
-												"name": "total",
-												"type": "Int32"
+												"name": "orderId",
+												"type": "String"
 											},
 											"sink": {
-												"name": "total",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"name": "pages",
-												"type": "Int32"
-											},
-											"sink": {
-												"name": "pages",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"name": "currentPage",
-												"type": "Int32"
-											},
-											"sink": {
-												"name": "currentPage",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"name": "perPage",
-												"type": "Int32"
-											},
-											"sink": {
-												"name": "perPage",
-												"type": "Int32"
+												"name": "orderId",
+												"type": "String"
 											}
 										},
 										{
