@@ -190,8 +190,8 @@
 							}
 						},
 						{
-							"name": "API_JSON_TO_PARQUET",
-							"type": "Copy",
+							"name": "MetaDadosJson",
+							"type": "GetMetadata",
 							"dependsOn": [
 								{
 									"activity": "Copy_API_JSON_TO_ADLS",
@@ -201,90 +201,15 @@
 								}
 							],
 							"policy": {
-								"timeout": "0.00:00:15",
-								"retry": 2,
+								"timeout": "7.00:00:00",
+								"retry": 0,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"path": "$['paging']['total']"
-											},
-											"sink": {
-												"name": "total",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['paging']['pages']"
-											},
-											"sink": {
-												"name": "pages",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['paging']['currentPage']"
-											},
-											"sink": {
-												"name": "currentPage",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['paging']['perPage']"
-											},
-											"sink": {
-												"name": "perPage",
-												"type": "Int32"
-											}
-										},
-										{
-											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
-											},
-											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
-											}
-										}
-									],
-									"collectionReference": "",
-									"mapComplexValuesToString": true
-								}
-							},
-							"inputs": [
-								{
+								"dataset": {
 									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
 									"type": "DatasetReference",
 									"parameters": {
@@ -292,14 +217,16 @@
 										"FileName": "vtex_order_page_total.json",
 										"FileSystem": "raw"
 									}
+								},
+								"fieldList": [],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "vtex_total_order_page_total",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					]
 				}
@@ -346,158 +273,6 @@
 							"NomeTabela": "Tabela"
 						}
 					}
-				}
-			},
-			{
-				"name": "LeTotalPaginasArquivo",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "SeAPI_JSON_TO_DL",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlPoolSource",
-						"sqlReaderQuery": "select pages as PaginaFinal from raw_data.vtex_orders_page_total"
-					},
-					"firstRowOnly": true
-				}
-			},
-			{
-				"name": "modificaPaginaFinal",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "LeTotalPaginasArquivo",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "PaginaFinal",
-					"value": {
-						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.PaginaFinal))\n",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "EXEC VTEX_ORDER_02_TOTAL_PAGINA",
-				"type": "Until",
-				"dependsOn": [
-					{
-						"activity": "modificaPaginaFinal",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@greaterOrEquals(int(variables('Contador')),int(variables('PaginaFinal')))",
-						"type": "Expression"
-					},
-					"activities": [
-						{
-							"name": "modificaIndexValue",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "IndexValue",
-								"value": {
-									"value": "@string(add(int(variables('Contador')),1))",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "modificaContador",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "modificaIndexValue",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Contador",
-								"value": {
-									"value": "@string(int(variables('IndexValue')))",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "VTEX_ORDER_02_TOTAL_PAGINA",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "modificaContador",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"ParCodEndPoint": {
-										"value": "@pipeline().parameters.ParCodEndPoint",
-										"type": "Expression"
-									},
-									"ParPagina": {
-										"value": "@string(int(variables('Contador')))",
-										"type": "Expression"
-									},
-									"DataInicioOrderVTEX": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_INICIO_ORDER_VTEX",
-										"type": "Expression"
-									},
-									"DataFimOrderVtex": {
-										"value": "@activity('LeCredenciaisOrigem').output.FirstRow.DATA_FINAL_ORDER_VTEX",
-										"type": "Expression"
-									},
-									"DataIngestao": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_INGESTAO",
-										"type": "Expression"
-									},
-									"DataProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_PROCESSAMENTO",
-										"type": "Expression"
-									},
-									"DataHoraProcessamento": {
-										"value": "@activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO",
-										"type": "Expression"
-									}
-								}
-							}
-						}
-					],
-					"timeout": "7.00:00:00"
 				}
 			}
 		],
