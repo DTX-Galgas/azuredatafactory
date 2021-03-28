@@ -1166,7 +1166,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_RAW",
+									"activity": "API_JSON_TO_SQL_ORDER_SHIPPING",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2331,6 +2331,1548 @@
 										}
 									],
 									"collectionReference": "$['shippingData']['logisticsInfo']",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "VtexOrderDetailsOrder",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaShippingItems",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_SQL_ORDER_SHIPPING",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "data_hora_exportacao",
+											"value": {
+												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sequence']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplaceOrderId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplaceServicesEndpoint']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellerOrderId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['origin']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['affiliateId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['salesChannel']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['merchantName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['status']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['statusDescription']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['value']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['creationDate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['lastChange']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['orderGroup']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['totals'][0]['value']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['uniqueId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['productId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['ean']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['lockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['itemAttachment']['content']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['itemAttachment']['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['attachments']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['quantity']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['seller']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['refId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['manualPrice']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['value']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['isPercentual']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['identifier']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['rawValue']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['rate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['jurisCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['jurisType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceTags'][0]['jurisName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['imageUrl']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['detailUrl']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['components']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['bundleItems']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['params']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['offerings']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['sellerSku']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceValidUntil']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['commission']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['tax']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['preSaleDate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['brandId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['productClusterId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['commercialConditionId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['dimension']['cubicweight']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['dimension']['height']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['dimension']['length']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['dimension']['weight']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['dimension']['width']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['offeringInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['offeringType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['additionalInfo']['offeringTypeId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['measurementUnit']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['unitMultiplier']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['isGift']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['shippingPrice']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['rewardValue']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['freightCommission']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['priceDefinitions']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['taxCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['parentItemIndex']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['parentAssemblyBinding']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['callCenterOperator']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['serialNumbers']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['assemblies']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['items'][0]['costPrice']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplaceItems']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['email']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['firstName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['lastName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['documentType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['document']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['phone']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['corporateName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['tradeName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['corporateDocument']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['stateInscription']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['corporatePhone']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['isCorporate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['userProfileId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['clientProfileData']['customerClass']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['giftRegistryData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmSource']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmPartner']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmMedium']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmCampaign']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['coupon']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmiCampaign']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmipage']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['utmiPart']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketingData']['marketingTags']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['description']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['featured']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['matchedParameters']['couponCode@Marketing']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ratesAndBenefitsData']['rateAndBenefitsIdentifiers'][0]['additionalInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "['addressType']"
+											}
+										},
+										{
+											"source": {
+												"path": "['receiverName']"
+											}
+										},
+										{
+											"source": {
+												"path": "['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "['postalCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "['city']"
+											}
+										},
+										{
+											"source": {
+												"path": "['state']"
+											}
+										},
+										{
+											"source": {
+												"path": "['country']"
+											}
+										},
+										{
+											"source": {
+												"path": "['street']"
+											}
+										},
+										{
+											"source": {
+												"path": "['number']"
+											}
+										},
+										{
+											"source": {
+												"path": "['neighborhood']"
+											}
+										},
+										{
+											"source": {
+												"path": "['complement']"
+											}
+										},
+										{
+											"source": {
+												"path": "['reference']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
+											},
+											"sink": {
+												"name": "itemIndex",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
+											},
+											"sink": {
+												"name": "selectedSla",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
+											},
+											"sink": {
+												"name": "deliveryCompany",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
+											},
+											"sink": {
+												"name": "shippingEstimateDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryChannel']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['additionalInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['address']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['friendlyName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['isPickupStore']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['polygonName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupPointId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['transitTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shipsTo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['quantity']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['warehouseId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['accountCarrierName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryChannel']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['additionalInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['address']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['friendlyName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['isPickupStore']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['polygonName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupPointId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['transitTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['trackingHints']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['addressType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['receiverName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['street']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['number']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['complement']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['neighborhood']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['postalCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['city']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['state']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['country']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['reference']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['geoCoordinates']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['giftCards']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['isActive']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['transactionId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['merchantName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['cardHolder']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['cardNumber']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['firstDigits']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['lastDigits']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['cvv2']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['expireMonth']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['expireYear']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['url']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['giftCardId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['giftCardName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['giftCardCaption']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['redemptionCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['group']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['tid']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['dueDate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['connectorResponses']['Tid']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['connectorResponses']['ReturnCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['connectorResponses']['Message']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['connectorResponses']['nsu']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['connectorResponses']['acquirer']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['giftCardProvider']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['giftCardAsDiscount']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['koinUrl']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['accountId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['parentAccountId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['bankIssuedInvoiceIdentificationNumber']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['bankIssuedInvoiceIdentificationNumberFormatted']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['bankIssuedInvoiceBarCodeNumber']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['bankIssuedInvoiceBarCodeType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['billingAddress']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['packageAttachment']['packages']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellers'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellers'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellers'][0]['logo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['sellers'][0]['fulfillmentEndpoint']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['callCenterOperatorData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['followUpEmail']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['lastMessage']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['hostname']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['invoiceData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['changesAttachment']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['openTextField']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['roundingError']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['orderFormId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['commercialConditionData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['isCompleted']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['customData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['countryCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyFormatInfo']['CurrencyDecimalDigits']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyFormatInfo']['CurrencyDecimalSeparator']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyFormatInfo']['CurrencyGroupSeparator']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyFormatInfo']['CurrencyGroupSize']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyFormatInfo']['StartsWithCurrencySymbol']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencyLocale']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['currencySymbol']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['storePreferencesData']['timeZone']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['allowCancellation']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['allowEdition']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['isCheckedIn']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplace']['baseURL']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplace']['isCertified']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['marketplace']['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['authorizedDate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['invoicedDate']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['cancelReason']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['Id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['Seller']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['Name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['SkuName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['ProductId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['RefId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['Ean']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['ImageUrl']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['DetailUrl']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['itemMetadata']['Items'][0]['AssemblyOptions']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['subscriptionData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['taxData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['checkedInPickupPointId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['cancellationData']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data_hora_exportacao']"
+											}
+										}
+									],
+									"collectionReference": "$['shippingData']['address']",
 									"mapComplexValuesToString": true
 								}
 							},
