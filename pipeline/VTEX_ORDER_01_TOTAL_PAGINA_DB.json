@@ -500,7 +500,7 @@
 					{
 						"activity": "SeAPI_JSON_TO_DL",
 						"dependencyConditions": [
-							"Succeeded"
+							"Failed"
 						]
 					}
 				],
