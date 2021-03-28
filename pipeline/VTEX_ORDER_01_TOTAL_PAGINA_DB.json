@@ -515,7 +515,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from [cleansing_data].[vtex_order_page_total]\norder by data_hora_exportacao desc \n",
+						"sqlReaderQuery": "select top(1)  * from [cleansing_data].[vtex_order_page_total]\norder by data_hora_exportacao desc \n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
