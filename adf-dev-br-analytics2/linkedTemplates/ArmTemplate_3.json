@@ -1621,7 +1621,7 @@
 						"type": "IfCondition",
 						"dependsOn": [
 							{
-								"activity": "TotalPaginas",
+								"activity": "LimpaTotalPagina",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1989,6 +1989,37 @@
 											"parameters": {}
 										}
 									]
+								},
+								{
+									"name": "LimpaTotalPagina_copy1",
+									"type": "Lookup",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": {
+												"value": "@concat('truncate tale  ',\nactivity('TotalPaginas').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TotalPaginas').output.firstRow.NOM_TABELA_DESTINO)",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"dataset": {
+											"referenceName": "SQL_DS_DW_MALWEE",
+											"type": "DatasetReference",
+											"parameters": {
+												"NomeTabela": "TABELA"
+											}
+										}
+									}
 								}
 							]
 						}
@@ -2231,6 +2262,44 @@
 								}
 							],
 							"timeout": "7.00:00:00"
+						}
+					},
+					{
+						"name": "LimpaTotalPagina",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "TotalPaginas",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('truncate tale  ',\nactivity('TotalPaginas').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TotalPaginas').output.firstRow.NOM_TABELA_DESTINO)",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_DW_MALWEE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "TABELA"
+								}
+							}
 						}
 					}
 				],
