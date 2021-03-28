@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SQL_CONTROLE'"
 		},
+		"SQL_DESTINO_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_DESTINO'"
+		},
 		"SQL_DW_MALWEE_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SQL_DW_MALWEE'"
@@ -35,25 +39,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'VtexTeste'"
 		},
-		"linkedService1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'linkedService1'"
-		},
-		"linkedService2_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'linkedService2'"
-		},
 		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadevbranalytics2.dfs.core.windows.net"
 		},
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://kv-dev-br-analytics2.vault.azure.net/"
-		},
-		"LSAKVBICORP_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://AKVBICorporativo.vault.azure.net/"
+			"defaultValue": "https://kv-dev-br-analytics.vault.azure.net/"
 		},
 		"RestService1_properties_typeProperties_url": {
 			"type": "string",
@@ -86,22 +78,6 @@
 		"VtexTeste_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mawee"
-		},
-		"linkedService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
-		},
-		"linkedService2_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
-		},
-		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
-		},
-		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "Storage-Imagens-material"
 		}
 	},
 	"variables": {
@@ -169,19 +145,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LSAKVBICORP')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('LSAKVBICORP_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/RestService1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -230,6 +193,19 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('SQL_CONTROLE_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQL_DESTINO')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('SQL_DESTINO_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -288,54 +264,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/linkedService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('linkedService1_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('linkedService1_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/linkedService2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('linkedService2_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('linkedService2_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/wsdevbrsynapse-WorkspaceDefaultStorage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ir-dev-malwee')]",
+			"name": "[concat(parameters('factoryName'), '/ir-dev-malwee2')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -360,6 +289,42 @@
 			"apiVersion": "2018-06-01",
 			"properties": {},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_DIMENSIONAL')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "DIMENSIONAL",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[SP_CIGAM_04_PROCESSA_DIMENSIONAL]"
+						},
+						"linkedServiceName": {
+							"referenceName": "SQL_DW_MALWEE",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/CIGAM"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SQL_DW_MALWEE')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ADLS_DS_DESTINO_PARQUET_GEN2')]",
@@ -408,6 +373,82 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_ADSL_GEN2_JSON_DESTINO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS_DESTINO_GEN2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FilePath": {
+						"type": "string"
+					},
+					"FileName": {
+						"type": "string"
+					},
+					"FileSystem": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "DESTINO"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().FilePath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().FileSystem",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS_DESTINO_GEN2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestVTEX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestServiceVtex",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ParRelativeURL": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "@dataset().ParRelativeURL",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/RestServiceVtex')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SQL_DS_CONTROLE')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -439,6 +480,34 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SQL_DS_DESTINO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SQL_DESTINO",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"NomeTabela": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": {
+						"value": "@dataset().NomeTabela",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SQL_DESTINO')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SQL_DS_DW_MALWEE')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -464,29 +533,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SQL_DW_MALWEE')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BLOB_IMAGENS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]",
-						"secretVersion": ""
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault')]"
 			]
 		}
 	]

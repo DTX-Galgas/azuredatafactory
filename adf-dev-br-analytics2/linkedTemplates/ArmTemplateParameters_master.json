@@ -8,12 +8,6 @@
 		"ADLS_DESTINO_GEN2_accountKey": {
 			"value": ""
 		},
-		"LSODBCPROGRESS_Password_connectionString": {
-			"value": ""
-		},
-		"LSSQLBICorp_testeAKV_password_connectionString": {
-			"value": ""
-		},
 		"ORC_GIGAM_ORIGEM_connectionString": {
 			"value": ""
 		},
@@ -26,6 +20,9 @@
 		"SQL_CONTROLE_connectionString": {
 			"value": ""
 		},
+		"SQL_DESTINO_connectionString": {
+			"value": ""
+		},
 		"SQL_DW_MALWEE_connectionString": {
 			"value": ""
 		},
@@ -35,44 +32,14 @@
 		"VtexTeste_password": {
 			"value": ""
 		},
-		"linkedService1_accountKey": {
-			"value": ""
-		},
-		"linkedService2_accountKey": {
-			"value": ""
-		},
 		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
 			"value": "https://sadevbranalytics2.dfs.core.windows.net"
 		},
 		"AzureKeyVault_properties_typeProperties_baseUrl": {
-			"value": "https://kv-dev-br-analytics2.vault.azure.net/"
+			"value": "https://kv-dev-br-analytics.vault.azure.net/"
 		},
 		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
 			"value": "Storage-Imagens-material"
-		},
-		"LSAKVBICORP_properties_typeProperties_baseUrl": {
-			"value": "https://AKVBICorporativo.vault.azure.net/"
-		},
-		"LSODBCPROGRESS_Password_properties_typeProperties_userName": {
-			"value": "pwrbi"
-		},
-		"LSODBCPROGRESS_String_properties_typeProperties_connectionString_secretName": {
-			"value": "ODBCPROGRESSString"
-		},
-		"LSODBCPROGRESS_String_properties_typeProperties_userName": {
-			"value": "pwrbi"
-		},
-		"LSSQLBICorp_testeAVK_ConnectionS_properties_typeProperties_connectionString_secretName": {
-			"value": "AzureSQLBICorpConnectionS"
-		},
-		"LSSQLBICorp_testeManagedIdentity_properties_typeProperties_connectionString_secretName": {
-			"value": "AzureSQLBICorpMI"
-		},
-		"ODBC_OP_PROGRESS_properties_typeProperties_connectionString_secretName": {
-			"value": "ODBCPROGRESSString"
-		},
-		"ODBC_OP_PROGRESS_properties_typeProperties_userName": {
-			"value": "pwrbi"
 		},
 		"RestService1_properties_typeProperties_url": {
 			"value": "https://ihub.infracommerce.com.br/api/invoices/list/"
@@ -98,9 +65,6 @@
 		"SAP_TABLE_ORIGEM_properties_typeProperties_systemNumber": {
 			"value": "00"
 		},
-		"SQL_DESTINO_properties_typeProperties_connectionString_secretName": {
-			"value": "AzureSQLBICorpMI"
-		},
 		"SapRest_properties_typeProperties_url": {
 			"value": "https://webdisp-homologacao.malwee.com.br:8445/datalake/"
 		},
@@ -112,15 +76,6 @@
 		},
 		"VtexTeste_properties_typeProperties_userName": {
 			"value": "mawee"
-		},
-		"linkedService1_properties_typeProperties_url": {
-			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
-		},
-		"linkedService2_properties_typeProperties_url": {
-			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
-		},
-		"wsdevbrsynapse-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"value": "https://sadevbrdatalakemalwee.dfs.core.windows.net"
 		},
 		"containerUri": {
 			"value": ""
