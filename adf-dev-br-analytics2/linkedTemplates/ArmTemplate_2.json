@@ -7977,7 +7977,7 @@
 									"type": "SetVariable",
 									"dependsOn": [
 										{
-											"activity": "API_JSON_TO_SL",
+											"activity": "API_JSON_TO_PARQUET",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -8198,6 +8198,100 @@
 											}
 										}
 									}
+								},
+								{
+									"name": "API_JSON_TO_PARQUET",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "API_JSON_TO_SL",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.00:00:15",
+										"retry": 2,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "ParquetSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "ParquetWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "orderId",
+														"type": "String"
+													},
+													"sink": {
+														"name": "orderId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
+													},
+													"sink": {
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
+													}
+												}
+											]
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "SQL_DS_DW_MALWEE",
+											"type": "DatasetReference",
+											"parameters": {
+												"NomeTabela": {
+													"value": "@concat(\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+											"type": "DatasetReference",
+											"parameters": {
+												"FilePath": {
+													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2)))",
+													"type": "Expression"
+												},
+												"FileName": {
+													"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(pipeline().parameters.DataHoraProcessamento,0,4),substring(pipeline().parameters.DataHoraProcessamento,5,2),substring(pipeline().parameters.DataHoraProcessamento,8,2),substring(pipeline().parameters.DataHoraProcessamento,11,2),substring(pipeline().parameters.DataHoraProcessamento,14,2),'_page_',string(pipeline().parameters.ParPagina),'.parquet'))",
+													"type": "Expression"
+												},
+												"FileSystem": {
+													"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+													"type": "Expression"
+												}
+											}
+										}
+									]
 								}
 							]
 						}
