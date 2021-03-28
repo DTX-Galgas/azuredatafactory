@@ -204,7 +204,7 @@
 									"type": "JsonSource",
 									"additionalColumns": [
 										{
-											"name": "DATA_HORA_EXPORTACAO",
+											"name": "data_hora_exportacao",
 											"value": {
 												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
 												"type": "Expression"
@@ -265,7 +265,7 @@
 										},
 										{
 											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
+												"path": "$['data_hora_exportacao']"
 											},
 											"sink": {
 												"name": "data_hora_exportacao",
