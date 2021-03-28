@@ -2343,7 +2343,13 @@
 							"outputs": [
 								{
 									"referenceName": "SQL_DS_DW_MALWEE",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaShippingItems",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
