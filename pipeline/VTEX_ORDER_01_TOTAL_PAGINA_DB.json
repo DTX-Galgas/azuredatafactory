@@ -685,7 +685,10 @@
 					},
 					"dataset": {
 						"referenceName": "SQL_DS_DW_MALWEE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
 					}
 				}
 			}
