@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CapturaDataExportacao",
+				"name": "OrderID",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -24,83 +24,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[PADFDataExportacao]",
-						"storedProcedureParameters": {
-							"COD_ENDPOINT": {
-								"type": "Int32",
-								"value": {
-									"value": "@pipeline().parameters.ParCodEndPoint",
-									"type": "Expression"
-								}
-							}
-						},
+						"sqlReaderQuery": "select orderid from [cleansing_data].[vtex_order_list]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "SQL_DS_CONTROLE",
+						"referenceName": "SQL_DS_DW_MALWEE",
 						"type": "DatasetReference",
 						"parameters": {
 							"NomeTabela": "TABELA"
-						}
-					}
-				}
-			},
-			{
-				"name": "DataExportacao",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "CapturaDataExportacao",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "DATA_HORA_EXPORTACAO",
-					"value": {
-						"value": "@activity('CapturaDataExportacao').output.FirstRow.DATA_HORA_EXPORTACAO\n",
-						"type": "Expression"
-					}
-				}
-			},
-			{
-				"name": "OrderID",
-				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "DataExportacao",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.00:01:00",
-					"retry": 2,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ParquetSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"dataset": {
-						"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
-						"type": "DatasetReference",
-						"parameters": {
-							"FilePath": "caminho",
-							"FileName": "nome",
-							"FileSystem": "raw"
 						}
 					},
 					"firstRowOnly": false
