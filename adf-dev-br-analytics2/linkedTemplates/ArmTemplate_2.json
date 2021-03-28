@@ -8107,7 +8107,7 @@
 											"mappings": [
 												{
 													"source": {
-														"path": "$['list'][0]['orderId']"
+														"path": "[['orderId']"
 													},
 													"sink": {
 														"name": "orderId",
@@ -8124,6 +8124,7 @@
 													}
 												}
 											],
+											"collectionReference": "$['list']",
 											"mapComplexValuesToString": true
 										}
 									},
