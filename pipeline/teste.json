@@ -106,6 +106,347 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "API_JSON_TO_SQL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:00:15",
+					"retry": 2,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['list'][0]['orderId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['creationDate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['clientName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['items']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['totalValue']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['paymentNames']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['status']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['statusDescription']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['marketPlaceOrderId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['sequence']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['salesChannel']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['affiliateId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['origin']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['workflowInErrorState']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['workflowInRetry']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['lastMessageUnread']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDateMax']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['ShippingEstimatedDateMin']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['orderIsComplete']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['listId']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['listType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['authorizedDate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['callCenterOperatorName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['totalItems']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['currencyCode']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['hostname']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['invoiceOutput']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['list'][0]['invoiceInput']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['facets'][0]"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['total']"
+								},
+								"sink": {
+									"name": "total",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['pages']"
+								},
+								"sink": {
+									"name": "pages",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['currentPage']"
+								},
+								"sink": {
+									"name": "currentPage",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['paging']['perPage']"
+								},
+								"sink": {
+									"name": "perPage",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Max']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Mean']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Min']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Missing']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['StdDev']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Sum']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['SumOfSquares']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalValue']['Facets']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Count']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Max']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Mean']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Min']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Missing']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['StdDev']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Sum']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['SumOfSquares']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stats']['stats']['totalItems']['Facets']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reportRecordsLimit']"
+								}
+							}
+						],
+						"collectionReference": "",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+						"type": "DatasetReference",
+						"parameters": {
+							"FilePath": "brazil/vtex/vtex_order_page_total/",
+							"FileName": "vtex_order_page_total.json",
+							"FileSystem": "raw"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": {
+								"value": "@concat(\nactivity('TotalPaginas').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TotalPaginas').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"folder": {
