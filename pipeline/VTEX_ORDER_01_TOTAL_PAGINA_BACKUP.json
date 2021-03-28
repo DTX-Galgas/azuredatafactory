@@ -369,8 +369,16 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlPoolSource",
-						"sqlReaderQuery": "select pages as PaginaFinal from raw_data.vtex_orders_page_total"
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
 					},
 					"firstRowOnly": true
 				}
