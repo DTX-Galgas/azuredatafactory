@@ -659,7 +659,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "TotalPaginas",
+						"activity": "LimpaTabelaOrderList",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -678,6 +678,79 @@
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
 							"value": "@concat('truncate table  ',\nactivity('TotalPaginas').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TotalPaginas').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			},
+			{
+				"name": "TabelaOrderList",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "TotalPaginas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select NOM_SCHEMA_DESTINO,NOM_TABELA_DESTINO \nfrom  [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 2",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			},
+			{
+				"name": "LimpaTabelaOrderList",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "TabelaOrderList",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('truncate table  ',\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
