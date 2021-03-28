@@ -492,6 +492,62 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "LeTotalPaginasArquivo",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select * from [cleansing_data].[vtex_order_page_total]\norder by data_hora_exportacao desc \n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "modificaPaginaFinal",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LeTotalPaginasArquivo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PaginaFinal",
+					"value": {
+						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.pages))\n",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
