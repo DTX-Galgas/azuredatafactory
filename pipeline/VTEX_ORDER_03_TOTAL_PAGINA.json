@@ -600,7 +600,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "@concat('truncate tale  ',\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO)",
+										"value": "@concat('truncate table  ',\nactivity('TabelaOrderList').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('TabelaOrderList').output.firstRow.NOM_TABELA_DESTINO)",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
