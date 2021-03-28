@@ -2500,6 +2500,9 @@
 			},
 			"ParNumeroOrder": {
 				"type": "string"
+			},
+			"ParTabelaShippingItems": {
+				"type": "string"
 			}
 		},
 		"variables": {

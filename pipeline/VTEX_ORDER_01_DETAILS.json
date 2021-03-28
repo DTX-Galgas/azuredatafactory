@@ -81,6 +81,10 @@
 									"ParNumeroOrder": {
 										"value": "@{item().ORDERID}",
 										"type": "Expression"
+									},
+									"ParTabelaShippingItems": {
+										"value": "@concat(\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+										"type": "Expression"
 									}
 								}
 							}
