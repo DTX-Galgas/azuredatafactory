@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Cigam",
+				"name": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
 				"description": "t",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
@@ -17,22 +17,6 @@
 					"parameters": {
 						"ParCodTabela": "114"
 					}
-				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "Cigam",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
 				}
 			}
 		],
