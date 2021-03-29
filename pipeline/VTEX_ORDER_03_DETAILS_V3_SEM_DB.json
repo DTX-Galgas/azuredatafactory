@@ -1534,6 +1534,42 @@
 									"dependencyConditions": [
 										"Succeeded"
 									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_ITEMS_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_CLIENT_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
 							],
 							"policy": {
@@ -1773,7 +1809,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_SHIPPING_ITEMS_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2002,7 +2038,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_SHIPPING_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2159,7 +2195,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2325,7 +2361,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_CLIENT_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2607,7 +2643,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_ITEMS_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -2737,7 +2773,7 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "API_JSON_TO_ORDER_TOTALS_PARQUET_RAW",
+									"activity": "Copy_API_JSON_TO_ADLS",
 									"dependencyConditions": [
 										"Succeeded"
 									]
