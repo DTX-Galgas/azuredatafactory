@@ -1,0 +1,52 @@
+{
+	"name": "CIGAM FULL",
+	"properties": {
+		"activities": [
+			{
+				"name": "DIMENSIONAL",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SP_CIGAM_04_PROCESSA_DIMENSIONAL]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_DW_MALWEE",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_CLIENTES",
+				"description": "t",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "114"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
