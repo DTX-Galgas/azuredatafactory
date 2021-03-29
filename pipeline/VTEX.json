@@ -12,7 +12,11 @@
 						"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodEndPoint": "4",
+						"ParPagina": "1"
+					}
 				}
 			},
 			{
@@ -32,7 +36,10 @@
 						"referenceName": "VTEX_ORDER_01_DETAILS",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodEndPoint": "5"
+					}
 				}
 			}
 		],
