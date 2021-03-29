@@ -59,6 +59,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Limpavtex_order_details_order_payment_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -468,6 +474,79 @@
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
 							"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_DW_MALWEE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			},
+			{
+				"name": "vtex_order_details_order_client",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "OrderID",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select \nNOM_SCHEMA_DESTINO,NOM_TABELA_DESTINO\nfrom [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 6",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "TABELA"
+						}
+					}
+				}
+			},
+			{
+				"name": "Limpavtex_order_details_order_payment_copy1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "vtex_order_details_order_client",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
