@@ -121,7 +121,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "VTEX_ORDER_03_DETAILS_DB",
+											"referenceName": "VTEX_ORDER_03_DETAILS_V3_SEM_DB",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": false,
