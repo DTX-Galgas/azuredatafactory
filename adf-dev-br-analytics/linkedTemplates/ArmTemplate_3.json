@@ -618,7 +618,7 @@
 						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
-							"timeout": "7.00:00:00",
+							"timeout": "0.00:30:00",
 							"retry": 0,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
@@ -797,40 +797,6 @@
 									"linkedServiceName": {
 										"referenceName": "SQL_CONTROLE",
 										"type": "LinkedServiceReference"
-									}
-								},
-								{
-									"name": "EnviaEmailDeErroUPD",
-									"type": "WebActivity",
-									"dependsOn": [
-										{
-											"activity": "MsgErroUPD",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"url": {
-											"value": "https://prod-21.brazilsouth.logic.azure.com:443/workflows/741f9460457d489996f012404ef44c15/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=j67cgGl-SI96CK3Ef9EClXXCdWao6ACexeV0h3sDZEU",
-											"type": "Expression"
-										},
-										"method": "POST",
-										"headers": {
-											"Content-Type": "application/json"
-										},
-										"body": {
-											"value": "{\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n\t\"database\":\"@{activity('GravaLogInicio').output.firstRow.NOM_BASE}\",\n\t\"environment\":\"@{activity('GravaLogInicio').output.firstRow.DESC_ENVIRONMENT}\",\n\t\"message\": \"@{activity('ExecutaPipelineUPDATE').error.message}\",\n\t\"pipelineName\": \"@{variables('MsgErro')}\",\n\t\"receiver\": \"@{variables('receiver')}\",\n    \"schema\": \"@{activity('GravaLogInicio').output.firstRow.NOM_SCHEMA_ORIGEM}\",  \n    \"table\": \"@{activity('GravaLogInicio').output.firstRow.NOM_TABELA_ORIGEM}\",\n\"servername\": \"@{replace(activity('GravaLogInicio').output.firstRow.NOM_SERVIDOR, '\\','-') }\",\n\"type\":\"Table\",\n\"endpoint\":\"\",\n\"url\":\"\",\n\"output\":\"\"\n}\n",
-											"type": "Expression"
-										}
 									}
 								},
 								{
