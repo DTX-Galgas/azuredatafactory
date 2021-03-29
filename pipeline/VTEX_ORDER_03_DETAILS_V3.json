@@ -393,24 +393,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
-									"additionalColumns": [
-										{
-											"name": "DATA_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -427,69 +412,64 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "['id']"
+												"name": "orderId",
+												"type": "String"
 											},
 											"sink": {
-												"name": "total_items_id",
+												"name": "orderId",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['name']"
+												"name": "id",
+												"type": "String"
 											},
 											"sink": {
-												"name": "total_items_name",
+												"name": "id",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "['value']"
+												"name": "name",
+												"type": "String"
 											},
 											"sink": {
-												"name": "total_items_value",
+												"name": "name",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['orderId']"
+												"name": "value",
+												"type": "String"
 											},
 											"sink": {
-												"name": "orderid",
+												"name": "value",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
+												"name": "data_hora_exportacao",
+												"type": "String"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
+												"name": "data_hora_exportacao",
 												"type": "String"
 											}
 										}
-									],
-									"collectionReference": "$['totals']",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexOrderDetailsOrder",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaTotals",
 											"type": "Expression"
 										}
 									}
