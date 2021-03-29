@@ -10523,15 +10523,6 @@
 									"typeProperties": {
 										"source": {
 											"type": "AzureSqlSource",
-											"additionalColumns": [
-												{
-													"name": "DATA_HORA_EXPORTACAO",
-													"value": {
-														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-														"type": "Expression"
-													}
-												}
-											],
 											"queryTimeout": "02:00:00",
 											"partitionOption": "None"
 										},
@@ -10550,25 +10541,28 @@
 											"mappings": [
 												{
 													"source": {
-														"path": "[['payments'][0]['id']"
+														"name": "orderId",
+														"type": "String"
 													},
 													"sink": {
-														"name": "id",
+														"name": "orderId",
 														"type": "String"
 													}
 												},
 												{
 													"source": {
-														"path": "[['payments'][0]['paymentSystemName']"
+														"name": "iditems",
+														"type": "String"
 													},
 													"sink": {
-														"name": "paymentSystemName",
+														"name": "iditems",
 														"type": "String"
 													}
 												},
 												{
 													"source": {
-														"path": "[['payments'][0]['paymentSystem']"
+														"name": "paymentSystem",
+														"type": "String"
 													},
 													"sink": {
 														"name": "paymentSystem",
@@ -10577,25 +10571,18 @@
 												},
 												{
 													"source": {
-														"path": "[['payments'][0]['installments']"
+														"name": "paymentSystemName",
+														"type": "String"
 													},
 													"sink": {
-														"name": "installments",
+														"name": "paymentSystemName",
 														"type": "String"
 													}
 												},
 												{
 													"source": {
-														"path": "[['payments'][0]['referenceValue']"
-													},
-													"sink": {
-														"name": "referenceValue",
+														"name": "value",
 														"type": "String"
-													}
-												},
-												{
-													"source": {
-														"path": "[['payments'][0]['value']"
 													},
 													"sink": {
 														"name": "value",
@@ -10604,19 +10591,32 @@
 												},
 												{
 													"source": {
-														"path": "$['orderId']"
+														"name": "installments",
+														"type": "String"
 													},
 													"sink": {
-														"name": "OrderId",
+														"name": "installments",
 														"type": "String"
 													}
 												},
 												{
 													"source": {
-														"path": "$['DATA_HORA_EXPORTACAO']"
+														"name": "referenceValue",
+														"type": "String"
 													},
 													"sink": {
-														"name": "DATA_HORA_EXPORTACAO"
+														"name": "referenceValue",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
+													},
+													"sink": {
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
 													}
 												}
 											]
