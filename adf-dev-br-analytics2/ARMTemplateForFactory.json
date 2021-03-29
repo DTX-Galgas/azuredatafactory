@@ -5272,7 +5272,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -5612,7 +5612,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -6183,7 +6183,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/VTEX_ORDER_01_TOTAL_PAGINA_DB')]",
+			"name": "[concat(parameters('factoryName'), '/VTEX_ORDER_01_TOTAL_PAGINA')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -6963,9 +6963,6 @@
 					},
 					"ParPagina": {
 						"type": "int"
-					},
-					"ParTabelaShippingItems": {
-						"type": "string"
 					}
 				},
 				"variables": {
@@ -6992,7 +6989,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/ORDER"
 				},
 				"annotations": []
 			},
@@ -7260,7 +7257,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/ORDER"
 				},
 				"annotations": []
 			},
@@ -9875,7 +9872,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/ORACLE/backup"
 				},
 				"annotations": []
 			},
@@ -13049,7 +13046,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -13764,7 +13761,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/ORDER"
 				},
 				"annotations": []
 			},
@@ -21279,7 +21276,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -22837,7 +22834,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -22852,6 +22849,96 @@
 				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrderPaymentParquet')]",
 				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrderShippingParquet')]",
 				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrderShippingItemsParquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VTEX')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ORDER",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "DETAILS",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "ORDER",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "VTEX_ORDER_01_DETAILS",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"folder": {
+					"name": "Malhas/VTEX"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_01_TOTAL_PAGINA')]",
+				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_01_DETAILS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/vtex_full')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "VTEX",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 100,
+						"startTime": "2021-03-29T21:06:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/VTEX')]"
 			]
 		}
 	]

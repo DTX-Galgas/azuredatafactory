@@ -5109,7 +5109,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/ORACLE/backup"
 				},
 				"annotations": []
 			},
@@ -8263,7 +8263,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -8964,7 +8964,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/ORDER"
 				},
 				"annotations": []
 			},
@@ -10847,7 +10847,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
@@ -12398,7 +12398,7 @@
 					}
 				},
 				"folder": {
-					"name": "Modelos/API JSON/VTEX"
+					"name": "Modelos/API JSON/VTEX/DETAILS"
 				},
 				"annotations": []
 			},
