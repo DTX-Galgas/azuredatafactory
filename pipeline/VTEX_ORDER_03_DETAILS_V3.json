@@ -2345,7 +2345,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@pipeline().parameters.ParTabelaPayment",
+											"value": "@pipeline().parameters.ParTabelaClient",
 											"type": "Expression"
 										}
 									}
