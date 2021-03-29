@@ -4515,6 +4515,10 @@
 											"ParTabelaTotals": {
 												"value": "@concat(\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_TABELA_DESTINO\n)",
 												"type": "Expression"
+											},
+											"ParTabelaHeader": {
+												"value": "@concat(\nactivity('vtex_order_details_order_header').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_header').output.firstRow.NOM_TABELA_DESTINO\n)",
+												"type": "Expression"
 											}
 										}
 									}
