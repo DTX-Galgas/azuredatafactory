@@ -515,7 +515,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select top(1)  * from [cleansing_data].[vtex_order_page_total]\norder by data_hora_exportacao desc \n",
+						"sqlReaderStoredProcedureName": "[dbo].[SP_VTEX_ORDER_TOTAL_PAGINAS]",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -526,7 +526,7 @@
 							"NomeTabela": "TABELA"
 						}
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
