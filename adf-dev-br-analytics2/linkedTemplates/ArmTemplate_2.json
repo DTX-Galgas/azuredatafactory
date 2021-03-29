@@ -7044,14 +7044,6 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][0]"
-													},
-													"sink": {
-														"name": "geoCoordinates_x"
-													}
-												},
-												{
-													"source": {
 														"path": "$['shippingData']['selectedAddresses'][0]['country']"
 													},
 													"sink": {
@@ -7061,19 +7053,27 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][1]"
-													},
-													"sink": {
-														"name": "geoCoordinates_y"
-													}
-												},
-												{
-													"source": {
 														"path": "$['data_hora_exportacao']"
 													},
 													"sink": {
 														"name": "data_hora_exportacao",
 														"type": "DateTime"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['address']['geoCoordinates'][0]"
+													},
+													"sink": {
+														"name": "geoCoordinates_x"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['address']['geoCoordinates'][1]"
+													},
+													"sink": {
+														"name": "geoCoordinates_x"
 													}
 												}
 											],
@@ -11907,7 +11907,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\n",
+								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\nwhere orderid = 'nts-63494212'\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},

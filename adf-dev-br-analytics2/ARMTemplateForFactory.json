@@ -4438,7 +4438,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\n",
+								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\nwhere orderid = 'nts-63494212'\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -11771,14 +11771,6 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][0]"
-													},
-													"sink": {
-														"name": "geoCoordinates_x"
-													}
-												},
-												{
-													"source": {
 														"path": "$['shippingData']['selectedAddresses'][0]['country']"
 													},
 													"sink": {
@@ -11788,19 +11780,27 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][1]"
-													},
-													"sink": {
-														"name": "geoCoordinates_y"
-													}
-												},
-												{
-													"source": {
 														"path": "$['data_hora_exportacao']"
 													},
 													"sink": {
 														"name": "data_hora_exportacao",
 														"type": "DateTime"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['address']['geoCoordinates'][0]"
+													},
+													"sink": {
+														"name": "geoCoordinates_x"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['address']['geoCoordinates'][1]"
+													},
+													"sink": {
+														"name": "geoCoordinates_x"
 													}
 												}
 											],
@@ -19346,33 +19346,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ir-dev-malwee2')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/WorkspaceSystemIdentity')]",
-			"type": "Microsoft.DataFactory/factories/credentials",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "ManagedIdentity",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/default')]",
-			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
-			"apiVersion": "2018-06-01",
-			"properties": {},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/vtex_0600')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -19411,6 +19384,33 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_01_DETAILS')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ir-dev-malwee2')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WorkspaceSystemIdentity')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+			"apiVersion": "2018-06-01",
+			"properties": {},
+			"dependsOn": []
 		}
 	]
 }
