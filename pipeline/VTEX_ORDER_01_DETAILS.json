@@ -121,6 +121,10 @@
 									"ParTabelaClient": {
 										"value": "@concat(\nactivity('vtex_order_details_order_client').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_TABELA_DESTINO\n)\n",
 										"type": "Expression"
+									},
+									"ParTabelaOrderItems": {
+										"value": "@concat(\nactivity('vtex_order_details_order_items').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_items').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+										"type": "Expression"
 									}
 								}
 							}

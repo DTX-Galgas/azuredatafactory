@@ -2517,6 +2517,9 @@
 			},
 			"ParTabelaClient": {
 				"type": "string"
+			},
+			"ParTabelaOrderItems": {
+				"type": "string"
 			}
 		},
 		"variables": {
