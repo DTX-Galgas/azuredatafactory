@@ -80,6 +80,12 @@
 		"vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
 			"value": "5"
 		},
+		"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParCodEndPoint": {
+			"value": 4
+		},
+		"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParPagina": {
+			"value": 1
+		},
 		"containerUri": {
 			"value": ""
 		},

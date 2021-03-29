@@ -107,6 +107,14 @@
 			"type": "string",
 			"defaultValue": "5"
 		},
+		"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParCodEndPoint": {
+			"type": "int",
+			"defaultValue": 4
+		},
+		"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParPagina": {
+			"type": "int",
+			"defaultValue": 1
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -266,6 +274,12 @@
 					},
 					"vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
 						"value": "[parameters('vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint')]"
+					},
+					"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParCodEndPoint": {
+						"value": "[parameters('vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParCodEndPoint')]"
+					},
+					"vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParPagina": {
+						"value": "[parameters('vtex_0600_properties_VTEX_ORDER_01_TOTAL_PAGINA_FE_parameters_ParPagina')]"
 					}
 				}
 			},
