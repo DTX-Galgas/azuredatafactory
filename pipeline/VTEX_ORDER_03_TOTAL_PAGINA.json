@@ -1,0 +1,699 @@
+{
+	"name": "VTEX_ORDER_03_TOTAL_PAGINA",
+	"properties": {
+		"activities": [
+			{
+				"name": "GravaLogFim",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "SeAPI_JSON_TO_DL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[PADFIdPacoteFIM]",
+					"storedProcedureParameters": {
+						"COD_LOG": {
+							"value": {
+								"value": "@pipeline().parameters.ParIdPipeline",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_PARAMETROS": {
+							"value": {
+								"value": "@variables('RalativeURL')",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"COD": {
+							"value": {
+								"value": "@pipeline().parameters.ParCodEndPoint",
+								"type": "Expression"
+							},
+							"type": "Int64"
+						},
+						"DSC_TIPO": {
+							"value": "API",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQL_CONTROLE",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "LeCredenciaisOrigem",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[PADFCredenciaisAPI]",
+						"storedProcedureParameters": {
+							"COD_ENDPOINT": {
+								"type": "Int32",
+								"value": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								}
+							}
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SQL_DS_CONTROLE",
+						"type": "DatasetReference",
+						"parameters": {
+							"NomeTabela": "Tabela"
+						}
+					}
+				}
+			},
+			{
+				"name": "SeAPI_JSON_TO_DL",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LeCredenciaisOrigem",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('LeCredenciaisOrigem').output.FirstRow.NOM_RETORNO_URL,'JSON')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy_API_JSON_TO_ADLS",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "AppKey",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.00:00:30",
+								"retry": 2,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"additionalColumns": [
+										{
+											"name": "data_hora_exportacao",
+											"value": {
+												"value": "@substring(pipeline().parameters.DataHoraProcessamento,0,19)",
+												"type": "Expression"
+											}
+										}
+									],
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"X-VTEX-API-AppToken": {
+											"value": "@variables('AppToken')",
+											"type": "Expression"
+										},
+										"x-vtex-api-appkey": {
+											"value": "@variables('AppKey')",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "RestVTEX",
+									"type": "DatasetReference",
+									"parameters": {
+										"ParRelativeURL": {
+											"value": "@variables('RalativeURL')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(pipeline().parameters.DataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataProcessamento,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,\n'_',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,11,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,14,2),\n'_page_',\nstring(pipeline().parameters.ParPagina),\n'.json'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "GravaLogFimItem-ToDL",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "API_TO_ADLS_SizeCopied",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[PLogADFItemFimAPI]",
+								"storedProcedureParameters": {
+									"COD_LOG": {
+										"value": {
+											"value": "@pipeline().parameters.ParIdPipeline",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NUM_SIZE_ARQUIVO": {
+										"value": {
+											"value": "@variables('SizeArquivo')",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"COD_ENDPOINT": {
+										"value": {
+											"value": "@pipeline().parameters.ParCodEndPoint",
+											"type": "Expression"
+										},
+										"type": "Int"
+									},
+									"DESTINO": {
+										"value": "ToDataLake",
+										"type": "String"
+									},
+									"ORIGEM": {
+										"value": "API-JSON",
+										"type": "String"
+									},
+									"NOM_ALIAS_ENDPOINT": {
+										"value": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"COD_LOG_ITEM": {
+										"value": {
+											"value": "@activity('GravaLogInicioItem-ToDL').output.FirstRow.COD_LOG_ITEM",
+											"type": "Expression"
+										},
+										"type": "Int64"
+									},
+									"NUM_REGISTROS": {
+										"value": "0",
+										"type": "Int64"
+									},
+									"DSC_OBS": {
+										"value": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQL_CONTROLE",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "API_TO_ADLS_SizeCopied",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "SQLOP_TO_ADLS_PATH_RAW",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "SizeArquivo",
+								"value": {
+									"value": "@string(activity('Copy_API_JSON_TO_ADLS').output.dataWritten)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "RelativeURL",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "GravaLogInicioItem-ToDL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "RalativeURL",
+								"value": {
+									"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\n'[',\npipeline().parameters.DataInicioOrderVTEX,\n' TO ',\npipeline().parameters.DataFimOrderVtex,\n']',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_3,\n'100',\nactivity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_4,\nstring(pipeline().parameters.ParPagina)\n)\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "GravaLogInicioItem-ToDL",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderStoredProcedureName": "[dbo].[PLogADFItemAPI]",
+									"storedProcedureParameters": {
+										"COD_ENDPOINT": {
+											"type": "Int32",
+											"value": {
+												"value": "@pipeline().parameters.ParCodEndPoint",
+												"type": "Expression"
+											}
+										},
+										"COD_LOG": {
+											"type": "Int64",
+											"value": {
+												"value": "@pipeline().parameters.ParIdPipeline",
+												"type": "Expression"
+											}
+										},
+										"DAT_EXPORTACAO": {
+											"type": "String",
+											"value": {
+												"value": "@pipeline().parameters.DataIngestao",
+												"type": "Expression"
+											}
+										},
+										"DESTINO": {
+											"type": "String",
+											"value": "ToDataLake"
+										},
+										"NOM_ALIAS_ENDPOINT": {
+											"type": "String",
+											"value": {
+												"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_ALIAS_ENDPOINT_1",
+												"type": "Expression"
+											}
+										},
+										"ORIGEM": {
+											"type": "String",
+											"value": "API-JSON"
+										}
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "SQL_DS_CONTROLE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": "Tabela"
+									}
+								}
+							}
+						},
+						{
+							"name": "SQLOP_TO_ADLS_PATH_RAW",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_PARQUET",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "PathRaw",
+								"value": {
+									"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW,'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',replace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',substring(pipeline().parameters.DataHoraProcessamento,0,4),'/',substring(pipeline().parameters.DataHoraProcessamento,5,2),'/',substring(pipeline().parameters.DataHoraProcessamento,8,2),'/',activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(pipeline().parameters.DataHoraProcessamento,0,4),substring(pipeline().parameters.DataHoraProcessamento,5,2),substring(pipeline().parameters.DataHoraProcessamento,8,2),substring(pipeline().parameters.DataHoraProcessamento,11,2),substring(pipeline().parameters.DataHoraProcessamento,14,2),'.json'))\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppToken",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "RelativeURL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppToken",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "AppKey",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "AppToken",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "AppKey",
+								"value": {
+									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "API_JSON_TO_SL",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Copy_API_JSON_TO_ADLS",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "['orderId']"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['data_hora_exportacao']"
+											},
+											"sink": {
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
+											}
+										}
+									],
+									"collectionReference": "$['list']",
+									"mapComplexValuesToString": true
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_ADSL_GEN2_JSON_DESTINO",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(pipeline().parameters.DataProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataProcessamento,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(\nconcat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,\n'_',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,11,2),\nsubstring(pipeline().parameters.DataHoraProcessamento,14,2),\n'_page_',\nstring(pipeline().parameters.ParPagina),\n'.json'))\n",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaListOrder",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "API_JSON_TO_PARQUET",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "API_JSON_TO_SL",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.00:00:15",
+								"retry": 2,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "orderId",
+												"type": "String"
+											},
+											"sink": {
+												"name": "orderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
+											},
+											"sink": {
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SQL_DS_DW_MALWEE",
+									"type": "DatasetReference",
+									"parameters": {
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaListOrder",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLS_DS_DESTINO_PARQUET_GEN2",
+									"type": "DatasetReference",
+									"parameters": {
+										"FilePath": {
+											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_2,'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,0,4),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,5,2),'/',\nsubstring(pipeline().parameters.DataHoraProcessamento,8,2)))",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@toLower(concat(activity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'_',substring(pipeline().parameters.DataHoraProcessamento,0,4),substring(pipeline().parameters.DataHoraProcessamento,5,2),substring(pipeline().parameters.DataHoraProcessamento,8,2),substring(pipeline().parameters.DataHoraProcessamento,11,2),substring(pipeline().parameters.DataHoraProcessamento,14,2),'_page_',string(pipeline().parameters.ParPagina),'.parquet'))",
+											"type": "Expression"
+										},
+										"FileSystem": {
+											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ParIdPipeline": {
+				"type": "String"
+			},
+			"ParCodEndPoint": {
+				"type": "int"
+			},
+			"ParPagina": {
+				"type": "int"
+			},
+			"DataInicioOrderVTEX": {
+				"type": "string"
+			},
+			"DataFimOrderVtex": {
+				"type": "string"
+			},
+			"DataIngestao": {
+				"type": "string"
+			},
+			"DataProcessamento": {
+				"type": "string"
+			},
+			"DataHoraProcessamento": {
+				"type": "string"
+			},
+			"ParTabelaListOrder": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"receiver": {
+				"type": "String"
+			},
+			"RalativeURL": {
+				"type": "String"
+			},
+			"SizeArquivo": {
+				"type": "String",
+				"defaultValue": "0"
+			},
+			"PathRaw": {
+				"type": "String"
+			},
+			"AppToken": {
+				"type": "String"
+			},
+			"AppKey": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Modelos/API JSON/VTEX"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
