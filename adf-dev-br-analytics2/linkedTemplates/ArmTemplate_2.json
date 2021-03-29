@@ -11909,7 +11909,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\nwhere orderid = 'nts-63494212'\n",
+								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\n\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
