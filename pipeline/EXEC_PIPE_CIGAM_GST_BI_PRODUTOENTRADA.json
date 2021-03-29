@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor_CRMProduto",
+				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRMProduto",
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
 						"dependencyConditions": [
 							"Failed"
 						]
