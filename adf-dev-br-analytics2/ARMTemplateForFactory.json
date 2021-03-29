@@ -7130,7 +7130,7 @@
 								"referenceName": "VTEX_ORDER_03_TOTAL_PAGINA",
 								"type": "PipelineReference"
 							},
-							"waitOnCompletion": true,
+							"waitOnCompletion": false,
 							"parameters": {
 								"ParIdPipeline": {
 									"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
