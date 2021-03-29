@@ -101,66 +101,6 @@
 				}
 			},
 			{
-				"name": "GravaVariaveis",
-				"type": "IfCondition",
-				"dependsOn": [
-					{
-						"activity": "LeDataProcessamento",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@equals(1,1)",
-						"type": "Expression"
-					},
-					"ifTrueActivities": [
-						{
-							"name": "RelativeURL",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "RalativeURL",
-								"value": {
-									"value": "@concat(\nactivity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_RELATIVA,\npipeline().parameters.ParNumeroOrder)\n",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "AppToken",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "AppToken",
-								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_1\n",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "AppKey",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "AppKey",
-								"value": {
-									"value": "@activity('LeCredenciaisOrigem').output.FirstRow.VAL_PARAMETRO_2\n",
-									"type": "Expression"
-								}
-							}
-						}
-					]
-				}
-			},
-			{
 				"name": "LeCredenciaisOrigem",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -201,7 +141,7 @@
 				"type": "IfCondition",
 				"dependsOn": [
 					{
-						"activity": "GravaVariaveis",
+						"activity": "LeDataProcessamento",
 						"dependencyConditions": [
 							"Succeeded"
 						]
