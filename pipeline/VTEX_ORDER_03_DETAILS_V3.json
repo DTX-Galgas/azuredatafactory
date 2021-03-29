@@ -1331,11 +1331,21 @@
 										},
 										{
 											"source": {
-												"name": "geoCoordinates",
+												"name": "geoCoordinates_x",
 												"type": "String"
 											},
 											"sink": {
-												"name": "geoCoordinates",
+												"name": "geoCoordinates_x",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "geoCoordinates_y",
+												"type": "String"
+											},
+											"sink": {
+												"name": "geoCoordinates_y",
 												"type": "String"
 											}
 										},
