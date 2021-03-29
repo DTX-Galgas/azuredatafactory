@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor_CRMProduto",
+				"name": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
