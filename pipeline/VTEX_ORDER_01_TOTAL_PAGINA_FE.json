@@ -530,19 +530,6 @@
 				}
 			},
 			{
-				"name": "modificaPaginaFinal",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "PaginaFinal",
-					"value": {
-						"value": "@string(int(activity('LeTotalPaginasArquivo').output.FirstRow.pages))\n",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "LimpaTotalPagina",
 				"type": "Lookup",
 				"dependsOn": [
@@ -654,7 +641,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "EEXC VTEX_ORDER_02_TOTAL_PAGINA",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -673,7 +660,7 @@
 					"batchCount": 15,
 					"activities": [
 						{
-							"name": "VTEX_ORDER_02_TOTAL_PAGINA_copy1",
+							"name": "VTEX_ORDER_02_TOTAL_PAGINA",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
