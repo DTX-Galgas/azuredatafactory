@@ -4479,7 +4479,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "VTEX_ORDER_03_DETAILS_V3_SEM_DB",
+											"referenceName": "VTEX_ORDER_03_DETAILS_SQL",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": false,
@@ -4575,7 +4575,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "executa downlod order detalhe",
+								"activity": "Grava DATA LAKE",
 								"dependencyConditions": [
 									"Failed"
 								]
@@ -5191,6 +5191,64 @@
 								}
 							}
 						}
+					},
+					{
+						"name": "Grava DATA LAKE",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "executa downlod order detalhe",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "VTEX_ORDER_03_DETAILS_DATA_LAKE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": false,
+							"parameters": {
+								"ParIdPipeline": {
+									"value": "@activity('GravaLogInicio').output.firstRow.COD_LOG",
+									"type": "Expression"
+								},
+								"ParCodEndPoint": {
+									"value": "@pipeline().parameters.ParCodEndPoint",
+									"type": "Expression"
+								},
+								"ParTabelaShippingItems": {
+									"value": "@concat(\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('VtexOrderDetailsOrderShippingItems').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+									"type": "Expression"
+								},
+								"ParTabelaShipping": {
+									"value": "@concat(\nactivity('VtexOrderDetailsOrderShipping').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('VtexOrderDetailsOrderShipping').output.firstRow.NOM_TABELA_DESTINO\n)",
+									"type": "Expression"
+								},
+								"ParTabelaPayment": {
+									"value": "@concat(\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+									"type": "Expression"
+								},
+								"ParTabelaClient": {
+									"value": "@concat(\nactivity('vtex_order_details_order_client').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+									"type": "Expression"
+								},
+								"ParTabelaOrderItems": {
+									"value": "@concat(\nactivity('vtex_order_details_order_items').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_items').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+									"type": "Expression"
+								},
+								"ParTabelaTotals": {
+									"value": "@concat(\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_TABELA_DESTINO\n)",
+									"type": "Expression"
+								},
+								"ParTabelaHeader": {
+									"value": "@concat(\nactivity('vtex_order_details_order_header').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_header').output.firstRow.NOM_TABELA_DESTINO\n)",
+									"type": "Expression"
+								}
+							}
+						}
 					}
 				],
 				"parameters": {
@@ -5222,7 +5280,8 @@
 				"[concat(variables('factoryId'), '/datasets/SQL_DS_DW_MALWEE')]",
 				"[concat(variables('factoryId'), '/datasets/SQL_DS_CONTROLE')]",
 				"[concat(variables('factoryId'), '/linkedServices/SQL_CONTROLE')]",
-				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_03_DETAILS_V3_SEM_DB')]"
+				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_03_DETAILS_DATA_LAKE')]",
+				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_03_DETAILS_SQL')]"
 			]
 		},
 		{
@@ -19415,7 +19474,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/VTEX_ORDER_03_DETAILS_V3_SEM_DB')]",
+			"name": "[concat(parameters('factoryName'), '/VTEX_ORDER_03_DETAILS_SQL')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -19425,7 +19484,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "SeAPI_JSON_TO_DL",
+								"activity": "SeAPI_JSON_TO_SQL",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -21161,13 +21220,224 @@
 								}
 							}
 						}
+					}
+				],
+				"parameters": {
+					"ParIdPipeline": {
+						"type": "String"
+					},
+					"ParCodEndPoint": {
+						"type": "int"
+					},
+					"ParNumeroOrder": {
+						"type": "string"
+					},
+					"ParTabelaShippingItems": {
+						"type": "string"
+					},
+					"ParTabelaShipping": {
+						"type": "string"
+					},
+					"ParTabelaPayment": {
+						"type": "string"
+					},
+					"ParTabelaClient": {
+						"type": "string"
+					},
+					"ParTabelaOrderItems": {
+						"type": "string"
+					},
+					"ParTabelaTotals": {
+						"type": "string"
+					},
+					"ParTabelaHeader": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"receiver": {
+						"type": "String"
+					},
+					"RalativeURL": {
+						"type": "String"
+					},
+					"SizeArquivo": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"PathRaw": {
+						"type": "String"
+					},
+					"AppToken": {
+						"type": "String"
+					},
+					"AppKey": {
+						"type": "String"
+					},
+					"DataHoraProcessamento": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Modelos/API JSON/VTEX"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SQL_CONTROLE')]",
+				"[concat(variables('factoryId'), '/datasets/SQL_DS_CONTROLE')]",
+				"[concat(variables('factoryId'), '/datasets/RestVTEX')]",
+				"[concat(variables('factoryId'), '/datasets/DS_ADSL_GEN2_JSON_DESTINO')]",
+				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrder')]",
+				"[concat(variables('factoryId'), '/datasets/SQL_DS_DW_MALWEE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/VTEX_ORDER_03_DETAILS_DATA_LAKE')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GravaLogFim",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "SeAPI_JSON_TO_DL",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:01:00",
+							"retry": 2,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[PADFIdPacoteFIM]",
+							"storedProcedureParameters": {
+								"COD_LOG": {
+									"value": {
+										"value": "@pipeline().parameters.ParIdPipeline",
+										"type": "Expression"
+									},
+									"type": "Int64"
+								},
+								"DSC_PARAMETROS": {
+									"value": {
+										"value": "@concat(activity('LeCredenciaisOrigem').output.FirstRow.NOM_URL_BASE,variables('RalativeURL'))",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"COD": {
+									"value": {
+										"value": "@pipeline().parameters.ParCodEndPoint",
+										"type": "Expression"
+									},
+									"type": "Int64"
+								},
+								"DSC_TIPO": {
+									"value": "API",
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "SQL_CONTROLE",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "LeDataProcessamento",
+						"description": "Recupera a data de processamento da tabela de controle",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "LeCredenciaisOrigem",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:01:00",
+							"retry": 2,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[PADFDataProcessamentoAPI]",
+								"storedProcedureParameters": {
+									"COD_ENDPOINT": {
+										"type": "int",
+										"value": {
+											"value": "@pipeline().parameters.ParCodEndPoint",
+											"type": "Expression"
+										}
+									}
+								},
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_CONTROLE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "Tabela"
+								}
+							}
+						}
+					},
+					{
+						"name": "LeCredenciaisOrigem",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.00:01:00",
+							"retry": 2,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[PADFCredenciaisAPI]",
+								"storedProcedureParameters": {
+									"COD_ENDPOINT": {
+										"type": "Int32",
+										"value": {
+											"value": "@pipeline().parameters.ParCodEndPoint",
+											"type": "Expression"
+										}
+									}
+								},
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_CONTROLE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "Tabela"
+								}
+							}
+						}
 					},
 					{
 						"name": "SeAPI_JSON_TO_DL",
 						"type": "IfCondition",
 						"dependsOn": [
 							{
-								"activity": "SeAPI_JSON_TO_SQL",
+								"activity": "LeDataProcessamento",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -22520,9 +22790,6 @@
 					"ParCodEndPoint": {
 						"type": "int"
 					},
-					"ParNumeroOrder": {
-						"type": "string"
-					},
 					"ParTabelaShippingItems": {
 						"type": "string"
 					},
@@ -22577,9 +22844,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SQL_CONTROLE')]",
 				"[concat(variables('factoryId'), '/datasets/SQL_DS_CONTROLE')]",
-				"[concat(variables('factoryId'), '/datasets/RestVTEX')]",
-				"[concat(variables('factoryId'), '/datasets/DS_ADSL_GEN2_JSON_DESTINO')]",
-				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrder')]",
 				"[concat(variables('factoryId'), '/datasets/SQL_DS_DW_MALWEE')]",
 				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrderParquet')]",
 				"[concat(variables('factoryId'), '/datasets/VtexOrderDetailsOrderTotalsParquet')]",
