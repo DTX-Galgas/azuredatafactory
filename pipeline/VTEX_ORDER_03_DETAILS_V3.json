@@ -1817,15 +1817,6 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
-											},
-											"sink": {
-												"name": "orderId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
 												"path": "$['shippingData']['address']['addressType']"
 											},
 											"sink": {
@@ -1880,6 +1871,15 @@
 										},
 										{
 											"source": {
+												"path": "$['shippingData']['address']['country']"
+											},
+											"sink": {
+												"name": "country",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
 												"path": "$['shippingData']['address']['street']"
 											},
 											"sink": {
@@ -1925,18 +1925,10 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates']"
+												"path": "$['orderId']"
 											},
 											"sink": {
-												"name": "geoCoordinates_x"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['country']"
-											},
-											"sink": {
-												"name": "country",
+												"name": "orderId",
 												"type": "String"
 											}
 										},
@@ -1951,10 +1943,20 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][1]"
+												"path": "$['shippingData']['address']['geoCoordinates'][0]"
 											},
 											"sink": {
-												"name": "geoCoordinates_y"
+												"name": "geoCoordinates_x",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][0]"
+											},
+											"sink": {
+												"name": "geoCoordinates_y",
+												"type": "String"
 											}
 										}
 									],
