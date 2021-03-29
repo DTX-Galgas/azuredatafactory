@@ -2790,7 +2790,7 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['totals'][0]['id']"
+												"path": "$['orderId']"
 											},
 											"sink": {
 												"name": "orderId",
@@ -2799,28 +2799,109 @@
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['id']"
+												"path": "$['sequence']"
 											},
 											"sink": {
-												"name": "id",
+												"name": "sequence",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['name']"
+												"path": "$['marketplaceOrderId']"
 											},
 											"sink": {
-												"name": "name",
+												"name": "marketplaceOrderId",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['totals'][0]['value']"
+												"path": "$['sellerOrderId']"
+											},
+											"sink": {
+												"name": "sellerOrderId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['origin']"
+											},
+											"sink": {
+												"name": "origin",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['affiliateId']"
+											},
+											"sink": {
+												"name": "affiliateId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['salesChannel']"
+											},
+											"sink": {
+												"name": "salesChannel",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['merchantName']"
+											},
+											"sink": {
+												"name": "merchantName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['status']"
+											},
+											"sink": {
+												"name": "status",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['statusDescription']"
+											},
+											"sink": {
+												"name": "statusDescription",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['value']"
 											},
 											"sink": {
 												"name": "value",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['creationDate']"
+											},
+											"sink": {
+												"name": "creationDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['orderGroup']"
+											},
+											"sink": {
+												"name": "orderGroup",
 												"type": "String"
 											}
 										},
@@ -2830,11 +2911,11 @@
 											},
 											"sink": {
 												"name": "data_hora_exportacao",
-												"type": "String"
+												"type": "DateTime"
 											}
 										}
 									],
-									"collectionReference": "$['totals']",
+									"collectionReference": "",
 									"mapComplexValuesToString": true
 								}
 							},
@@ -2864,7 +2945,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@pipeline().parameters.ParTabelaTotals",
+											"value": "@pipeline().parameters.ParTabelaHeader",
 											"type": "Expression"
 										}
 									}
@@ -3041,6 +3122,9 @@
 				"type": "string"
 			},
 			"ParTabelaTotals": {
+				"type": "string"
+			},
+			"ParTabelaHeader": {
 				"type": "string"
 			}
 		},
