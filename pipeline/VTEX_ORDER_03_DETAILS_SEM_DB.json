@@ -1,5 +1,5 @@
 {
-	"name": "VTEX_ORDER_03_DETAILS_V3",
+	"name": "VTEX_ORDER_03_DETAILS_SEM_DB",
 	"properties": {
 		"activities": [
 			{
@@ -1952,7 +1952,7 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][0]"
+												"path": "$['shippingData']['address']['geoCoordinates'][1]"
 											},
 											"sink": {
 												"name": "geoCoordinates_y",
