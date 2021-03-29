@@ -776,9 +776,6 @@
 			},
 			"ParPagina": {
 				"type": "int"
-			},
-			"ParTabelaShippingItems": {
-				"type": "string"
 			}
 		},
 		"variables": {
