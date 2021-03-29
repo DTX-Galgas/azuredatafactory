@@ -1554,9 +1554,6 @@
 			"ParCodEndPoint": {
 				"type": "int"
 			},
-			"ParNumeroOrder": {
-				"type": "string"
-			},
 			"ParTabelaShippingItems": {
 				"type": "string"
 			},
