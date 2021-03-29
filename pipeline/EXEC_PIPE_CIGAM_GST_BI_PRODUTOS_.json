@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS_",
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS",
 						"dependencyConditions": [
 							"Failed"
 						]
