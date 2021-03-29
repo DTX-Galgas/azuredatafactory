@@ -537,24 +537,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
-									"additionalColumns": [
-										{
-											"name": "DATA_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -571,142 +556,8 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "['uniqueId']"
-											},
-											"sink": {
-												"name": "uniqueid",
+												"name": "orderId",
 												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['id']"
-											},
-											"sink": {
-												"name": "id",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['ean']"
-											},
-											"sink": {
-												"name": "ean",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['lockId']"
-											},
-											"sink": {
-												"name": "lockId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['quantity']"
-											},
-											"sink": {
-												"name": "quantity",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['seller']"
-											},
-											"sink": {
-												"name": "seller",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['refId']"
-											},
-											"sink": {
-												"name": "refId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['price']"
-											},
-											"sink": {
-												"name": "price",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['listPrice']"
-											},
-											"sink": {
-												"name": "listPrice",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['imageUrl']"
-											},
-											"sink": {
-												"name": "imageUrl",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['brandName']"
-											},
-											"sink": {
-												"name": "brandName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['brandId']"
-											},
-											"sink": {
-												"name": "brandId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
-											},
-											"sink": {
-												"name": "categoriesIds",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
-											},
-											"sink": {
-												"name": "categories_id_1",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
-											},
-											"sink": {
-												"name": "categories_name_1",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['orderId']"
 											},
 											"sink": {
 												"name": "orderId",
@@ -715,7 +566,128 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['name']"
+												"name": "uniqueId",
+												"type": "String"
+											},
+											"sink": {
+												"name": "uniqueId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "id_item",
+												"type": "String"
+											},
+											"sink": {
+												"name": "id_item",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "ean",
+												"type": "String"
+											},
+											"sink": {
+												"name": "ean",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "lockId",
+												"type": "String"
+											},
+											"sink": {
+												"name": "lockId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "quantity",
+												"type": "String"
+											},
+											"sink": {
+												"name": "quantity",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "seller",
+												"type": "String"
+											},
+											"sink": {
+												"name": "seller",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "refId",
+												"type": "String"
+											},
+											"sink": {
+												"name": "refId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "price",
+												"type": "String"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "listPrice",
+												"type": "String"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "imageUrl",
+												"type": "String"
+											},
+											"sink": {
+												"name": "imageUrl",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "brandName",
+												"type": "String"
+											},
+											"sink": {
+												"name": "brandName",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "brandId",
+												"type": "String"
+											},
+											"sink": {
+												"name": "brandId",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "name",
+												"type": "String"
 											},
 											"sink": {
 												"name": "name",
@@ -724,7 +696,38 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][1]['id']"
+												"name": "categoriesIds",
+												"type": "String"
+											},
+											"sink": {
+												"name": "categoriesIds",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "categories_id_1",
+												"type": "String"
+											},
+											"sink": {
+												"name": "categories_id_1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "categories_name_1",
+												"type": "String"
+											},
+											"sink": {
+												"name": "categories_name_1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "categories_id_2",
+												"type": "String"
 											},
 											"sink": {
 												"name": "categories_id_2",
@@ -733,7 +736,8 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][1]['name']"
+												"name": "categories_name_2",
+												"type": "String"
 											},
 											"sink": {
 												"name": "categories_name_2",
@@ -742,7 +746,8 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][2]['id']"
+												"name": "categories_id_3",
+												"type": "String"
 											},
 											"sink": {
 												"name": "categories_id_3",
@@ -751,7 +756,8 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][2]['name']"
+												"name": "categories_name_3",
+												"type": "String"
 											},
 											"sink": {
 												"name": "categories_name_3",
@@ -760,33 +766,24 @@
 										},
 										{
 											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											}
 										}
-									],
-									"collectionReference": "$['items']",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexOrderDetailsOrder",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaOrderItems",
 											"type": "Expression"
 										}
 									}
