@@ -2680,7 +2680,7 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
+												"path": "$['totals'][0]['id']"
 											},
 											"sink": {
 												"name": "orderId",
@@ -2689,109 +2689,10 @@
 										},
 										{
 											"source": {
-												"path": "['uniqueId']"
+												"path": "$['totals'][0]['id']"
 											},
 											"sink": {
-												"name": "uniqueId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['id']"
-											},
-											"sink": {
-												"name": "id_item",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['ean']"
-											},
-											"sink": {
-												"name": "ean",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['lockId']"
-											},
-											"sink": {
-												"name": "lockId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['quantity']"
-											},
-											"sink": {
-												"name": "quantity",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['seller']"
-											},
-											"sink": {
-												"name": "seller",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['refId']"
-											},
-											"sink": {
-												"name": "refId",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['price']"
-											},
-											"sink": {
-												"name": "price",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['listPrice']"
-											},
-											"sink": {
-												"name": "listPrice",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['imageUrl']"
-											},
-											"sink": {
-												"name": "imageUrl",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "['additionalInfo']['brandName']"
-											},
-											"sink": {
-												"name": "brandName",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['brandId']"
-											},
-											"sink": {
-												"name": "brandId",
+												"name": "id",
 												"type": "String"
 											}
 										},
@@ -2806,64 +2707,10 @@
 										},
 										{
 											"source": {
-												"path": "$['items'][0]['additionalInfo']['categoriesIds']"
+												"path": "$['totals'][0]['value']"
 											},
 											"sink": {
-												"name": "categoriesIds",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][0]['id']"
-											},
-											"sink": {
-												"name": "categories_id_1",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][0]['name']"
-											},
-											"sink": {
-												"name": "categories_name_1",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][1]['id']"
-											},
-											"sink": {
-												"name": "categories_id_2",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][1]['name']"
-											},
-											"sink": {
-												"name": "categories_name_2",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][2]['id']"
-											},
-											"sink": {
-												"name": "categories_id_3",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['items'][0]['additionalInfo']['categories'][3]['name']"
-											},
-											"sink": {
-												"name": "categories_name_3",
+												"name": "value",
 												"type": "String"
 											}
 										},
@@ -2872,11 +2719,12 @@
 												"path": "$['data_hora_exportacao']"
 											},
 											"sink": {
-												"name": "data_hora_exportacao"
+												"name": "data_hora_exportacao",
+												"type": "String"
 											}
 										}
 									],
-									"collectionReference": "$['items']",
+									"collectionReference": "$['totals']",
 									"mapComplexValuesToString": true
 								}
 							},
@@ -2906,7 +2754,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@pipeline().parameters.ParTabelaOrderItems",
+											"value": "@pipeline().parameters.ParTabelaTotals",
 											"type": "Expression"
 										}
 									}
