@@ -39,10 +39,6 @@
 			"type": "secureString",
 			"metadata": "Cadeia de caracteres segura para 'password' de 'VtexTeste'"
 		},
-		"ORC_GIGAM_ORIGEM_connectionString": {
-			"type": "secureString",
-			"metadata": "Cadeia de caracteres segura para 'connectionString' de 'ORC_GIGAM_ORIGEM'"
-		},
 		"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sadevbranalytics.dfs.core.windows.net"
@@ -82,10 +78,6 @@
 		"VtexTeste_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mawee"
-		},
-		"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "Storage-Imagens-material"
 		}
 	},
 	"variables": {
@@ -299,42 +291,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/EXEC_PIPE_CIGAM_GST_BI_DIMENSIONAL')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DIMENSIONAL",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[SP_CIGAM_04_PROCESSA_DIMENSIONAL]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SQL_DW_MALWEE",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"folder": {
-					"name": "Malhas/CIGAM"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/SQL_DW_MALWEE')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ADLS_DS_DESTINO_PARQUET_GEN2')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -378,6 +334,281 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ADLS_DESTINO_GEN2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_ADSL_GEN2_JSON_DESTINO')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLS_DESTINO_GEN2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FilePath": {
+						"type": "string"
+					},
+					"FileName": {
+						"type": "string"
+					},
+					"FileSystem": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "DESTINO"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().FilePath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().FileSystem",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"list": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"orderId": {
+										"type": "string"
+									},
+									"creationDate": {
+										"type": "string"
+									},
+									"clientName": {
+										"type": "string"
+									},
+									"items": {
+										"type": "null"
+									},
+									"totalValue": {
+										"type": "number"
+									},
+									"paymentNames": {
+										"type": "string"
+									},
+									"status": {
+										"type": "string"
+									},
+									"statusDescription": {
+										"type": "string"
+									},
+									"marketPlaceOrderId": {
+										"type": "null"
+									},
+									"sequence": {
+										"type": "string"
+									},
+									"salesChannel": {
+										"type": "string"
+									},
+									"affiliateId": {
+										"type": "string"
+									},
+									"origin": {
+										"type": "string"
+									},
+									"workflowInErrorState": {
+										"type": "boolean"
+									},
+									"workflowInRetry": {
+										"type": "boolean"
+									},
+									"lastMessageUnread": {
+										"type": "string"
+									},
+									"ShippingEstimatedDate": {
+										"type": "string"
+									},
+									"ShippingEstimatedDateMax": {
+										"type": "string"
+									},
+									"ShippingEstimatedDateMin": {
+										"type": "string"
+									},
+									"orderIsComplete": {
+										"type": "boolean"
+									},
+									"listId": {
+										"type": "null"
+									},
+									"listType": {
+										"type": "null"
+									},
+									"authorizedDate": {
+										"type": "string"
+									},
+									"callCenterOperatorName": {
+										"type": "null"
+									},
+									"totalItems": {
+										"type": "integer"
+									},
+									"currencyCode": {
+										"type": "string"
+									},
+									"hostname": {
+										"type": "string"
+									},
+									"invoiceOutput": {
+										"type": "null"
+									},
+									"invoiceInput": {
+										"type": "null"
+									}
+								}
+							}
+						},
+						"facets": {
+							"type": "array"
+						},
+						"paging": {
+							"type": "object",
+							"properties": {
+								"total": {
+									"type": "integer"
+								},
+								"pages": {
+									"type": "integer"
+								},
+								"currentPage": {
+									"type": "integer"
+								},
+								"perPage": {
+									"type": "integer"
+								}
+							}
+						},
+						"stats": {
+							"type": "object",
+							"properties": {
+								"stats": {
+									"type": "object",
+									"properties": {
+										"totalValue": {
+											"type": "object",
+											"properties": {
+												"Count": {
+													"type": "integer"
+												},
+												"Max": {
+													"type": "number"
+												},
+												"Mean": {
+													"type": "number"
+												},
+												"Min": {
+													"type": "number"
+												},
+												"Missing": {
+													"type": "integer"
+												},
+												"StdDev": {
+													"type": "number"
+												},
+												"Sum": {
+													"type": "number"
+												},
+												"SumOfSquares": {
+													"type": "number"
+												},
+												"Facets": {
+													"type": "object"
+												}
+											}
+										},
+										"totalItems": {
+											"type": "object",
+											"properties": {
+												"Count": {
+													"type": "integer"
+												},
+												"Max": {
+													"type": "number"
+												},
+												"Mean": {
+													"type": "number"
+												},
+												"Min": {
+													"type": "number"
+												},
+												"Missing": {
+													"type": "integer"
+												},
+												"StdDev": {
+													"type": "number"
+												},
+												"Sum": {
+													"type": "number"
+												},
+												"SumOfSquares": {
+													"type": "number"
+												},
+												"Facets": {
+													"type": "object"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"reportRecordsLimit": {
+							"type": "integer"
+						},
+						"data_hora_exportacao": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLS_DESTINO_GEN2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestVTEX')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestServiceVtex",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"ParRelativeURL": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "@dataset().ParRelativeURL",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/RestServiceVtex')]"
 			]
 		},
 		{
@@ -468,45 +699,26 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BLOB_IMAGENS')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/VtexDsTeste')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]",
-						"secretVersion": ""
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ORC_GIGAM_ORIGEM')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Oracle",
-				"typeProperties": {
-					"connectionString": "[parameters('ORC_GIGAM_ORIGEM_connectionString')]"
+				"linkedServiceName": {
+					"referenceName": "VtexTeste",
+					"type": "LinkedServiceReference"
 				},
-				"connectVia": {
-					"referenceName": "ir-dev-malwee2",
-					"type": "IntegrationRuntimeReference"
-				}
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "orders/1100050750047-01",
+						"type": "Expression"
+					}
+				},
+				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/ir-dev-malwee2')]"
+				"[concat(variables('factoryId'), '/linkedServices/VtexTeste')]"
 			]
 		}
 	]

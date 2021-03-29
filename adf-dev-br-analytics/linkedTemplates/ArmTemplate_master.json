@@ -154,9 +154,6 @@
 					"VtexTeste_password": {
 						"value": "[parameters('VtexTeste_password')]"
 					},
-					"ORC_GIGAM_ORIGEM_connectionString": {
-						"value": "[parameters('ORC_GIGAM_ORIGEM_connectionString')]"
-					},
 					"ADLS_DESTINO_GEN2_properties_typeProperties_url": {
 						"value": "[parameters('ADLS_DESTINO_GEN2_properties_typeProperties_url')]"
 					},
@@ -186,9 +183,6 @@
 					},
 					"VtexTeste_properties_typeProperties_userName": {
 						"value": "[parameters('VtexTeste_properties_typeProperties_userName')]"
-					},
-					"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
-						"value": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},
@@ -207,6 +201,32 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-dev-br-analytics_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ORC_GIGAM_ORIGEM_connectionString": {
+						"value": "[parameters('ORC_GIGAM_ORIGEM_connectionString')]"
+					},
+					"BLOB_IMAGENS_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('BLOB_IMAGENS_properties_typeProperties_connectionString_secretName')]"
 					},
 					"SAP_TABLE_ORIGEM_properties_typeProperties_clientId": {
 						"value": "[parameters('SAP_TABLE_ORIGEM_properties_typeProperties_clientId')]"
@@ -223,7 +243,27 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "adf-dev-br-analytics_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dev-br-analytics_ArmTemplate_2')]"
 			]
 		}
 	]
