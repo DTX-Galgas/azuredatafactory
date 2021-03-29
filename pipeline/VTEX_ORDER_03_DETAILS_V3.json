@@ -3081,6 +3081,9 @@
 			},
 			"ParTabelaOrderItems": {
 				"type": "string"
+			},
+			"ParTabelaTotals": {
+				"type": "string"
 			}
 		},
 		"variables": {
