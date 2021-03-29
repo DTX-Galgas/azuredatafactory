@@ -2416,6 +2416,402 @@
 									"mappings": [
 										{
 											"source": {
+												"path": "['addressType']"
+											}
+										},
+										{
+											"source": {
+												"path": "['receiverName']"
+											}
+										},
+										{
+											"source": {
+												"path": "['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "['postalCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "['city']"
+											}
+										},
+										{
+											"source": {
+												"path": "['state']"
+											}
+										},
+										{
+											"source": {
+												"path": "['country']"
+											}
+										},
+										{
+											"source": {
+												"path": "['street']"
+											}
+										},
+										{
+											"source": {
+												"path": "['number']"
+											}
+										},
+										{
+											"source": {
+												"path": "['neighborhood']"
+											}
+										},
+										{
+											"source": {
+												"path": "['complement']"
+											}
+										},
+										{
+											"source": {
+												"path": "['reference']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
+											},
+											"sink": {
+												"name": "itemIndex",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
+											},
+											"sink": {
+												"name": "selectedSla",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
+											},
+											"sink": {
+												"name": "listPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
+											},
+											"sink": {
+												"name": "sellingPrice",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
+											},
+											"sink": {
+												"name": "deliveryCompany",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
+											},
+											"sink": {
+												"name": "shippingEstimateDate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['id']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['name']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['shippingEstimate']"
+											},
+											"sink": {
+												"name": "shippingEstimate",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryWindow']"
+											},
+											"sink": {
+												"name": "deliveryWindow",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['price']"
+											},
+											"sink": {
+												"name": "price",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryChannel']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['additionalInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['address']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['friendlyName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['isPickupStore']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['polygonName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['lockTTL']"
+											},
+											"sink": {
+												"name": "lockTTL",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupPointId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['transitTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['shipsTo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['quantity']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['warehouseId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['accountCarrierName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryChannel']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['additionalInfo']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['address']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['dockId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['friendlyName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['isPickupStore']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['polygonName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['pickupPointId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['logisticsInfo'][0]['transitTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['trackingHints']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['addressId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['addressType']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['receiverName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['street']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['number']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['complement']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['neighborhood']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['postalCode']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['city']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['state']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['country']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['reference']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['selectedAddresses'][0]['geoCoordinates']"
+											}
+										},
+										{
+											"source": {
 												"path": "$['orderId']"
 											},
 											"sink": {
@@ -3017,407 +3413,6 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['id']"
-											}
-										},
-										{
-											"source": {
-												"path": "['addressType']"
-											}
-										},
-										{
-											"source": {
-												"path": "['receiverName']"
-											}
-										},
-										{
-											"source": {
-												"path": "['addressId']"
-											}
-										},
-										{
-											"source": {
-												"path": "['postalCode']"
-											}
-										},
-										{
-											"source": {
-												"path": "['city']"
-											}
-										},
-										{
-											"source": {
-												"path": "['state']"
-											}
-										},
-										{
-											"source": {
-												"path": "['country']"
-											}
-										},
-										{
-											"source": {
-												"path": "['street']"
-											}
-										},
-										{
-											"source": {
-												"path": "['number']"
-											}
-										},
-										{
-											"source": {
-												"path": "['neighborhood']"
-											}
-										},
-										{
-											"source": {
-												"path": "['complement']"
-											}
-										},
-										{
-											"source": {
-												"path": "['reference']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
-											},
-											"sink": {
-												"name": "itemIndex",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
-											},
-											"sink": {
-												"name": "selectedSla",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
-											},
-											"sink": {
-												"name": "lockTTL",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['price']"
-											},
-											"sink": {
-												"name": "price",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
-											},
-											"sink": {
-												"name": "listPrice",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
-											},
-											"sink": {
-												"name": "sellingPrice",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
-											},
-											"sink": {
-												"name": "deliveryWindow",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
-											},
-											"sink": {
-												"name": "deliveryCompany",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
-											},
-											"sink": {
-												"name": "shippingEstimate",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
-											},
-											"sink": {
-												"name": "shippingEstimateDate",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['id']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['name']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['shippingEstimate']"
-											},
-											"sink": {
-												"name": "shippingEstimate",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryWindow']"
-											},
-											"sink": {
-												"name": "deliveryWindow",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['price']"
-											},
-											"sink": {
-												"name": "price",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['deliveryChannel']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['additionalInfo']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['address']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['dockId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['friendlyName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupStoreInfo']['isPickupStore']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['polygonName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['lockTTL']"
-											},
-											"sink": {
-												"name": "lockTTL",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['pickupPointId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['slas'][0]['transitTime']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['shipsTo']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['courierName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['dockId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['quantity']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['warehouseId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryIds'][0]['accountCarrierName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['deliveryChannel']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['additionalInfo']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['address']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['dockId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['friendlyName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupStoreInfo']['isPickupStore']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['addressId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['polygonName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['pickupPointId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['logisticsInfo'][0]['transitTime']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['trackingHints']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['addressId']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['addressType']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['receiverName']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['street']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['number']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['complement']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['neighborhood']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['postalCode']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['city']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['state']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['country']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['reference']"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['geoCoordinates']"
-											}
-										},
-										{
-											"source": {
 												"path": "$['paymentData']['giftCards']"
 											}
 										},
@@ -3902,7 +3897,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@pipeline().parameters.ParTabelaShippingItems",
+											"value": "@pipeline().parameters.ParTabelaShipping",
 											"type": "Expression"
 										}
 									}
@@ -4064,6 +4059,9 @@
 				"type": "string"
 			},
 			"ParTabelaShippingItems": {
+				"type": "string"
+			},
+			"ParTabelaShipping": {
 				"type": "string"
 			}
 		},
