@@ -4535,7 +4535,7 @@
 								"type": "Expression"
 							},
 							"isSequential": false,
-							"batchCount": 15,
+							"batchCount": 10,
 							"activities": [
 								{
 									"name": "executa VTEX_ORDER_03_DETAILS",
