@@ -2137,7 +2137,7 @@
 										},
 										{
 											"source": {
-												"path": "['itemIndex']"
+												"path": "$['shippingData']['logisticsInfo'][0]['itemIndex']"
 											},
 											"sink": {
 												"name": "itemIndex",
@@ -2146,7 +2146,7 @@
 										},
 										{
 											"source": {
-												"path": "['selectedSla']"
+												"path": "$['shippingData']['logisticsInfo'][0]['selectedSla']"
 											},
 											"sink": {
 												"name": "selectedSla",
@@ -2155,7 +2155,7 @@
 										},
 										{
 											"source": {
-												"path": "['lockTTL']"
+												"path": "$['shippingData']['logisticsInfo'][0]['lockTTL']"
 											},
 											"sink": {
 												"name": "lockTTL",
@@ -2164,7 +2164,7 @@
 										},
 										{
 											"source": {
-												"path": "['price']"
+												"path": "$['shippingData']['logisticsInfo'][0]['price']"
 											},
 											"sink": {
 												"name": "price",
@@ -2173,7 +2173,7 @@
 										},
 										{
 											"source": {
-												"path": "['listPrice']"
+												"path": "$['shippingData']['logisticsInfo'][0]['listPrice']"
 											},
 											"sink": {
 												"name": "listPrice",
@@ -2182,7 +2182,7 @@
 										},
 										{
 											"source": {
-												"path": "['sellingPrice']"
+												"path": "$['shippingData']['logisticsInfo'][0]['sellingPrice']"
 											},
 											"sink": {
 												"name": "sellingPrice",
@@ -2191,7 +2191,7 @@
 										},
 										{
 											"source": {
-												"path": "['deliveryWindow']"
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryWindow']"
 											},
 											"sink": {
 												"name": "deliveryWindow",
@@ -2200,7 +2200,7 @@
 										},
 										{
 											"source": {
-												"path": "['deliveryCompany']"
+												"path": "$['shippingData']['logisticsInfo'][0]['deliveryCompany']"
 											},
 											"sink": {
 												"name": "deliveryCompany",
@@ -2209,7 +2209,7 @@
 										},
 										{
 											"source": {
-												"path": "['shippingEstimate']"
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimate']"
 											},
 											"sink": {
 												"name": "shippingEstimate",
@@ -2218,7 +2218,7 @@
 										},
 										{
 											"source": {
-												"path": "['shippingEstimateDate']"
+												"path": "$['shippingData']['logisticsInfo'][0]['shippingEstimateDate']"
 											},
 											"sink": {
 												"name": "shippingEstimateDate",
@@ -2235,7 +2235,7 @@
 											}
 										}
 									],
-									"collectionReference": "$['shippingData']['logisticsInfo']",
+									"collectionReference": "",
 									"mapComplexValuesToString": true
 								}
 							},
