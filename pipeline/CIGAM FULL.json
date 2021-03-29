@@ -11,6 +11,60 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -43,6 +97,150 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"ParCodTabela": "114"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_DEVOLUCAOCLIENTE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "113"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_ESTAB_USUARIOS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "116"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_ESTABELECIMENTO",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "112"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_ESTOQUEHISTORICO",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "120"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_METALOJA",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "117"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTO_ESTOQUE",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "118"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOENTRADA",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "119"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_PRODUTOS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "111"
+					}
+				}
+			},
+			{
+				"name": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EXEC_ADF_MODELO_ORACLE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ParCodTabela": "115"
 					}
 				}
 			}
