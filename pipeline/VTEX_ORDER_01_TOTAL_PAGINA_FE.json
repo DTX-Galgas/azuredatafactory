@@ -669,7 +669,7 @@
 									"referenceName": "VTEX_ORDER_02_TOTAL_PAGINA",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true,
+								"waitOnCompletion": false,
 								"parameters": {
 									"ParCodEndPoint": {
 										"value": "@pipeline().parameters.ParCodEndPoint",
