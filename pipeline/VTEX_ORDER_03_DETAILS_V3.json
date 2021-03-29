@@ -1925,14 +1925,6 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][0]"
-											},
-											"sink": {
-												"name": "geoCoordinates_x"
-											}
-										},
-										{
-											"source": {
 												"path": "$['shippingData']['selectedAddresses'][0]['country']"
 											},
 											"sink": {
@@ -1942,19 +1934,27 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][1]"
-											},
-											"sink": {
-												"name": "geoCoordinates_y"
-											}
-										},
-										{
-											"source": {
 												"path": "$['data_hora_exportacao']"
 											},
 											"sink": {
 												"name": "data_hora_exportacao",
 												"type": "DateTime"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][0]"
+											},
+											"sink": {
+												"name": "geoCoordinates_x"
+											}
+										},
+										{
+											"source": {
+												"path": "$['shippingData']['address']['geoCoordinates'][1]"
+											},
+											"sink": {
+												"name": "geoCoordinates_x"
 											}
 										}
 									],
