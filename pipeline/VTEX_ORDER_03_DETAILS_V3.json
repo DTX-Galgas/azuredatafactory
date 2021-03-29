@@ -1012,7 +1012,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
+									"type": "AzureSqlSource",
 									"additionalColumns": [
 										{
 											"name": "DATA_HORA_EXPORTACAO",
@@ -1022,14 +1022,8 @@
 											}
 										}
 									],
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -1115,26 +1109,16 @@
 												"name": "DATA_HORA_EXPORTACAO"
 											}
 										}
-									],
-									"collectionReference": "$['paymentData']['transactions']",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexOrderDetailsOrder",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaPayment",
 											"type": "Expression"
 										}
 									}
