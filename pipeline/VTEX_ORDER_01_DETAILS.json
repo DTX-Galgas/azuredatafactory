@@ -101,7 +101,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
-									"referenceName": "VTEX_ORDER_03_DETAILS_V3_SEM_DB",
+									"referenceName": "VTEX_ORDER_03_DETAILS_SQL",
 									"type": "PipelineReference"
 								},
 								"waitOnCompletion": false,
@@ -197,7 +197,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "executa downlod order detalhe",
+						"activity": "Grava no DataLake",
 						"dependencyConditions": [
 							"Failed"
 						]
@@ -812,6 +812,26 @@
 							"NomeTabela": "TABELA"
 						}
 					}
+				}
+			},
+			{
+				"name": "Grava no DataLake",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "executa downlod order detalhe",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "VTEX_ORDER_03_DETAILS_DATA_LAKE",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
 				}
 			}
 		],
