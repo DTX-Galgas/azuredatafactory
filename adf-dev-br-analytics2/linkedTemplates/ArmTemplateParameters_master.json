@@ -77,6 +77,9 @@
 		"VtexTeste_properties_typeProperties_userName": {
 			"value": "mawee"
 		},
+		"vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
+			"value": "5"
+		},
 		"containerUri": {
 			"value": ""
 		},

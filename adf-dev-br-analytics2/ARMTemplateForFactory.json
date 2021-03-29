@@ -102,6 +102,10 @@
 		"VtexTeste_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "mawee"
+		},
+		"vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint": {
+			"type": "string",
+			"defaultValue": "5"
 		}
 	},
 	"variables": {
@@ -4434,7 +4438,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nselect orderid from [cleansing_data].[vtex_order_list]\n",
+								"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\n",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -11722,15 +11726,6 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['selectedAddresses'][0]['country']"
-													},
-													"sink": {
-														"name": "country",
-														"type": "String"
-													}
-												},
-												{
-													"source": {
 														"path": "$['shippingData']['address']['street']"
 													},
 													"sink": {
@@ -11780,6 +11775,15 @@
 													},
 													"sink": {
 														"name": "geoCoordinates_x"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['selectedAddresses'][0]['country']"
+													},
+													"sink": {
+														"name": "country",
+														"type": "String"
 													}
 												},
 												{
@@ -19367,6 +19371,46 @@
 			"apiVersion": "2018-06-01",
 			"properties": {},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/vtex_0600')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "VTEX_ORDER_01_DETAILS",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"ParCodEndPoint": "[parameters('vtex_0600_properties_VTEX_ORDER_01_DETAILS_parameters_ParCodEndPoint')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-03-29T12:13:00",
+						"timeZone": "E. South America Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/VTEX_ORDER_01_DETAILS')]"
+			]
 		}
 	]
 }
