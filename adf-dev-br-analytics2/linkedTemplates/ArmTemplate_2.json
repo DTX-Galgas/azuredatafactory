@@ -5937,7 +5937,7 @@
 									"type": "Copy",
 									"dependsOn": [
 										{
-											"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_RAW",
+											"activity": "API_JSON_TO_SQL_ORDER_CLIENT",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -5953,24 +5953,9 @@
 									"userProperties": [],
 									"typeProperties": {
 										"source": {
-											"type": "JsonSource",
-											"additionalColumns": [
-												{
-													"name": "DATA_HORA_EXPORTACAO",
-													"value": {
-														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-														"type": "Expression"
-													}
-												}
-											],
-											"storeSettings": {
-												"type": "AzureBlobFSReadSettings",
-												"recursive": true,
-												"enablePartitionDiscovery": false
-											},
-											"formatSettings": {
-												"type": "JsonReadSettings"
-											}
+											"type": "AzureSqlSource",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
 										},
 										"sink": {
 											"type": "ParquetSink",
@@ -5987,7 +5972,8 @@
 											"mappings": [
 												{
 													"source": {
-														"path": "$['orderId']"
+														"name": "orderId",
+														"type": "String"
 													},
 													"sink": {
 														"name": "orderId",
@@ -5996,7 +5982,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['email']"
+														"name": "email",
+														"type": "String"
 													},
 													"sink": {
 														"name": "email",
@@ -6005,7 +5992,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['firstName']"
+														"name": "firstName",
+														"type": "String"
 													},
 													"sink": {
 														"name": "firstName",
@@ -6014,7 +6002,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['lastName']"
+														"name": "lastName",
+														"type": "String"
 													},
 													"sink": {
 														"name": "lastName",
@@ -6023,7 +6012,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['documentType']"
+														"name": "documentType",
+														"type": "String"
 													},
 													"sink": {
 														"name": "documentType",
@@ -6032,7 +6022,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['document']"
+														"name": "document",
+														"type": "String"
 													},
 													"sink": {
 														"name": "document",
@@ -6041,7 +6032,8 @@
 												},
 												{
 													"source": {
-														"path": "$['clientProfileData']['phone']"
+														"name": "phone",
+														"type": "String"
 													},
 													"sink": {
 														"name": "phone",
@@ -6050,7 +6042,8 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['street']"
+														"name": "street",
+														"type": "String"
 													},
 													"sink": {
 														"name": "street",
@@ -6059,31 +6052,24 @@
 												},
 												{
 													"source": {
-														"path": "$['DATA_HORA_EXPORTACAO']"
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
 													},
 													"sink": {
-														"name": "DATA_HORA_EXPORTACAO"
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
 													}
 												}
-											],
-											"mapComplexValuesToString": true
+											]
 										}
 									},
 									"inputs": [
 										{
-											"referenceName": "VtexOrderDetailsOrder",
+											"referenceName": "SQL_DS_DW_MALWEE",
 											"type": "DatasetReference",
 											"parameters": {
-												"FilePath": {
-													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-													"type": "Expression"
-												},
-												"FileName": {
-													"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
-													"type": "Expression"
-												},
-												"FileSystem": {
-													"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+												"NomeTabela": {
+													"value": "@pipeline().parameters.ParTabelaPayment",
 													"type": "Expression"
 												}
 											}
@@ -7318,6 +7304,172 @@
 											}
 										}
 									]
+								},
+								{
+									"name": "API_JSON_TO_SQL_ORDER_CLIENT",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "API_JSON_TO_ORDER_PAYMENT_PARQUET_RAW",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "data_hora_exportacao",
+													"value": {
+														"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobFSReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "JsonReadSettings"
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink"
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"path": "$['orderId']"
+													},
+													"sink": {
+														"name": "orderId",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['email']"
+													},
+													"sink": {
+														"name": "email",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['firstName']"
+													},
+													"sink": {
+														"name": "firstName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['lastName']"
+													},
+													"sink": {
+														"name": "lastName",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['documentType']"
+													},
+													"sink": {
+														"name": "documentType",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['document']"
+													},
+													"sink": {
+														"name": "document",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['clientProfileData']['phone']"
+													},
+													"sink": {
+														"name": "phone",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['shippingData']['address']['street']"
+													},
+													"sink": {
+														"name": "street",
+														"type": "String"
+													}
+												},
+												{
+													"source": {
+														"path": "$['data_hora_exportacao']"
+													},
+													"sink": {
+														"name": "data_hora_exportacao",
+														"type": "DateTime"
+													}
+												}
+											],
+											"collectionReference": "",
+											"mapComplexValuesToString": true
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "VtexOrderDetailsOrder",
+											"type": "DatasetReference",
+											"parameters": {
+												"FilePath": {
+													"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
+													"type": "Expression"
+												},
+												"FileName": {
+													"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
+													"type": "Expression"
+												},
+												"FileSystem": {
+													"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "SQL_DS_DW_MALWEE",
+											"type": "DatasetReference",
+											"parameters": {
+												"NomeTabela": {
+													"value": "@pipeline().parameters.ParTabelaPayment",
+													"type": "Expression"
+												}
+											}
+										}
+									]
 								}
 							]
 						}
@@ -7480,6 +7632,9 @@
 						"type": "string"
 					},
 					"ParTabelaPayment": {
+						"type": "string"
+					},
+					"ParTabelaClient": {
 						"type": "string"
 					}
 				},
@@ -11153,6 +11308,12 @@
 								"dependencyConditions": [
 									"Succeeded"
 								]
+							},
+							{
+								"activity": "Limpavtex_order_details_order_payment_copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
 							}
 						],
 						"userProperties": [],
@@ -11198,6 +11359,10 @@
 											},
 											"ParTabelaPayment": {
 												"value": "@concat(\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_TABELA_DESTINO\n)\n",
+												"type": "Expression"
+											},
+											"ParTabelaClient": {
+												"value": "@concat(\nactivity('vtex_order_details_order_client').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_TABELA_DESTINO\n)\n",
 												"type": "Expression"
 											}
 										}
@@ -11562,6 +11727,79 @@
 								"type": "AzureSqlSource",
 								"sqlReaderQuery": {
 									"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_payment').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_DW_MALWEE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "TABELA"
+								}
+							}
+						}
+					},
+					{
+						"name": "vtex_order_details_order_client",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "OrderID",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select \nNOM_SCHEMA_DESTINO,NOM_TABELA_DESTINO\nfrom [dbo].[CTR_ADF_TABELA_API_ENDPOINT]\nwhere COD_TABELA = 6",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_CONTROLE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "TABELA"
+								}
+							}
+						}
+					},
+					{
+						"name": "Limpavtex_order_details_order_payment_copy1",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "vtex_order_details_order_client",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_client').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
