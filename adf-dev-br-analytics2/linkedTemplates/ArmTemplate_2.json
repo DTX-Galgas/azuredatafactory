@@ -7768,7 +7768,7 @@
 											"mappings": [
 												{
 													"source": {
-														"path": "$['totals'][0]['id']"
+														"path": "$['orderId']"
 													},
 													"sink": {
 														"name": "orderId",
@@ -7777,7 +7777,7 @@
 												},
 												{
 													"source": {
-														"path": "$['totals'][0]['id']"
+														"path": "[['id']"
 													},
 													"sink": {
 														"name": "id",
@@ -7786,7 +7786,7 @@
 												},
 												{
 													"source": {
-														"path": "$['totals'][0]['name']"
+														"path": "[['name']"
 													},
 													"sink": {
 														"name": "name",
@@ -7795,7 +7795,7 @@
 												},
 												{
 													"source": {
-														"path": "$['totals'][0]['value']"
+														"path": "[['value']"
 													},
 													"sink": {
 														"name": "value",
