@@ -712,7 +712,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_items').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_items').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
+							"value": "@concat('truncate table  ',\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_SCHEMA_DESTINO,\n'.',\nactivity('vtex_order_details_order_totals').output.firstRow.NOM_TABELA_DESTINO,\n' SELECT 0'\n)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
