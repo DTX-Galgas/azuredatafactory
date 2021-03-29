@@ -1201,16 +1201,18 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
+												"name": "orderId",
+												"type": "String"
 											},
 											"sink": {
-												"name": "orderid",
+												"name": "orderId",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['addressType']"
+												"name": "addressType",
+												"type": "String"
 											},
 											"sink": {
 												"name": "addressType",
@@ -1219,7 +1221,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['receiverName']"
+												"name": "receiverName",
+												"type": "String"
 											},
 											"sink": {
 												"name": "receiverName",
@@ -1228,7 +1231,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['addressId']"
+												"name": "addressId",
+												"type": "String"
 											},
 											"sink": {
 												"name": "addressId",
@@ -1237,7 +1241,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['postalCode']"
+												"name": "postalCode",
+												"type": "String"
 											},
 											"sink": {
 												"name": "postalCode",
@@ -1246,7 +1251,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['city']"
+												"name": "city",
+												"type": "String"
 											},
 											"sink": {
 												"name": "city",
@@ -1255,7 +1261,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['state']"
+												"name": "state",
+												"type": "String"
 											},
 											"sink": {
 												"name": "state",
@@ -1264,7 +1271,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['country']"
+												"name": "country",
+												"type": "String"
 											},
 											"sink": {
 												"name": "country",
@@ -1273,7 +1281,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['street']"
+												"name": "street",
+												"type": "String"
 											},
 											"sink": {
 												"name": "street",
@@ -1282,7 +1291,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['number']"
+												"name": "number",
+												"type": "String"
 											},
 											"sink": {
 												"name": "number",
@@ -1291,7 +1301,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['neighborhood']"
+												"name": "neighborhood",
+												"type": "String"
 											},
 											"sink": {
 												"name": "neighborhood",
@@ -1300,7 +1311,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['complement']"
+												"name": "complement",
+												"type": "String"
 											},
 											"sink": {
 												"name": "complement",
@@ -1309,7 +1321,8 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['reference']"
+												"name": "reference",
+												"type": "String"
 											},
 											"sink": {
 												"name": "reference",
@@ -1318,28 +1331,22 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates']"
+												"name": "geoCoordinates",
+												"type": "String"
 											},
 											"sink": {
-												"name": "geoCoordinates_X",
+												"name": "geoCoordinates",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][1]"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											},
 											"sink": {
-												"name": "geoCoordinates_Y",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
-											},
-											"sink": {
-												"name": "data_hora_exportacao"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											}
 										}
 									]
