@@ -2258,65 +2258,65 @@
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
+												"path": "$['clientProfileData']['email']"
 											},
 											"sink": {
-												"name": "iditems",
+												"name": "email",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
+												"path": "$['clientProfileData']['firstName']"
 											},
 											"sink": {
-												"name": "paymentSystem",
+												"name": "firstName",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
+												"path": "$['clientProfileData']['lastName']"
 											},
 											"sink": {
-												"name": "paymentSystemName",
+												"name": "lastName",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
+												"path": "$['clientProfileData']['documentType']"
 											},
 											"sink": {
-												"name": "value",
+												"name": "documentType",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
+												"path": "$['clientProfileData']['document']"
 											},
 											"sink": {
-												"name": "installments",
+												"name": "document",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
+												"path": "$['clientProfileData']['phone']"
 											},
 											"sink": {
-												"name": "referenceValue",
+												"name": "phone",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['data_hora_exportacao']"
+												"path": "$['shippingData']['address']['street']"
 											},
 											"sink": {
-												"name": "data_hora_exportacao",
-												"type": "DateTime"
+												"name": "street",
+												"type": "String"
 											}
 										}
 									],
