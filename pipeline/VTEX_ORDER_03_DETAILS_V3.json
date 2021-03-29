@@ -168,24 +168,9 @@
 							"userProperties": [],
 							"typeProperties": {
 								"source": {
-									"type": "JsonSource",
-									"additionalColumns": [
-										{
-											"name": "DATA_HORA_EXPORTACAO",
-											"value": {
-												"value": "@substring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,19)",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobFSReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
 									"type": "ParquetSink",
@@ -202,16 +187,18 @@
 									"mappings": [
 										{
 											"source": {
-												"path": "$['orderId']"
+												"name": "orderId",
+												"type": "String"
 											},
 											"sink": {
-												"name": "orderid",
+												"name": "orderId",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['sequence']"
+												"name": "sequence",
+												"type": "String"
 											},
 											"sink": {
 												"name": "sequence",
@@ -220,7 +207,8 @@
 										},
 										{
 											"source": {
-												"path": "$['marketplaceOrderId']"
+												"name": "marketplaceOrderId",
+												"type": "String"
 											},
 											"sink": {
 												"name": "marketplaceOrderId",
@@ -229,7 +217,8 @@
 										},
 										{
 											"source": {
-												"path": "$['sellerOrderId']"
+												"name": "sellerOrderId",
+												"type": "String"
 											},
 											"sink": {
 												"name": "sellerOrderId",
@@ -238,7 +227,8 @@
 										},
 										{
 											"source": {
-												"path": "$['origin']"
+												"name": "origin",
+												"type": "String"
 											},
 											"sink": {
 												"name": "origin",
@@ -247,7 +237,8 @@
 										},
 										{
 											"source": {
-												"path": "$['affiliateId']"
+												"name": "affiliateId",
+												"type": "String"
 											},
 											"sink": {
 												"name": "affiliateId",
@@ -256,7 +247,8 @@
 										},
 										{
 											"source": {
-												"path": "$['salesChannel']"
+												"name": "salesChannel",
+												"type": "String"
 											},
 											"sink": {
 												"name": "salesChannel",
@@ -265,7 +257,8 @@
 										},
 										{
 											"source": {
-												"path": "$['merchantName']"
+												"name": "merchantName",
+												"type": "String"
 											},
 											"sink": {
 												"name": "merchantName",
@@ -274,7 +267,8 @@
 										},
 										{
 											"source": {
-												"path": "$['status']"
+												"name": "status",
+												"type": "String"
 											},
 											"sink": {
 												"name": "status",
@@ -283,7 +277,8 @@
 										},
 										{
 											"source": {
-												"path": "$['statusDescription']"
+												"name": "statusDescription",
+												"type": "String"
 											},
 											"sink": {
 												"name": "statusDescription",
@@ -292,7 +287,8 @@
 										},
 										{
 											"source": {
-												"path": "$['value']"
+												"name": "value",
+												"type": "String"
 											},
 											"sink": {
 												"name": "value",
@@ -301,7 +297,8 @@
 										},
 										{
 											"source": {
-												"path": "$['creationDate']"
+												"name": "creationDate",
+												"type": "String"
 											},
 											"sink": {
 												"name": "creationDate",
@@ -310,7 +307,8 @@
 										},
 										{
 											"source": {
-												"path": "$['orderGroup']"
+												"name": "orderGroup",
+												"type": "String"
 											},
 											"sink": {
 												"name": "orderGroup",
@@ -319,33 +317,24 @@
 										},
 										{
 											"source": {
-												"path": "$['DATA_HORA_EXPORTACAO']"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											},
 											"sink": {
-												"name": "DATA_HORA_EXPORTACAO",
-												"type": "String"
+												"name": "data_hora_exportacao",
+												"type": "DateTime"
 											}
 										}
-									],
-									"collectionReference": "",
-									"mapComplexValuesToString": true
+									]
 								}
 							},
 							"inputs": [
 								{
-									"referenceName": "VtexOrderDetailsOrder",
+									"referenceName": "SQL_DS_DW_MALWEE",
 									"type": "DatasetReference",
 									"parameters": {
-										"FilePath": {
-											"value": "@toLower(concat(\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_REGION,'/',\nreplace(activity('LeCredenciaisOrigem').output.firstRow.NOM_SISTEMA_ORIGEM,'_',''),'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_ALIAS_ENDPOINT_1,'/',\nactivity('LeCredenciaisOrigem').output.firstRow.NOM_FORMATO_ARQUIVO_1,'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),'/',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2)))",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@toLower(concat(pipeline().parameters.ParNumeroOrder,\n'_order_header_',\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,0,4),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,5,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,8,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,11,2),\nsubstring(activity('LeDataProcessamento').output.firstRow.DAT_HORA_PROCESSAMENTO,14,2),\n'.json'))\n",
-											"type": "Expression"
-										},
-										"FileSystem": {
-											"value": "@activity('LeCredenciaisOrigem').output.FirstRow.NOM_CONTAINER_RAW",
+										"NomeTabela": {
+											"value": "@pipeline().parameters.ParTabelaHeader",
 											"type": "Expression"
 										}
 									}
