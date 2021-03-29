@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Gestor_CRM",
+				"name": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"userProperties": [],
@@ -23,7 +23,7 @@
 				"type": "Wait",
 				"dependsOn": [
 					{
-						"activity": "Gestor_CRM",
+						"activity": "EXEC_PIPE_CIGAM_GST_BI_VENDAS",
 						"dependencyConditions": [
 							"Failed"
 						]
