@@ -60,7 +60,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "\nselect orderid from [cleansing_data].[vtex_order_list]\n",
+						"sqlReaderQuery": "\nselect top(10) orderid from [cleansing_data].[vtex_order_list]\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
