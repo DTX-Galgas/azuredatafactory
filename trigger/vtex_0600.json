@@ -12,6 +12,16 @@
 				"parameters": {
 					"ParCodEndPoint": "5"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "VTEX_ORDER_01_TOTAL_PAGINA_FE",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"ParCodEndPoint": 4,
+					"ParPagina": 1
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
