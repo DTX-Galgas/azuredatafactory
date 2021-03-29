@@ -2117,126 +2117,56 @@
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['addressType']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['id']"
 											},
 											"sink": {
-												"name": "addressType",
+												"name": "iditems",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['receiverName']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystem']"
 											},
 											"sink": {
-												"name": "receiverName",
+												"name": "paymentSystem",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['addressId']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['paymentSystemName']"
 											},
 											"sink": {
-												"name": "addressId",
+												"name": "paymentSystemName",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['postalCode']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['value']"
 											},
 											"sink": {
-												"name": "postalCode",
+												"name": "value",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['city']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['installments']"
 											},
 											"sink": {
-												"name": "city",
+												"name": "installments",
 												"type": "String"
 											}
 										},
 										{
 											"source": {
-												"path": "$['shippingData']['address']['state']"
+												"path": "$['paymentData']['transactions'][0]['payments'][0]['referenceValue']"
 											},
 											"sink": {
-												"name": "state",
+												"name": "referenceValue",
 												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['selectedAddresses'][0]['country']"
-											},
-											"sink": {
-												"name": "country",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['street']"
-											},
-											"sink": {
-												"name": "street",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['number']"
-											},
-											"sink": {
-												"name": "number",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['neighborhood']"
-											},
-											"sink": {
-												"name": "neighborhood",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['complement']"
-											},
-											"sink": {
-												"name": "complement",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['reference']"
-											},
-											"sink": {
-												"name": "reference",
-												"type": "String"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][0]"
-											},
-											"sink": {
-												"name": "geoCoordinates_x"
-											}
-										},
-										{
-											"source": {
-												"path": "$['shippingData']['address']['geoCoordinates'][1]"
-											},
-											"sink": {
-												"name": "geoCoordinates_y"
 											}
 										},
 										{
@@ -2279,7 +2209,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"NomeTabela": {
-											"value": "@pipeline().parameters.ParTabelaShipping",
+											"value": "@pipeline().parameters.ParTabelaPayment",
 											"type": "Expression"
 										}
 									}
