@@ -11771,6 +11771,14 @@
 												},
 												{
 													"source": {
+														"path": "$['shippingData']['address']['geoCoordinates']"
+													},
+													"sink": {
+														"name": "geoCoordinates_x"
+													}
+												},
+												{
+													"source": {
 														"path": "$['shippingData']['selectedAddresses'][0]['country']"
 													},
 													"sink": {
@@ -11789,18 +11797,10 @@
 												},
 												{
 													"source": {
-														"path": "$['shippingData']['address']['geoCoordinates'][0]"
-													},
-													"sink": {
-														"name": "geoCoordinates_x"
-													}
-												},
-												{
-													"source": {
 														"path": "$['shippingData']['address']['geoCoordinates'][1]"
 													},
 													"sink": {
-														"name": "geoCoordinates_x"
+														"name": "geoCoordinates_y"
 													}
 												}
 											],
