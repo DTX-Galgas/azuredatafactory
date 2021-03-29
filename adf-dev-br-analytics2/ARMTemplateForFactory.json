@@ -4381,42 +4381,6 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "GravaLogInicio",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.00:01:00",
-							"retry": 2,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "AzureSqlSource",
-								"sqlReaderQuery": "\nselect orderid from [cleansing_data].[vtex_order_list]\n",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"dataset": {
-								"referenceName": "SQL_DS_DW_MALWEE",
-								"type": "DatasetReference",
-								"parameters": {
-									"NomeTabela": "TABELA"
-								}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "executa downlod order detalhe",
-						"type": "ForEach",
-						"dependsOn": [
-							{
 								"activity": "LimpaVtexOrderDetailsOrderShippingItems",
 								"dependencyConditions": [
 									"Succeeded"
@@ -4454,6 +4418,42 @@
 							},
 							{
 								"activity": "Limpavtex_order_details_order_header",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.00:01:00",
+							"retry": 2,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "\nselect orderid from [cleansing_data].[vtex_order_list]\n",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SQL_DS_DW_MALWEE",
+								"type": "DatasetReference",
+								"parameters": {
+									"NomeTabela": "TABELA"
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "executa downlod order detalhe",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "OrderID",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4680,14 +4680,7 @@
 					{
 						"name": "VtexOrderDetailsOrderShippingItems",
 						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "OrderID",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -4755,7 +4748,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4828,7 +4821,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4901,7 +4894,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -4974,7 +4967,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5047,7 +5040,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5120,7 +5113,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "OrderID",
+								"activity": "GravaLogInicio",
 								"dependencyConditions": [
 									"Succeeded"
 								]
