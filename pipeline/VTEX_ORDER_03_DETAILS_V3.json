@@ -2587,6 +2587,14 @@
 												"name": "categories_name_3",
 												"type": "String"
 											}
+										},
+										{
+											"source": {
+												"path": "$['data_hora_exportacao']"
+											},
+											"sink": {
+												"name": "data_hora_exportacao"
+											}
 										}
 									],
 									"collectionReference": "$['items']",
